@@ -1,4 +1,4 @@
-dist/
+lib/
 tmp/
 cspell.json
 src/types/data.ts

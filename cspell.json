@@ -2,7 +2,7 @@
   "version": "0.2",
   "language": "en",
   "ignorePaths": [
-    "dist",
+    "lib",
     "tmp",
     "src/types/{data,search}.ts"
   ],

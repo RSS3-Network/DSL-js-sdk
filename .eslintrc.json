@@ -11,5 +11,5 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "ignorePatterns": ["dist", "src/types/search.ts", "src/types/data.ts"]
+  "ignorePatterns": ["lib", "src/types/search.ts", "src/types/data.ts"]
 }
