@@ -1,7 +1,7 @@
 import { it } from 'vitest'
 import { client } from './client'
 
-it.concurrent('get 5 feeds by keyword', async ({ expect }) => {
+it.concurrent('get 5 feed items by keyword', async ({ expect }) => {
   const res = await client().feed({
     keyword: 'vitalik',
     page: 1,
