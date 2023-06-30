@@ -1,0 +1,31 @@
+{
+  "name": "@rss3/js-sdk",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "engines": {
+    "node": ">=v19.8.1"
+  },
+  "description": "js sdk for rss3 services",
+  "scripts": {
+    "generate": "npm run build && node dist/types/generate",
+    "build": "rm -rf dist && tsc",
+    "test": "vitest",
+    "lint": "cspell --no-progress '**' && eslint --max-warnings=0 src && prettier -c . && tsc --noEmit",
+    "format": "eslint --fix && prettier -w ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.3.2",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "cspell": "^6.31.1",
+    "eslint": "^8.43.0",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4",
+    "vitest": "^0.32.2"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.6.0"
+  }
+}

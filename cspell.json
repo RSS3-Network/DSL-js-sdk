@@ -1,0 +1,14 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "ignorePaths": [
+    "dist",
+    "tmp",
+    "src/types/{data,search}.ts"
+  ],
+  "words": [
+    "openapi",
+    "vitalik"
+  ],
+  "flagWords": []
+}

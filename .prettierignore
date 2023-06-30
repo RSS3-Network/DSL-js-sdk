@@ -1,0 +1,5 @@
+dist/
+tmp/
+cspell.json
+src/types/data.ts
+src/types/search.ts
