@@ -4,8 +4,6 @@ import { ClientOptions } from '../types/utils'
 import { guardError } from '../utils'
 import { DEFAULT_DATA_SERVER } from '../constants'
 
-type Client = ReturnType<typeof createClient<paths>>
-
 export function client(
   opt: ClientOptions = {
     baseUrl: DEFAULT_DATA_SERVER,
@@ -14,18 +12,14 @@ export function client(
   const client = createClient<paths>(opt)
 
   return {
-    notes: notes(client),
-  }
-}
+    async notes(query: paths['/notes']['post']['requestBody']['content']['application/json']) {
+      const { data, error } = await client.post('/notes', {
+        body: query,
+      })
 
-function notes(client: Client) {
-  return async (query: paths['/notes']['post']['requestBody']['content']['application/json']) => {
-    const { data, error } = await client.post('/notes', {
-      body: query,
-    })
+      guardError(error)
 
-    guardError(error)
-
-    return data
+      return data
+    },
   }
 }
