@@ -14,11 +14,11 @@ export function client(
   const client = createClient<paths>(opt)
 
   return {
-    getNotes: getNotes(client),
+    notes: notes(client),
   }
 }
 
-function getNotes(client: Client) {
+function notes(client: Client) {
   return async (query: paths['/notes']['post']['requestBody']['content']['application/json']) => {
     const { data, error } = await client.post('/notes', {
       body: query,
