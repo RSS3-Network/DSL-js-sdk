@@ -1,0 +1,36 @@
+{
+  "timestamp": "2023-02-13T11:22:23Z",
+  "hash": "0x1e31940b3b2fd992a4e65963dba2f2d51e92417c58e850e729de6dabf32342ea",
+  "owner": "0x000000000000000000000000000000000000dead",
+  "fee": "0.01560187836845316",
+  "address_from": "0x0d0707963952f2fba59dd06f2b425ace40b492fe",
+  "address_to": "0x7db5af2b9624e1b3b4bb69d6debd9ad1016a58ac",
+  "network": "ethereum",
+  "tag": "transaction",
+  "type": "burn",
+  "success": true,
+  "created_at": "2023-02-14T03:04:19.609459Z",
+  "updated_at": "2023-02-14T03:04:19.609459Z",
+  "actions": [
+    {
+      "tag": "transaction",
+      "type": "burn",
+      "index": 46,
+      "address_from": "0x7db5af2b9624e1b3b4bb69d6debd9ad1016a58ac",
+      "address_to": "0x000000000000000000000000000000000000dead",
+      "metadata": {
+        "name": "Volt Inu",
+        "image": "https://assets.coingecko.com/coins/images/25201/large/logo200.png",
+        "value": "275500000000000001",
+        "symbol": "VOLT",
+        "decimals": 9,
+        "standard": "ERC-20",
+        "value_display": "275500000.000000001",
+        "contract_address": "0x7db5af2b9624e1b3b4bb69d6debd9ad1016a58ac"
+      },
+      "related_urls": [
+        "https://etherscan.io/tx/0x1e31940b3b2fd992a4e65963dba2f2d51e92417c58e850e729de6dabf32342ea"
+      ]
+    }
+  ]
+}

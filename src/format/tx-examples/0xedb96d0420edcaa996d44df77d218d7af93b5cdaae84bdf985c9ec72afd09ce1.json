@@ -1,0 +1,38 @@
+{
+  "timestamp": "2021-08-29T15:31:57Z",
+  "hash": "0xedb96d0420edcaa996d44df77d218d7af93b5cdaae84bdf985c9ec72afd09ce1",
+  "owner": "0x7c218fc943e54b82ed027cec922d364859bf1ead",
+  "fee": "0.00648848",
+  "address_from": "0x7c218fc943e54b82ed027cec922d364859bf1ead",
+  "address_to": "0x86935f11c86623dec8a25696e1c19a8659cbf95d",
+  "network": "polygon",
+  "platform": "Aavegotchi",
+  "tag": "metaverse",
+  "type": "claim",
+  "success": true,
+  "created_at": "2022-12-13T14:07:35.452359Z",
+  "updated_at": "2022-12-13T14:07:35.452359Z",
+  "actions": [
+    {
+      "tag": "metaverse",
+      "type": "claim",
+      "index": 139,
+      "address_from": "0x7c218fc943e54b82ed027cec922d364859bf1ead",
+      "address_to": "0x5ca8948bc3d773222a864dcfb306472e2a9b7fff",
+      "metadata": {
+        "name": "Aave Matic Market WMATIC",
+        "image": "https://assets.coingecko.com/coins/images/17267/large/amWMATIC_2x.png",
+        "value": "100000000000000000000",
+        "symbol": "amWMATIC",
+        "decimals": 18,
+        "standard": "ERC-20",
+        "value_display": "100",
+        "contract_address": "0x8df3aad3a84da6b69a4da8aec3ea40d9091b2ac4"
+      },
+      "platform": "Aavegotchi",
+      "related_urls": [
+        "https://polygonscan.com/tx/0xedb96d0420edcaa996d44df77d218d7af93b5cdaae84bdf985c9ec72afd09ce1"
+      ]
+    }
+  ]
+}

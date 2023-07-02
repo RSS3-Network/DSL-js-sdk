@@ -1,0 +1,58 @@
+{
+  "timestamp": "2021-11-09T00:01:43Z",
+  "hash": "0x4440866ccab87ac40815f5c12fd6f824705c25931583db3534b6adeaeffb4fb9",
+  "owner": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+  "fee": "0.017474644281283824",
+  "address_from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+  "address_to": "0x7eef591a6cc0403b9652e98e88476fe1bf31ddeb",
+  "network": "ethereum",
+  "tag": "collectible",
+  "type": "transfer",
+  "success": true,
+  "created_at": "2022-12-22T11:53:23.075584Z",
+  "updated_at": "2022-12-22T11:53:23.075584Z",
+  "actions": [
+    {
+      "tag": "transaction",
+      "type": "transfer",
+      "index": -1,
+      "address_from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "address_to": "0x7eef591a6cc0403b9652e98e88476fe1bf31ddeb",
+      "metadata": {
+        "name": "Ethereum",
+        "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+        "value": "250000000000000000",
+        "symbol": "ETH",
+        "decimals": 18,
+        "standard": "Native",
+        "value_display": "0.25"
+      },
+      "related_urls": [
+        "https://etherscan.io/tx/0x4440866ccab87ac40815f5c12fd6f824705c25931583db3534b6adeaeffb4fb9"
+      ]
+    },
+    {
+      "tag": "collectible",
+      "type": "transfer",
+      "index": 93,
+      "address_from": "0x05a56db5f286a099b12ac78d9713e55ad42eebb4",
+      "address_to": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "metadata": {
+        "id": "42",
+        "name": "CityDAO Citizen",
+        "image": "https://gateway.pinata.cloud/ipfs/QmRRnuHVwhoYEHsTxzMcGdrCfthKTS65gnfUqDZkv6kbza",
+        "value": "1",
+        "symbol": "",
+        "standard": "ERC-1155",
+        "description": "A Citizen of CityDAO holds governance in the operations and activities of CityDAO.",
+        "value_display": "1",
+        "contract_address": "0x7eef591a6cc0403b9652e98e88476fe1bf31ddeb"
+      },
+      "related_urls": [
+        "https://etherscan.io/tx/0x4440866ccab87ac40815f5c12fd6f824705c25931583db3534b6adeaeffb4fb9",
+        "https://opensea.io/assets/0x7eef591a6cc0403b9652e98e88476fe1bf31ddeb/42",
+        "https://looksrare.org/collections/0x7eef591a6cc0403b9652e98e88476fe1bf31ddeb/42"
+      ]
+    }
+  ]
+}

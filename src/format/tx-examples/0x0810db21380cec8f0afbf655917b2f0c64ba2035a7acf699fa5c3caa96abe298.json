@@ -1,0 +1,50 @@
+{
+  "timestamp": "2021-11-18T13:08:03Z",
+  "hash": "0x0810db21380cec8f0afbf655917b2f0c64ba2035a7acf699fa5c3caa96abe298",
+  "owner": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
+  "fee": "0.00612456",
+  "address_from": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
+  "address_to": "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506",
+  "network": "polygon",
+  "platform": "SushiSwap",
+  "tag": "exchange",
+  "type": "swap",
+  "success": true,
+  "created_at": "2022-10-14T12:49:01.746525Z",
+  "updated_at": "2022-10-14T12:49:01.746525Z",
+  "actions": [
+    {
+      "tag": "exchange",
+      "type": "swap",
+      "index": 0,
+      "address_from": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
+      "address_to": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
+      "metadata": {
+        "to": {
+          "name": "Wrapped Ether",
+          "image": "https://assets.coingecko.com/coins/images/2518/large/weth.png",
+          "value": "500000000000000",
+          "symbol": "WETH",
+          "decimals": 18,
+          "standard": "ERC-20",
+          "value_display": "0.0005",
+          "contract_address": "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619"
+        },
+        "from": {
+          "name": "Wrapped Matic",
+          "image": "https://assets.coingecko.com/coins/images/14073/large/matic.png",
+          "value": "1341669647922071810",
+          "symbol": "WMATIC",
+          "decimals": 18,
+          "standard": "ERC-20",
+          "value_display": "1.34166964792207181",
+          "contract_address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270"
+        },
+        "protocol": "Uniswap V3"
+      },
+      "related_urls": [
+        "https://polygonscan.com/tx/0x0810db21380cec8f0afbf655917b2f0c64ba2035a7acf699fa5c3caa96abe298"
+      ]
+    }
+  ]
+}

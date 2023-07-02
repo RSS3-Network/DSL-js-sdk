@@ -1,0 +1,54 @@
+{
+  "timestamp": "2022-03-14T06:16:37Z",
+  "hash": "0x6fbdd964339c937403ba22b7f37f754f48dc791d8393e535e41f783d789f6221",
+  "owner": "0x618099525f0d3952c743b39bf65f08b5c391ad52",
+  "fee": "0.005544400506927456",
+  "address_from": "0x618099525f0d3952c743b39bf65f08b5c391ad52",
+  "address_to": "0x714a3c939a3664c06e3bb0e8315cefff84526f17",
+  "network": "ethereum",
+  "platform": "Sound",
+  "tag": "collectible",
+  "type": "music",
+  "success": true,
+  "created_at": "2023-03-13T13:17:43.95641Z",
+  "updated_at": "2023-03-13T13:17:43.95641Z",
+  "actions": [
+    {
+      "tag": "collectible",
+      "type": "music",
+      "index": 24,
+      "address_from": "0x618099525f0d3952c743b39bf65f08b5c391ad52",
+      "address_to": "0x714a3c939a3664c06e3bb0e8315cefff84526f17",
+      "metadata": {
+        "id": "14",
+        "cost": {
+          "name": "Ethereum",
+          "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+          "symbol": "ETH",
+          "decimals": 18,
+          "standard": "Native"
+        },
+        "name": "Too Late (To Call) #14",
+        "image": "https://ipfs.rss3.page/ipfs/QmUv1XSeikxVvQjWy2jwR8F6b2MkaynwrDUyiyBh9obXP6",
+        "action": "release",
+        "symbol": "RUBYRED",
+        "standard": "ERC-721",
+        "attributes": [
+          {
+            "value": "Song Edition",
+            "trait_type": "Too Late (To Call)"
+          }
+        ],
+        "collection": "Ruby Red",
+        "description": "The story of this song starts over a year ago now, on the day that the sky turned dark red in the Bay Area. \n\nThanks to smoke from nearby wildfires, our beautiful home had been converted into a hellscape overnight. It was definitely surreal, but oddly bittersweet as well, as it kind of forced us to reminisce about the world we saw ending all around us. \n\nWhenever we’re forced to acknowledge that some phase of our life is ending (whether it be school, a job, or the f*cking world), it’s hard to not think about all the things we wish we’d done differently. “Too Late” is what happens when you let yourself get swept up in that nostalgia––it’s that one last futile transmission into the vacuum.\n\nFor this song, we drew a lot of inspiration from anthemic pop songs, pulling melodies and rhythms that feel good and contrast well with the melancholic lyrics. \n\n“Too Late” has already brought us so much love and joy; we hope it can do the same for you <3",
+        "animation_url": "https://soundxyz.mypinata.cloud/ipfs/QmaLrnNGH3cmzq5ebW3qYH2UebMqEZkxnEoEPEDMKMsn2v",
+        "contract_address": "0x714a3c939a3664c06e3bb0e8315cefff84526f17"
+      },
+      "platform": "Sound",
+      "related_urls": [
+        "https://etherscan.io/tx/0x6fbdd964339c937403ba22b7f37f754f48dc791d8393e535e41f783d789f6221",
+        "https://opensea.io/collection/ruby-red"
+      ]
+    }
+  ]
+}

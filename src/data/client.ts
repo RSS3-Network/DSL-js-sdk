@@ -16,9 +16,13 @@ export function client(
       const { data, error } = await client.post('/notes', {
         body: query,
       })
-
       guardError(error)
+      return data
+    },
 
+    async transaction(hash: string) {
+      const { data, error } = await client.get('/tx/{hash}', { params: { path: { hash } } })
+      guardError(error)
       return data
     },
   }

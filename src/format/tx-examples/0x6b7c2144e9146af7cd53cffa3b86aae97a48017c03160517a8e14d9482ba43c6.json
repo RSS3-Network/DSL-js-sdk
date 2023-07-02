@@ -1,0 +1,44 @@
+{
+  "timestamp": "2023-05-15T12:18:18Z",
+  "hash": "0x6b7c2144e9146af7cd53cffa3b86aae97a48017c03160517a8e14d9482ba43c6",
+  "owner": "0xf1c8550af95f7dd1cb911794bbd0857292b6144c",
+  "fee": "0.000098102",
+  "address_from": "0xf1c8550af95f7dd1cb911794bbd0857292b6144c",
+  "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+  "network": "crossbell",
+  "platform": "Crossbell",
+  "tag": "social",
+  "type": "proxy",
+  "success": true,
+  "created_at": "2023-05-15T12:23:58.662568Z",
+  "updated_at": "2023-05-15T12:23:58.662568Z",
+  "actions": [
+    {
+      "tag": "social",
+      "type": "proxy",
+      "index": 0,
+      "address_from": "0xf1c8550af95f7dd1cb911794bbd0857292b6144c",
+      "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+      "metadata": {
+        "bio": "Welcome!",
+        "url": "https://crossbell.io/@gg-boom-5200",
+        "name": "GG Boom",
+        "proxy": "0x0f588318a494e4508a121a32b6670b5494ca3357",
+        "action": "appoint",
+        "handle": "gg-boom-5200.csb",
+        "source": "crossbell",
+        "address": "0xf1c8550af95f7dd1cb911794bbd0857292b6144c",
+        "network": "crossbell",
+        "platform": "Crossbell",
+        "profile_uri": [
+          "ipfs://bafybeihvk3xukm7lmtewnvvol6hoau77wb6guk4w4et4j72oletxjovn2u"
+        ]
+      },
+      "platform": "Crossbell",
+      "related_urls": [
+        "https://scan.crossbell.io/tx/0x6b7c2144e9146af7cd53cffa3b86aae97a48017c03160517a8e14d9482ba43c6",
+        "https://crossbell.io/@gg-boom-5200"
+      ]
+    }
+  ]
+}

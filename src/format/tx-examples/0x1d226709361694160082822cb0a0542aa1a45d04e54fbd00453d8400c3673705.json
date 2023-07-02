@@ -1,0 +1,38 @@
+{
+  "timestamp": "2022-03-20T23:41:25Z",
+  "hash": "0x1d226709361694160082822cb0a0542aa1a45d04e54fbd00453d8400c3673705",
+  "owner": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+  "fee": "0.00278559",
+  "address_from": "0x6cc5f688a315f3dc28a7781717a9a798a59fda7b",
+  "address_to": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+  "network": "ethereum",
+  "platform": "OKEx",
+  "tag": "exchange",
+  "type": "withdraw",
+  "success": true,
+  "created_at": "2022-12-22T11:53:23.075584Z",
+  "updated_at": "2022-12-22T11:53:23.075584Z",
+  "actions": [
+    {
+      "tag": "exchange",
+      "type": "withdraw",
+      "index": 27,
+      "address_from": "0x6cc5f688a315f3dc28a7781717a9a798a59fda7b",
+      "address_to": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "metadata": {
+        "name": "ApeCoin",
+        "image": "https://assets.coingecko.com/coins/images/24383/large/apecoin.jpg",
+        "value": "1000000000000000000",
+        "symbol": "APE",
+        "decimals": 18,
+        "standard": "ERC-20",
+        "value_display": "1",
+        "contract_address": "0x4d224452801aced8b2f0aebe155379bb5d594381"
+      },
+      "platform": "OKEx",
+      "related_urls": [
+        "https://etherscan.io/tx/0x1d226709361694160082822cb0a0542aa1a45d04e54fbd00453d8400c3673705"
+      ]
+    }
+  ]
+}

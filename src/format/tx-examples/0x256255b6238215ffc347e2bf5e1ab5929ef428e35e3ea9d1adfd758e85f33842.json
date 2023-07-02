@@ -1,0 +1,38 @@
+{
+  "timestamp": "2023-03-30T13:45:23Z",
+  "hash": "0x256255b6238215ffc347e2bf5e1ab5929ef428e35e3ea9d1adfd758e85f33842",
+  "owner": "0x46340b20830761efd32832a74d7169b29feb9758",
+  "fee": "0.003109451844261396",
+  "address_from": "0x46340b20830761efd32832a74d7169b29feb9758",
+  "address_to": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+  "network": "ethereum",
+  "platform": "Crypto.com",
+  "tag": "exchange",
+  "type": "deposit",
+  "success": true,
+  "created_at": "2023-03-30T13:57:39.43173Z",
+  "updated_at": "2023-03-30T13:57:39.43173Z",
+  "actions": [
+    {
+      "tag": "exchange",
+      "type": "deposit",
+      "index": 104,
+      "address_from": "0x46340b20830761efd32832a74d7169b29feb9758",
+      "address_to": "0xc0eeece565a5a9590be39ad679637a8703790120",
+      "metadata": {
+        "name": "Tether USD",
+        "image": "https://assets.coingecko.com/coins/images/325/large/Tether.png",
+        "value": "24397890630",
+        "symbol": "USDT",
+        "decimals": 6,
+        "standard": "ERC-20",
+        "value_display": "24397.89063",
+        "contract_address": "0xdac17f958d2ee523a2206206994597c13d831ec7"
+      },
+      "platform": "Crypto.com",
+      "related_urls": [
+        "https://etherscan.io/tx/0x256255b6238215ffc347e2bf5e1ab5929ef428e35e3ea9d1adfd758e85f33842"
+      ]
+    }
+  ]
+}

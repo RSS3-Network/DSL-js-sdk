@@ -1,0 +1,58 @@
+{
+  "timestamp": "2022-04-25T20:04:57Z",
+  "hash": "0xefc1a6e1ff5159693902ebe72973ed2b1133e40b65ca91d2dce06a9845b5e30a",
+  "owner": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
+  "fee": "0.00810232283254828",
+  "address_from": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
+  "address_to": "0x8b7882a7c6c9ca8aa95a523be4f99224e8e16caa",
+  "network": "ethereum",
+  "platform": "Sound",
+  "tag": "collectible",
+  "type": "music",
+  "success": true,
+  "created_at": "2023-03-13T13:29:11.197002Z",
+  "updated_at": "2023-03-13T13:29:11.197002Z",
+  "actions": [
+    {
+      "tag": "collectible",
+      "type": "music",
+      "index": 134,
+      "address_from": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
+      "address_to": "0x8b7882a7c6c9ca8aa95a523be4f99224e8e16caa",
+      "metadata": {
+        "id": "680564733841876926926749214863536422939",
+        "cost": {
+          "name": "Ethereum",
+          "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+          "value": "0",
+          "symbol": "ETH",
+          "decimals": 18,
+          "standard": "Native",
+          "value_display": "0"
+        },
+        "name": "NO APOLOGY! #27",
+        "image": "https://ipfs.rss3.page/ipfs/QmYvmvY7PmXX6nQLbFWaHc9rC8Qu1XDRmUhfjFKLnH2D2A",
+        "value": "27",
+        "action": "buy",
+        "symbol": "KILOKISH",
+        "standard": "ERC-721",
+        "attributes": [
+          {
+            "value": "Song Edition",
+            "trait_type": "NO APOLOGY!"
+          }
+        ],
+        "collection": "KILO KISH",
+        "description": "Hiiii (again)\n\nI'm Kish Robinson — an interdisciplinary artist, director, and performer working in music, film, and the written word. My most extensive project is KILO KISH, a solo music project spanning ten years of exploring personal identity and dissecting the unique times we live in! \n\nSO excited to bring you NO APOLOGY! from my new album 𝓐𝓶𝓮𝓻𝓲𝓬𝓪𝓷 𝓖𝓾𝓻𝓵 \n\nNO APOLOGY! is a song about not denying the core truths of who you are for fear of others or yourself. Each line is for people, situations, and systems in my orbit that have caused me a lot of harm, including myself. \n\nThis album explores the power of choice, finding personal freedoms, and escaping imposed old notions and identities. I made this album with my collaborator Ray Brady, on multiple writing trips to Joshua Tree, CA, between 2019-2020.\n\nI created the cover collage from my collection of vintage postcards, which I repurposed along with my image. These postcards represent memories and moments of others, some even written out to loved ones. Now, they're thrust into the present and meshed with my experience decades later. The image is one of many iterations in this style and a part of my 𝓐𝓶𝓮𝓻𝓲𝓬𝓪𝓷 𝓖𝓾𝓻𝓵 𝓢𝓮𝓻𝓲𝓮𝓼 — A collection of digital artworks and films. \n\nThe 𝓐𝓶𝓮𝓻𝓲𝓬𝓪𝓷 𝓖𝓾𝓻𝓵 𝓢𝓮𝓻𝓲𝓮𝓼 films are screening this fall with Times Square Arts as part of the Midnight Moment Program!\n\nI hope you enjoy this second drop on sound :) \nThanks for your support!\nKish",
+        "animation_url": "https://soundxyz.mypinata.cloud/ipfs/QmX1X3zi9vrySP6XQwfL1xjKg9exnCiGkthkTo8H1AYQce",
+        "value_display": "27",
+        "contract_address": "0x8b7882a7c6c9ca8aa95a523be4f99224e8e16caa"
+      },
+      "platform": "Sound",
+      "related_urls": [
+        "https://etherscan.io/tx/0xefc1a6e1ff5159693902ebe72973ed2b1133e40b65ca91d2dce06a9845b5e30a",
+        ""
+      ]
+    }
+  ]
+}

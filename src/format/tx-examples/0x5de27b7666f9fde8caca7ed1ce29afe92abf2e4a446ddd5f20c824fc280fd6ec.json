@@ -1,0 +1,38 @@
+{
+  "timestamp": "2021-11-09T15:47:44Z",
+  "hash": "0x5de27b7666f9fde8caca7ed1ce29afe92abf2e4a446ddd5f20c824fc280fd6ec",
+  "owner": "0x242c34a1ba807d7f889fdc65532837ab7b3ed584",
+  "fee": "0.01875786",
+  "address_from": "0x242c34a1ba807d7f889fdc65532837ab7b3ed584",
+  "address_to": "0x86935f11c86623dec8a25696e1c19a8659cbf95d",
+  "network": "polygon",
+  "platform": "Aavegotchi",
+  "tag": "metaverse",
+  "type": "list",
+  "success": true,
+  "created_at": "2022-12-13T14:27:47.835052Z",
+  "updated_at": "2022-12-13T14:27:47.835052Z",
+  "actions": [
+    {
+      "tag": "metaverse",
+      "type": "list",
+      "index": 119,
+      "address_from": "0x242c34a1ba807d7f889fdc65532837ab7b3ed584",
+      "address_to": "0xffffffffffffffffffffffffffffffffffffffff",
+      "metadata": {
+        "name": "Aavegotchi GHST Token (PoS)",
+        "image": "https://assets.coingecko.com/coins/images/12467/large/ghst_200.png",
+        "value": "100000000000000000",
+        "symbol": "GHST",
+        "decimals": 18,
+        "standard": "ERC-20",
+        "value_display": "0.1",
+        "contract_address": "0x385eeac5cb85a38a9a07a70c73e0a3271cfb54a7"
+      },
+      "platform": "Aavegotchi",
+      "related_urls": [
+        "https://polygonscan.com/tx/0x5de27b7666f9fde8caca7ed1ce29afe92abf2e4a446ddd5f20c824fc280fd6ec"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "timestamp": "2023-01-23T21:35:35Z",
+  "hash": "0x02cc01cdd0acd59c2a94ba4ff84e66f812c2c90b14bc251d8e6e973e81bb61b2",
+  "owner": "0x4b684b7905b2da4d1e074b64a7208fe0fb655319",
+  "fee": "0.001629570614220702",
+  "address_from": "0x4b684b7905b2da4d1e074b64a7208fe0fb655319",
+  "address_to": "0xd004b704f6400229d7d593eca5190554cc0b4170",
+  "network": "ethereum",
+  "platform": "Gnosis Safe",
+  "tag": "transaction",
+  "type": "multisig",
+  "success": true,
+  "created_at": "2023-03-14T01:05:26.410191Z",
+  "updated_at": "2023-03-14T01:05:26.410191Z",
+  "actions": [
+    {
+      "tag": "transaction",
+      "type": "multisig",
+      "index": 85,
+      "address_from": "0x4b684b7905b2da4d1e074b64a7208fe0fb655319",
+      "address_to": "0xd004b704f6400229d7d593eca5190554cc0b4170",
+      "metadata": {
+        "vault": {
+          "owners": [
+            "0x462f6f7E362245eb1b23694fc5fe357f0659a536",
+            "0xB201ED632810922B12A3A17F7abBd4F77C74cE5D",
+            "0x4b684b7905B2DA4d1e074B64a7208FE0fb655319"
+          ],
+          "address": "0xd004B704f6400229D7d593ecA5190554Cc0B4170",
+          "version": "1.3.0",
+          "threshold": 3
+        },
+        "action": "rejection"
+      },
+      "platform": "Gnosis Safe",
+      "related_urls": [
+        "https://etherscan.io/tx/0x02cc01cdd0acd59c2a94ba4ff84e66f812c2c90b14bc251d8e6e973e81bb61b2"
+      ]
+    }
+  ]
+}

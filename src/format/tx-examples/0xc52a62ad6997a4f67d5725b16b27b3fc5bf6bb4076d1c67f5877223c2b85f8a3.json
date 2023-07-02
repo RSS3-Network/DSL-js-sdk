@@ -1,0 +1,43 @@
+{
+  "timestamp": "2023-02-17T06:53:35Z",
+  "hash": "0xc52a62ad6997a4f67d5725b16b27b3fc5bf6bb4076d1c67f5877223c2b85f8a3",
+  "owner": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+  "fee": "0.002314266210526086",
+  "address_from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+  "address_to": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+  "network": "ethereum",
+  "platform": "Lido",
+  "tag": "exchange",
+  "type": "liquidity",
+  "success": true,
+  "created_at": "2023-02-21T15:36:56.905745Z",
+  "updated_at": "2023-02-21T15:36:56.905745Z",
+  "actions": [
+    {
+      "tag": "exchange",
+      "type": "liquidity",
+      "index": 2,
+      "address_from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+      "address_to": "0xae7ab96520de3a18e5e111b5eaab095312d7fe84",
+      "metadata": {
+        "action": "add",
+        "tokens": [
+          {
+            "name": "Ethereum",
+            "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+            "value": "20000000000000000000",
+            "symbol": "ETH",
+            "decimals": 18,
+            "standard": "Native",
+            "value_display": "20"
+          }
+        ],
+        "protocol": "Lido"
+      },
+      "platform": "Lido",
+      "related_urls": [
+        "https://etherscan.io/tx/0xc52a62ad6997a4f67d5725b16b27b3fc5bf6bb4076d1c67f5877223c2b85f8a3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "timestamp": "2023-03-01T17:46:47Z",
+  "hash": "0x17ab9f030d0cac696564b21c750280c6c15368005f32446a0ceda0c285e5fd6e",
+  "owner": "0xac5d932d7a16d74f713309be227659d387c69429",
+  "fee": "0.005370966235143975",
+  "address_from": "0xac5d932d7a16d74f713309be227659d387c69429",
+  "address_to": "0x79c112607813df9da5af59218fa57d268e4ff0a8",
+  "network": "ethereum",
+  "platform": "Gnosis Safe",
+  "tag": "transaction",
+  "type": "multisig",
+  "success": true,
+  "created_at": "2023-03-01T17:49:22.197092Z",
+  "updated_at": "2023-03-01T17:49:22.197092Z",
+  "actions": [
+    {
+      "tag": "transaction",
+      "type": "multisig",
+      "index": 103,
+      "address_from": "0xac5d932d7a16d74f713309be227659d387c69429",
+      "address_to": "0x79c112607813df9da5af59218fa57d268e4ff0a8",
+      "metadata": {
+        "owner": "0xB6C4cAA6A7ebb103570A555c54C960557C5555d0",
+        "vault": {
+          "owners": [
+            "0x151B6ADF38b4b79B8505eD881A3e11cDb03A37cf",
+            "0x4a7C94ee9625C2f967df26416Ab9D475070AD7D5",
+            "0xC5Ca6B25C789c94cF83b5d7571782605d6a2425a",
+            "0xac5d932D7a16D74F713309be227659d387c69429",
+            "0xD10c255d353cA73EAB0ffE0289398706d45B78F1"
+          ],
+          "address": "0x79C112607813DF9dA5aF59218fA57D268E4ff0a8",
+          "version": "1.3.0",
+          "threshold": 3
+        },
+        "action": "remove_owner"
+      },
+      "platform": "Gnosis Safe",
+      "related_urls": [
+        "https://etherscan.io/tx/0x17ab9f030d0cac696564b21c750280c6c15368005f32446a0ceda0c285e5fd6e"
+      ]
+    },
+    {
+      "tag": "transaction",
+      "type": "multisig",
+      "index": 104,
+      "address_from": "0xac5d932d7a16d74f713309be227659d387c69429",
+      "address_to": "0x79c112607813df9da5af59218fa57d268e4ff0a8",
+      "metadata": {
+        "vault": {
+          "owners": [
+            "0x151B6ADF38b4b79B8505eD881A3e11cDb03A37cf",
+            "0x4a7C94ee9625C2f967df26416Ab9D475070AD7D5",
+            "0xC5Ca6B25C789c94cF83b5d7571782605d6a2425a",
+            "0xac5d932D7a16D74F713309be227659d387c69429",
+            "0xD10c255d353cA73EAB0ffE0289398706d45B78F1"
+          ],
+          "address": "0x79C112607813DF9dA5aF59218fA57D268E4ff0a8",
+          "version": "1.3.0",
+          "threshold": 3
+        },
+        "action": "execution"
+      },
+      "platform": "Gnosis Safe",
+      "related_urls": [
+        "https://etherscan.io/tx/0x17ab9f030d0cac696564b21c750280c6c15368005f32446a0ceda0c285e5fd6e"
+      ]
+    }
+  ]
+}

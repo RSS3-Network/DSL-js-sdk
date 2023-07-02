@@ -1,0 +1,59 @@
+{
+  "timestamp": "2022-12-05T09:03:44Z",
+  "hash": "0x90a0f56e53e0f5a817136288a618a78da201ce4506f825fd3e57dfe445ff5575",
+  "owner": "0xea9cb2b0c60b68a9b8bf8b57c6d66a24bd377a60",
+  "fee": "0.000901124",
+  "address_from": "0xe4035fcf4c34dfa41694fe1ecf4abb213f391f9c",
+  "address_to": "0xc2f24ffe96a69e381a747dc73fcd51492e29a0a4",
+  "network": "binance_smart_chain",
+  "platform": "Carv",
+  "tag": "metaverse",
+  "type": "mint",
+  "success": true,
+  "created_at": "2023-01-06T11:38:51.008743Z",
+  "updated_at": "2023-01-06T11:38:51.008743Z",
+  "actions": [
+    {
+      "tag": "metaverse",
+      "type": "mint",
+      "index": 20,
+      "address_from": "0x0000000000000000000000000000000000000000",
+      "address_to": "0xea9cb2b0c60b68a9b8bf8b57c6d66a24bd377a60",
+      "metadata": {
+        "id": "1",
+        "name": "My First Carv",
+        "image": "https://ipfs.rss3.page/ipfs/bafybeie2zxzsy2g3hr3hearlpmy6muuuhnzu6aiu5l4qxnjq6npmbhmn2i",
+        "value": "1",
+        "symbol": "CARV-ACHV",
+        "standard": "ERC-1155",
+        "attributes": [
+          {
+            "value": 1,
+            "trait_type": "Series Level"
+          },
+          {
+            "value": "My First Carv",
+            "trait_type": "Series Name"
+          },
+          {
+            "value": "Carv",
+            "trait_type": "Carv Collection"
+          },
+          {
+            "value": "Achievements",
+            "trait_type": "Carv Type"
+          }
+        ],
+        "collection": "Carv Achievements",
+        "description": "Achieved Carv Level One",
+        "value_display": "1",
+        "contract_address": "0xc2f24ffe96a69e381a747dc73fcd51492e29a0a4"
+      },
+      "platform": "Carv",
+      "related_urls": [
+        "https://bscscan.com/tx/0x90a0f56e53e0f5a817136288a618a78da201ce4506f825fd3e57dfe445ff5575",
+        "https://tofunft.com/nft/bsc/0xc2f24ffe96a69e381a747dc73fcd51492e29a0a4/1"
+      ]
+    }
+  ]
+}

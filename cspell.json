@@ -4,7 +4,8 @@
   "ignorePaths": [
     "lib",
     "tmp",
-    "src/types/{data,search}.ts"
+    "src/types/{data,search}.ts",
+    "src/format/tx-examples"
   ],
   "words": [
     "openapi",

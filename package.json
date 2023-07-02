@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/html-to-text": "^9.0.1",
     "@types/node": "^20.3.2",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
@@ -26,6 +27,7 @@
     "vitest": "^0.32.2"
   },
   "dependencies": {
+    "html-to-text": "^9.0.5",
     "openapi-fetch": "^0.6.0"
   },
   "files": [

@@ -1,0 +1,47 @@
+{
+  "timestamp": "2023-04-10T06:36:58Z",
+  "hash": "0xa4074d5729d44fd1ad033420c6d424e8224eebd595123339eec36f732b30acb3",
+  "owner": "0x55f110395c844963b075674e2956eb414018a7a7",
+  "fee": "0.000181967",
+  "address_from": "0xf558a0704427174d689992066b0eea7c7e7c0024",
+  "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+  "network": "crossbell",
+  "platform": "Crossbell",
+  "tag": "social",
+  "type": "mint",
+  "success": true,
+  "created_at": "2023-04-10T06:45:37.98285Z",
+  "updated_at": "2023-04-10T06:45:37.98285Z",
+  "actions": [
+    {
+      "tag": "social",
+      "type": "mint",
+      "index": 3,
+      "address_from": "0xf558a0704427174d689992066b0eea7c7e7c0024",
+      "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+      "metadata": {
+        "body": "This is a test note (variant achievement) for Auto Mint Verify only, please note that currently no mint module has been applied.",
+        "media": [
+          {
+            "address": "ipfs://bafkreigc5s2lztpbwnqvty665eforo3zkt42beyv6a6plaoxgg5vexclhy",
+            "mime_type": "image/png"
+          }
+        ],
+        "title": "Auto Mint Verify",
+        "author": [
+          "https://crossbell.io/@lc499",
+          "lc499"
+        ],
+        "origin_note_id": "451:302",
+        "type_on_platform": [
+          "MintNote"
+        ]
+      },
+      "platform": "crossbell",
+      "related_urls": [
+        "https://scan.crossbell.io/tx/0xa4074d5729d44fd1ad033420c6d424e8224eebd595123339eec36f732b30acb3",
+        "https://crossbell.io/notes/451-302"
+      ]
+    }
+  ]
+}

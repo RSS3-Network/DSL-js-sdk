@@ -1,0 +1,55 @@
+{
+  "timestamp": "2023-03-21T15:01:37.909Z",
+  "hash": "0x6db0443bdf54852f3271791626e8617577bffa6e6e7acd8e7168abfd0c9758e8",
+  "owner": "0x212cb3f4ae6611054637f9f78f18fb628ad258bb",
+  "address_from": "0x191a41c307373211d08613b68df4031977589069",
+  "address_to": "0xb8aa8cabfba7ee3ccb218a9969aef86dff3b9d2d",
+  "network": "polygon",
+  "platform": "IQ.Wiki",
+  "tag": "social",
+  "type": "wiki",
+  "success": true,
+  "created_at": "2023-03-21T15:03:56.47322Z",
+  "updated_at": "2023-03-21T15:03:56.47322Z",
+  "actions": [
+    {
+      "tag": "social",
+      "type": "wiki",
+      "index": 456,
+      "address_from": "0x191a41c307373211d08613b68df4031977589069",
+      "address_to": "0xb8aa8cabfba7ee3ccb218a9969aef86dff3b9d2d",
+      "metadata": {
+        "body": "**Grayscale Investments** is an American [digital currency](https://iq.wiki/wiki/cryptocurrency) asset management company and a subsidiary of [Digital Currency Group](https://iq.wiki/wiki/digital-currency-group) that provides market insight and cryptocurrency asset management services. It was founded in 2013 and is based in Stamford, Connecticut. [\\[1\\]](#cite-id-3jgwdnwo8vm)[\\[2\\]](#cite-id-nnaeummbht8)  \n$$widget0 [YOUTUBE@VID](A5rZEaQDBTk)$$  \n  \n# History  \n  \nGrayscale Investments was founded in 2013 and launched its flagship product, **Bitcoin Investment Trust** (GBTC) the same year[\\[3\\]](#cite-id-edtgfbdqxkb). In 2015, Greyscale Investments became a subsidiary of [Digital Currency Group](https://iq.wiki/wiki/digital-currency-group), a venture capital company focusing on the digital currency market. The same year, Grayscale Bitcoin Trust (OTCQX: GBTC) began trading over-the-counter on the OTCQX market, becoming the first publicly traded [bitcoin](https://iq.wiki/wiki/bitcoin) fund in the United States. [\\[18\\]](#cite-id-4xebjr8jpmi)  \n  \nIn January 2017, Grayscale sought to turn GBTC into an ETF (Exchanged-Traded Fund) but withdrew the application in October 2017 after the SEC indicated that it wasn’t yet comfortable with the bitcoin market [\\[4\\]](#cite-id-x1064i33gk). Grayscale launched two additional [cryptocurrency](https://iq.wiki/wiki/cryptocurrency) investment funds in 2017 which held [Ethereum Classic](https://iq.wiki/wiki/ethereum-classic) and Zcash. [\\[18\\]](#cite-id-4xebjr8jpmi)  \n  \nIn February 2018, Greyscale launched its fourth cryptocurrency fund, the Digital Large Cap Fund (GDLC), initially holding [Bitcoin](https://iq.wiki/wiki/bitcoin-btc), [Ether](https://iq.wiki/wiki/ether-eth), [Litecoin](https://iq.wiki/wiki/litecoin), [Ripple](https://iq.wiki/wiki/ripple-labs), and [Bitcoin Cash](https://iq.wiki/wiki/bitcoin-cash). The GDLC began publicly trading in October 2019. [\\[5\\]](#cite-id-6xae5mlmn9v)[\\[7\\]](#cite-id-17bas0o2s3n)  \n  \nGBTC became an SEC-reporting bitcoin investment fund in 2020. As such, it files publicly available financial disclosure forms, including the quarterly Form 10-Q and annual Form 10-K. [\\[6\\]](#cite-id-a6wgcw1l8e)[\\[19\\]](#cite-id-oq3r63v48g)  \n  \nIn 2021, Grayscale Investments added Grayscale [Solana](https://iq.wiki/wiki/solana) Trust to its portfolio, the 16th fund it manages. [\\[8\\]](#cite-id-dswgqo8cc7u)  \n  \n> “What's been interesting about Solana is that it gives users the ability to learn, experiment, and build. They generally have more budget to experiment on the protocol than some other more established blockchains like Ethereum, because of lower transaction fees.” - Grayscale CEO, Michael Sonnenshein mentioned. [\\[8\\]](#cite-id-dswgqo8cc7u)  \n  \nIn May 2022, Grayscale launched an ETF traded on exchanges in the United States, United Kingdom, Italy, and Germany that tracks the Bloomberg Grayscale Future of Finance Index, which includes various asset managers, exchanges, brokerages, and cryptocurrency miners.[\\[9\\]](#cite-id-49y700hllw5)  \n  \n# Grayscale Products  \n  \n## Single Asset  \n  \n* Grayscale [Bitcoin](https://iq.wiki/wiki/bitcoin) Trust (GBTC)  \n* Grayscale [Bitcoin Cash](https://iq.wiki/wiki/bitcoin-cash) Trust  \n* Grayscale [Basic Attention Token](https://iq.wiki/wiki/basic-attention-token) Trust  \n* Grayscale [Ethereum](https://iq.wiki/wiki/ethereum) Trust.  \n* Grayscale [Ethereum Classic](https://iq.wiki/wiki/ethereum-classic) Trust  \n* Grayscale [Horizen](https://iq.wiki/wiki/horizen) Trust  \n* Grayscale [Litecoin](https://iq.wiki/wiki/litecoin) Trust  \n* Grayscale [Stellar Lumens](https://iq.wiki/wiki/stellar) Trust  \n* Grayscale [XRP](https://iq.wiki/wiki/xrp) Trust.  \n* Grayscale Zcash Trust  \n* Grayscale [Decentraland](https://iq.wiki/wiki/decentraland) Trust  \n* Grayscale [Filecoin](https://iq.wiki/wiki/filecoin) Trust  \n* Grayscale [Livepeer](https://iq.wiki/wiki/livepeer) Trust  \n* Grayscale [Solana](https://iq.wiki/wiki/solana) Trust [\\[18\\]](#cite-id-4xebjr8jpmi)  \n  \n## Diversified  \n  \n* Grayscale [Decentralized Finance](https://iq.wiki/wiki/defi) Fund  \n* Grayscale Digital Large Cap Fund  \n* Grayscale Smart Contract Platform Ex-Ethereum Fund [\\[18\\]](#cite-id-4xebjr8jpmi)  \n  \n# Controversy  \n  \n## Grayscale vs SEC  \n  \nIn June 2022, the Securities and Exchange Commission (SEC) denied Grayscale's request to convert Grayscale Bitcoin Trust (GBTC) into an exchange-traded fund (ETF), citing concerns about market manipulation, lack of oversight over cryptocurrencies, and the risk of price fixing. The denial prompted Grayscale to sue SEC on the 29th of June, 2022. [\\[10\\]](#cite-id-f5q7k8rwh3p)[\\[12\\]](#cite-id-o071u7wfis)  \n  \n> “Grayscale supports and believes in the SEC’s mandate to protect investors, maintain fair, orderly, and efficient markets and facilitate capital formation – and we are deeply disappointed by and vehemently disagree with the SEC's decision to continue to deny spot bitcoin ETFs from coming to the U.S. market.” - Grayscale CEO Michael Sonnenshein said in a statement. [\\[11\\]](#cite-id-dxomjpajdha)  \n  \nDuring the court proceedings held on March 7, 2023, the panel of appeals court judges questioned the U.S. SEC's logic in drawing a distinction between bitcoin spot market prices and futures market prices. The judges' apparent skepticism of the SEC's position sent GBTC higher by 5%. [\\[13\\]](#cite-id-8djabt4r838)[\\[15\\]](#cite-id-ay20jjxc9g)   \nFollowing the court proceedings, Grayscale tweeted:  \n  \n> \"We're glad to have had the opportunity to present our case. We look forward to the court’s final decision, and strongly believe that American investors deserve to have equal access to the #Bitcoin ETF product that best suits their needs\" [\\[14\\]](#cite-id-gygrsjlplcf)  \n  \n## ![image](https://ipfs.everipedia.org/ipfs/Qme7A1xibQUEX8iVGsfkCaF125hmt3otKDN7hwXUF9hFVU)  \n  \n## Grayscale vs Alameda  \n  \nFTX sister company [Alameda Research](https://iq.wiki/wiki/alameda-research) filed a lawsuit against crypto asset manager Grayscale Investments on March 6, 2023, seeking injunctive relief to realize what it claims is over $250 million in asset value for the FTX Debtor’s customers and creditors, according to a press release. [\\[16\\]](#cite-id-7q7mdszpk5h)[\\[17\\]](#cite-id-lc52kiewgug)  \n  \nThe suit was filed in the Court of Chancery in Delaware. It also asserts claims against Grayscale CEO Michael Sonnenshein and Grayscale owner, [Digital Currency Group](https://iq.wiki/wiki/digital-currency-group) (DCG), and its CEO, Barry Silbert. [\\[17\\]](#cite-id-lc52kiewgug)  \n  \nAccording to Alameda’s complaint, Grayscale has extracted exorbitant management fees for its management of the Grayscale Bitcoin and Ethereum trusts and has allowed those trusts’ shares to trade at roughly a 50% discount to their net asset value. [\\[17\\]](#cite-id-lc52kiewgug)  \n  \n> \"We will continue to use every tool we can to maximize recoveries for FTX customers and creditors, our goal is to unlock value that we believe is currently being suppressed by Grayscale's self-dealing and improper redemption ban.” - said John J. Ray III, CEO and chief restructuring officer of the FTX Debtors, in a statement.  \n  \n  \n<br>  \n",
+        "tags": [
+          "Organizations"
+        ],
+        "media": [
+          {
+            "address": "https://ipfs.rss3.page/ipfs/QmTzT3zKyeG5MxSCqx1W3gFN4aKbCX1sJHSfifyJG1Cgcq",
+            "mime_type": "image/png"
+          }
+        ],
+        "title": "Grayscale Investments",
+        "action": "create",
+        "author": [
+          "0x212Cb3F4aE6611054637f9f78F18fB628AD258bb"
+        ],
+        "summary": "Grayscale Investments is a Connecticut-based digital currency asset management company, offering market insight and cryptocurrency management services since 201...",
+        "categories": [
+          "Organizations"
+        ],
+        "created_at": "2023-03-21T15:01:37Z",
+        "target_url": "https://iq.wiki/wiki/grayscale-investments",
+        "origin_note_id": "grayscale-investments",
+        "type_on_platform": [
+          "create"
+        ]
+      },
+      "platform": "IQ.Wiki",
+      "related_urls": [
+        "https://polygonscan.com/tx/0x6db0443bdf54852f3271791626e8617577bffa6e6e7acd8e7168abfd0c9758e8",
+        "https://iq.wiki/account/0x212Cb3F4aE6611054637f9f78F18fB628AD258bb"
+      ]
+    }
+  ]
+}
