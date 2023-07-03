@@ -12,13 +12,17 @@ test.each([
     '0x74a2e680f4dab8f840e52044b75890a329107faa9db5bb312284542953280d33',
     'Claimed 5462.579429159777256061 BRIGHT from 0x79a7cad3ac4554c133dcaaa9bc3319385eb7fd5d',
   ],
+  [
+    '0x256255b6238215ffc347e2bf5e1ab5929ef428e35e3ea9d1adfd758e85f33842',
+    'Deposited 24397.89063 USDT on platform "Crypto.com"',
+  ],
 ])('briefTransaction %s', async (address, expected) => {
   const txn = await get(address)
   expect(expected).toBe(formatTransaction(txn))
 })
 
 async function get(addr: string) {
-  const path = `src/format/tx-examples/${addr}.json`
+  const path = `src/format/txn-examples/${addr}.json`
   if (existsSync(path)) {
     return JSON.parse(readFileSync(path, 'utf-8'))
   }

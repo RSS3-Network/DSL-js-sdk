@@ -1,19 +1,14 @@
 import { components } from '../types/data'
-import { compiledConvert, getTransfers, getTransferType } from './utils'
+import { themePlain } from './themes'
+import { Token, token, tokenComma, tokenText, tokenValue, join, tokenPlatform } from './token'
+import { getTransfers, getTransferType } from './utils'
 
 /**
  * formatTransaction returns a plain string summary of the txn.
  */
-export default function formatTransaction(txn: components['schemas']['Transaction']): string {
+export default function formatTransaction(txn: components['schemas']['Transaction'], theme = themePlain): string {
   const ts = tokenizeTransaction(txn)
-
-  return ts.reduce((acc, t) => {
-    switch (t.type) {
-      case 'html':
-        return acc + compiledConvert(t.content)
-    }
-    return acc + t.content
-  }, '')
+  return ts.reduce((acc, t) => acc + theme[t.type](t.content), '')
 }
 
 /**
@@ -24,23 +19,28 @@ export function tokenizeTransaction(txn: components['schemas']['Transaction']): 
   const ts = getTransfers(txn)
 
   return ts.reduce((acc, t) => {
-    const typ = getTransferType(txn, t)
-
-    const formatter = formatters[typ]
-
-    if (!formatter) throw errTransferType
-
     if (acc.length === 0) {
-      return formatter(t, txn)
+      return tokenizeTransfer(txn, t)
     }
 
-    return [...acc, tokenComma, ...formatter(t, txn)]
+    return [...acc, tokenComma, ...tokenizeTransfer(txn, t)]
   }, [] as Token[])
 }
 
-export type Token = {
-  type: 'text' | 'html' | 'number' | 'symbol' | 'address' | 'name' | 'platform' | 'network'
-  content: string
+/**
+ * tokenizeTransfer returns a list of tokens that can be used to custom render the output of a transfer, such as CLI output
+ */
+export function tokenizeTransfer(
+  txn: components['schemas']['Transaction'],
+  t: components['schemas']['Transfer'],
+): Token[] {
+  const typ = getTransferType(txn, t)
+
+  const formatter = formatters[typ]
+
+  if (!formatter) throw errTransferType
+
+  return formatter(t, txn)
 }
 
 interface Tokenizer {
@@ -70,24 +70,11 @@ const formatters: Tokenizers = {
 
     return join([tokenText('Claimed'), ...tokenValue(t.metadata), tokenText('from'), token('address', t.address_from)])
   },
-}
+  'exchange-deposit': (t) => {
+    if (t.tag !== 'exchange' || t.type !== 'deposit') {
+      throw errTransferType
+    }
 
-function token(type: Token['type'], content = ''): Token {
-  return { type, content }
-}
-
-const tokenSpace = tokenText(' ')
-
-const tokenComma = tokenText(', ')
-
-function join(tokens: Token[], sep = tokenSpace): Token[] {
-  return tokens.reduce((acc, t) => [...acc, sep, t], [] as Token[]).slice(1)
-}
-
-function tokenText(t: string): Token {
-  return token('text', t)
-}
-
-function tokenValue(t: components['schemas']['Token']) {
-  return [token('number', t.value_display || '0'), token('symbol', t.symbol)]
+    return join([tokenText('Deposited'), ...tokenValue(t.metadata), ...tokenPlatform(t)])
+  },
 }
