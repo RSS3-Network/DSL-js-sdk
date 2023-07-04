@@ -8,6 +8,7 @@ export type TokenType =
   | 'address' // wallet address or txn address, such as https://help.coinbase.com/en/coinbase/getting-started/crypto-education/what-is-a-transaction-hash-hash-id
   | 'platform' // platform name
   | 'network' // network name
+  | 'unknown' // unknown data type to tokenize
 
 export type Token = {
   type: TokenType

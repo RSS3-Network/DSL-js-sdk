@@ -1,6 +1,6 @@
 {
   "name": "@rss3/js-sdk",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "main": "lib/index.js",
   "engines": {
     "node": ">=v19.8.1"
@@ -19,11 +19,15 @@
   "devDependencies": {
     "@types/html-to-text": "^9.0.1",
     "@types/node": "^20.3.2",
+    "@types/react": "^18.2.14",
+    "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
     "cspell": "^6.31.1",
     "eslint": "^8.43.0",
     "prettier": "^2.8.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^5.0.4",
     "vitest": "^0.32.2"
   },
