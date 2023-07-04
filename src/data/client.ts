@@ -1,7 +1,6 @@
 import createClient from 'openapi-fetch'
 import { paths } from '../types/data'
 import { ClientOptions } from '../types/utils'
-import { guardError } from '../utils'
 import { DEFAULT_DATA_SERVER } from '../constants'
 
 export function client(
@@ -16,13 +15,15 @@ export function client(
       const { data, error } = await client.post('/notes', {
         body: query,
       })
-      guardError(error)
+      if (error || !data) throw error
+
       return data
     },
 
     async transaction(hash: string) {
       const { data, error } = await client.get('/tx/{hash}', { params: { path: { hash } } })
-      guardError(error)
+      if (error || !data) throw error
+
       return data
     },
   }

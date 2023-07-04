@@ -4,7 +4,8 @@
     "strict": true,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "rootDir": "src",
     "outDir": "lib"
   },
-  "exclude": ["lib", "src/**/*.test.ts"]
+  "exclude": ["examples", "lib", "src/**/*.test.ts"]
 }
