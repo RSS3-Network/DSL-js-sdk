@@ -10,9 +10,9 @@ Install the package:
 npm i @rss3/js-sdk
 ```
 
-Basic code example: [link](examples/basic/index.ts).
+Basic code example: [link](src/examples/basic.ts).
 
-For more examples see [examples](examples).
+For more examples see [examples](src/examples).
 
 ## Development
 

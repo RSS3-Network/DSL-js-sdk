@@ -9,7 +9,7 @@
   "scripts": {
     "generate": "npm run build && node lib/types/generate",
     "build": "rm -rf lib && tsc",
-    "test": "vitest",
+    "test": "vitest run",
     "lint": "cspell --no-progress '**' && eslint --max-warnings=0 src && prettier -c . && tsc --noEmit",
     "format": "eslint --fix && prettier -w .",
     "prepublish": "npm run build"

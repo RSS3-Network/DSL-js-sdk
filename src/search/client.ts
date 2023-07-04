@@ -3,14 +3,18 @@ import { paths } from '../types/search'
 import { ClientOptions } from '../types/utils'
 import { DEFAULT_SEARCH_SERVER } from '../constants'
 
-export function client(
-  opt: ClientOptions = {
-    baseUrl: DEFAULT_SEARCH_SERVER,
-  },
-) {
+/**
+ * Search client for interacting with the search server.
+ */
+export function client(opt: ClientOptions = {}) {
+  if (!opt.baseUrl) opt.baseUrl = DEFAULT_SEARCH_SERVER
+
   const client = createClient<paths>(opt)
 
   return {
+    /**
+     * Query feed.
+     */
     async feed(query: paths['/api/Feed/v2/search']['post']['requestBody']['content']['application/json']) {
       if (!query.platform) query.platform = ['ALL']
       if (!query.network) query.network = ['ALL']
