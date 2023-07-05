@@ -2,7 +2,7 @@ import { dataClient, format, Theme } from '@rss3/js-sdk'
 import * as React from 'react'
 import { renderToString } from 'react-dom/server'
 
-// Custom theme to format the feed for React
+// Custom theme to format the activity for React
 const myTheme: Theme<JSX.Element> = {
   html: (c) => <div dangerouslySetInnerHTML={{ __html: c }} />,
   platform: (c) => <img className="platform" src={'/public/platform/' + c + '.svg'} />,
@@ -17,12 +17,12 @@ const myTheme: Theme<JSX.Element> = {
 async function main() {
   const client = await dataClient()
 
-  const { result: feeds } = await client.feeds({ address: ['vitalik.eth'], limit: 5 })
+  const { result: activities } = await client.activities({ address: ['vitalik.eth'], limit: 5 })
 
-  if (!feeds) throw 'no feeds'
+  if (!activities) throw 'no activities'
 
   // Print with our custom theme
-  const out = renderToString(<div>{feeds.map((f) => format(f, myTheme))}</div>)
+  const out = renderToString(<div>{activities.map((f) => format(f, myTheme))}</div>)
 
   console.log(out)
 }

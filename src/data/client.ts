@@ -13,9 +13,9 @@ export function client(opt: ClientOptions = {}) {
 
   return {
     /**
-     * Query feeds.
+     * Query activities.
      */
-    async feeds(query: paths['/notes']['post']['requestBody']['content']['application/json']) {
+    async activities(query: paths['/notes']['post']['requestBody']['content']['application/json']) {
       const { data, error } = await client.post('/notes', {
         body: query,
       })

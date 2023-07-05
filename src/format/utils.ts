@@ -3,24 +3,24 @@ import { compile } from 'html-to-text'
 
 export const compiledConvert = compile()
 
-export function getActions(feed: components['schemas']['Transaction']): components['schemas']['Transfer'][] {
-  if (feed.actions.length === 1) {
-    return feed.actions
-  } else if (feed.actions) {
-    return feed.actions.filter((t) => t.tag === feed.tag && t.type === feed.type)
+export function getActions(activity: components['schemas']['Transaction']): components['schemas']['Transfer'][] {
+  if (activity.actions.length === 1) {
+    return activity.actions
+  } else if (activity.actions) {
+    return activity.actions.filter((t) => t.tag === activity.tag && t.type === activity.type)
   }
   return []
 }
 
 export function getActionType(
-  feed: components['schemas']['Transaction'],
+  activity: components['schemas']['Transaction'],
   action: components['schemas']['Transfer'],
 ): string {
   if (!action) return ''
 
   if ('action' in action.metadata) {
-    return `${feed.tag}-${feed.type}-${action.metadata.action}`
+    return `${activity.tag}-${activity.type}-${action.metadata.action}`
   }
 
-  return `${feed.tag}-${feed.type}`
+  return `${activity.tag}-${activity.type}`
 }

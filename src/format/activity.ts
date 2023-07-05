@@ -3,31 +3,31 @@ import { Theme, themePlain } from './theme'
 import { Token, token, tokenComma, tokenText, tokenValue, join, tokenPlatform } from './token'
 import { getActions, getActionType } from './utils'
 
-export function formatPlain(feed: components['schemas']['Transaction']): string {
-  return format(feed, themePlain).join('')
+export function formatPlain(activity: components['schemas']['Transaction']): string {
+  return format(activity, themePlain).join('')
 }
 
 /**
- * returns a plain string summary of the feed.
+ * returns a plain string summary of the activity.
  */
-export function format<T>(feed: components['schemas']['Transaction'], theme: Theme<T>): T[] {
-  const ts = tokenizeFeed(feed)
+export function format<T>(activity: components['schemas']['Transaction'], theme: Theme<T>): T[] {
+  const ts = tokenizeActivity(activity)
   return ts.map((t) => theme[t.type](t.content))
 }
 
 /**
- * Returns a list of tokens that can be used to custom render the output of a feed, such as CLI output
+ * Returns a list of tokens that can be used to custom render the output of a activity, such as CLI output
  * all the symbols in blue color.
  */
-export function tokenizeFeed(feed: components['schemas']['Transaction']): Token[] {
-  const ts = getActions(feed)
+export function tokenizeActivity(activity: components['schemas']['Transaction']): Token[] {
+  const ts = getActions(activity)
 
   return ts.reduce((acc, t) => {
     if (acc.length === 0) {
-      return tokenizeAction(feed, t)
+      return tokenizeAction(activity, t)
     }
 
-    return [...acc, tokenComma, ...tokenizeAction(feed, t)]
+    return [...acc, tokenComma, ...tokenizeAction(activity, t)]
   }, [] as Token[])
 }
 
@@ -35,20 +35,20 @@ export function tokenizeFeed(feed: components['schemas']['Transaction']): Token[
  * Returns a list of tokens that can be used to custom render the output of an action, such as CLI output
  */
 export function tokenizeAction(
-  feed: components['schemas']['Transaction'],
+  activity: components['schemas']['Transaction'],
   action: components['schemas']['Transfer'],
 ): Token[] {
-  const typ = getActionType(feed, action)
+  const typ = getActionType(activity, action)
 
   const formatter = formatters[typ]
 
   if (!formatter) return [token('unknown', errActionType.message)]
 
-  return formatter(action, feed)
+  return formatter(action, activity)
 }
 
 interface Tokenizer {
-  (action: components['schemas']['Transfer'], feed: components['schemas']['Transaction']): Token[]
+  (action: components['schemas']['Transfer'], activity: components['schemas']['Transaction']): Token[]
 }
 
 interface Tokenizers {

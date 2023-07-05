@@ -3,4 +3,4 @@ tmp/
 cspell.json
 src/types/data.ts
 src/types/search.ts
-src/format/feed-examples
+src/format/activity-examples

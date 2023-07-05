@@ -1,5 +1,5 @@
 import { test, expect } from 'vitest'
-import { formatPlain } from './feed'
+import { formatPlain } from './activity'
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
 import { client } from '../data/client'
 
@@ -17,19 +17,19 @@ test.each([
     'Deposited 24397.89063 USDT on platform "Crypto.com"',
   ],
 ])('briefTransaction %s', async (address, expected) => {
-  const feed = await get(address)
-  expect(expected).toBe(formatPlain(feed))
+  const activity = await get(address)
+  expect(expected).toBe(formatPlain(activity))
 })
 
 async function get(addr: string) {
-  const path = `src/format/feed-examples/${addr}.json`
+  const path = `src/format/activity-examples/${addr}.json`
   if (existsSync(path)) {
     return JSON.parse(readFileSync(path, 'utf-8'))
   }
 
-  const feed = await client().transaction(addr)
+  const activity = await client().transaction(addr)
 
-  writeFileSync(path, JSON.stringify(feed, null, 2))
+  writeFileSync(path, JSON.stringify(activity, null, 2))
 
-  return feed
+  return activity
 }

@@ -5,7 +5,7 @@
     "lib",
     "tmp",
     "src/types/{data,search}.ts",
-    "src/format/feed-examples"
+    "src/format/activity-examples"
   ],
   "words": [
     "openapi",
