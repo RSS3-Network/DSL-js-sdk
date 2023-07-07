@@ -1,4 +1,5 @@
 import { components } from '../types/data'
+import { compiledConvert } from './utils'
 
 export type TokenType =
   | 'text' // plain text
@@ -31,7 +32,12 @@ export function tokenText(t: string): Token {
   return token('text', t)
 }
 
-export function tokenValue(t: components['schemas']['Token']) {
+export function tokenAddr(d: string | null | undefined) {
+  return token('address', d || '')
+}
+
+export function tokenValue(t: components['schemas']['Token'] | null | undefined) {
+  if (!t) return [token('number', '0')]
   return [token('number', t.value_display || '0'), token('symbol', t.symbol)]
 }
 
@@ -40,4 +46,36 @@ export function tokenPlatform(t: components['schemas']['Transfer']) {
   if (t.platform) platform = t.platform
   if ('platform' in t.metadata) platform = t.metadata.platform
   return [tokenText('on'), tokenText('platform'), token('platform', platform)]
+}
+
+export function tokenPost(t: components['schemas']['Transfer']) {
+  if (t.tag !== 'social') {
+    return tokenText('')
+  }
+
+  let out = ''
+
+  if ('title' in t.metadata && t.metadata.title) {
+    out = t.metadata.title
+  } else if ('body' in t.metadata && t.metadata.body) {
+    out = t.metadata.body
+  } else if ('target' in t.metadata && t.metadata.target && t.metadata.target.body) {
+    out = t.metadata.target.body
+  }
+
+  out = compiledConvert(out)
+
+  let trimmed = false
+  const max = 50
+  if (out.length > max) {
+    out = out.slice(0, max)
+    trimmed = true
+  }
+
+  if (/\n/.test(out)) {
+    out = out.replace(/\n[\s\S]+/g, '')
+    trimmed = true
+  }
+
+  return tokenText(out + trimmed ? '...' : '')
 }
