@@ -1,6 +1,6 @@
 import { components } from '../types/data'
 import { Theme, themePlain } from './theme'
-import { Token, token, tokenComma, tokenText, tokenValue, join, tokenPlatform, tokenPostBrief } from './token'
+import { Token, token, tokenComma, tokenText, tokenValue, join, tokenPlatform, tokenPost, tokenAddr } from './token'
 import { getActions, getActionType } from './utils'
 
 export function formatPlain(activity: components['schemas']['Transaction']): string {
@@ -64,15 +64,10 @@ const formatters: Tokenizers = {
     }
 
     if (f.owner === a.address_from) {
-      return join([
-        tokenText('Transferred'),
-        ...tokenValue(a.metadata),
-        tokenText('to'),
-        token('address', a.address_to),
-      ])
+      return join([tokenText('Transferred'), ...tokenValue(a.metadata), tokenText('to'), tokenAddr(a.address_to)])
     }
 
-    return join([tokenText('Claimed'), ...tokenValue(a.metadata), tokenText('from'), token('address', a.address_from)])
+    return join([tokenText('Claimed'), ...tokenValue(a.metadata), tokenText('from'), tokenAddr(a.address_from)])
   },
   'transaction-mint': (a) => {
     if (a.tag !== 'transaction' || a.type !== 'mint') {
@@ -95,11 +90,11 @@ const formatters: Tokenizers = {
 
     return join([
       tokenText('Approved contract'),
-      token('address', a.metadata.contract_address),
+      tokenAddr(a.metadata.contract_address),
       tokenText('about transferring'),
       ...tokenValue(a.metadata),
       tokenText('to'),
-      token('address', a.address_to),
+      tokenAddr(a.address_to),
     ])
   },
   'transaction-approval-revoke': (a) => {
@@ -107,7 +102,7 @@ const formatters: Tokenizers = {
       throw errActionType
     }
 
-    return join([tokenText('Revoked the approval of contract'), token('address', a.metadata.contract_address)])
+    return join([tokenText('Revoked the approval of contract'), tokenAddr(a.metadata.contract_address)])
   },
   'exchange-withdraw': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'withdraw') {
@@ -128,38 +123,28 @@ const formatters: Tokenizers = {
       throw errActionType
     }
 
-    return join([
-      tokenText('Transferred NFT'),
-      tokenText(a.metadata.name),
-      tokenText('to'),
-      token('address', a.address_to),
-    ])
+    return join([tokenText('Transferred NFT'), tokenText(a.metadata.name), tokenText('to'), tokenAddr(a.address_to)])
   },
   'collectible-auction-create': (a) => {
     if (a.tag !== 'collectible' || a.type !== 'auction') {
       throw errActionType
     }
 
-    return join([
-      tokenText('Transferred NFT'),
-      tokenText(a.metadata.name),
-      tokenText('to'),
-      token('address', a.address_to),
-    ])
+    return join([tokenText('Transferred NFT'), tokenText(a.metadata.name), tokenText('to'), tokenAddr(a.address_to)])
   },
   'collectible-auction-bid': (a) => {
     if (a.tag !== 'collectible' || a.type !== 'auction') {
       throw errActionType
     }
-  
-    return join([tokenText('Made a bid'),  ...tokenPlatform(a)])
+
+    return join([tokenText('Made a bid'), ...tokenPlatform(a)])
   },
   'collectible-auction-cancel': (a) => {
     if (a.tag !== 'collectible' || a.type !== 'auction') {
       throw errActionType
     }
-  
-    return join([tokenText('Canceled an auction'),  ...tokenPlatform(a)])
+
+    return join([tokenText('Canceled an auction'), ...tokenPlatform(a)])
   },
   'collectible-auction-update': (a) => {
     if (a.tag !== 'collectible' || a.type !== 'auction') {
@@ -179,7 +164,7 @@ const formatters: Tokenizers = {
     if (a.tag !== 'collectible' || a.type !== 'auction') {
       throw errActionType
     }
-  
+
     return join([tokenText('Invalidated an auction'), ...tokenPlatform(a)])
   },
   'collectible-trade': (a, txn) => {
@@ -188,9 +173,9 @@ const formatters: Tokenizers = {
     }
 
     if (txn.owner === a.address_from) {
-      return join([tokenText('Sold NFT'), tokenText(a.metadata.name), tokenText('to'), token('address', a.address_to)])
+      return join([tokenText('Sold NFT'), tokenText(a.metadata.name), tokenText('to'), tokenAddr(a.address_to)])
     }
-    return join([tokenText('Bought NFT'), tokenText(a.metadata.name), tokenText('from'), token('address', a.address_from)])
+    return join([tokenText('Bought NFT'), tokenText(a.metadata.name), tokenText('from'), tokenAddr(a.address_from)])
   },
   'collectible-mint': (a) => {
     if (a.tag !== 'collectible' || a.type !== 'mint') {
@@ -210,21 +195,26 @@ const formatters: Tokenizers = {
     if (a.tag !== 'collectible' || a.type !== 'approval') {
       throw errActionType
     }
-  
-    return join([tokenText('Approved NFT'), tokenText(a.metadata.name), tokenText('to'), token('address', a.address_to)])
+
+    return join([tokenText('Approved NFT'), tokenText(a.metadata.name), tokenText('to'), tokenAddr(a.address_to)])
   },
   'collectible-approval-revoke': (a) => {
     if (a.tag !== 'collectible' || a.type !== 'approval') {
       throw errActionType
     }
 
-    return join([tokenText('Revoked the approval of NFT'), tokenText(a.metadata.name), tokenText('from'), token('address', a.address_to)])
+    return join([
+      tokenText('Revoked the approval of NFT'),
+      tokenText(a.metadata.name),
+      tokenText('from'),
+      tokenAddr(a.address_to),
+    ])
   },
   'collectible-edit-renew': (a) => {
     if (a.tag !== 'collectible' || a.type !== 'edit') {
       throw errActionType
     }
-  
+
     return join([tokenText('Renewed ENS'), tokenText(a.metadata.name)])
   },
   'collectible-edit-text': (a) => {
@@ -253,10 +243,22 @@ const formatters: Tokenizers = {
       throw errActionType
     }
     if (txn.owner === a.address_from) {
-      return join([tokenText('Sold asset'), tokenText(a.metadata.name), tokenText('to'), token('address', a.address_to), ...tokenPlatform(a)])
+      return join([
+        tokenText('Sold asset'),
+        tokenText(a.metadata.name),
+        tokenText('to'),
+        tokenAddr(a.address_to),
+        ...tokenPlatform(a),
+      ])
     }
 
-    return join([tokenText('Bought asset'), tokenText(a.metadata.name), tokenText('from'), token('address', a.address_from), ...tokenPlatform(a)])
+    return join([
+      tokenText('Bought asset'),
+      tokenText(a.metadata.name),
+      tokenText('from'),
+      tokenAddr(a.address_from),
+      ...tokenPlatform(a),
+    ])
   },
   'metaverse-list': (a) => {
     if (a.tag !== 'metaverse' || a.type !== 'list') {
@@ -283,7 +285,7 @@ const formatters: Tokenizers = {
     if (a.tag !== 'collectible' || a.type !== 'music') {
       throw errActionType
     }
-  
+
     return join([tokenText('Bought music NFT'), tokenText(a.metadata.name), ...tokenPlatform(a)])
   },
   'collectible-music-release': (a) => {
@@ -297,7 +299,7 @@ const formatters: Tokenizers = {
     if (a.tag !== 'transaction' || a.type !== 'multisig') {
       throw errActionType
     }
-  
+
     return join([tokenText('Created a multisig transaction'), ...tokenPlatform(a)])
   },
   'transaction-multisig-add_owner': (a) => {
@@ -305,13 +307,23 @@ const formatters: Tokenizers = {
       throw errActionType
     }
 
-    return join([tokenText('Added an owner'), token('address', a.metadata.owner), tokenText('to multisig'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Added an owner'),
+      tokenAddr(a.metadata.owner),
+      tokenText('to multisig'),
+      ...tokenPlatform(a),
+    ])
   },
   'transaction-multisig-remove_owner': (a) => {
     if (a.tag !== 'transaction' || a.type !== 'multisig') {
       throw errActionType
     }
-    return join([tokenText('Removed an owner'), token('address', a.metadata.owner), tokenText('to multisig'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Removed an owner'),
+      tokenAddr(a.metadata.owner),
+      tokenText('to multisig'),
+      ...tokenPlatform(a),
+    ])
   },
   'transaction-multisig-change_threshold': (a) => {
     if (a.tag !== 'transaction' || a.type !== 'multisig') {
@@ -339,135 +351,183 @@ const formatters: Tokenizers = {
       throw errActionType
     }
 
-    return join([tokenText('Swapped'), ...tokenValue(a.metadata.from), tokenText('to'), ...tokenValue(a.metadata.to), ...tokenPlatform(a)])
+    return join([
+      tokenText('Swapped'),
+      ...tokenValue(a.metadata.from),
+      tokenText('to'),
+      ...tokenValue(a.metadata.to),
+      ...tokenPlatform(a),
+    ])
   },
   'exchange-liquidity-add': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'liquidity') {
       throw errActionType
     }
 
-    return join([tokenText('Added'), ...tokenValue(a.metadata.tokens[0]), tokenText('to liquidity'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Added'),
+      ...tokenValue(a.metadata.tokens[0]),
+      tokenText('to liquidity'),
+      ...tokenPlatform(a),
+    ])
   },
   'exchange-liquidity-remove': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'liquidity') {
       throw errActionType
     }
 
-    return join([tokenText('Removed'), ...tokenValue(a.metadata.tokens[0]), tokenText('from liquidity'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Removed'),
+      ...tokenValue(a.metadata.tokens[0]),
+      tokenText('from liquidity'),
+      ...tokenPlatform(a),
+    ])
   },
   'exchange-liquidity-collect': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'liquidity') {
       throw errActionType
     }
 
-    return join([tokenText('Collected'), ...tokenValue(a.metadata.tokens[0]), tokenText('from liquidity'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Collected'),
+      ...tokenValue(a.metadata.tokens[0]),
+      tokenText('from liquidity'),
+      ...tokenPlatform(a),
+    ])
   },
   'exchange-liquidity-supply': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'liquidity') {
       throw errActionType
     }
 
-    return join([tokenText('Supplied'), ...tokenValue(a.metadata.tokens[0]), tokenText('to liquidity'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Supplied'),
+      ...tokenValue(a.metadata.tokens[0]),
+      tokenText('to liquidity'),
+      ...tokenPlatform(a),
+    ])
   },
   'exchange-liquidity-borrow': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'liquidity') {
       throw errActionType
     }
 
-    return join([tokenText('Borrowed'), ...tokenValue(a.metadata.tokens[0]), tokenText('from liquidity'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Borrowed'),
+      ...tokenValue(a.metadata.tokens[0]),
+      tokenText('from liquidity'),
+      ...tokenPlatform(a),
+    ])
   },
   'exchange-liquidity-repay': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'liquidity') {
       throw errActionType
     }
 
-    return join([tokenText('Repaid'), ...tokenValue(a.metadata.tokens[0]), tokenText('to liquidity'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Repaid'),
+      ...tokenValue(a.metadata.tokens[0]),
+      tokenText('to liquidity'),
+      ...tokenPlatform(a),
+    ])
   },
   'exchange-liquidity-withdraw': (a) => {
     if (a.tag !== 'exchange' || a.type !== 'liquidity') {
       throw errActionType
     }
 
-    return join([tokenText('Withdrew'), ...tokenValue(a.metadata.tokens[0]), tokenText('from liquidity'), ...tokenPlatform(a)])
+    return join([
+      tokenText('Withdrew'),
+      ...tokenValue(a.metadata.tokens[0]),
+      tokenText('from liquidity'),
+      ...tokenPlatform(a),
+    ])
   },
   'social-post': (a) => {
     if (a.tag !== 'social' || a.type !== 'post') {
       throw errActionType
     }
 
-
-    return join([tokenText('Published post'), tokenPostBrief(a), ...tokenPlatform(a)])
+    return join([tokenText('Published post'), tokenPost(a), ...tokenPlatform(a)])
   },
   'social-revise': (a) => {
     if (a.tag !== 'social' || a.type !== 'revise') {
       throw errActionType
     }
 
-    return join([tokenText('Revised post'), tokenPostBrief(a), ...tokenPlatform(a)])
+    return join([tokenText('Revised post'), tokenPost(a), ...tokenPlatform(a)])
   },
   'social-comment': (a) => {
     if (a.tag !== 'social' || a.type !== 'comment') {
       throw errActionType
     }
 
-    return join([tokenText('Commented'), tokenPostBrief(a), ...tokenPlatform(a)])
+    return join([tokenText('Commented'), tokenPost(a), ...tokenPlatform(a)])
   },
   'social-share': (a) => {
     if (a.tag !== 'social' || a.type !== 'share') {
       throw errActionType
     }
 
-    return join([tokenText('Shared post'), tokenPostBrief(a), ...tokenPlatform(a)])
+    return join([tokenText('Shared post'), tokenPost(a), ...tokenPlatform(a)])
   },
   'social-mint': (a) => {
     if (a.tag !== 'social' || a.type !== 'mint') {
       throw errActionType
     }
 
-    return join([tokenText('Minted post'), tokenPostBrief(a), ...tokenPlatform(a)])
+    return join([tokenText('Minted post'), tokenPost(a), ...tokenPlatform(a)])
   },
   'social-wiki-create': (a) => {
     if (a.tag !== 'social' || a.type !== 'wiki') {
       throw errActionType
     }
 
-
-    return join([tokenText('Created Wiki'), tokenPostBrief(a), ...tokenPlatform(a)])
+    return join([tokenText('Created Wiki'), tokenPost(a), ...tokenPlatform(a)])
   },
   'social-wiki-revise': (a) => {
     if (a.tag !== 'social' || a.type !== 'wiki') {
       throw errActionType
     }
 
-
-    return  join([tokenText('Revised Wiki'), tokenPostBrief(a), ...tokenPlatform(a)])
+    return join([tokenText('Revised Wiki'), tokenPost(a), ...tokenPlatform(a)])
   },
   'social-reward': (a, txn) => {
     if (a.tag !== 'social' || a.type !== 'reward') {
       throw errActionType
     }
 
-
     if (txn.owner === a.address_from) {
-      return join([tokenText('Rewarded'), ...tokenValue(a.metadata.reward), tokenText('to'), token('address', a.address_to), ...tokenPlatform(a)])
+      return join([
+        tokenText('Rewarded'),
+        ...tokenValue(a.metadata.reward),
+        tokenText('to'),
+        tokenAddr(a.address_to),
+        ...tokenPlatform(a),
+      ])
     }
 
-
-    return join([tokenText('Received'), ...tokenValue(a.metadata.reward), tokenText('reward from'), token('address', a.address_to), ...tokenPlatform(a)])
+    return join([
+      tokenText('Received'),
+      ...tokenValue(a.metadata.reward),
+      tokenText('reward from'),
+      tokenAddr(a.address_to),
+      ...tokenPlatform(a),
+    ])
   },
   'social-proxy-appoint': (a) => {
     if (a.tag !== 'social' || a.type !== 'proxy') {
       throw errActionType
     }
 
-    return join([tokenText('Appointed proxy to'), token('address', a.address_to), ...tokenPlatform(a)])
+    return join([tokenText('Appointed proxy to'), tokenAddr(a.address_to), ...tokenPlatform(a)])
   },
   'social-proxy-remove': (a) => {
     if (a.tag !== 'social' || a.type !== 'proxy') {
       throw errActionType
     }
 
-    return join([tokenText('Removed proxy from'), token('address', a.address_to), ...tokenPlatform(a)])
+    return join([tokenText('Removed proxy from'), tokenAddr(a.address_to), ...tokenPlatform(a)])
   },
   'social-profile-create': (a) => {
     if (a.tag !== 'social' || a.type !== 'profile') {
@@ -488,15 +548,14 @@ const formatters: Tokenizers = {
       throw errActionType
     }
 
-
-    return join([tokenText('Followed'), token('address', a.address_to), ...tokenPlatform(a)])
+    return join([tokenText('Followed'), tokenAddr(a.address_to), ...tokenPlatform(a)])
   },
   'social-unfollow': (a) => {
     if (a.tag !== 'social' || a.type !== 'unfollow') {
       throw errActionType
     }
 
-    return join([tokenText('Unfollowed'), token('address', a.address_from), ...tokenPlatform(a)])
+    return join([tokenText('Unfollowed'), tokenAddr(a.address_from), ...tokenPlatform(a)])
   },
   'donation-donate': (a) => {
     if (a.tag !== 'donation' || a.type !== 'donate') {
@@ -530,7 +589,6 @@ const formatters: Tokenizers = {
     if (a.tag !== 'exchange' || a.type !== 'staking') {
       throw errActionType
     }
-
 
     return join([tokenText('Unstaked'), ...tokenValue(a.metadata.token), ...tokenPlatform(a)])
   },
