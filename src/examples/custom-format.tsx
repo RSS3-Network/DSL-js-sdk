@@ -7,10 +7,12 @@ const myTheme: Theme<JSX.Element> = {
   html: (c) => <div dangerouslySetInnerHTML={{ __html: c }} />,
   platform: (c) => <img className="platform" src={'/public/platform/' + c + '.svg'} />,
   address: (c) => <span className="address">{c}</span>,
+  name: (c) => <span className="name">{c}</span>,
   network: (c) => <span className="network">{c}</span>,
   number: (c) => <span className="number">{c}</span>,
   symbol: (c) => <span className="symbol">{c}</span>,
   text: (c) => <span className="text">{c}</span>,
+  separator: () => <br />,
   unknown: (c) => <span className="unknown">{c}</span>,
 }
 

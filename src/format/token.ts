@@ -1,5 +1,4 @@
 import { components } from '../types/data'
-import { compiledConvert } from './utils'
 
 export type TokenType =
   | 'text' // plain text
@@ -7,8 +6,10 @@ export type TokenType =
   | 'number' // number value, such as token exchange rate
   | 'symbol' // short name for a token, such as BTC, ETH
   | 'address' // wallet address or txn address, such as https://help.coinbase.com/en/coinbase/getting-started/crypto-education/what-is-a-transaction-hash-hash-id
+  | 'name' // name for NFT, etc
   | 'platform' // platform name
   | 'network' // network name
+  | 'separator' // separator for actions
   | 'unknown' // unknown data type to tokenize
 
 export type Token = {
@@ -22,7 +23,7 @@ export function token(type: Token['type'], content = ''): Token {
 
 export const tokenSpace = tokenText(' ')
 
-export const tokenComma = tokenText(', ')
+export const tokenSeparator = token('separator', '; ')
 
 export function join(tokens: Token[], sep = tokenSpace): Token[] {
   return tokens.reduce((acc, t) => [...acc, sep, t], [] as Token[]).slice(1)
@@ -30,6 +31,10 @@ export function join(tokens: Token[], sep = tokenSpace): Token[] {
 
 export function tokenText(t: string): Token {
   return token('text', t)
+}
+
+export function tokenName(t: string): Token {
+  return token('name', t)
 }
 
 export function tokenAddr(d: string | null | undefined) {
@@ -63,19 +68,5 @@ export function tokenPost(t: components['schemas']['Transfer']) {
     out = t.metadata.target.body
   }
 
-  out = compiledConvert(out)
-
-  let trimmed = false
-  const max = 50
-  if (out.length > max) {
-    out = out.slice(0, max)
-    trimmed = true
-  }
-
-  if (/\n/.test(out)) {
-    out = out.replace(/\n[\s\S]+/g, '')
-    trimmed = true
-  }
-
-  return tokenText(out + trimmed ? '...' : '')
+  return token('html', out)
 }
