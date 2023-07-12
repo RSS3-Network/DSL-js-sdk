@@ -25,6 +25,30 @@ export function client(opt: ClientOptions = {}) {
     },
 
     /**
+     * Query mastodon activities.
+     */
+    async mastodonActivities(address: string, query: paths['/mastodon/{address}']['get']['parameters']['query'] = {}) {
+      // TODO: remove this after pregod has fixed the echo param bug
+      opt.fetch = async (url, init) => {
+        if (/%40/.test(url.toString())) {
+          url = url.toString().replace(/%40/g, '@')
+        }
+        return fetch(url, init)
+      }
+      const client = createClient<paths>(opt)
+
+      const { data, error } = await client.get('/mastodon/{address}', {
+        params: {
+          path: { address },
+          query,
+        },
+      })
+      if (error || !data) throw error
+
+      return data
+    },
+
+    /**
      * Query profiles.
      */
     async profiles(query: paths['/profiles']['post']['requestBody']['content']['application/json']) {
@@ -39,9 +63,12 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query assets.
      */
-    async assets(query: paths['/assets/{address}']['get']['parameters']) {
+    async assets(address: string, query: paths['/assets/{address}']['get']['parameters']['query'] = {}) {
       const { data, error } = await client.get('/assets/{address}', {
-        params: query,
+        params: {
+          path: { address },
+          query,
+        },
       })
       if (error || !data) throw error
 
