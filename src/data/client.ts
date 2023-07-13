@@ -52,9 +52,12 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query profiles.
      */
-    async profiles(query: paths['/profiles']['post']['requestBody']['content']['application/json']) {
-      const { data, error } = await client.post('/profiles', {
-        body: query,
+    async profiles(address: string, query: paths['/profiles/{address}']['get']['parameters']['query'] = {}) {
+      const { data, error } = await client.get('/profiles/{address}', {
+        params: {
+          path: { address },
+          query,
+        },
       })
       if (error || !data) throw error
 

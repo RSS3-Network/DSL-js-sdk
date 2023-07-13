@@ -8,7 +8,7 @@ async function main() {
   console.log(activities)
 
   // Get profiles of Vitalik
-  const { result: profiles } = await client.profiles({ address: ['vitalik.eth'] })
+  const { result: profiles } = await client.profiles('vitalik.eth')
   console.log(profiles)
 }
 

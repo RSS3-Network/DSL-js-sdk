@@ -11,6 +11,16 @@ it.concurrent('get 10 activities by address', async ({ expect }) => {
   expect(res.result).toHaveLength(10)
 })
 
+it.concurrent('get assets', async ({ expect }) => {
+  const res = await client().assets('vitalik.eth', { limit: 10 })
+  expect(res.result).toHaveLength(10)
+})
+
+it.concurrent('get profile', async ({ expect }) => {
+  const res = await client().profiles('vitalik.eth')
+  expect(res.result).length.greaterThan(3)
+})
+
 it.concurrent(
   'get mastodon activities',
   async ({ expect }) => {
