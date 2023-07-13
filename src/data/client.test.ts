@@ -29,3 +29,8 @@ it.concurrent(
   },
   30000,
 )
+
+it.concurrent('get activity by transaction hash', async ({ expect }) => {
+  const res = await client().transaction('0xe8176933803fd2d12ca58712e472b59eb670b4b5ec167d86a67c5fbacdd6b60d')
+  expect(res.actions).length.greaterThan(0)
+})

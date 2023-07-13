@@ -2,12 +2,17 @@ import createClient from 'openapi-fetch'
 import { paths } from '../types/data'
 import { ClientOptions } from '../types/utils'
 import { DEFAULT_DATA_SERVER } from '../constants'
+import { debug, fetchWithLog } from '../utils'
 
 /**
  * Data client for interacting with the data server.
  */
 export function client(opt: ClientOptions = {}) {
   if (!opt.baseUrl) opt.baseUrl = DEFAULT_DATA_SERVER
+
+  const debugSearch = debug.extend('search')
+
+  opt.fetch = fetchWithLog(debugSearch.extend('fetch'), opt.fetch)
 
   const client = createClient<paths>(opt)
 
