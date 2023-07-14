@@ -1,6 +1,6 @@
 {
   "name": "@rss3/js-sdk",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "main": "lib/index.js",
   "engines": {
     "node": ">=v19.8.1"
