@@ -1,8 +1,8 @@
 import createClient from 'openapi-fetch'
-import { paths, operations, components } from '../types/search'
+import { paths, operations } from '../types/search'
 import { ClientOptions } from '../types/utils'
 import { DEFAULT_SEARCH_SERVER } from '../constants'
-import { timeRange, fetchWithLog, debug } from '../utils'
+import { fetchWithLog, debug } from '../utils'
 
 /**
  * Search client for interacting with the search server.
@@ -20,8 +20,8 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Suggestions for a keyword.
      */
-    async suggestions(query: operations['autoComplete']['parameters']['query']) {
-      const { data, error } = await client.get('/v1/suggester/autoComplete', {
+    async suggestions(query: operations['autoCompleteV2']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/suggestions/autocomplete', {
         params: { query },
       })
 
@@ -33,14 +33,9 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Search activities by keyword and filters.
      */
-    async activities(query: components['schemas']['FeedSearchReqDTO']) {
-      if (!query.platform) query.platform = ['ALL']
-      if (!query.network) query.network = ['ALL']
-      if (!query.sort) query.sort = 'NONE'
-      if (!query.between) query.between = timeRange()
-
-      const { data, error } = await client.post('/api/Feed/v2/search', {
-        body: query,
+    async activities(query: operations['searchFeedV2_1']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/activities', {
+        params: { query },
       })
       if (error || !data) throw error
 
@@ -48,10 +43,10 @@ export function client(opt: ClientOptions = {}) {
     },
 
     /**
-     * Recommendations for activities.
+     * Get related addresses of a keyword.
      */
-    async recommendations(query: operations['activityRec']['parameters']['query']) {
-      const { data, error } = await client.get('/api/search/activityRec', {
+    async relatedAddresses(query: operations['relatedAddresses']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/suggestions/related-addresses', {
         params: { query },
       })
       if (error || !data) throw error
@@ -62,9 +57,9 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Get the details of an activity.
      */
-    async details(query: operations['detail']['parameters']['query']) {
-      const { data, error } = await client.get('/api/search/detail', {
-        params: { query },
+    async activity(id: string) {
+      const { data, error } = await client.get('/v2/activities/{id}', {
+        params: { path: { id } },
       })
       if (error || !data) throw error
 
@@ -74,12 +69,9 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Search nft.
      */
-    async nft(query: components['schemas']['CollectionSearchReqDTO']) {
-      if (!query.sortType) query.sortType = 'NONE'
-      if (!query.networks) query.networks = ['ALL']
-
-      const { data, error } = await client.post('/api/nft/v2/searchNftCollection', {
-        body: query,
+    async nft(query: operations['searchNftCollectionV2_1']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/nft-collections', {
+        params: { query },
       })
       if (error || !data) throw error
 
@@ -89,11 +81,11 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Search wiki.
      */
-    async wiki(query: operations['search']['parameters']['query']) {
+    async wiki(query: operations['searchV2']['parameters']['query']) {
       if (!query.page) query.page = 1
       if (!query.size) query.size = 5
 
-      const { data, error } = await client.get('/v1/wiki/search', {
+      const { data, error } = await client.get('/v2/wikis', {
         params: { query },
       })
       if (error || !data) throw error
@@ -105,7 +97,7 @@ export function client(opt: ClientOptions = {}) {
      * Get images of a nft.
      */
     async nftImages(query: operations['nftImages']['parameters']['query']) {
-      const { data, error } = await client.get('/api/nft/nftImages', {
+      const { data, error } = await client.get('/v2/nft-images', {
         params: { query },
       })
       if (error || !data) throw error
@@ -116,8 +108,8 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Details of a nft.
      */
-    async nftImageDetails(query: operations['nftImageDetail']['parameters']['query']) {
-      const { data, error } = await client.get('/api/nft/nftImageDetail', {
+    async nftImage(query: operations['nftImageDetail']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/nft-image', {
         params: { query },
       })
       if (error || !data) throw error
@@ -128,8 +120,8 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Search dapp.
      */
-    async dapp(query: operations['search_4']['parameters']['query']) {
-      const { data, error } = await client.get('/api/dapp/search', {
+    async dapp(query: operations['searchv2']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/dapps', {
         params: { query },
       })
       if (error || !data) throw error

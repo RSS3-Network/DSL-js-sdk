@@ -8,15 +8,6 @@ import {components as data} from './data'
 
 
 export interface paths {
-  "/api/preview/nft": {
-    post: operations["nft"];
-  };
-  "/api/preview/news": {
-    post: operations["news"];
-  };
-  "/api/preview/feeds": {
-    post: operations["feeds"];
-  };
   "/api/nft/v2/searchNftCollection": {
     /** NFT collection搜索 */
     post: operations["searchNftCollectionV2"];
@@ -25,29 +16,61 @@ export interface paths {
     /** Feed搜索 */
     post: operations["searchFeedV2"];
   };
-  "/v1/wiki/search": {
-    /** Search wiki */
+  "/v2/wikis": {
+    /** Search wikis */
+    get: operations["searchV2"];
+  };
+  "/v2/today-in-history": {
+    /** Today in history */
+    get: operations["todayInHistory"];
+  };
+  "/v2/suggestions/spellcheck": {
+    /** Spell correction (did-you-mean) */
+    get: operations["spellCorrectionv2"];
+  };
+  "/v2/suggestions/related-addresses": {
+    /** Related addresses */
+    get: operations["relatedAddresses"];
+  };
+  "/v2/suggestions/autocomplete": {
+    /** Autocomplete */
+    get: operations["autoCompleteV2"];
+  };
+  "/v2/price-chart": {
+    /** Get coin price chart */
+    get: operations["priceChart"];
+  };
+  "/v2/nft-images": {
+    /** Get images of NFT collection */
+    get: operations["nftImages"];
+  };
+  "/v2/nft-image": {
+    /** Get NFT image */
+    get: operations["nftImageDetail"];
+  };
+  "/v2/nft-collections": {
+    /** Search NFT collections */
+    get: operations["searchNftCollectionV2_1"];
+  };
+  "/v2/dapps": {
+    /** Search dapps */
+    get: operations["searchv2"];
+  };
+  "/v2/coins": {
+    /** Search coins */
     get: operations["search"];
   };
-  "/v1/suggester/spellCorrection": {
-    /** Spell correction (did-you-mean) */
-    get: operations["spellCorrection"];
+  "/v2/activities": {
+    /** Search activities */
+    get: operations["searchFeedV2_1"];
   };
-  "/v1/suggester/autoComplete": {
-    /** Autocomplete */
-    get: operations["autoComplete"];
-  };
-  "/v1/dapp/search": {
-    /** Search Dapp */
-    get: operations["search_1"];
-  };
-  "/v1/content/search": {
-    /** Search content */
-    get: operations["searchFeed"];
+  "/v2/activities/{id}": {
+    /** Get activity */
+    get: operations["activityDetail"];
   };
   "/api/wiki/search": {
     /** 搜索wiki */
-    get: operations["search_2"];
+    get: operations["search_1"];
   };
   "/api/wiki/profile": {
     /** 查询wiki profile */
@@ -59,7 +82,7 @@ export interface paths {
   };
   "/api/search/spellCorrection": {
     /** 纠错 (did-you-mean) */
-    get: operations["spellCorrection_1"];
+    get: operations["spellCorrection"];
   };
   "/api/search/fullTextSearch": {
     /** 搜索 */
@@ -71,55 +94,39 @@ export interface paths {
   };
   "/api/search/autoComplete": {
     /** 自动补全 */
-    get: operations["autoComplete_1"];
+    get: operations["autoComplete"];
   };
   "/api/search/activityRec": {
     /** Activity推荐 */
     get: operations["activityRec"];
   };
-  "/api/project/search": {
-    /** 搜索project */
-    get: operations["search_3"];
-  };
   "/api/nft/nftImages": {
     /** NFT图片列表 */
-    get: operations["nftImages"];
+    get: operations["nftImages_1"];
   };
   "/api/nft/nftImageDetail": {
     /** NFT图片详情 */
-    get: operations["nftImageDetail"];
+    get: operations["nftImageDetail_1"];
   };
   "/api/nft/autocomplete": {
     /** NFT自动补全 */
     get: operations["autocomplete"];
   };
-  "/api/news/todayInHistory": {
-    /** 历史上的今天 */
-    get: operations["todayInHistory"];
-  };
-  "/api/news/recentNews": {
-    /** 最新NEWS */
-    get: operations["recentNews"];
-  };
-  "/api/news/hotNews": {
-    /** 最热NEWS */
-    get: operations["hotNews"];
-  };
-  "/api/news/detail": {
-    /** 新闻详情 */
-    get: operations["detail_1"];
+  "/api/news/today-in-history": {
+    /** today in history */
+    get: operations["todayInHistory_1"];
   };
   "/api/dapp/search": {
     /** 搜索dapp */
-    get: operations["search_4"];
+    get: operations["search_2"];
   };
   "/api/coin/search": {
     /** 币价搜索 */
-    get: operations["search_5"];
+    get: operations["search_3"];
   };
   "/api/coin/priceChart": {
     /** 走势图 */
-    get: operations["priceChart"];
+    get: operations["priceChart_1"];
   };
 }
 
@@ -127,97 +134,6 @@ export type webhooks = Record<string, any>;
 
 export interface components {
   schemas: {
-    NFTPreviewParamDTO: {
-      /**
-       * @description network: avax eth arbitrum bnb optimism polygon 
-       * @example avax
-       */
-      network?: string;
-    };
-    CollectionPreviewDocDTO: {
-      id?: string;
-      contractAddress?: string;
-      network?: string;
-      name?: string;
-      symbol?: string;
-      description?: string;
-      standard?: string;
-      logoUrl?: string;
-      priceSymbol?: string;
-      officialUrl?: string;
-      officialDiscord?: string;
-      officialTwitter?: string;
-      officialTelegram?: string;
-      /** Format: double */
-      floorPrice?: number;
-    };
-    NewsPreviewParamDTO: {
-      /**
-       * Format: int64 
-       * @description 时间戳，-1 代表不存在 
-       * @default -1 
-       * @example -1
-       */
-      publishDateLte?: number;
-      /**
-       * Format: int64 
-       * @description 时间戳，-1 代表不存在 
-       * @default -1 
-       * @example -1
-       */
-      publishDateGte?: number;
-    };
-    RawNewsPreviewDoc: {
-      /** Format: int64 */
-      id?: number;
-      title?: string;
-      summary?: string;
-      url?: string;
-      fullText?: string;
-      coverUrl?: string;
-      /** Format: int64 */
-      publishedDate?: number;
-      source?: string;
-      /** Format: double */
-      hotScore?: number;
-      aiSummary?: string;
-    };
-    FeedPreviewParamDTO: {
-      /**
-       * @description collectible donation governance social 
-       * @example social
-       */
-      tag?: string;
-      /**
-       * @description polygon ethereum arbitrum arweave farcaster optimism zksync crossbell avalanche xdai binance_smart_chain fantom EIP-1577
-       *  
-       * @example ethereum
-       */
-      network?: string;
-      /**
-       * @description Lens Lenster phaver Snapshot OpenSea orb Mirror Gitcoin Orb Farcaster wav3s lenstube Blur xSync Buttrfly ENS Registrar lenstube-bytes TeaParty Crossbell LensPort ChainJet Lenster Community Koru DAO memester 5bba5781-78b5-4927-8d2f-122742817583 beats Lens Claiming App poap Zora memester-competition Aave Lens Bot CrossSync Quix iris xLog Sound LooksRare Foundation re:meme Welcomebot Postter tofuNFT IQ.Wiki diversehq crossbell kaira lens-share refract Soclly Planet BendDAO Matters Mad Finance THS RARA enso dataverse-v0.1.0 Lenster Crowdfund Focalize crossbell.io Share_article dumplingTV lensclubs Lensport pinsta
-       *  
-       * @example Lenster
-       */
-      platform?: string;
-    };
-    TransferDoc: {
-      id?: string;
-      transactionHash?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      tag?: string;
-      type?: string;
-      /** Format: int64 */
-      index?: number;
-      addressFrom?: string;
-      addressTo?: string;
-      network?: string;
-      platform?: string;
-      relatedUrls?: (string)[];
-      metadata?: string;
-      owner?: string;
-    };
     CollectionSearchReqDTO: {
       /** @example azuki */
       keyword: string;
@@ -463,7 +379,6 @@ export interface components {
       author?: string;
       network?: string;
       platform?: string;
-      source?: string;
       relatedUrls?: (string)[];
       metadata?: data['schemas']['Transfer']['metadata'];
       owner?: string;
@@ -522,6 +437,23 @@ export interface components {
       /** Format: int64 */
       totalPage?: number;
     };
+    Event: {
+      /** Format: int64 */
+      id?: number;
+      dayStr?: string;
+      monthDay?: string;
+      title?: string;
+      body?: string;
+      catalog?: string;
+      link?: string;
+      coin?: string;
+      images?: string;
+    };
+    /** @description RelatedAddressRespDTO */
+    RelatedAddressRespDTO: {
+      option?: string;
+      address?: string;
+    };
     /** @description 自动补全响应 */
     AutoCompleteRespDTO: {
       option?: string;
@@ -530,6 +462,61 @@ export interface components {
       /** @description nft collection logoUrl */
       thumb?: string;
       address?: string;
+    };
+    PriceChartDTO: {
+      ohlc?: Record<string, any>;
+    };
+    NFTImageResp4ExternalDTO: {
+      images?: (components["schemas"]["NftImage4ExternalDTO"])[];
+      /** Format: int64 */
+      totalPage?: number;
+    };
+    NftImage4ExternalDTO: {
+      id?: string;
+      collection?: components["schemas"]["NftCollectionDTO"];
+      tokenId?: string;
+      tokenUrl?: string;
+      name?: string;
+      imageUrl?: string;
+      attributes?: string;
+      /** Format: date-time */
+      timestamp?: string;
+      /** Format: double */
+      rarityScore?: number;
+      prompt?: string;
+      standard?: string;
+      owner?: string;
+      network?: string;
+      /** Format: double */
+      latestTradePrice?: number;
+      /** Format: double */
+      mintPrice?: number;
+      latestTradeSymbol?: string;
+    };
+    CollectionDoc4ExternalDTO: {
+      id?: string;
+      /** Format: int32 */
+      itemsTotal?: number;
+      contractAddress?: string;
+      network?: string;
+      name?: string;
+      symbol?: string;
+      description?: string;
+      standard?: string;
+      logoUrl?: string;
+      priceSymbol?: string;
+      officialUrl?: string;
+      discord?: string;
+      twitter?: string;
+      telegram?: string;
+      /** Format: double */
+      floorPrice?: number;
+      top3images?: (components["schemas"]["NftImage4ExternalDTO"])[];
+    };
+    CollectionSearchResp4ExternalDTO: {
+      collections?: (components["schemas"]["CollectionDoc4ExternalDTO"])[];
+      /** Format: int64 */
+      totalPage?: number;
     };
     DaapDocDTO: {
       id?: string;
@@ -564,51 +551,17 @@ export interface components {
       /** Format: int64 */
       totalPage?: number;
     };
-    FeedRankActionDoc4ExternalDTO: {
-      tag?: string;
-      type?: string;
-      /** Format: int64 */
-      index?: number;
-      author?: string;
-      metadata?: data['schemas']['Transfer']['metadata'];
-      /** Format: float */
-      score?: number;
-      highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
-      transaction_hash?: string;
-      address_from?: string;
-      address_to?: string;
-      related_urls?: (string)[];
-    };
-    FeedRankDoc4ExternalDTO: {
-      id?: string;
-      owner?: string;
-      /** Format: int64 */
-      timestamp?: number;
-      tag?: string;
-      type?: string;
-      network?: string;
-      platform?: string;
-      actions?: (components["schemas"]["FeedRankActionDoc4ExternalDTO"])[];
-      transaction_hash?: string;
-    };
-    FeedSearchResp4ExternalDTO: {
-      /** Format: int32 */
-      totalPage?: number;
-      contents?: (components["schemas"]["FeedRankDoc4ExternalDTO"])[];
-      networkAgg?: (components["schemas"]["FeedSearchNetworkAggDTO"])[];
-      platformAgg?: (components["schemas"]["FeedSearchPlatformAggDTO"])[];
-    };
-    WikiProfileRespDTO: {
-      url?: string;
-      /** @enum {string} */
-      type?: "UNKNOWN" | "YOUTUBE" | "GITHUB" | "TWITTER" | "EMAIL" | "FACEBOOK" | "INSTAGRAM" | "LINKEDIN" | "REDDIT" | "TELEGRAM" | "COINMARKETCAP" | "COINGECKO" | "DISCORD";
-    };
     /** @description 币价模块响应 */
     CoinSearchRespDTO: {
       coinVsCurrency?: components["schemas"]["CoinVsCurrencyDTO"];
       coinVsCoin?: components["schemas"]["CoinVsCoinDTO"];
       priceChartOf1day?: components["schemas"]["PriceChartDTO"];
-      market?: components["schemas"]["JSONObject"];
+      /** @description 1天market信息 */
+      market?: {
+        
+        
+        [key: string]: Record<string, any> | undefined;
+      };
       coinMetadata?: components["schemas"]["JSONObject"];
       similarCoins?: (components["schemas"]["JSONObject"])[];
     };
@@ -648,9 +601,67 @@ export interface components {
       /** Format: double */
       rate?: number;
     };
-    /** @description 1天走势图 */
-    PriceChartDTO: {
-      ohlc?: Record<string, any>;
+    FeedRankActionDoc4ExternalDTO: {
+      tag?: string;
+      type?: string;
+      /** Format: int64 */
+      index?: number;
+      author?: string;
+      /** Format: float */
+      score?: number;
+      highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
+      transaction_hash?: string;
+      address_from?: string;
+      address_to?: string;
+      related_urls?: (string)[];
+    };
+    FeedRankDoc4ExternalDTO: {
+      id?: string;
+      owner?: string;
+      /** Format: int64 */
+      timestamp?: number;
+      tag?: string;
+      type?: string;
+      network?: string;
+      platform?: string;
+      actions?: (components["schemas"]["FeedRankActionDoc4ExternalDTO"])[];
+      transaction_hash?: string;
+    };
+    FeedSearchResp4ExternalDTO: {
+      /** Format: int32 */
+      totalPage?: number;
+      contents?: (components["schemas"]["FeedRankDoc4ExternalDTO"])[];
+      network_agg?: (components["schemas"]["FeedSearchNetworkAggDTO"])[];
+      platform_agg?: (components["schemas"]["FeedSearchPlatformAggDTO"])[];
+    };
+    FeedRankActionDoc4ExternalDetailDTO: {
+      tag?: string;
+      type?: string;
+      /** Format: int64 */
+      index?: number;
+      author?: string;
+      metadata?: data['schemas']['Transfer']['metadata'];
+      transaction_hash?: string;
+      address_from?: string;
+      address_to?: string;
+      related_urls?: (string)[];
+    };
+    FeedRankDoc4ExternalDetailDTO: {
+      id?: string;
+      owner?: string;
+      /** Format: int64 */
+      timestamp?: number;
+      tag?: string;
+      type?: string;
+      network?: string;
+      platform?: string;
+      actions?: (components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"])[];
+      transaction_hash?: string;
+    };
+    WikiProfileRespDTO: {
+      url?: string;
+      /** @enum {string} */
+      type?: "UNKNOWN" | "YOUTUBE" | "GITHUB" | "TWITTER" | "EMAIL" | "FACEBOOK" | "INSTAGRAM" | "LINKEDIN" | "REDDIT" | "TELEGRAM" | "COINMARKETCAP" | "COINGECKO" | "DISCORD";
     };
     /** @description 项目 */
     ProjectDocDTO: {
@@ -764,11 +775,6 @@ export interface components {
       nftScanUrl?: string;
       latestTradeSymbol?: string;
     };
-    ProjectSearchRespDTO: {
-      docs?: (components["schemas"]["ProjectDocDTO"])[];
-      /** Format: int64 */
-      totalPage?: number;
-    };
     NFTImageRespDTO: {
       images?: (components["schemas"]["NftImageDTO"])[];
       /** Format: int64 */
@@ -778,47 +784,6 @@ export interface components {
     NFTAutoCompleteRespDTO: {
       option?: string;
       thumb?: string;
-    };
-    TodayInHistoryRespDTO: {
-      date?: string;
-      title?: string;
-      body?: string;
-      summary?: string;
-      links?: (Record<string, any>)[];
-    };
-    NewsRespDTO: {
-      docs?: (components["schemas"]["RawNewsListDocDTO"])[];
-      /** Format: int64 */
-      totalPage?: number;
-    };
-    RawNewsListDocDTO: {
-      /** Format: int64 */
-      id?: number;
-      title?: string;
-      summary?: string;
-      url?: string;
-      coverUrl?: string;
-      /** Format: int64 */
-      publishedDate?: number;
-      source?: string;
-      /** Format: double */
-      hotScore?: number;
-      aiSummary?: string;
-    };
-    RawNewsDetailDocDTO: {
-      /** Format: int64 */
-      id?: number;
-      title?: string;
-      summary?: string;
-      url?: string;
-      coverUrl?: string;
-      fullText?: string;
-      /** Format: int64 */
-      publishedDate?: number;
-      source?: string;
-      /** Format: double */
-      hotScore?: number;
-      aiSummary?: string;
     };
   };
   responses: never;
@@ -832,51 +797,6 @@ export type external = Record<string, any>;
 
 export interface operations {
 
-  nft: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["NFTPreviewParamDTO"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": (components["schemas"]["CollectionPreviewDocDTO"])[];
-        };
-      };
-    };
-  };
-  news: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["NewsPreviewParamDTO"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": (components["schemas"]["RawNewsPreviewDoc"])[];
-        };
-      };
-    };
-  };
-  feeds: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["FeedPreviewParamDTO"];
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": (components["schemas"]["TransferDoc"])[];
-        };
-      };
-    };
-  };
   /** NFT collection搜索 */
   searchNftCollectionV2: {
     requestBody: {
@@ -889,6 +809,12 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["CollectionSearchRespDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
         };
       };
     };
@@ -907,13 +833,22 @@ export interface operations {
           "application/json": components["schemas"]["FeedSearchRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
-  /** Search wiki */
-  search: {
+  /** Search wikis */
+  searchV2: {
     parameters: {
       query: {
-        /** @description search keyword */
+        /**
+         * @description search keyword 
+         * @example vitalik
+         */
         keyword: string;
         /** @description pagination page, min page is 1 */
         page?: number;
@@ -928,12 +863,45 @@ export interface operations {
           "application/json": components["schemas"]["WikiSearchRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Today in history */
+  todayInHistory: {
+    parameters: {
+      query: {
+        /**
+         * @description date 
+         * @example 09-15
+         */
+        monthDay?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": (components["schemas"]["Event"])[];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** Spell correction (did-you-mean) */
-  spellCorrection: {
+  spellCorrectionv2: {
     parameters: {
       query: {
+        /** @example vitalak */
         keyword: string;
         /** @description return count */
         count?: number;
@@ -948,12 +916,47 @@ export interface operations {
           "application/json": (string)[];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Related addresses */
+  relatedAddresses: {
+    parameters: {
+      query: {
+        /** @example vitalik */
+        keyword: string;
+        /** @description return count */
+        count?: number;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": (components["schemas"]["RelatedAddressRespDTO"])[];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** Autocomplete */
-  autoComplete: {
+  autoCompleteV2: {
     parameters: {
       query: {
+        /**
+         * @description keyword 
+         * @example vitali
+         */
         keyword: string;
         /** @description return count */
         count?: number;
@@ -968,13 +971,161 @@ export interface operations {
           "application/json": (components["schemas"]["AutoCompleteRespDTO"])[];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
-  /** Search Dapp */
-  search_1: {
+  /** Get coin price chart */
+  priceChart: {
     parameters: {
       query: {
-        /** @description search keyword, default is uniswap */
+        /** @description coinId */
+        coinId: string;
+        /** @description currency */
+        currency: string;
+        /** @description days, 1/7/14/30/90/180/365/max */
+        days: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["PriceChartDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Get images of NFT collection */
+  nftImages: {
+    parameters: {
+      query: {
+        /** @description contractAddress */
+        contractAddress: string;
+        /**
+         * @description pagination page,default is 1 
+         * @example 1
+         */
+        page: number;
+        /**
+         * @description pagination size,default is 12 
+         * @example 10
+         */
+        size: number;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["NFTImageResp4ExternalDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Get NFT image */
+  nftImageDetail: {
+    parameters: {
+      query: {
+        /** @description contractAddress */
+        contractAddress: string;
+        /**
+         * @description network 
+         * @example ETHEREUM
+         */
+        network: "ALL" | "AVAX" | "ETHEREUM" | "ARBITRUM" | "OPTIMISM" | "POLYGON" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARWEAVE" | "AVALANCHE" | "FANTOM" | "XDAI" | "ZKSYNC";
+        /**
+         * @description tokenId 
+         * @example 1
+         */
+        tokenId: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["NftImage4ExternalDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Search NFT collections */
+  searchNftCollectionV2_1: {
+    parameters: {
+      query: {
+        /**
+         * @description keyword 
+         * @example azuki
+         */
+        keyword: string;
+        /**
+         * @description pagination page,default is 1 
+         * @example 1
+         */
+        page?: number;
+        /**
+         * @description pagination size,default is 12 
+         * @example 12
+         */
+        size?: number;
+        /**
+         * @description sort type, default is NONE 
+         * @example NONE
+         */
+        sortType?: "NONE" | "_6H_VOLUME_RANK" | "_6H_SALES_RANK" | "_1D_VOLUME_RANK" | "_1D_SALES_RANK" | "_7D_VOLUME_RANK" | "_7D_SALES_RANK" | "_30D_VOLUME_RANK" | "_30D_SALES_RANK" | "_6H_MINT_RANK" | "_1D_MINT_RANK" | "_3D_MINT_RANK" | "_GAS_FEE_1H_RANK" | "GAS_FEE_12H_RANK" | "GAS_FEE_24H_RANK" | "VOLUME_TOTAL_RANK" | "MARKET_CAP_RANK";
+        /**
+         * @description str join with ",", available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX 
+         * @example EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
+         */
+        networks?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CollectionSearchResp4ExternalDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Search dapps */
+  searchv2: {
+    parameters: {
+      query: {
+        /**
+         * @description search keyword  
+         * @example uniswap
+         */
         keyword: string;
         /** @description pagination page, min page is 1 */
         page?: number;
@@ -989,14 +1140,48 @@ export interface operations {
           "application/json": components["schemas"]["DaapSearchRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
-  /** Search content */
-  searchFeed: {
+  /** Search coins */
+  search: {
     parameters: {
       query: {
         /**
-         * @description search keyword, default is vitalik 
+         * @description keyword 
+         * @example 3
+         */
+        keyword: string;
+        /** @description client language，window.navigator.language */
+        lang?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CoinSearchRespDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Search activities */
+  searchFeedV2_1: {
+    parameters: {
+      query: {
+        /**
+         * @description search keyword 
          * @example vitalik
          */
         keyword: string;
@@ -1004,12 +1189,12 @@ export interface operations {
          * @description pagination page, min page is 1 
          * @example 1
          */
-        page: number;
+        page?: number;
         /**
          * @description pagination size, max size is 20 
          * @example 12
          */
-        size: number;
+        size?: number;
         /**
          * @description STR join with ",", available value: ALL,MIRROR,FARCASTER,XLOG,CROSSBELL,LENS,MATTERS 
          * @example ALL
@@ -1051,10 +1236,38 @@ export interface operations {
           "application/json": components["schemas"]["FeedSearchResp4ExternalDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Get activity */
+  activityDetail: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["FeedRankDoc4ExternalDetailDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** 搜索wiki */
-  search_2: {
+  search_1: {
     parameters: {
       query: {
         keyword: string;
@@ -1067,6 +1280,12 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["WikiSearchRespDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
         };
       };
     };
@@ -1083,6 +1302,12 @@ export interface operations {
       200: {
         content: {
           "application/json": (components["schemas"]["WikiProfileRespDTO"])[];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
         };
       };
     };
@@ -1104,10 +1329,16 @@ export interface operations {
           "application/json": components["schemas"]["UnifiedSearchRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** 纠错 (did-you-mean) */
-  spellCorrection_1: {
+  spellCorrection: {
     parameters: {
       query: {
         keyword: string;
@@ -1122,6 +1353,12 @@ export interface operations {
       200: {
         content: {
           "application/json": (string)[];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
         };
       };
     };
@@ -1145,6 +1382,12 @@ export interface operations {
           "application/json": components["schemas"]["FullTextSearchRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** 详情 */
@@ -1162,10 +1405,16 @@ export interface operations {
           "application/json": components["schemas"]["Rss3DocDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** 自动补全 */
-  autoComplete_1: {
+  autoComplete: {
     parameters: {
       query: {
         keyword: string;
@@ -1180,6 +1429,12 @@ export interface operations {
       200: {
         content: {
           "application/json": (components["schemas"]["AutoCompleteRespDTO"])[];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
         };
       };
     };
@@ -1200,28 +1455,16 @@ export interface operations {
           "application/json": (components["schemas"]["AutoCompleteRespDTO"])[];
         };
       };
-    };
-  };
-  /** 搜索project */
-  search_3: {
-    parameters: {
-      query: {
-        keyword: string;
-        page: number;
-        size: number;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
+      /** @description Bad Request */
+      400: {
         content: {
-          "application/json": components["schemas"]["ProjectSearchRespDTO"];
+          "application/json": Record<string, any>;
         };
       };
     };
   };
   /** NFT图片列表 */
-  nftImages: {
+  nftImages_1: {
     parameters: {
       query: {
         contractAddress: string;
@@ -1236,10 +1479,16 @@ export interface operations {
           "application/json": components["schemas"]["NFTImageRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** NFT图片详情 */
-  nftImageDetail: {
+  nftImageDetail_1: {
     parameters: {
       query: {
         contractAddress: string;
@@ -1252,6 +1501,12 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["NftImageDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
         };
       };
     };
@@ -1272,82 +1527,42 @@ export interface operations {
           "application/json": (components["schemas"]["NFTAutoCompleteRespDTO"])[];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
-  /** 历史上的今天 */
-  todayInHistory: {
+  /** today in history */
+  todayInHistory_1: {
     parameters: {
       query: {
         /**
          * @description date 
          * @example 11-11
          */
-        dateStr: string;
+        monthDay?: string;
       };
     };
     responses: {
       /** @description OK */
       200: {
         content: {
-          "application/json": (components["schemas"]["TodayInHistoryRespDTO"])[];
+          "application/json": (components["schemas"]["Event"])[];
         };
       };
-    };
-  };
-  /** 最新NEWS */
-  recentNews: {
-    parameters: {
-      query: {
-        page: number;
-        size: number;
-        range: "_1D" | "_2D" | "_3D";
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
+      /** @description Bad Request */
+      400: {
         content: {
-          "application/json": components["schemas"]["NewsRespDTO"];
-        };
-      };
-    };
-  };
-  /** 最热NEWS */
-  hotNews: {
-    parameters: {
-      query: {
-        page: number;
-        size: number;
-        range: "_1D" | "_2D" | "_3D";
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["NewsRespDTO"];
-        };
-      };
-    };
-  };
-  /** 新闻详情 */
-  detail_1: {
-    parameters: {
-      query: {
-        id: number;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["RawNewsDetailDocDTO"];
+          "application/json": Record<string, any>;
         };
       };
     };
   };
   /** 搜索dapp */
-  search_4: {
+  search_2: {
     parameters: {
       query: {
         keyword?: string;
@@ -1362,10 +1577,16 @@ export interface operations {
           "application/json": components["schemas"]["DaapSearchRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** 币价搜索 */
-  search_5: {
+  search_3: {
     parameters: {
       query: {
         /** @description keyword */
@@ -1381,10 +1602,16 @@ export interface operations {
           "application/json": components["schemas"]["CoinSearchRespDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
     };
   };
   /** 走势图 */
-  priceChart: {
+  priceChart_1: {
     parameters: {
       query: {
         /** @description coinId */
@@ -1400,6 +1627,12 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["PriceChartDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
         };
       };
     };

@@ -9,6 +9,7 @@ async function main() {
       .replace(/\*\/\*/g, 'application/json')
       .replace(/innerMap\?: \{[\s\S]+?\};/g, '')
       .replace(/Record<string, never>/g, 'Record<string, any>')
+      .replace(/empty\?: boolean;/g, '')
       .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
       .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
 

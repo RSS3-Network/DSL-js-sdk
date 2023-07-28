@@ -8,14 +8,16 @@ it.concurrent('get suggestions', async ({ expect }) => {
 
 it.concurrent('get activities', async ({ expect }) => {
   const res = await client().activities({ keyword: 'vitalik', page: 1, size: 5 })
-  expect(res.feeds).toHaveLength(5)
+  expect(res.contents).toHaveLength(5)
 })
 
-it.concurrent('get details', async ({ expect }) => {
-  const res = await client().details({
-    id: '0xe8176933803fd2d12ca58712e472b59eb670b4b5ec167d86a67c5fbacdd6b60d',
-  })
-  expect(res.docType).toBe('FEED')
+it.concurrent('get activity', async ({ expect }) => {
+  const { contents } = await client().activities({ keyword: 'vitalik', size: 5 })
+
+  if (contents && contents.length > 0 && contents[0].id) {
+    const activity = await client().activity(contents[0].id)
+    expect(activity.id).toBe(contents[0].id)
+  }
 })
 
 it.concurrent('get nft', async ({ expect }) => {
@@ -28,14 +30,18 @@ it.concurrent('get wiki', async ({ expect }) => {
   expect(res.docs).toHaveLength(5)
 })
 
-it.concurrent('get recommendations', async ({ expect }) => {
-  const res = await client().recommendations({ keyword: 'vitalik' })
+it.concurrent('get related addresses', async ({ expect }) => {
+  const res = await client().relatedAddresses({ keyword: 'vitalik' })
   expect(res).toHaveLength(6)
 })
 
 it.concurrent('get nft images', async ({ expect }) => {
-  const res = await client().nftImages({ contractAddress: '0xeaa708c29ffce22db864385f0c6509907af45c03' })
-  expect(res.images).toHaveLength(10)
+  const res = await client().nftImages({
+    contractAddress: '0xeaa708c29ffce22db864385f0c6509907af45c03',
+    page: 1,
+    size: 5,
+  })
+  expect(res.images).toHaveLength(5)
 })
 
 it.concurrent('get dapp', async ({ expect }) => {
@@ -44,7 +50,7 @@ it.concurrent('get dapp', async ({ expect }) => {
 })
 
 it.concurrent('get nft details', async ({ expect }) => {
-  const res = await client().nftImageDetails({
+  const res = await client().nftImage({
     contractAddress: '0xeaa708c29ffce22db864385f0c6509907af45c03',
     network: 'ETHEREUM',
     tokenId: '1',

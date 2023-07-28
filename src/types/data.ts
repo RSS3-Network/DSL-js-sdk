@@ -282,6 +282,35 @@ export interface paths {
       };
     };
   };
+  "/platforms/notes/{platform}": {
+    get: {
+      parameters: {
+        query: {
+          limit?: number;
+          cursor?: string;
+        };
+        path: {
+          /** @description platform to query */
+          platform: components["schemas"]["PlatformName"];
+        };
+      };
+      responses: {
+        /** @description Response */
+        200: {
+          content: {
+            "application/json": {
+              address_status?: (components["schemas"]["Address"])[];
+              cursor?: string;
+              message?: string;
+              result?: (components["schemas"]["Transaction"])[];
+              /** @description total number of items */
+              total?: number | null;
+            };
+          };
+        };
+      };
+    };
+  };
   "/platforms/{platform_type}": {
     get: {
       parameters: {
