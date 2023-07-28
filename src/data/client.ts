@@ -33,14 +33,6 @@ export function client(opt: ClientOptions = {}) {
      * Query mastodon activities.
      */
     async mastodonActivities(address: string, query: paths['/mastodon/{address}']['get']['parameters']['query'] = {}) {
-      // TODO: remove this after pregod has fixed the echo param bug
-      const oldFetch = opt.fetch || fetch
-      opt.fetch = async (url, init) => {
-        if (/%40/.test(url.toString())) {
-          url = url.toString().replace(/%40/g, '@')
-        }
-        return oldFetch(url, init)
-      }
       const client = createClient<paths>(opt)
 
       const { data, error } = await client.get('/mastodon/{address}', {
