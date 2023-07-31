@@ -607,6 +607,7 @@ export interface components {
       /** Format: int64 */
       index?: number;
       author?: string;
+      medias?: (string)[];
       /** Format: float */
       score?: number;
       highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
