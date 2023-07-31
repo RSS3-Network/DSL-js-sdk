@@ -41,7 +41,7 @@ async function generate(
   let schema = await (await fetch(url)).json()
   schema = jsonFn ? jsonFn(schema) : schema
   writeFileSync(`tmp/${name}.json`, JSON.stringify(schema))
-  spawnSync('npx', ['--yes', 'openapi-typescript', `tmp/${name}.json`, '--output', `src/types/${name}.ts`], {
+  spawnSync('npx', ['--yes', 'openapi-typescript@6.3.9', `tmp/${name}.json`, '--output', `src/types/${name}.ts`], {
     stdio: 'inherit',
   })
 

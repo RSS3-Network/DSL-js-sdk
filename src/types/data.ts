@@ -46,7 +46,7 @@ export interface paths {
   "/assets/{address}": {
     get: {
       parameters: {
-        query: {
+        query?: {
           network?: components["schemas"]["NetworkName"][];
           token_address?: string;
           token_id?: string;
@@ -64,10 +64,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Asset"])[];
+              result?: components["schemas"]["Asset"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -79,9 +79,9 @@ export interface paths {
   "/exchanges/{exchange_type}": {
     get: {
       parameters: {
-        query: {
+        query?: {
           cursor?: number;
-          name?: (string)[];
+          name?: string[];
           network?: components["schemas"]["NetworkName"][];
         };
         path: {
@@ -93,10 +93,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["ExchangeResult"])[];
+              result?: components["schemas"]["ExchangeResult"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -108,16 +108,16 @@ export interface paths {
   "/mastodon/{address}": {
     get: {
       parameters: {
-        query: {
+        query?: {
           limit?: number;
           cursor?: string;
-          type?: (string)[];
-          tag?: (string)[];
+          type?: string[];
+          tag?: string[];
           network?: components["schemas"]["NetworkName"][];
           platform?: components["schemas"]["PlatformName"][];
           timestamp?: components["schemas"]["Time"];
           hash?: string;
-          hash_list?: (string)[];
+          hash_list?: string[];
           include_poap?: boolean;
           refresh?: boolean;
           page?: number;
@@ -136,10 +136,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Transaction"])[];
+              result?: components["schemas"]["Transaction"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -154,7 +154,7 @@ export interface paths {
         content: {
           "application/json": {
             action_limit?: number;
-            address: (string)[];
+            address: string[];
             count_only?: boolean;
             cursor?: string;
             ignore_contract?: boolean;
@@ -165,9 +165,9 @@ export interface paths {
             platform?: components["schemas"]["PlatformName"][];
             query_status?: boolean;
             refresh?: boolean;
-            tag?: (string)[];
+            tag?: string[];
             timestamp?: components["schemas"]["Time"];
-            type?: (string)[];
+            type?: string[];
           };
         };
       };
@@ -176,10 +176,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Transaction"])[];
+              result?: components["schemas"]["Transaction"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -193,7 +193,7 @@ export interface paths {
       requestBody: {
         content: {
           "application/json": {
-            address: (string)[];
+            address: string[];
             count_only?: boolean;
             cursor?: string;
             limit?: number;
@@ -201,7 +201,7 @@ export interface paths {
             page?: number;
             platform?: components["schemas"]["PlatformName"][];
             timestamp?: components["schemas"]["Time"];
-            type?: (string)[];
+            type?: string[];
           };
         };
       };
@@ -210,10 +210,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Transaction"])[];
+              result?: components["schemas"]["Transaction"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -225,16 +225,16 @@ export interface paths {
   "/notes/{address}": {
     get: {
       parameters: {
-        query: {
+        query?: {
           limit?: number;
           cursor?: string;
-          type?: (string)[];
-          tag?: (string)[];
+          type?: string[];
+          tag?: string[];
           network?: components["schemas"]["NetworkName"][];
           platform?: components["schemas"]["PlatformName"][];
           timestamp?: components["schemas"]["Time"];
           hash?: string;
-          hash_list?: (string)[];
+          hash_list?: string[];
           include_poap?: boolean;
           refresh?: boolean;
           page?: number;
@@ -253,10 +253,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Transaction"])[];
+              result?: components["schemas"]["Transaction"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -285,7 +285,7 @@ export interface paths {
   "/platforms/notes/{platform}": {
     get: {
       parameters: {
-        query: {
+        query?: {
           limit?: number;
           cursor?: string;
         };
@@ -299,10 +299,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Transaction"])[];
+              result?: components["schemas"]["Transaction"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -314,7 +314,7 @@ export interface paths {
   "/platforms/{platform_type}": {
     get: {
       parameters: {
-        query: {
+        query?: {
           network?: components["schemas"]["NetworkName"][];
         };
         path: {
@@ -326,10 +326,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["PlatformResult"])[];
+              result?: components["schemas"]["PlatformResult"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -343,7 +343,7 @@ export interface paths {
       requestBody: {
         content: {
           "application/json": {
-            address: (string)[];
+            address: string[];
             network?: components["schemas"]["NetworkName"][];
             platform?: components["schemas"]["PlatformName"][];
             refresh?: boolean;
@@ -355,10 +355,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Profile"])[];
+              result?: components["schemas"]["Profile"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -370,16 +370,16 @@ export interface paths {
   "/profiles/{address}": {
     get: {
       parameters: {
-        query: {
+        query?: {
           limit?: number;
           cursor?: string;
-          type?: (string)[];
-          tag?: (string)[];
+          type?: string[];
+          tag?: string[];
           network?: components["schemas"]["NetworkName"][];
           platform?: components["schemas"]["PlatformName"][];
           timestamp?: components["schemas"]["Time"];
           hash?: string;
-          hash_list?: (string)[];
+          hash_list?: string[];
           include_poap?: boolean;
           refresh?: boolean;
           page?: number;
@@ -398,10 +398,10 @@ export interface paths {
         200: {
           content: {
             "application/json": {
-              address_status?: (components["schemas"]["Address"])[];
+              address_status?: components["schemas"]["Address"][];
               cursor?: string;
               message?: string;
-              result?: (components["schemas"]["Profile"])[];
+              result?: components["schemas"]["Profile"][];
               /** @description total number of items */
               total?: number | null;
             };
@@ -434,7 +434,7 @@ export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
     /**
-     * APIKey 
+     * APIKey
      * @description github.com/naturalselectionlabs/pregod/common/database/model.APIKey
      */
     APIKey: {
@@ -442,17 +442,17 @@ export interface components {
       key: string;
     };
     /**
-     * Action 
+     * Action
      * @description github.com/naturalselectionlabs/pregod/common/types.Action
      */
     Action: {
       comment?: string;
-      examples?: (components["schemas"]["Example"])[];
+      examples?: components["schemas"]["Example"][];
       name?: string;
-      platforms?: (string)[];
+      platforms?: string[];
     };
     /**
-     * Address 
+     * Address
      * @description github.com/naturalselectionlabs/pregod/common/database/model.Address
      */
     Address: {
@@ -461,19 +461,19 @@ export interface components {
       done_networks: components["schemas"]["StringArray"];
       indexing_networks: components["schemas"]["StringArray"];
       /**
-       * RawMessage 
+       * RawMessage
        * @description encoding/json.RawMessage
        */
-      nonce: Record<string, never>;
+      nonce: unknown;
       status: boolean;
       /**
-       * Time 
+       * Time
        * @description time.Time
        */
       updated_at: string;
     };
     /**
-     * Asset 
+     * Asset
      * @description github.com/naturalselectionlabs/pregod/common/database/model.Asset
      */
     Asset: {
@@ -490,12 +490,12 @@ export interface components {
       token_standard: string;
     };
     /**
-     * BatchGetNotesRequest 
+     * BatchGetNotesRequest
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetNotesRequest
      */
     BatchGetNotesRequest: {
       action_limit?: number;
-      address: (string)[];
+      address: string[];
       count_only?: boolean;
       cursor?: string;
       ignore_contract?: boolean;
@@ -506,26 +506,26 @@ export interface components {
       platform?: components["schemas"]["PlatformName"][];
       query_status?: boolean;
       refresh?: boolean;
-      tag?: (string)[];
+      tag?: string[];
       timestamp?: components["schemas"]["Time"];
-      type?: (string)[];
+      type?: string[];
     };
     /**
-     * BatchGetProfilesRequest 
+     * BatchGetProfilesRequest
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetProfilesRequest
      */
     BatchGetProfilesRequest: {
-      address: (string)[];
+      address: string[];
       network?: components["schemas"]["NetworkName"][];
       platform?: components["schemas"]["PlatformName"][];
       refresh?: boolean;
     };
     /**
-     * BatchGetSocialNotesRequest 
+     * BatchGetSocialNotesRequest
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetSocialNotesRequest
      */
     BatchGetSocialNotesRequest: {
-      address: (string)[];
+      address: string[];
       count_only?: boolean;
       cursor?: string;
       limit?: number;
@@ -533,10 +533,10 @@ export interface components {
       page?: number;
       platform?: components["schemas"]["PlatformName"][];
       timestamp?: components["schemas"]["Time"];
-      type?: (string)[];
+      type?: string[];
     };
     /**
-     * Bridge 
+     * Bridge
      * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Bridge
      */
     Bridge: {
@@ -545,7 +545,7 @@ export interface components {
       token: components["schemas"]["Token"];
     };
     /**
-     * CexResult 
+     * CexResult
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.CexResult
      */
     CexResult: {
@@ -554,12 +554,12 @@ export interface components {
       network: components["schemas"]["NetworkName"];
     };
     /**
-     * Decimal 
+     * Decimal
      * @description github.com/shopspring/decimal.Decimal
      */
     Decimal: string;
     /**
-     * DexResult 
+     * DexResult
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.DexResult
      */
     DexResult: {
@@ -569,7 +569,7 @@ export interface components {
       pair: string;
     };
     /**
-     * Donation 
+     * Donation
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Donation
      */
     Donation: {
@@ -580,7 +580,7 @@ export interface components {
       token: components["schemas"]["Token"];
     };
     /**
-     * Example 
+     * Example
      * @description github.com/naturalselectionlabs/pregod/common/types.Example
      */
     Example: {
@@ -588,26 +588,26 @@ export interface components {
       text?: string;
     };
     /**
-     * ExchangeResult 
+     * ExchangeResult
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.ExchangeResult
      */
     ExchangeResult: components["schemas"]["CexResult"] | components["schemas"]["DexResult"];
     /**
-     * Int 
+     * Int
      * @description math/big.Int
      */
     Int: number;
     /**
-     * Liquidity 
+     * Liquidity
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Liquidity
      */
     Liquidity: {
       action: string;
       protocol: string;
-      tokens: (components["schemas"]["Token"])[];
+      tokens: components["schemas"]["Token"][];
     };
     /**
-     * Media 
+     * Media
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Media
      */
     Media: {
@@ -615,7 +615,7 @@ export interface components {
       mime_type: string;
     };
     /**
-     * MultiSig 
+     * MultiSig
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.MultiSig
      */
     MultiSig: {
@@ -623,14 +623,14 @@ export interface components {
       owner?: string | null;
       success?: boolean;
       /**
-       * Int 
+       * Int
        * @description math/big.Int
        */
       threshold?: number | null;
       vault: components["schemas"]["Vault"];
     };
     /**
-     * NameServiceResult 
+     * NameServiceResult
      * @description github.com/naturalselectionlabs/pregod/common/database/model.NameServiceResult
      */
     NameServiceResult: {
@@ -646,13 +646,13 @@ export interface components {
       unstoppable_domains: string;
     };
     /**
-     * NetworkName 
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.NetworkName 
+     * NetworkName
+     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.NetworkName
      * @enum {string}
      */
     NetworkName: "EIP-1577" | "aptos" | "arbitrum" | "arweave" | "avalanche" | "binance_smart_chain" | "celo" | "conflux" | "crossbell" | "ethereum" | "ethereum_classic" | "fantom" | "farcaster" | "optimism" | "polygon" | "xdai" | "zksync";
     /**
-     * Organization 
+     * Organization
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Organization
      */
     Organization: {
@@ -662,7 +662,7 @@ export interface components {
       type_on_platform?: components["schemas"]["PlatformName"][];
     };
     /**
-     * Period 
+     * Period
      * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Period
      */
     Period: {
@@ -670,13 +670,13 @@ export interface components {
       start: string;
     };
     /**
-     * PlatformName 
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.PlatformName 
+     * PlatformName
+     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.PlatformName
      * @enum {string}
      */
     PlatformName: "0x" | "1inch" | "AAVE" | "Avvy" | "BendDAO" | "Blur" | "Crossbell" | "Curve" | "DODO" | "EIP-1577" | "ENS Registrar" | "Element" | "Farcaster" | "Foundation" | "Galaxy" | "Gem" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lenster" | "Link3" | "LooksRare" | "MetaMask" | "Mirror" | "NSwap" | "Nouns" | "OpenSea" | "Orb" | "POAP" | "PancakeSwap" | "Paraswap" | "QuickSwap" | "Quix" | "RARA" | "Rainbow" | "Snapshot" | "Sound" | "Space ID" | "SpookySwap" | "SushiSwap" | "TraderJoe" | "Uniswap" | "Unstoppable" | "Velodrome" | "Zerion" | "Zora" | "tofuNFT" | "xLog";
     /**
-     * PlatformResult 
+     * PlatformResult
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.PlatformResult
      */
     PlatformResult: {
@@ -686,36 +686,36 @@ export interface components {
       type?: string;
     };
     /**
-     * Post 
+     * Post
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Post
      */
     Post: {
       action?: string;
-      author?: (string)[];
+      author?: string[];
       body?: string;
-      categories?: (string)[];
+      categories?: string[];
       created_at?: string;
-      media?: (components["schemas"]["Media"])[];
+      media?: components["schemas"]["Media"][];
       origin_note_id?: string;
       profile_id?: components["schemas"]["Int"] | null;
       publication_id?: components["schemas"]["Int"] | null;
       reward?: components["schemas"]["Token"] | null;
       summary?: string;
-      tags?: (string)[];
+      tags?: string[];
       target?: components["schemas"]["Post"] | null;
       target_url?: string;
       title?: string;
       type_on_platform?: components["schemas"]["PlatformName"][];
     };
     /**
-     * PostAPIKeyRequest 
+     * PostAPIKeyRequest
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.PostAPIKeyRequest
      */
     PostAPIKeyRequest: {
       address: string;
     };
     /**
-     * Profile 
+     * Profile
      * @description github.com/naturalselectionlabs/pregod/common/database/model/social.Profile
      */
     Profile: {
@@ -735,30 +735,30 @@ export interface components {
       url?: string;
     };
     /**
-     * Proposal 
+     * Proposal
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Proposal
      */
     Proposal: {
       body?: string;
       end_at: components["schemas"]["Time"];
       id: string;
-      options: (string)[];
+      options: string[];
       organization?: components["schemas"]["Organization"] | null;
       start_at: components["schemas"]["Time"];
       title?: string;
       type_on_platform?: components["schemas"]["PlatformName"][];
     };
     /**
-     * RawMessage 
+     * RawMessage
      * @description encoding/json.RawMessage
      */
-    RawMessage: Record<string, never>;
+    RawMessage: unknown;
     /**
-     * Response 
+     * Response
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.Response
      */
     Response: {
-      address_status?: (components["schemas"]["Address"])[];
+      address_status?: components["schemas"]["Address"][];
       cursor?: string;
       message?: string;
       result?: Record<string, never>;
@@ -766,7 +766,7 @@ export interface components {
       total?: number | null;
     };
     /**
-     * SnapShot 
+     * SnapShot
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.SnapShot
      */
     SnapShot: {
@@ -775,7 +775,7 @@ export interface components {
       space: components["schemas"]["RawMessage"];
     };
     /**
-     * Staking 
+     * Staking
      * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Staking
      */
     Staking: {
@@ -784,12 +784,12 @@ export interface components {
       token: components["schemas"]["Token"];
     };
     /**
-     * StringArray 
+     * StringArray
      * @description github.com/lib/pq.StringArray
      */
-    StringArray: (string)[];
+    StringArray: string[];
     /**
-     * Swap 
+     * Swap
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Swap
      */
     Swap: {
@@ -798,7 +798,7 @@ export interface components {
       to: components["schemas"]["Token"];
     };
     /**
-     * TargetNetwork 
+     * TargetNetwork
      * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.TargetNetwork
      */
     TargetNetwork: {
@@ -807,18 +807,18 @@ export interface components {
       symbol: string;
     };
     /**
-     * Time 
+     * Time
      * @description time.Time
      */
     Time: string;
     /**
-     * Token 
+     * Token
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Token
      */
     Token: {
       action?: string;
       animation_url?: string;
-      attributes?: (components["schemas"]["TokenAttribute"])[];
+      attributes?: components["schemas"]["TokenAttribute"][];
       collection?: string;
       contract_address?: string;
       cost?: components["schemas"]["Token"] | null;
@@ -834,14 +834,14 @@ export interface components {
       start_time?: components["schemas"]["Time"] | null;
       symbol: string;
       /**
-       * Decimal 
+       * Decimal
        * @description github.com/shopspring/decimal.Decimal
        */
       value?: string | null;
       value_display?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * TokenAttribute 
+     * TokenAttribute
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.TokenAttribute
      */
     TokenAttribute: {
@@ -849,11 +849,11 @@ export interface components {
       value: Record<string, never>;
     };
     /**
-     * Transaction 
+     * Transaction
      * @description github.com/naturalselectionlabs/pregod/common/database/model.Transaction
      */
     Transaction: {
-      actions: (components["schemas"]["Transfer"])[];
+      actions: components["schemas"]["Transfer"][];
       address_from: string;
       address_to?: string;
       created_at: components["schemas"]["Time"];
@@ -869,7 +869,7 @@ export interface components {
       updated_at: components["schemas"]["Time"];
     };
     /**
-     * Transfer 
+     * Transfer
      * @description For all the possible types of transfer, see the TransferTypes in this doc.
      */
     Transfer: {
@@ -1303,27 +1303,27 @@ export interface components {
       type: "poap";
     };
     /**
-     * TransferType 
+     * TransferType
      * @description github.com/naturalselectionlabs/pregod/common/types.TransferType
      */
     TransferType: {
-      Actions: (components["schemas"]["Action"])[];
+      Actions: components["schemas"]["Action"][];
       Metadata: Record<string, never>;
       Tag: string;
       Type: string;
     };
     /**
-     * Vault 
+     * Vault
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Vault
      */
     Vault: {
       address: string;
-      owners: (string)[];
+      owners: string[];
       threshold: components["schemas"]["Int"] | null;
       version: string;
     };
     /**
-     * Vote 
+     * Vote
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Vote
      */
     Vote: {
