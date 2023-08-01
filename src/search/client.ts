@@ -43,11 +43,11 @@ export function client(opt: ClientOptions = {}) {
     },
 
     /**
-     * Get related addresses of a keyword.
+     * Get the details of an activity.
      */
-    async relatedAddresses(query: operations['relatedAddresses']['parameters']['query']) {
-      const { data, error } = await client.get('/v2/suggestions/related-addresses', {
-        params: { query },
+    async activity(id: string) {
+      const { data, error } = await client.get('/v2/activities/{id}', {
+        params: { path: { id } },
       })
       if (error || !data) throw error
 
@@ -55,11 +55,11 @@ export function client(opt: ClientOptions = {}) {
     },
 
     /**
-     * Get the details of an activity.
+     * Get related addresses of a keyword.
      */
-    async activity(id: string) {
-      const { data, error } = await client.get('/v2/activities/{id}', {
-        params: { path: { id } },
+    async relatedAddresses(query: operations['relatedAddresses']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/suggestions/related-addresses', {
+        params: { query },
       })
       if (error || !data) throw error
 
