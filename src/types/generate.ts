@@ -4,17 +4,56 @@ import { readFileSync, writeFileSync } from 'node:fs'
 main()
 
 async function main() {
-  await generate('search', 'https://test-search.rss3.dev/v3/api-docs', null, (schema) => {
-    schema = schema
-      .replace(/\*\/\*/g, 'application/json')
-      .replace(/innerMap\?: \{[\s\S]+?\};/g, '')
-      .replace(/Record<string, never>/g, 'Record<string, any>')
-      .replace(/empty\?: boolean;/g, '')
-      .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
-      .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
+  await generate(
+    'search',
+    'https://dev-search.rss3.dev/v3/api-docs',
+    (schema) => {
+      schema.components.schemas.FeedRankActionDoc4ExternalDTO = {
+        allOf: [
+          {
+            $ref: '#/components/schemas/FeedRankActionDoc4ExternalDetailDTO',
+          },
+          {
+            type: 'object',
+            properties: {
+              search_extension: { $ref: '#/components/schemas/ActivitiesExDTO' },
+            },
+          },
+        ],
+      }
 
-    return (schema = `import {components as data} from './data'\n${schema}`)
-  })
+      schema.components.schemas.WikiActionDTO = {
+        allOf: [
+          {
+            $ref: '#/components/schemas/FeedRankActionDoc4ExternalDetailDTO',
+          },
+          {
+            type: 'object',
+            properties: {
+              search_extension: { $ref: '#/components/schemas/WikiExDTO' },
+            },
+          },
+        ],
+      }
+
+      return schema
+    },
+    (schema) => {
+      schema = schema
+        .replace(/\*\/\*/g, 'application/json')
+        .replace(/innerMap\?: \{[\s\S]+?\};/g, '')
+        .replace(/Record<string, never>/g, 'Record<string, any>')
+        .replace(/empty\?: boolean;/g, '')
+        .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
+        .replace(
+          /FeedRankActionDoc4ExternalDetailDTO: {[^{}]+}/,
+          `FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer']`,
+        )
+
+      return (schema = `import {components as data} from './data'\n${schema}`)
+    },
+  )
 
   await generate(
     'data',

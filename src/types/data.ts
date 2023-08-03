@@ -200,6 +200,7 @@ export interface paths {
             network?: components["schemas"]["NetworkName"][];
             page?: number;
             platform?: components["schemas"]["PlatformName"][];
+            tag?: string[];
             timestamp?: components["schemas"]["Time"];
             type?: string[];
           };
@@ -532,6 +533,7 @@ export interface components {
       network?: components["schemas"]["NetworkName"][];
       page?: number;
       platform?: components["schemas"]["PlatformName"][];
+      tag?: string[];
       timestamp?: components["schemas"]["Time"];
       type?: string[];
     };
@@ -650,7 +652,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.NetworkName
      * @enum {string}
      */
-    NetworkName: "EIP-1577" | "aptos" | "arbitrum" | "arweave" | "avalanche" | "binance_smart_chain" | "celo" | "conflux" | "crossbell" | "ethereum" | "ethereum_classic" | "fantom" | "farcaster" | "optimism" | "polygon" | "xdai" | "zksync";
+    NetworkName: "EIP-1577" | "aptos" | "arbitrum" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "celo" | "conflux" | "crossbell" | "ethereum" | "ethereum_classic" | "fantom" | "farcaster" | "optimism" | "polygon" | "xdai" | "zksync";
     /**
      * Organization
      * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Organization

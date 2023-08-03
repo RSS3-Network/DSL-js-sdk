@@ -187,9 +187,9 @@ export interface components {
       totalPage?: number;
     };
     NftCollectionDTO: {
-      contractName?: string;
-      contractAddress?: string;
       description?: string;
+      contract_name?: string;
+      contract_address?: string;
     };
     NftImageDTO: {
       id?: string;
@@ -411,24 +411,22 @@ export interface components {
       platformAgg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
     };
     JSONObject: any;
+    WikiActionDTO: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"] & {
+      search_extension?: components["schemas"]["WikiExDTO"];
+    };
     WikiDocDTO: {
       id?: string;
-      transactionHash?: string;
+      owner?: string;
       /** Format: int64 */
       timestamp?: number;
       tag?: string;
       type?: string;
-      /** Format: int64 */
-      index?: number;
-      addressFrom?: string;
-      addressTo?: string;
       network?: string;
       platform?: string;
-      source?: string;
-      relatedUrls?: string[];
-      metadata?: data['schemas']['Transfer']['metadata'];
-      author?: string;
-      owner?: string;
+      actions?: components["schemas"]["WikiActionDTO"][];
+      transaction_hash?: string;
+    };
+    WikiExDTO: {
       /** Format: float */
       score?: number;
     };
@@ -474,44 +472,44 @@ export interface components {
     NftImage4ExternalDTO: {
       id?: string;
       collection?: components["schemas"]["NftCollectionDTO"];
-      tokenId?: string;
-      tokenUrl?: string;
       name?: string;
-      imageUrl?: string;
       attributes?: string;
       /** Format: date-time */
       timestamp?: string;
-      /** Format: double */
-      rarityScore?: number;
       prompt?: string;
       standard?: string;
       owner?: string;
       network?: string;
+      token_id?: string;
+      token_url?: string;
+      image_url?: string;
       /** Format: double */
-      latestTradePrice?: number;
+      rarity_score?: number;
       /** Format: double */
-      mintPrice?: number;
-      latestTradeSymbol?: string;
+      latest_trade_price?: number;
+      /** Format: double */
+      mint_price?: number;
+      latest_trade_symbol?: string;
     };
     CollectionDoc4ExternalDTO: {
       id?: string;
-      /** Format: int32 */
-      itemsTotal?: number;
-      contractAddress?: string;
       network?: string;
       name?: string;
       symbol?: string;
       description?: string;
       standard?: string;
-      logoUrl?: string;
-      priceSymbol?: string;
-      officialUrl?: string;
       discord?: string;
       twitter?: string;
       telegram?: string;
+      /** Format: int32 */
+      items_total?: number;
+      contract_address?: string;
+      logo_url?: string;
+      price_symbol?: string;
+      official_url?: string;
       /** Format: double */
-      floorPrice?: number;
-      top3images?: components["schemas"]["NftImage4ExternalDTO"][];
+      floor_price?: number;
+      top_3_images?: components["schemas"]["NftImage4ExternalDTO"][];
     };
     CollectionSearchResp4ExternalDTO: {
       collections?: components["schemas"]["CollectionDoc4ExternalDTO"][];
@@ -525,12 +523,12 @@ export interface components {
       type?: string;
       url?: string;
       status?: string;
-      lastEditedTime?: string;
-      appEntryUrl?: string;
       description?: string;
       /** Format: float */
       score?: number;
-      similarItems?: string[];
+      last_edited_time?: string;
+      app_entry_url?: string;
+      similar_items?: string[];
     };
     DaapDocDTO0: {
       id?: string;
@@ -539,12 +537,12 @@ export interface components {
       type?: string;
       url?: string;
       status?: string;
-      lastEditedTime?: string;
-      appEntryUrl?: string;
       description?: string;
       /** Format: float */
       score?: number;
-      similarItems?: components["schemas"]["DaapDocDTO"][];
+      last_edited_time?: string;
+      app_entry_url?: string;
+      similar_items?: components["schemas"]["DaapDocDTO"][];
     };
     DaapSearchRespDTO: {
       docs?: components["schemas"]["DaapDocDTO0"][];
@@ -553,22 +551,22 @@ export interface components {
     };
     /** @description 币价模块响应 */
     CoinSearchRespDTO: {
-      coinVsCurrency?: components["schemas"]["CoinVsCurrencyDTO"];
-      coinVsCoin?: components["schemas"]["CoinVsCoinDTO"];
-      priceChartOf1day?: components["schemas"]["PriceChartDTO"];
       /** @description 1天market信息 */
       market?: {
         
         
         [key: string]: Record<string, any> | undefined;
       };
+      coinVsCurrency?: components["schemas"]["CoinVsCurrencyDTO"];
+      coinVsCoin?: components["schemas"]["CoinVsCoinDTO"];
+      priceChartOf1day?: components["schemas"]["PriceChartDTO"];
       coinMetadata?: components["schemas"]["JSONObject"];
-      similarCoins?: components["schemas"]["JSONObject"][];
+      similar_coins?: components["schemas"]["JSONObject"][];
     };
     /** @description 币价转换(币与币) */
     CoinVsCoinDTO: {
       coinId?: string;
-      exchangeRate?: components["schemas"]["CoinVsCoinRateDTO"];
+      exchange_rate?: components["schemas"]["CoinVsCoinRateDTO"];
     };
     CoinVsCoinRateDTO: {
       /** Format: double */
@@ -601,20 +599,15 @@ export interface components {
       /** Format: double */
       rate?: number;
     };
-    FeedRankActionDoc4ExternalDTO: {
-      tag?: string;
-      type?: string;
-      /** Format: int64 */
-      index?: number;
+    ActivitiesExDTO: {
       author?: string;
       medias?: string[];
       /** Format: float */
       score?: number;
       highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
-      transaction_hash?: string;
-      address_from?: string;
-      address_to?: string;
-      related_urls?: string[];
+    };
+    FeedRankActionDoc4ExternalDTO: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"] & {
+      search_extension?: components["schemas"]["ActivitiesExDTO"];
     };
     FeedRankDoc4ExternalDTO: {
       id?: string;
@@ -635,18 +628,7 @@ export interface components {
       network_agg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
       platform_agg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
     };
-    FeedRankActionDoc4ExternalDetailDTO: {
-      tag?: string;
-      type?: string;
-      /** Format: int64 */
-      index?: number;
-      author?: string;
-      metadata?: data['schemas']['Transfer']['metadata'];
-      transaction_hash?: string;
-      address_from?: string;
-      address_to?: string;
-      related_urls?: string[];
-    };
+    FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer'];
     FeedRankDoc4ExternalDetailDTO: {
       id?: string;
       owner?: string;
