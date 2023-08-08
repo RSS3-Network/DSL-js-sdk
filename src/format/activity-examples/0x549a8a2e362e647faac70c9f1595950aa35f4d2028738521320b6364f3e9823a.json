@@ -3,8 +3,8 @@
   "hash": "0x549a8a2e362e647faac70c9f1595950aa35f4d2028738521320b6364f3e9823a",
   "owner": "0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944",
   "fee": "0.000175601",
-  "address_from": "0xbbc2918c9003d264c25ecae45b44a846702c0e7c",
-  "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+  "from": "0xbbc2918c9003d264c25ecae45b44a846702c0e7c",
+  "to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
   "network": "crossbell",
   "platform": "Crossbell",
   "tag": "social",
@@ -17,8 +17,8 @@
       "tag": "social",
       "type": "comment",
       "index": 0,
-      "address_from": "0xbbc2918c9003d264c25ecae45b44a846702c0e7c",
-      "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+      "from": "0xbbc2918c9003d264c25ecae45b44a846702c0e7c",
+      "to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
       "metadata": {
         "body": "这个数字雨太酷了",
         "author": [

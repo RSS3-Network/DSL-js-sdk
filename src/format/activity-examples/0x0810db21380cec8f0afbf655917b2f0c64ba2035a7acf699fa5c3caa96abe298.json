@@ -3,8 +3,8 @@
   "hash": "0x0810db21380cec8f0afbf655917b2f0c64ba2035a7acf699fa5c3caa96abe298",
   "owner": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
   "fee": "0.00612456",
-  "address_from": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
-  "address_to": "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506",
+  "from": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
+  "to": "0x1b02da8cb0d097eb8d57a175b88c7d8b47997506",
   "network": "polygon",
   "platform": "SushiSwap",
   "tag": "exchange",
@@ -17,8 +17,8 @@
       "tag": "exchange",
       "type": "swap",
       "index": 0,
-      "address_from": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
-      "address_to": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
+      "from": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
+      "to": "0xda048bed40d40b1ebd9239cdf56ca0c2f018ae65",
       "metadata": {
         "to": {
           "name": "Wrapped Ether",

@@ -3,7 +3,7 @@ import { compile } from 'html-to-text'
 
 export const compiledConvert = compile()
 
-export function getActions(activity: components['schemas']['Transaction']): components['schemas']['Transfer'][] {
+export function getActions(activity: components['schemas']['Transaction']): components['schemas']['Action'][] {
   if (activity.actions.length === 1) {
     return activity.actions
   } else if (activity.actions) {
@@ -14,7 +14,7 @@ export function getActions(activity: components['schemas']['Transaction']): comp
 
 export function getActionType(
   activity: components['schemas']['Transaction'],
-  action: components['schemas']['Transfer'],
+  action: components['schemas']['Action'],
 ): string {
   if (!action) return ''
 

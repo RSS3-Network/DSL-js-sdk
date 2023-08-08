@@ -3,8 +3,8 @@
   "hash": "0x4501aac1bff46c1e92e5ef139feddc0751a043144590250876fe9c717a9fa460",
   "owner": "0xbb49c781bd22c93c392a9b1e290501252b598ac3",
   "fee": "0.001970834253495356",
-  "address_from": "0xbb49c781bd22c93c392a9b1e290501252b598ac3",
-  "address_to": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+  "from": "0xbb49c781bd22c93c392a9b1e290501252b598ac3",
+  "to": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
   "network": "arbitrum",
   "platform": "Uniswap",
   "tag": "exchange",
@@ -17,8 +17,8 @@
       "tag": "exchange",
       "type": "liquidity",
       "index": 0,
-      "address_from": "0xc24f7d8e51a64dc1238880bd00bb961d54cbeb29",
-      "address_to": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+      "from": "0xc24f7d8e51a64dc1238880bd00bb961d54cbeb29",
+      "to": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
       "metadata": {
         "action": "remove",
         "tokens": [
@@ -54,8 +54,8 @@
       "tag": "exchange",
       "type": "liquidity",
       "index": 5,
-      "address_from": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
-      "address_to": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+      "from": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
+      "to": "0xc36442b4a4522e871399cd717abdd847ab11fe88",
       "metadata": {
         "action": "collect",
         "tokens": [

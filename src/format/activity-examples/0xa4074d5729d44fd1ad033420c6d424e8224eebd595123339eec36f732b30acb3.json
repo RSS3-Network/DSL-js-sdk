@@ -3,8 +3,8 @@
   "hash": "0xa4074d5729d44fd1ad033420c6d424e8224eebd595123339eec36f732b30acb3",
   "owner": "0x55f110395c844963b075674e2956eb414018a7a7",
   "fee": "0.000181967",
-  "address_from": "0xf558a0704427174d689992066b0eea7c7e7c0024",
-  "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+  "from": "0xf558a0704427174d689992066b0eea7c7e7c0024",
+  "to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
   "network": "crossbell",
   "platform": "Crossbell",
   "tag": "social",
@@ -17,8 +17,8 @@
       "tag": "social",
       "type": "mint",
       "index": 3,
-      "address_from": "0xf558a0704427174d689992066b0eea7c7e7c0024",
-      "address_to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
+      "from": "0xf558a0704427174d689992066b0eea7c7e7c0024",
+      "to": "0xa6f969045641cf486a747a2688f3a5a6d43cd0d8",
       "metadata": {
         "body": "This is a test note (variant achievement) for Auto Mint Verify only, please note that currently no mint module has been applied.",
         "media": [

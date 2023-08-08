@@ -2,8 +2,8 @@
   "timestamp": "2023-03-22T14:54:02Z",
   "hash": "0x4088f9da039f07b0791e133ca3eefbca1ffe848413d110bfd8f367eaa43a7aef",
   "owner": "0x73d5f95b8f6fc4178aa934c44d7acc7dc2a6daf8",
-  "address_from": "0x73d5f95b8f6fc4178aa934c44d7acc7dc2a6daf8",
-  "address_to": "0x5edebbdae7b5c79a69aacf7873796bb1ec664db8",
+  "from": "0x73d5f95b8f6fc4178aa934c44d7acc7dc2a6daf8",
+  "to": "0x5edebbdae7b5c79a69aacf7873796bb1ec664db8",
   "network": "polygon",
   "platform": "Matters",
   "tag": "social",
@@ -16,8 +16,8 @@
       "tag": "social",
       "type": "reward",
       "index": 240,
-      "address_from": "0x73d5f95b8f6fc4178aa934c44d7acc7dc2a6daf8",
-      "address_to": "0xc6d411a649371333c13d4d0a5c8c8347772210a8",
+      "from": "0x73d5f95b8f6fc4178aa934c44d7acc7dc2a6daf8",
+      "to": "0xc6d411a649371333c13d4d0a5c8c8347772210a8",
       "metadata": {
         "reward": {
           "name": "(PoS) Tether USD",

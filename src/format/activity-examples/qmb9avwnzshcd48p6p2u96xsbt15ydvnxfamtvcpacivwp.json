@@ -2,7 +2,7 @@
   "timestamp": "2021-11-09T01:03:39Z",
   "hash": "qmb9avwnzshcd48p6p2u96xsbt15ydvnxfamtvcpacivwp",
   "owner": "0x0fefed77bb715e96f1c35c1a4e0d349563d6f6c0",
-  "address_from": "0x0fefed77bb715e96f1c35c1a4e0d349563d6f6c0",
+  "from": "0x0fefed77bb715e96f1c35c1a4e0d349563d6f6c0",
   "network": "ethereum",
   "platform": "Snapshot",
   "tag": "governance",
@@ -15,7 +15,7 @@
       "tag": "governance",
       "type": "vote",
       "index": 0,
-      "address_from": "0x0fefed77bb715e96f1c35c1a4e0d349563d6f6c0",
+      "from": "0x0fefed77bb715e96f1c35c1a4e0d349563d6f6c0",
       "metadata": {
         "choice": "[1, 2, 3, 4]",
         "proposal": {

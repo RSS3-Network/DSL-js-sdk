@@ -3,8 +3,8 @@
   "hash": "0x0b759af6219efce6dd23d1db86a26239f328f88d4bd84980b0ebeaf00d7950de",
   "owner": "0x75e9815246da71a05205ea8d584087128ab3943f",
   "fee": "0.006505271915068584",
-  "address_from": "0x75e9815246da71a05205ea8d584087128ab3943f",
-  "address_to": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+  "from": "0x75e9815246da71a05205ea8d584087128ab3943f",
+  "to": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
   "network": "polygon",
   "platform": "AAVE",
   "tag": "exchange",
@@ -17,8 +17,8 @@
       "tag": "exchange",
       "type": "liquidity",
       "index": 351,
-      "address_from": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
-      "address_to": "0x75e9815246da71a05205ea8d584087128ab3943f",
+      "from": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+      "to": "0x75e9815246da71a05205ea8d584087128ab3943f",
       "metadata": {
         "action": "withdraw",
         "tokens": [

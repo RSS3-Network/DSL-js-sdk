@@ -19,12 +19,12 @@ const myTheme: Theme<JSX.Element> = {
 async function main() {
   const client = await dataClient()
 
-  const { result: activities } = await client.activities({ address: ['vitalik.eth'], limit: 5 })
+  const { results: activities } = await client.activities({ address: ['vitalik.eth'], limit: 5 })
 
   if (!activities) throw 'no activities'
 
   // Print with our custom theme
-  const out = renderToString(<div>{activities.map((f) => format(f, myTheme))}</div>)
+  const out = renderToString(<div>{activities.map((f) => f && format(f, myTheme))}</div>)
 
   console.log(out)
 }

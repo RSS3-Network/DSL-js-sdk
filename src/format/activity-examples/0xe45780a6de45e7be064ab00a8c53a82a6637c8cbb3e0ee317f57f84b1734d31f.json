@@ -2,8 +2,8 @@
   "timestamp": "2022-12-21T03:01:11Z",
   "hash": "0xe45780a6de45e7be064ab00a8c53a82a6637c8cbb3e0ee317f57f84b1734d31f",
   "owner": "0x7b52af8238dc3b01559557f584e99b225db543eb",
-  "address_from": "0x85906cf629ae1da297548769ece3e3e6a4f3288f",
-  "address_to": "0xb2341612271e122ff20905c9e389c3d7f0f222a1",
+  "from": "0x85906cf629ae1da297548769ece3e3e6a4f3288f",
+  "to": "0xb2341612271e122ff20905c9e389c3d7f0f222a1",
   "network": "ethereum",
   "platform": "Nouns",
   "tag": "collectible",
@@ -16,8 +16,8 @@
       "tag": "collectible",
       "type": "auction",
       "index": 12,
-      "address_from": "0xb2341612271e122ff20905c9e389c3d7f0f222a1",
-      "address_to": "0x85906cf629ae1da297548769ece3e3e6a4f3288f",
+      "from": "0xb2341612271e122ff20905c9e389c3d7f0f222a1",
+      "to": "0x85906cf629ae1da297548769ece3e3e6a4f3288f",
       "metadata": {
         "id": "549",
         "cost": {

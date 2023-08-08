@@ -3,8 +3,8 @@
   "hash": "0xc9deb029b752837d49265c83bc598d25a5301b28939822e97e12d1bb13be5a64",
   "owner": "0x4ed0f6fe7156efedd299812b8d27f60a6c70ff6d",
   "fee": "0.020877823153426365",
-  "address_from": "0x25418bcf53dae1167cd5d0cad34eec31c0c37e41",
-  "address_to": "0xdb46d1dc155634fbc732f92e853b10b288ad5a1d",
+  "from": "0x25418bcf53dae1167cd5d0cad34eec31c0c37e41",
+  "to": "0xdb46d1dc155634fbc732f92e853b10b288ad5a1d",
   "network": "polygon",
   "platform": "Lens",
   "tag": "social",
@@ -17,7 +17,7 @@
       "tag": "social",
       "type": "share",
       "index": 6,
-      "address_from": "0x4ed0f6fe7156efedd299812b8d27f60a6c70ff6d",
+      "from": "0x4ed0f6fe7156efedd299812b8d27f60a6c70ff6d",
       "metadata": {
         "author": [
           "https://lenster.xyz/u/billieiblies.lens",

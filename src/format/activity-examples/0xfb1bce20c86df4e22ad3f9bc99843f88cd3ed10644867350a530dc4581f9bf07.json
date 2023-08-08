@@ -3,8 +3,8 @@
   "hash": "0xfb1bce20c86df4e22ad3f9bc99843f88cd3ed10644867350a530dc4581f9bf07",
   "owner": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
   "fee": "0.006065721450924187",
-  "address_from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
-  "address_to": "0x253553366da8546fc250f225fe3d25d0c782303b",
+  "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+  "to": "0x253553366da8546fc250f225fe3d25d0c782303b",
   "network": "ethereum",
   "platform": "ENS Registrar",
   "tag": "collectible",
@@ -17,8 +17,8 @@
       "tag": "transaction",
       "type": "transfer",
       "index": -1,
-      "address_from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
-      "address_to": "0x253553366da8546fc250f225fe3d25d0c782303b",
+      "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "to": "0x253553366da8546fc250f225fe3d25d0c782303b",
       "metadata": {
         "name": "Ethereum",
         "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
@@ -36,8 +36,8 @@
       "tag": "collectible",
       "type": "edit",
       "index": 206,
-      "address_from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
-      "address_to": "0x253553366da8546fc250f225fe3d25d0c782303b",
+      "from": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "to": "0x253553366da8546fc250f225fe3d25d0c782303b",
       "metadata": {
         "cost": {
           "name": "Ethereum",

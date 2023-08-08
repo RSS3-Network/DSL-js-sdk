@@ -3,8 +3,8 @@
   "hash": "0xb7299a906edacde17231ea28e5348b032a2442470c841773e1a296e43fb6fc29",
   "owner": "0x4a204cb125729a5e14a97df5993735970c026504",
   "fee": "0.0000863711",
-  "address_from": "0x4a204cb125729a5e14a97df5993735970c026504",
-  "address_to": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+  "from": "0x4a204cb125729a5e14a97df5993735970c026504",
+  "to": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
   "network": "arbitrum",
   "platform": "AAVE",
   "tag": "exchange",
@@ -17,8 +17,8 @@
       "tag": "exchange",
       "type": "liquidity",
       "index": 4,
-      "address_from": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
-      "address_to": "0x4a204cb125729a5e14a97df5993735970c026504",
+      "from": "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+      "to": "0x4a204cb125729a5e14a97df5993735970c026504",
       "metadata": {
         "action": "repay",
         "tokens": [

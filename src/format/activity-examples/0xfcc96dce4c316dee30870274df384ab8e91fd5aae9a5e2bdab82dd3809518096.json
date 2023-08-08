@@ -3,8 +3,8 @@
   "hash": "0xfcc96dce4c316dee30870274df384ab8e91fd5aae9a5e2bdab82dd3809518096",
   "owner": "0xa09daab5e090017fc53b09038ba55b0f1cf9ac36",
   "fee": "0.001779182641384072",
-  "address_from": "0xa09daab5e090017fc53b09038ba55b0f1cf9ac36",
-  "address_to": "0xed9b4e4f649a44ed820576105f2ed93ad8cad806",
+  "from": "0xa09daab5e090017fc53b09038ba55b0f1cf9ac36",
+  "to": "0xed9b4e4f649a44ed820576105f2ed93ad8cad806",
   "network": "ethereum",
   "platform": "Gnosis Safe",
   "tag": "transaction",
@@ -17,8 +17,8 @@
       "tag": "transaction",
       "type": "multisig",
       "index": 172,
-      "address_from": "0xa09daab5e090017fc53b09038ba55b0f1cf9ac36",
-      "address_to": "0xed9b4e4f649a44ed820576105f2ed93ad8cad806",
+      "from": "0xa09daab5e090017fc53b09038ba55b0f1cf9ac36",
+      "to": "0xed9b4e4f649a44ed820576105f2ed93ad8cad806",
       "metadata": {
         "owner": "0x0b64B403D7C11A50581968e7eCAcbeb9e5230706",
         "vault": {
@@ -40,8 +40,8 @@
       "tag": "transaction",
       "type": "multisig",
       "index": 173,
-      "address_from": "0xa09daab5e090017fc53b09038ba55b0f1cf9ac36",
-      "address_to": "0xed9b4e4f649a44ed820576105f2ed93ad8cad806",
+      "from": "0xa09daab5e090017fc53b09038ba55b0f1cf9ac36",
+      "to": "0xed9b4e4f649a44ed820576105f2ed93ad8cad806",
       "metadata": {
         "vault": {
           "owners": [

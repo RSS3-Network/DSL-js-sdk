@@ -46,14 +46,14 @@ export function tokenValue(t: components['schemas']['Token'] | null | undefined)
   return [token('number', t.value_display || '0'), token('symbol', t.symbol)]
 }
 
-export function tokenPlatform(t: components['schemas']['Transfer']) {
+export function tokenPlatform(t: components['schemas']['Action']) {
   let platform = ''
   if (t.platform) platform = t.platform
   if ('platform' in t.metadata) platform = t.metadata.platform
   return [tokenText('on'), tokenText('platform'), token('platform', platform)]
 }
 
-export function tokenPost(t: components['schemas']['Transfer']) {
+export function tokenPost(t: components['schemas']['Action']) {
   if (t.tag !== 'social') {
     return tokenText('')
   }

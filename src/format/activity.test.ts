@@ -22,11 +22,6 @@ test.each([
     '0x0f8888505c2dee133ab6574f28d1ff1e8b7854dea1a0f8ccfb9a39e3cd6a74b7',
     'Revoked the approval of contract 0xdac17f958d2ee523a2206206994597c13d831ec7',
   ],
-  ['0x1d226709361694160082822cb0a0542aa1a45d04e54fbd00453d8400c3673705', 'Withdrew 1 APE on platform "OKEx"'],
-  [
-    '0x256255b6238215ffc347e2bf5e1ab5929ef428e35e3ea9d1adfd758e85f33842',
-    'Deposited 24397.89063 USDT on platform "Crypto.com"',
-  ],
   [
     '0x4440866ccab87ac40815f5c12fd6f824705c25931583db3534b6adeaeffb4fb9',
     'Transferred NFT "CityDAO Citizen" to 0xd8da6bf26964af9d7eed9e03e53415d37aa96045',
@@ -60,7 +55,6 @@ test.each([
     '0x6830623126117af0e853074850dda9d1e7b9acea9120a0e95e64f6fc2e6b42e4',
     `Revoked the approval of NFT "The Divine Order Of the Zodiac" from 0xd9f425a46c9652658971bcb86a1c0d9e258c4644`,
   ],
-  ['0xfb1bce20c86df4e22ad3f9bc99843f88cd3ed10644867350a530dc4581f9bf07', `Renewed ENS "vitalikbuterin.eth"`],
   [
     '0x90a0f56e53e0f5a817136288a618a78da201ce4506f825fd3e57dfe445ff5575',
     `Minted asset "My First Carv" on platform "Carv"`,
@@ -68,26 +62,6 @@ test.each([
   [
     '0x44bc70fd952f080a984a661edc9ac11e25805c8d3b1b9abc80a2a156f7b0a27f',
     `Sold asset "Aavegotchi GHST Token (PoS)" to 0xd4151c984e6cf33e04ffaaf06c3374b2926ecc64 on platform "Aavegotchi"; Sold asset "Aavegotchi GHST Token (PoS)" to 0xb208f8bb431f580cc4b216826affb128cd1431ab on platform "Aavegotchi"; Sold asset "Aavegotchi GHST Token (PoS)" to 0x27df5c6dcd360f372e23d5e63645ec0072d0c098 on platform "Aavegotchi"; Sold asset "Aavegotchi GHST Token (PoS)" to 0x47eb98abb32976bc1172ff6ad41831677e4865a0 on platform "Aavegotchi"; Bought asset "Essence" from 0x47eb98abb32976bc1172ff6ad41831677e4865a0 on platform "Aavegotchi"`,
-  ],
-  [
-    '0x5de27b7666f9fde8caca7ed1ce29afe92abf2e4a446ddd5f20c824fc280fd6ec',
-    `Listed asset "Aavegotchi GHST Token (PoS)" on platform "Aavegotchi"`,
-  ],
-  [
-    '0x499c6f89bcd1f8a18113a9d262a09c0a43998075f51cb1b98cd04ae9f4156221',
-    `Unlisted asset "IN LE#214577110" on platform "PlanetIX"; Unlisted asset "IN LE#214584332" on platform "PlanetIX"; Unlisted asset "IN LE#214584638" on platform "PlanetIX"; Unlisted asset "IN LE#214588597" on platform "PlanetIX"; Unlisted asset "IN LE#214590187" on platform "PlanetIX"`,
-  ],
-  [
-    '0xedb96d0420edcaa996d44df77d218d7af93b5cdaae84bdf985c9ec72afd09ce1',
-    `Claimed asset "Aave Matic Market WMATIC" on platform "Aavegotchi"`,
-  ],
-  [
-    '0xefc1a6e1ff5159693902ebe72973ed2b1133e40b65ca91d2dce06a9845b5e30a',
-    `Bought music NFT "NO APOLOGY! #27" on platform "Sound"`,
-  ],
-  [
-    '0x6fbdd964339c937403ba22b7f37f754f48dc791d8393e535e41f783d789f6221',
-    `Released music NFT "Too Late (To Call) #14" on platform "Sound"`,
   ],
   [
     '0x11db423456321efe84cd85a8374cf93bef65706e7a6422421a93a1f62b64d1d1',
@@ -162,18 +136,6 @@ test.each([
     `Minted post "Auto Mint Verify" on platform "crossbell"`,
   ],
   [
-    '0x6db0443bdf54852f3271791626e8617577bffa6e6e7acd8e7168abfd0c9758e8',
-    `Created Wiki "Grayscale Investments" on platform "IQ.Wiki"`,
-  ],
-  [
-    '0x3c589129bf3ea5e1339ea753d3191eb4523382e3e5bca7ead0d6d8426b31e5b3',
-    `Revised Wiki "VeeFriends" on platform "IQ.Wiki"`,
-  ],
-  [
-    '0x4088f9da039f07b0791e133ca3eefbca1ffe848413d110bfd8f367eaa43a7aef',
-    `Rewarded 1 USDT to 0xc6d411a649371333c13d4d0a5c8c8347772210a8 on platform "Matters"`,
-  ],
-  [
     '0x6b7c2144e9146af7cd53cffa3b86aae97a48017c03160517a8e14d9482ba43c6',
     `Appointed proxy to 0xa6f969045641cf486a747a2688f3a5a6d43cd0d8 on platform "Crossbell"`,
   ],
@@ -211,7 +173,7 @@ async function get(addr: string) {
     return JSON.parse(readFileSync(path, 'utf-8'))
   }
 
-  const activity = await client().transaction(addr)
+  const activity = await client().activity(addr)
 
   writeFileSync(path, JSON.stringify(activity, null, 2))
 

@@ -3,8 +3,8 @@
   "hash": "0x9ee469ae65656df6871d4d199787b65b57c85aa7073ebeb1f5bfde6e83618306",
   "owner": "0x934b510d4c9103e6a87aef13b816fb080286d649",
   "fee": "0.00519299215061616",
-  "address_from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
-  "address_to": "0x5301cbbedc048abac7e213184132cf982d593563",
+  "from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+  "to": "0x5301cbbedc048abac7e213184132cf982d593563",
   "network": "ethereum",
   "platform": "RSS3",
   "tag": "exchange",
@@ -17,8 +17,8 @@
       "tag": "transaction",
       "type": "transfer",
       "index": 154,
-      "address_from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
-      "address_to": "0x5301cbbedc048abac7e213184132cf982d593563",
+      "from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+      "to": "0x5301cbbedc048abac7e213184132cf982d593563",
       "metadata": {
         "name": "RSS3",
         "image": "https://assets.coingecko.com/coins/images/23575/large/RSS3.png",
@@ -37,8 +37,8 @@
       "tag": "transaction",
       "type": "mint",
       "index": 156,
-      "address_from": "0x0000000000000000000000000000000000000000",
-      "address_to": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+      "from": "0x0000000000000000000000000000000000000000",
+      "to": "0x934b510d4c9103e6a87aef13b816fb080286d649",
       "metadata": {
         "name": "Staked RSS3",
         "value": "249793230000000000000000",
@@ -56,8 +56,8 @@
       "tag": "exchange",
       "type": "staking",
       "index": 157,
-      "address_from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
-      "address_to": "0x5301cbbedc048abac7e213184132cf982d593563",
+      "from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+      "to": "0x5301cbbedc048abac7e213184132cf982d593563",
       "metadata": {
         "token": {
           "name": "Staked RSS3",

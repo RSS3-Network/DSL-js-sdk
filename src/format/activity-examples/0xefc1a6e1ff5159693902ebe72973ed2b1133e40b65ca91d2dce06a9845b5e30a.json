@@ -3,8 +3,8 @@
   "hash": "0xefc1a6e1ff5159693902ebe72973ed2b1133e40b65ca91d2dce06a9845b5e30a",
   "owner": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
   "fee": "0.00810232283254828",
-  "address_from": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
-  "address_to": "0x8b7882a7c6c9ca8aa95a523be4f99224e8e16caa",
+  "from": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
+  "to": "0x8b7882a7c6c9ca8aa95a523be4f99224e8e16caa",
   "network": "ethereum",
   "platform": "Sound",
   "tag": "collectible",
@@ -17,8 +17,8 @@
       "tag": "collectible",
       "type": "music",
       "index": 134,
-      "address_from": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
-      "address_to": "0x8b7882a7c6c9ca8aa95a523be4f99224e8e16caa",
+      "from": "0xc6ddccc84bb6e451b93ae15b3e1343b2da57a67d",
+      "to": "0x8b7882a7c6c9ca8aa95a523be4f99224e8e16caa",
       "metadata": {
         "id": "680564733841876926926749214863536422939",
         "cost": {

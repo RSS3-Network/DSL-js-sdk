@@ -3,8 +3,8 @@
   "hash": "0xbf14c5b78920ca4c6cc7107c5901a5294fdbfaac0f2ce204f52f13e7e30f630e",
   "owner": "0x934b510d4c9103e6a87aef13b816fb080286d649",
   "fee": "0.0181556354398176",
-  "address_from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
-  "address_to": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
+  "from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+  "to": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
   "network": "ethereum",
   "platform": "OpenSea",
   "tag": "collectible",
@@ -17,8 +17,8 @@
       "tag": "transaction",
       "type": "transfer",
       "index": -1,
-      "address_from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
-      "address_to": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
+      "from": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+      "to": "0x7be8076f4ea4a4ad08075c2508e481d6c946d12b",
       "metadata": {
         "name": "Ethereum",
         "image": "https://assets.coingecko.com/coins/images/279/large/ethereum.png",
@@ -36,8 +36,8 @@
       "tag": "collectible",
       "type": "transfer",
       "index": 322,
-      "address_from": "0x60797e62ca524170348a66efaae22386321926eb",
-      "address_to": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+      "from": "0x60797e62ca524170348a66efaae22386321926eb",
+      "to": "0x934b510d4c9103e6a87aef13b816fb080286d649",
       "metadata": {
         "id": "2180",
         "name": "Dungeon #2180",
@@ -83,8 +83,8 @@
       "tag": "collectible",
       "type": "trade",
       "index": 323,
-      "address_from": "0x60797e62ca524170348a66efaae22386321926eb",
-      "address_to": "0x934b510d4c9103e6a87aef13b816fb080286d649",
+      "from": "0x60797e62ca524170348a66efaae22386321926eb",
+      "to": "0x934b510d4c9103e6a87aef13b816fb080286d649",
       "metadata": {
         "id": "2180",
         "cost": {

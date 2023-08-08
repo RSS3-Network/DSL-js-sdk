@@ -2,8 +2,8 @@
   "timestamp": "2023-03-06T07:07:35Z",
   "hash": "0x00d25b51a4af650b8a66421f55152383c84746639ea9a020daa2a5cabbddf555",
   "owner": "0xe02766ad87bcea1c7dfa9c0aadc85df71ca9cd6c",
-  "address_from": "0xe02766ad87bcea1c7dfa9c0aadc85df71ca9cd6c",
-  "address_to": "0xcda72070e455bb31c7690a170224ce43623d0b6f",
+  "from": "0xe02766ad87bcea1c7dfa9c0aadc85df71ca9cd6c",
+  "to": "0xcda72070e455bb31c7690a170224ce43623d0b6f",
   "network": "ethereum",
   "platform": "Foundation",
   "tag": "collectible",
@@ -16,8 +16,8 @@
       "tag": "collectible",
       "type": "auction",
       "index": 150,
-      "address_from": "0xe02766ad87bcea1c7dfa9c0aadc85df71ca9cd6c",
-      "address_to": "0xcda72070e455bb31c7690a170224ce43623d0b6f",
+      "from": "0xe02766ad87bcea1c7dfa9c0aadc85df71ca9cd6c",
+      "to": "0xcda72070e455bb31c7690a170224ce43623d0b6f",
       "metadata": {
         "id": "3",
         "cost": {
