@@ -7,26 +7,26 @@ it.concurrent('get suggestions', async ({ expect }) => {
 })
 
 it.concurrent('get activities', async ({ expect }) => {
-  const res = await client().activities({ keyword: 'vitalik', page: 1, size: 5 })
-  expect(res.contents).toHaveLength(5)
+  const res = await client().activities({ keyword: 'vitalik', offset: 1, limit: 5 })
+  expect(res.docs).toHaveLength(5)
 })
 
 it.concurrent('get activity', async ({ expect }) => {
-  const { contents } = await client().activities({ keyword: 'vitalik', size: 5 })
+  const { docs } = await client().activities({ keyword: 'vitalik', limit: 5 })
 
-  if (contents && contents.length > 0 && contents[0].id) {
-    const activity = await client().activity(contents[0].id)
-    expect(activity.id).toBe(contents[0].id)
+  if (docs && docs.length > 0 && docs[0].id) {
+    const activity = await client().activity(docs[0].id)
+    expect(activity.id).toBe(docs[0].id)
   }
 })
 
 it.concurrent('get nft', async ({ expect }) => {
-  const res = await client().nft({ keyword: 'azuki', page: 1, size: 5 })
-  expect(res.collections).toHaveLength(5)
+  const res = await client().nft({ keyword: 'azuki', offset: 1, limit: 5 })
+  expect(res.docs).toHaveLength(5)
 })
 
 it.concurrent('get wiki', async ({ expect }) => {
-  const res = await client().wiki({ keyword: 'eth' })
+  const res = await client().wiki({ keyword: 'eth', limit: 5 })
   expect(res.docs).toHaveLength(5)
 })
 
@@ -38,14 +38,14 @@ it.concurrent('get related addresses', async ({ expect }) => {
 it.concurrent('get nft images', async ({ expect }) => {
   const res = await client().nftImages({
     contractAddress: '0xeaa708c29ffce22db864385f0c6509907af45c03',
-    page: 1,
-    size: 5,
+    offset: 1,
+    limit: 5,
   })
   expect(res.images).toHaveLength(5)
 })
 
 it.concurrent('get dapp', async ({ expect }) => {
-  const res = await client().dapp({ keyword: 'swap', page: 1, size: 5 })
+  const res = await client().dapp({ keyword: 'swap', offset: 1, limit: 5 })
   expect(res.docs).toHaveLength(5)
 })
 

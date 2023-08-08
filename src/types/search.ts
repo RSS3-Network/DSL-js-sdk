@@ -184,7 +184,7 @@ export interface components {
     CollectionSearchRespDTO: {
       collections?: components["schemas"]["CollectionDocDTO"][];
       /** Format: int64 */
-      totalPage?: number;
+      total?: number;
     };
     NftCollectionDTO: {
       description?: string;
@@ -405,7 +405,7 @@ export interface components {
     };
     FeedSearchRespDTO: {
       /** Format: int32 */
-      totalPage?: number;
+      total?: number;
       feeds?: components["schemas"]["FeedRankDocDTO"][];
       networkAgg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
       platformAgg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
@@ -433,7 +433,7 @@ export interface components {
     WikiSearchRespDTO: {
       docs?: components["schemas"]["WikiDocDTO"][];
       /** Format: int64 */
-      totalPage?: number;
+      total?: number;
     };
     Event: {
       /** Format: int64 */
@@ -467,7 +467,7 @@ export interface components {
     NFTImageResp4ExternalDTO: {
       images?: components["schemas"]["NftImage4ExternalDTO"][];
       /** Format: int64 */
-      totalPage?: number;
+      total?: number;
     };
     NftImage4ExternalDTO: {
       id?: string;
@@ -512,9 +512,9 @@ export interface components {
       top_3_images?: components["schemas"]["NftImage4ExternalDTO"][];
     };
     CollectionSearchResp4ExternalDTO: {
-      collections?: components["schemas"]["CollectionDoc4ExternalDTO"][];
+      docs?: components["schemas"]["CollectionDoc4ExternalDTO"][];
       /** Format: int64 */
-      totalPage?: number;
+      total?: number;
     };
     DaapDocDTO: {
       id?: string;
@@ -547,7 +547,7 @@ export interface components {
     DaapSearchRespDTO: {
       docs?: components["schemas"]["DaapDocDTO0"][];
       /** Format: int64 */
-      totalPage?: number;
+      total?: number;
     };
     /** @description 币价模块响应 */
     CoinSearchRespDTO: {
@@ -623,8 +623,8 @@ export interface components {
     };
     FeedSearchResp4ExternalDTO: {
       /** Format: int32 */
-      totalPage?: number;
-      contents?: components["schemas"]["FeedRankDoc4ExternalDTO"][];
+      total?: number;
+      docs?: components["schemas"]["FeedRankDoc4ExternalDTO"][];
       network_agg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
       platform_agg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
     };
@@ -761,7 +761,7 @@ export interface components {
     NFTImageRespDTO: {
       images?: components["schemas"]["NftImageDTO"][];
       /** Format: int64 */
-      totalPage?: number;
+      total?: number;
     };
     /** @description NFT自动补全响应 */
     NFTAutoCompleteRespDTO: {
@@ -833,10 +833,10 @@ export interface operations {
          * @example vitalik
          */
         keyword: string;
-        /** @description pagination page, min page is 1 */
-        page?: number;
-        /** @description pagination size, max size is 20 */
-        size?: number;
+        /** @description pagination offset, min offset is 0 */
+        offset?: number;
+        /** @description pagination limit, max limit is 20 */
+        limit?: number;
       };
     };
     responses: {
@@ -995,16 +995,10 @@ export interface operations {
       query: {
         /** @description contractAddress */
         contractAddress: string;
-        /**
-         * @description pagination page,default is 1
-         * @example 1
-         */
-        page: number;
-        /**
-         * @description pagination size,default is 12
-         * @example 10
-         */
-        size: number;
+        /** @description pagination offset, min offset is 0 */
+        offset?: number;
+        /** @description pagination limit, max limit is 20 */
+        limit?: number;
       };
     };
     responses: {
@@ -1064,16 +1058,10 @@ export interface operations {
          * @example azuki
          */
         keyword: string;
-        /**
-         * @description pagination page,default is 1
-         * @example 1
-         */
-        page?: number;
-        /**
-         * @description pagination size,default is 12
-         * @example 12
-         */
-        size?: number;
+        /** @description pagination offset, min offset is 0 */
+        offset?: number;
+        /** @description pagination limit, max limit is 20 */
+        limit?: number;
         /**
          * @description sort type, default is NONE
          * @example NONE
@@ -1110,10 +1098,10 @@ export interface operations {
          * @example uniswap
          */
         keyword: string;
-        /** @description pagination page, min page is 1 */
-        page?: number;
-        /** @description pagination size, max size is 20 */
-        size?: number;
+        /** @description pagination offset, min offset is 0 */
+        offset?: number;
+        /** @description pagination limit, max limit is 20 */
+        limit?: number;
       };
     };
     responses: {
@@ -1169,15 +1157,15 @@ export interface operations {
          */
         keyword: string;
         /**
-         * @description pagination page, min page is 1
-         * @example 1
+         * @description pagination offset, min offset is 0
+         * @example 0
          */
-        page?: number;
+        offset?: number;
         /**
-         * @description pagination size, max size is 20
+         * @description pagination limit, max limit is 20
          * @example 12
          */
-        size?: number;
+        limit?: number;
         /**
          * @description STR join with ",", available value: ALL,MIRROR,FARCASTER,XLOG,CROSSBELL,LENS,MATTERS
          * @example ALL

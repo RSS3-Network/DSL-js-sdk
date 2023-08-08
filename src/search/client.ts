@@ -82,9 +82,6 @@ export function client(opt: ClientOptions = {}) {
      * Search wiki.
      */
     async wiki(query: operations['searchV2']['parameters']['query']) {
-      if (!query.page) query.page = 1
-      if (!query.size) query.size = 5
-
       const { data, error } = await client.get('/v2/wikis', {
         params: { query },
       })
@@ -122,6 +119,18 @@ export function client(opt: ClientOptions = {}) {
      */
     async dapp(query: operations['searchv2']['parameters']['query']) {
       const { data, error } = await client.get('/v2/dapps', {
+        params: { query },
+      })
+      if (error || !data) throw error
+
+      return data
+    },
+
+    /**
+     * Get today in history.
+     */
+    async todayInHistory(query: operations['todayInHistory']['parameters']['query']) {
+      const { data, error } = await client.get('/v2/today-in-history', {
         params: { query },
       })
       if (error || !data) throw error

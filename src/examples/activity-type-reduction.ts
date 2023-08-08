@@ -4,11 +4,11 @@ async function main() {
   const search = searchClient()
 
   // Get activities by keyword
-  const { contents } = await search.activities({ keyword: 'vitalik', size: 5 })
+  const { docs } = await search.activities({ keyword: 'vitalik', limit: 5 })
 
-  if (!contents) return
+  if (!docs) return
 
-  for (const content of contents) {
+  for (const content of docs) {
     if (!content.id) continue
 
     const activity = await search.activity(content.id)

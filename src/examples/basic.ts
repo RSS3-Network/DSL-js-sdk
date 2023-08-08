@@ -14,12 +14,12 @@ async function main() {
   const search = searchClient()
 
   // Get activities by keyword
-  const { contents } = await search.activities({ keyword: 'vitalik', size: 5 })
-  console.log(contents)
+  const { docs } = await search.activities({ keyword: 'vitalik', limit: 5 })
+  console.log(docs)
 
   // Get the details of the first content
-  if (contents && contents.length > 0 && contents[0].id) {
-    const activity = await search.activity(contents[0].id)
+  if (docs && docs.length > 0 && docs[0].id) {
+    const activity = await search.activity(docs[0].id)
     console.log(activity)
   }
 }
