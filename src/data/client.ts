@@ -20,8 +20,29 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query activities.
      */
-    async activities(query: paths['/notes']['post']['requestBody']['content']['application/json']) {
-      const { data, error } = await client.post('/notes', {
+    async activities(
+      query: paths['/data/v1/accounts/activities']['post']['requestBody']['content']['application/json'],
+    ) {
+      if (query.address.length === 0 && query.platform?.length === 1) {
+        const { data, error } = await client.get('/data/v1/platforms/{platform}/activities', {
+          params: {
+            path: { platform: query.platform[0] },
+            query: {
+              action_limit: query.action_limit,
+              cursor: query.cursor,
+              direction: query.direction,
+              limit: query.limit,
+              success: query.success,
+              timestamp: query.timestamp,
+            },
+          },
+        })
+        if (error || !data) throw error
+
+        return data
+      }
+
+      const { data, error } = await client.post('/data/v1/accounts/activities', {
         body: query,
       })
       if (error || !data) throw error
@@ -30,17 +51,10 @@ export function client(opt: ClientOptions = {}) {
     },
 
     /**
-     * Query mastodon activities.
+     * Query a activity by hash.
      */
-    async mastodonActivities(address: string, query: paths['/mastodon/{address}']['get']['parameters']['query'] = {}) {
-      const client = createClient<paths>(opt)
-
-      const { data, error } = await client.get('/mastodon/{address}', {
-        params: {
-          path: { address },
-          query,
-        },
-      })
+    async activity(hash: string) {
+      const { data, error } = await client.get('/data/v1/activities/{hash}', { params: { path: { hash } } })
       if (error || !data) throw error
 
       return data
@@ -49,38 +63,16 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query profiles.
      */
-    async profiles(address: string, query: paths['/profiles/{address}']['get']['parameters']['query'] = {}) {
-      const { data, error } = await client.get('/profiles/{address}', {
+    async profiles(
+      address: string,
+      query: paths['/data/v1/accounts/{address}/profiles']['get']['parameters']['query'] = {},
+    ) {
+      const { data, error } = await client.get('/data/v1/accounts/{address}/profiles', {
         params: {
           path: { address },
           query,
         },
       })
-      if (error || !data) throw error
-
-      return data
-    },
-
-    /**
-     * Query assets.
-     */
-    async assets(address: string, query: paths['/assets/{address}']['get']['parameters']['query'] = {}) {
-      const { data, error } = await client.get('/assets/{address}', {
-        params: {
-          path: { address },
-          query,
-        },
-      })
-      if (error || !data) throw error
-
-      return data
-    },
-
-    /**
-     * Query transactions.
-     */
-    async transaction(hash: string) {
-      const { data, error } = await client.get('/tx/{hash}', { params: { path: { hash } } })
       if (error || !data) throw error
 
       return data

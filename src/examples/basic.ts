@@ -4,11 +4,11 @@ async function main() {
   const data = dataClient()
 
   // Get activities posted by Vitalik
-  const { result: activities } = await data.activities({ address: ['vitalik.eth'], limit: 5 })
+  const { results: activities } = await data.activities({ address: ['vitalik.eth'], limit: 5 })
   console.log(activities)
 
   // Get profiles of Vitalik
-  const { result: profiles } = await data.profiles('vitalik.eth')
+  const { results: profiles } = await data.profiles('vitalik.eth')
   console.log(profiles)
 
   const search = searchClient()

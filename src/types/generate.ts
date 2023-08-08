@@ -45,10 +45,10 @@ async function main() {
         .replace(/Record<string, never>/g, 'Record<string, any>')
         .replace(/empty\?: boolean;/g, '')
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
-        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Action']['metadata']")
         .replace(
           /FeedRankActionDoc4ExternalDetailDTO: {[^{}]+}/,
-          `FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer']`,
+          `FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Action']`,
         )
 
       return (schema = `import {components as data} from './data'\n${schema}`)
@@ -57,15 +57,18 @@ async function main() {
 
   await generate(
     'data',
-    'https://test-pregod.rss3.dev/v1/openapi?json=true',
+    'https://api.rss3.io/data/v1/openapi?json=true',
     (schema) => {
       delete schema.components.schemas.TransferTypes
       return schema
     },
     (schema) => {
       return schema
-        .replace(/(platform\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["PlatformName"]$3;')
-        .replace(/(network\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["NetworkName"]$3;')
+        .replace(/(platform\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["Platform"]$3;')
+        .replace(/(network\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["Network"]$3;')
+        .replace(/Type: Record<string, never>;/g, 'Type: string;')
+        .replace(/Decimal: Record<string, never>;/g, 'Decimal: string;')
+        .replace(/actions: components\["schemas"]\["Transfer"\]\[\];/g, 'actions: components["schemas"]["Action"][];')
     },
   )
 }

@@ -7,166 +7,24 @@
 
 
 export interface paths {
-  "/apikey/apply": {
+  "/data/v1/accounts/activities": {
     post: {
       requestBody: {
         content: {
           "application/json": {
-            address: string;
-          };
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": components["schemas"]["APIKey"];
-          };
-        };
-      };
-    };
-  };
-  "/apikey/{address}": {
-    get: {
-      parameters: {
-        path: {
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": components["schemas"]["APIKey"];
-          };
-        };
-      };
-    };
-  };
-  "/assets/{address}": {
-    get: {
-      parameters: {
-        query?: {
-          network?: components["schemas"]["NetworkName"][];
-          token_address?: string;
-          token_id?: string;
-          cursor?: string;
-          limit?: number;
-          refresh?: boolean;
-          block_spam?: boolean | null;
-        };
-        path: {
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Asset"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/exchanges/{exchange_type}": {
-    get: {
-      parameters: {
-        query?: {
-          cursor?: number;
-          name?: string[];
-          network?: components["schemas"]["NetworkName"][];
-        };
-        path: {
-          exchange_type: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["ExchangeResult"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/mastodon/{address}": {
-    get: {
-      parameters: {
-        query?: {
-          limit?: number;
-          cursor?: string;
-          type?: string[];
-          tag?: string[];
-          network?: components["schemas"]["NetworkName"][];
-          platform?: components["schemas"]["PlatformName"][];
-          timestamp?: components["schemas"]["Time"];
-          hash?: string;
-          hash_list?: string[];
-          include_poap?: boolean;
-          refresh?: boolean;
-          page?: number;
-          query_status?: boolean;
-          token_id?: string;
-          count_only?: boolean;
-          action_limit?: number;
-        };
-        path: {
-          /** @description address to query */
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/notes": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
+            /** @description actions limit, maximum 20 */
             action_limit?: number;
+            /** @description address or domain */
             address: string[];
-            count_only?: boolean;
-            cursor?: string;
-            ignore_contract?: boolean;
-            include_poap?: boolean;
+            cursor?: string | null;
+            direction?: string | null;
+            /** @description transactions limit, maximum 500 */
             limit?: number;
-            network?: components["schemas"]["NetworkName"][];
-            page?: number;
-            platform?: components["schemas"]["PlatformName"][];
-            query_status?: boolean;
-            refresh?: boolean;
+            network?: components["schemas"]["Network"][];
+            platform?: components["schemas"]["Platform"][];
+            success?: boolean | null;
             tag?: string[];
-            timestamp?: components["schemas"]["Time"];
+            timestamp?: components["schemas"]["Time"] | null;
             type?: string[];
           };
         };
@@ -175,222 +33,41 @@ export interface paths {
         /** @description Response */
         200: {
           content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
+            "application/json": components["schemas"]["TransactionsResponse"];
           };
         };
       };
     };
   };
-  "/notes/social": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            address: string[];
-            count_only?: boolean;
-            cursor?: string;
-            limit?: number;
-            network?: components["schemas"]["NetworkName"][];
-            page?: number;
-            platform?: components["schemas"]["PlatformName"][];
-            tag?: string[];
-            timestamp?: components["schemas"]["Time"];
-            type?: string[];
-          };
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/notes/{address}": {
+  "/data/v1/accounts/{address}/activities": {
     get: {
       parameters: {
         query?: {
+          /**
+           * @description transactions limit, maximum 500
+           * @example 100
+           */
           limit?: number;
-          cursor?: string;
-          type?: string[];
-          tag?: string[];
-          network?: components["schemas"]["NetworkName"][];
-          platform?: components["schemas"]["PlatformName"][];
-          timestamp?: components["schemas"]["Time"];
-          hash?: string;
-          hash_list?: string[];
-          include_poap?: boolean;
-          refresh?: boolean;
-          page?: number;
-          query_status?: boolean;
-          token_id?: string;
-          count_only?: boolean;
+          /**
+           * @description actions limit, maximum 20
+           * @example 10
+           */
           action_limit?: number;
-        };
-        path: {
-          /** @description address to query */
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/ns/{address}": {
-    get: {
-      parameters: {
-        path: {
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": components["schemas"]["NameServiceResult"];
-          };
-        };
-      };
-    };
-  };
-  "/platforms/notes/{platform}": {
-    get: {
-      parameters: {
-        query?: {
-          limit?: number;
-          cursor?: string;
-        };
-        path: {
-          /** @description platform to query */
-          platform: components["schemas"]["PlatformName"];
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/platforms/{platform_type}": {
-    get: {
-      parameters: {
-        query?: {
-          network?: components["schemas"]["NetworkName"][];
-        };
-        path: {
-          platform_type: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["PlatformResult"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/profiles": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            address: string[];
-            network?: components["schemas"]["NetworkName"][];
-            platform?: components["schemas"]["PlatformName"][];
-            refresh?: boolean;
-          };
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Profile"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/profiles/{address}": {
-    get: {
-      parameters: {
-        query?: {
-          limit?: number;
-          cursor?: string;
-          type?: string[];
+          cursor?: string | null;
+          success?: boolean | null;
+          direction?: string | null;
+          timestamp?: components["schemas"]["Time"] | null;
+          /** @example ethereum */
+          network?: components["schemas"]["Network"][];
           tag?: string[];
-          network?: components["schemas"]["NetworkName"][];
-          platform?: components["schemas"]["PlatformName"][];
-          timestamp?: components["schemas"]["Time"];
-          hash?: string;
-          hash_list?: string[];
-          include_poap?: boolean;
-          refresh?: boolean;
-          page?: number;
-          query_status?: boolean;
-          token_id?: string;
-          count_only?: boolean;
-          action_limit?: number;
+          type?: string[];
+          platform?: components["schemas"]["Platform"][];
         };
         path: {
-          /** @description address to query */
+          /**
+           * @description address or domain
+           * @example vitalik.eth
+           */
           address: string;
         };
       };
@@ -398,23 +75,57 @@ export interface paths {
         /** @description Response */
         200: {
           content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Profile"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
+            "application/json": components["schemas"]["TransactionsResponse"];
           };
         };
       };
     };
   };
-  "/tx/{hash}": {
+  "/data/v1/accounts/{address}/profiles": {
     get: {
       parameters: {
+        query?: {
+          network?: components["schemas"]["Network"][];
+          platform?: components["schemas"]["Platform"][];
+        };
         path: {
+          /**
+           * @description address or domain
+           * @example vitalik.eth
+           */
+          address: string | null;
+        };
+      };
+      responses: {
+        /** @description Response */
+        200: {
+          content: {
+            "application/json": components["schemas"]["ProfilesResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/data/v1/activities/{hash}": {
+    get: {
+      parameters: {
+        query?: {
+          /**
+           * @description actions limit, minimum 1, maximum 20
+           * @example 10
+           */
+          action_limit?: number;
+          /**
+           * @description actions pag, minimum 1
+           * @example 1
+           */
+          action_page?: number;
+        };
+        path: {
+          /**
+           * @description hash
+           * @example 0x0000002bb015fc5e691a57887924a1e00f697b2180c0bcc6e69d77931c98e5a6
+           */
           hash: string;
         };
       };
@@ -422,7 +133,63 @@ export interface paths {
         /** @description Response */
         200: {
           content: {
-            "application/json": components["schemas"]["Transaction"];
+            "application/json": components["schemas"]["TransactionResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/data/v1/mastodon/{address}/activities": {
+    get: {
+      parameters: {
+        query?: {
+          /**
+           * @description mastodon limit, maximum 40
+           * @example 10
+           */
+          limit?: number;
+        };
+        path: {
+          /** @description address */
+          address: string;
+        };
+      };
+      responses: {
+        /** @description Response */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TransactionsResponse"];
+          };
+        };
+      };
+    };
+  };
+  "/data/v1/platforms/{platform}/activities": {
+    get: {
+      parameters: {
+        query?: {
+          /** @description transactions limit, maximum 500 */
+          limit?: number;
+          /** @description actions limit, maximum 20 */
+          action_limit?: number;
+          cursor?: string | null;
+          success?: boolean | null;
+          direction?: string | null;
+          timestamp?: components["schemas"]["Time"] | null;
+        };
+        path: {
+          /**
+           * @description platform
+           * @example uniswap
+           */
+          platform: components["schemas"]["Platform"];
+        };
+      };
+      responses: {
+        /** @description Response */
+        200: {
+          content: {
+            "application/json": components["schemas"]["TransactionsResponse"];
           };
         };
       };
@@ -435,111 +202,323 @@ export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
     /**
-     * APIKey
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.APIKey
+     * AccountsTransactionsRequest
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v1/handler.AccountsTransactionsRequest
      */
-    APIKey: {
-      address: string;
-      key: string;
+    AccountsTransactionsRequest: {
+      /** @description actions limit, maximum 20 */
+      action_limit?: number;
+      /** @description address or domain */
+      address: string[];
+      cursor?: string | null;
+      direction?: string | null;
+      /** @description transactions limit, maximum 500 */
+      limit?: number;
+      network?: components["schemas"]["Network"][];
+      platform?: components["schemas"]["Platform"][];
+      success?: boolean | null;
+      tag?: string[];
+      timestamp?: components["schemas"]["Time"] | null;
+      type?: string[];
     };
     /**
      * Action
-     * @description github.com/naturalselectionlabs/pregod/common/types.Action
+     * @description For all the possible types of actions, see the Action in this doc.
      */
     Action: {
-      comment?: string;
-      examples?: components["schemas"]["Example"][];
-      name?: string;
-      platforms?: string[];
-    };
-    /**
-     * Address
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.Address
-     */
-    Address: {
-      address: string;
-      count: number;
-      done_networks: components["schemas"]["StringArray"];
-      indexing_networks: components["schemas"]["StringArray"];
-      /**
-       * RawMessage
-       * @description encoding/json.RawMessage
-       */
-      nonce: unknown;
-      status: boolean;
-      /**
-       * Time
-       * @description time.Time
-       */
-      updated_at: string;
-    };
-    /**
-     * Asset
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.Asset
-     */
-    Asset: {
-      attributes?: components["schemas"]["RawMessage"];
-      description: string;
-      image: string;
-      network: components["schemas"]["NetworkName"];
-      owner: string;
-      related_urls: components["schemas"]["StringArray"];
-      timestamp: components["schemas"]["Time"];
-      title: string;
-      token_address: string;
-      token_id: string;
-      token_standard: string;
-    };
-    /**
-     * BatchGetNotesRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetNotesRequest
-     */
-    BatchGetNotesRequest: {
-      action_limit?: number;
-      address: string[];
-      count_only?: boolean;
-      cursor?: string;
-      ignore_contract?: boolean;
-      include_poap?: boolean;
-      limit?: number;
-      network?: components["schemas"]["NetworkName"][];
-      page?: number;
-      platform?: components["schemas"]["PlatformName"][];
-      query_status?: boolean;
-      refresh?: boolean;
-      tag?: string[];
-      timestamp?: components["schemas"]["Time"];
-      type?: string[];
-    };
-    /**
-     * BatchGetProfilesRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetProfilesRequest
-     */
-    BatchGetProfilesRequest: {
-      address: string[];
-      network?: components["schemas"]["NetworkName"][];
-      platform?: components["schemas"]["PlatformName"][];
-      refresh?: boolean;
-    };
-    /**
-     * BatchGetSocialNotesRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetSocialNotesRequest
-     */
-    BatchGetSocialNotesRequest: {
-      address: string[];
-      count_only?: boolean;
-      cursor?: string;
-      limit?: number;
-      network?: components["schemas"]["NetworkName"][];
-      page?: number;
-      platform?: components["schemas"]["PlatformName"][];
-      tag?: string[];
-      timestamp?: components["schemas"]["Time"];
-      type?: string[];
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "transaction";
+      to: string;
+      /** @enum {string} */
+      type: "transfer";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "transaction";
+      to: string;
+      /** @enum {string} */
+      type: "mint";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "transaction";
+      to: string;
+      /** @enum {string} */
+      type: "burn";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "transaction";
+      to: string;
+      /** @enum {string} */
+      type: "approval";
+    } | {
+      from: string;
+      metadata: components["schemas"]["MultiSig"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "transaction";
+      to: string;
+      /** @enum {string} */
+      type: "multisig";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Bridge"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "transaction";
+      to: string;
+      /** @enum {string} */
+      type: "bridge";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "collectible";
+      to: string;
+      /** @enum {string} */
+      type: "transfer";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "collectible";
+      to: string;
+      /** @enum {string} */
+      type: "auction";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "collectible";
+      to: string;
+      /** @enum {string} */
+      type: "trade";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "collectible";
+      to: string;
+      /** @enum {string} */
+      type: "mint";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "collectible";
+      to: string;
+      /** @enum {string} */
+      type: "burn";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "collectible";
+      to: string;
+      /** @enum {string} */
+      type: "approval";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "metaverse";
+      to: string;
+      /** @enum {string} */
+      type: "mint";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Token"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "metaverse";
+      to: string;
+      /** @enum {string} */
+      type: "trade";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Swap"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "exchange";
+      to: string;
+      /** @enum {string} */
+      type: "swap";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Liquidity"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "exchange";
+      to: string;
+      /** @enum {string} */
+      type: "liquidity";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Staking"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "exchange";
+      to: string;
+      /** @enum {string} */
+      type: "staking";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Post"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "post";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Post"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "revise";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Post"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "comment";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Post"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "share";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Post"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "mint";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Profile"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "proxy";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Profile"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "profile";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Profile"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "follow";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Profile"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "social";
+      to: string;
+      /** @enum {string} */
+      type: "unfollow";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Donation"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "donation";
+      to: string;
+      /** @enum {string} */
+      type: "donate";
+    } | {
+      from: string;
+      metadata: components["schemas"]["SnapShot"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "governance";
+      to: string;
+      /** @enum {string} */
+      type: "propose";
+    } | {
+      from: string;
+      metadata: components["schemas"]["Vote"];
+      platform?: components["schemas"]["Platform"];
+      related_urls?: string[];
+      /** @enum {string} */
+      tag: "governance";
+      to: string;
+      /** @enum {string} */
+      type: "vote";
     };
     /**
      * Bridge
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Bridge
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Bridge
      */
     Bridge: {
       action: string;
@@ -547,70 +526,45 @@ export interface components {
       token: components["schemas"]["Token"];
     };
     /**
-     * CexResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.CexResult
-     */
-    CexResult: {
-      address: string;
-      name: string;
-      network: components["schemas"]["NetworkName"];
-    };
-    /**
      * Decimal
      * @description github.com/shopspring/decimal.Decimal
      */
     Decimal: string;
     /**
-     * DexResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.DexResult
+     * Direction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Direction
+     * @enum {string}
      */
-    DexResult: {
-      address: string;
-      name: string;
-      network: components["schemas"]["NetworkName"];
-      pair: string;
-    };
+    Direction: "in" | "out";
     /**
      * Donation
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Donation
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Donation
      */
     Donation: {
       description: string;
       logo: string;
-      platform: components["schemas"]["PlatformName"];
+      platform: components["schemas"]["Platform"];
+      slug: string;
       title: string;
       token: components["schemas"]["Token"];
     };
     /**
-     * Example
-     * @description github.com/naturalselectionlabs/pregod/common/types.Example
-     */
-    Example: {
-      hash?: string;
-      text?: string;
-    };
-    /**
-     * ExchangeResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.ExchangeResult
-     */
-    ExchangeResult: components["schemas"]["CexResult"] | components["schemas"]["DexResult"];
-    /**
      * Int
      * @description math/big.Int
      */
-    Int: number;
+    Int: Record<string, never>;
     /**
      * Liquidity
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Liquidity
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Liquidity
      */
     Liquidity: {
       action: string;
-      protocol: string;
+      protocol?: string;
       tokens: components["schemas"]["Token"][];
     };
     /**
      * Media
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Media
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Media
      */
     Media: {
       address: string;
@@ -618,127 +572,100 @@ export interface components {
     };
     /**
      * MultiSig
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.MultiSig
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.MultiSig
      */
     MultiSig: {
       action: string;
       owner?: string | null;
       success?: boolean;
-      /**
-       * Int
-       * @description math/big.Int
-       */
-      threshold?: number | null;
+      threshold?: components["schemas"]["Int"] | null;
       vault: components["schemas"]["Vault"];
     };
     /**
-     * NameServiceResult
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.NameServiceResult
-     */
-    NameServiceResult: {
-      address: string;
-      arb: string;
-      avvy: string;
-      bit: string;
-      crossbell: string;
-      cyber: string;
-      ens: string;
-      lens: string;
-      spaceid: string;
-      unstoppable_domains: string;
-    };
-    /**
-     * NetworkName
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.NetworkName
+     * Network
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v1/openapi.Network
      * @enum {string}
      */
-    NetworkName: "EIP-1577" | "aptos" | "arbitrum" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "celo" | "conflux" | "crossbell" | "ethereum" | "ethereum_classic" | "fantom" | "farcaster" | "optimism" | "polygon" | "xdai" | "zksync";
+    Network: "ethereum" | "optimism" | "binance_smart_chain" | "gnosis" | "polygon" | "fantom" | "zksync_era" | "crossbell" | "base" | "arbitrum_one" | "arbitrum_nova" | "celo" | "avalanche" | "arweave" | "zksync_lite";
     /**
      * Organization
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Organization
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Organization
      */
     Organization: {
       about?: string;
       id: string;
       name: string;
-      type_on_platform?: components["schemas"]["PlatformName"][];
+      type_on_platform?: components["schemas"]["Platform"][];
     };
     /**
      * Period
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Period
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Period
      */
     Period: {
       end: string;
       start: string;
     };
     /**
-     * PlatformName
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.PlatformName
+     * Platform
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Platform
      * @enum {string}
      */
-    PlatformName: "0x" | "1inch" | "AAVE" | "Avvy" | "BendDAO" | "Blur" | "Crossbell" | "Curve" | "DODO" | "EIP-1577" | "ENS Registrar" | "Element" | "Farcaster" | "Foundation" | "Galaxy" | "Gem" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lenster" | "Link3" | "LooksRare" | "MetaMask" | "Mirror" | "NSwap" | "Nouns" | "OpenSea" | "Orb" | "POAP" | "PancakeSwap" | "Paraswap" | "QuickSwap" | "Quix" | "RARA" | "Rainbow" | "Snapshot" | "Sound" | "Space ID" | "SpookySwap" | "SushiSwap" | "TraderJoe" | "Uniswap" | "Unstoppable" | "Velodrome" | "Zerion" | "Zora" | "tofuNFT" | "xLog";
-    /**
-     * PlatformResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.PlatformResult
-     */
-    PlatformResult: {
-      name: string;
-      network?: components["schemas"]["NetworkName"];
-      tag: string;
-      type?: string;
-    };
+    Platform: "1inch" | "Aavegotchi" | "Arbitrum" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Foundation" | "Gitcoin" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync" | "zkSync Era" | "zkSync Lite";
     /**
      * Post
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Post
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Post
      */
     Post: {
       action?: string;
       author?: string[];
       body?: string;
       categories?: string[];
-      created_at?: string;
       media?: components["schemas"]["Media"][];
-      origin_note_id?: string;
-      profile_id?: components["schemas"]["Int"] | null;
-      publication_id?: components["schemas"]["Int"] | null;
+      profile_id?: string;
+      publication_id?: string;
       reward?: components["schemas"]["Token"] | null;
       summary?: string;
       tags?: string[];
       target?: components["schemas"]["Post"] | null;
       target_url?: string;
       title?: string;
-      type_on_platform?: components["schemas"]["PlatformName"][];
-    };
-    /**
-     * PostAPIKeyRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.PostAPIKeyRequest
-     */
-    PostAPIKeyRequest: {
-      address: string;
     };
     /**
      * Profile
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/social.Profile
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Profile
      */
     Profile: {
       action?: string;
       address: string;
-      banner_uri?: components["schemas"]["StringArray"];
+      banner_uri?: string[];
       bio: string;
       expire_at?: components["schemas"]["Time"] | null;
       handle: string;
       name: string;
-      network: components["schemas"]["NetworkName"];
-      platform: components["schemas"]["PlatformName"];
-      profile_uri?: components["schemas"]["StringArray"];
+      platform: components["schemas"]["Platform"];
+      profile_uri?: string[];
       proxy?: string;
-      social_uri?: components["schemas"]["StringArray"];
-      source: string;
+      social_uri?: string[];
       url?: string;
     };
     /**
+     * Profile
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1.Profile
+     */
+    Profile1: {
+      Profile: components["schemas"]["Profile"];
+      network: components["schemas"]["Network"];
+    };
+    /**
+     * ProfilesResponse
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v1/handler.ProfilesResponse
+     */
+    ProfilesResponse: {
+      results: (components["schemas"]["Profile1"] | null)[];
+    };
+    /**
      * Proposal
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Proposal
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Proposal
      */
     Proposal: {
       body?: string;
@@ -748,28 +675,16 @@ export interface components {
       organization?: components["schemas"]["Organization"] | null;
       start_at: components["schemas"]["Time"];
       title?: string;
-      type_on_platform?: components["schemas"]["PlatformName"][];
+      type_on_platform?: components["schemas"]["Platform"][];
     };
     /**
      * RawMessage
      * @description encoding/json.RawMessage
      */
-    RawMessage: unknown;
-    /**
-     * Response
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.Response
-     */
-    Response: {
-      address_status?: components["schemas"]["Address"][];
-      cursor?: string;
-      message?: string;
-      result?: Record<string, never>;
-      /** @description total number of items */
-      total?: number | null;
-    };
+    RawMessage: number[];
     /**
      * SnapShot
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.SnapShot
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.SnapShot
      */
     SnapShot: {
       choice: components["schemas"]["RawMessage"];
@@ -778,7 +693,7 @@ export interface components {
     };
     /**
      * Staking
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Staking
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Staking
      */
     Staking: {
       action: string;
@@ -786,22 +701,23 @@ export interface components {
       token: components["schemas"]["Token"];
     };
     /**
-     * StringArray
-     * @description github.com/lib/pq.StringArray
-     */
-    StringArray: string[];
-    /**
      * Swap
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Swap
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Swap
      */
     Swap: {
       from: components["schemas"]["Token"];
-      protocol: string;
+      protocol?: string;
       to: components["schemas"]["Token"];
     };
     /**
+     * Tag
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Tag
+     * @enum {string}
+     */
+    Tag: "unknown" | "transaction" | "exchange" | "collectible" | "social" | "donation" | "governance" | "metaverse";
+    /**
      * TargetNetwork
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.TargetNetwork
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.TargetNetwork
      */
     TargetNetwork: {
       chain_id: number;
@@ -812,10 +728,10 @@ export interface components {
      * Time
      * @description time.Time
      */
-    Time: string;
+    Time: Record<string, never>;
     /**
      * Token
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Token
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Token
      */
     Token: {
       action?: string;
@@ -835,16 +751,12 @@ export interface components {
       standard: string;
       start_time?: components["schemas"]["Time"] | null;
       symbol: string;
-      /**
-       * Decimal
-       * @description github.com/shopspring/decimal.Decimal
-       */
-      value?: string | null;
+      value?: components["schemas"]["Decimal"] | null;
       value_display?: components["schemas"]["Decimal"] | null;
     };
     /**
      * TokenAttribute
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.TokenAttribute
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.TokenAttribute
      */
     TokenAttribute: {
       trait_type: string;
@@ -852,486 +764,77 @@ export interface components {
     };
     /**
      * Transaction
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.Transaction
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1.Transaction
      */
     Transaction: {
-      actions: components["schemas"]["Transfer"][];
+      actions: components["schemas"]["Action"][];
       address_from: string;
       address_to?: string;
-      created_at: components["schemas"]["Time"];
+      created_at?: components["schemas"]["Time"];
+      direction: components["schemas"]["Direction"];
       fee?: components["schemas"]["Decimal"] | null;
       hash: string;
-      network: components["schemas"]["NetworkName"];
+      network: components["schemas"]["Network"];
       owner: string;
-      platform?: components["schemas"]["PlatformName"];
-      success: boolean | null;
-      tag: string;
+      platform?: components["schemas"]["Platform"] | null;
+      success: boolean;
+      tag: components["schemas"]["Tag"];
       timestamp: components["schemas"]["Time"];
-      type: string;
-      updated_at: components["schemas"]["Time"];
+      type: components["schemas"]["Type"];
+      updated_at?: components["schemas"]["Time"];
+    };
+    /**
+     * TransactionResponse
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v1/handler.TransactionResponse
+     */
+    TransactionResponse: {
+      action_total_page: number | null;
+      result: components["schemas"]["Transaction"] | null;
+    };
+    /**
+     * TransactionsResponse
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v1/handler.TransactionsResponse
+     */
+    TransactionsResponse: {
+      cursor?: string;
+      results: (components["schemas"]["Transaction"] | null)[];
     };
     /**
      * Transfer
-     * @description For all the possible types of transfer, see the TransferTypes in this doc.
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1.Transfer
      */
     Transfer: {
       address_from: string;
       address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "transfer";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "burn";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "approval";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "withdraw";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "deposit";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "transfer";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "auction";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "trade";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "burn";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "approval";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "edit";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "trade";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "list";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "unlist";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "claim";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "music";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["MultiSig"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "multisig";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Swap"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "swap";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Liquidity"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "liquidity";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "post";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "revise";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "comment";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "share";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "wiki";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "reward";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "proxy";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "profile";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "follow";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "unfollow";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Donation"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "donation";
-      /** @enum {string} */
-      type: "donate";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["SnapShot"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "governance";
-      /** @enum {string} */
-      type: "propose";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Vote"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "governance";
-      /** @enum {string} */
-      type: "vote";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Staking"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "staking";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Bridge"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "bridge";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "poap";
+      metadata: Record<string, never>;
+      platform?: components["schemas"]["Platform"];
+      related_urls: string[];
+      tag: components["schemas"]["Tag"];
+      type: components["schemas"]["Type"];
     };
     /**
-     * TransferType
-     * @description github.com/naturalselectionlabs/pregod/common/types.TransferType
+     * Type
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Type
      */
-    TransferType: {
-      Actions: components["schemas"]["Action"][];
-      Metadata: Record<string, never>;
-      Tag: string;
-      Type: string;
-    };
+    Type: string;
     /**
      * Vault
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Vault
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Vault
      */
     Vault: {
       address: string;
-      owners: string[];
-      threshold: components["schemas"]["Int"] | null;
+      owners?: string[];
+      threshold?: components["schemas"]["Int"] | null;
       version: string;
     };
     /**
      * Vote
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Vote
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Vote
      */
     Vote: {
       choice: string;
       proposal: components["schemas"]["Proposal"] | null;
-      type_on_platform?: components["schemas"]["PlatformName"][];
+      type_on_platform?: components["schemas"]["Platform"][];
     };
   };
   responses: never;
