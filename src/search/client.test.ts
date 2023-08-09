@@ -37,7 +37,7 @@ it.concurrent('get related addresses', async ({ expect }) => {
 
 it.concurrent('get nft images', async ({ expect }) => {
   const res = await client().nftImages({
-    contractAddress: '0xeaa708c29ffce22db864385f0c6509907af45c03',
+    contract_address: '0xeaa708c29ffce22db864385f0c6509907af45c03',
     offset: 1,
     limit: 5,
   })
@@ -51,9 +51,9 @@ it.concurrent('get dapp', async ({ expect }) => {
 
 it.concurrent('get nft details', async ({ expect }) => {
   const res = await client().nftImage({
-    contractAddress: '0xeaa708c29ffce22db864385f0c6509907af45c03',
+    contract_address: '0xeaa708c29ffce22db864385f0c6509907af45c03',
     network: 'ETHEREUM',
-    tokenId: '1',
+    token_id: '1',
   })
   expect(res.id).toBe('43978960')
 })
