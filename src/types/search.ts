@@ -889,7 +889,7 @@ export interface operations {
         /** @description return count */
         count?: number;
         /** @description type */
-        typeParam?: "ALL" | "DOMAIN" | "CONTENT" | "WIKI" | "DAPP";
+        type?: "ALL" | "DOMAIN" | "CONTENT" | "WIKI" | "DAPP";
       };
     };
     responses: {
@@ -944,7 +944,7 @@ export interface operations {
         /** @description return count */
         count?: number;
         /** @description type */
-        typeParam?: "ALL" | "DOMAIN" | "CONTENT" | "WIKI" | "DAPP";
+        type?: "ALL" | "DOMAIN" | "CONTENT" | "WIKI" | "DAPP";
       };
     };
     responses: {
@@ -966,8 +966,8 @@ export interface operations {
   priceChart: {
     parameters: {
       query: {
-        /** @description coinId */
-        coinId: string;
+        /** @description coin id */
+        coin_id: string;
         /** @description currency */
         currency: string;
         /** @description days, 1/7/14/30/90/180/365/max */
@@ -994,7 +994,7 @@ export interface operations {
     parameters: {
       query: {
         /** @description contractAddress */
-        contractAddress: string;
+        contract_address: string;
         /** @description pagination offset, min offset is 0 */
         offset?: number;
         /** @description pagination limit, max limit is 20 */
@@ -1021,7 +1021,7 @@ export interface operations {
     parameters: {
       query: {
         /** @description contractAddress */
-        contractAddress: string;
+        contract_address: string;
         /**
          * @description network
          * @example ETHEREUM
@@ -1031,7 +1031,7 @@ export interface operations {
          * @description tokenId
          * @example 1
          */
-        tokenId: string;
+        token_id: string;
       };
     };
     responses: {
@@ -1066,7 +1066,7 @@ export interface operations {
          * @description sort type, default is NONE
          * @example NONE
          */
-        sortType?: "NONE" | "_6H_VOLUME_RANK" | "_6H_SALES_RANK" | "_1D_VOLUME_RANK" | "_1D_SALES_RANK" | "_7D_VOLUME_RANK" | "_7D_SALES_RANK" | "_30D_VOLUME_RANK" | "_30D_SALES_RANK" | "_6H_MINT_RANK" | "_1D_MINT_RANK" | "_3D_MINT_RANK" | "_GAS_FEE_1H_RANK" | "GAS_FEE_12H_RANK" | "GAS_FEE_24H_RANK" | "VOLUME_TOTAL_RANK" | "MARKET_CAP_RANK";
+        sort_type?: "NONE" | "_6H_VOLUME_RANK" | "_6H_SALES_RANK" | "_1D_VOLUME_RANK" | "_1D_SALES_RANK" | "_7D_VOLUME_RANK" | "_7D_SALES_RANK" | "_30D_VOLUME_RANK" | "_30D_SALES_RANK" | "_6H_MINT_RANK" | "_1D_MINT_RANK" | "_3D_MINT_RANK" | "_GAS_FEE_1H_RANK" | "GAS_FEE_12H_RANK" | "GAS_FEE_24H_RANK" | "VOLUME_TOTAL_RANK" | "MARKET_CAP_RANK";
         /**
          * @description str join with ",", available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
          * @example EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
@@ -1514,7 +1514,7 @@ export interface operations {
          * @description date
          * @example 11-11
          */
-        monthDay?: string;
+        month_day?: string;
       };
     };
     responses: {
