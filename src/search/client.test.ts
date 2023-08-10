@@ -57,3 +57,10 @@ it.concurrent('get nft details', async ({ expect }) => {
   })
   expect(res.id).toBe('43978960')
 })
+
+it.concurrent('get today in history', async ({ expect }) => {
+  const res = await client().todayInHistory({
+    monthDay: '09-15',
+  })
+  expect(res).toHaveLength(4)
+})
