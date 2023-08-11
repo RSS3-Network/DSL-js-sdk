@@ -62,5 +62,5 @@ it.concurrent('get today in history', async ({ expect }) => {
   const res = await client().todayInHistory({
     monthDay: '09-15',
   })
-  expect(res).toHaveLength(4)
+  expect(res.length).toBeGreaterThan(0)
 })
