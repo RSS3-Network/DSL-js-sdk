@@ -557,15 +557,15 @@ export interface components {
         
         [key: string]: Record<string, any> | undefined;
       };
-      coinVsCurrency?: components["schemas"]["CoinVsCurrencyDTO"];
-      coinVsCoin?: components["schemas"]["CoinVsCoinDTO"];
-      priceChartOf1day?: components["schemas"]["PriceChartDTO"];
-      coinMetadata?: components["schemas"]["JSONObject"];
+      coin_vs_currency?: components["schemas"]["CoinVsCurrencyDTO"];
+      coin_vs_coin?: components["schemas"]["CoinVsCoinDTO"];
+      price_chart_of_1_day?: components["schemas"]["PriceChartDTO"];
+      coin_metadata?: components["schemas"]["JSONObject"];
       similar_coins?: components["schemas"]["JSONObject"][];
     };
     /** @description 币价转换(币与币) */
     CoinVsCoinDTO: {
-      coinId?: string;
+      coin_id?: string;
       exchange_rate?: components["schemas"]["CoinVsCoinRateDTO"];
     };
     CoinVsCoinRateDTO: {
@@ -592,16 +592,16 @@ export interface components {
     CoinVsCurrencyDTO: {
       /** @enum {string} */
       direction?: "COIN_TO_CURRENCY" | "CURRENCY_TO_COIN";
-      coinId?: string;
       currency?: string;
       /** Format: int32 */
       num?: number;
       /** Format: double */
       rate?: number;
+      coin_id?: string;
     };
     ActivitiesExDTO: {
       author?: string;
-      medias?: string[];
+      media?: string[];
       /** Format: float */
       score?: number;
       highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
@@ -859,10 +859,10 @@ export interface operations {
     parameters: {
       query?: {
         /**
-         * @description date
+         * @description month day
          * @example 09-15
          */
-        monthDay?: string;
+        month_day?: string;
       };
     };
     responses: {
@@ -1510,10 +1510,7 @@ export interface operations {
   todayInHistory_1: {
     parameters: {
       query?: {
-        /**
-         * @description date
-         * @example 11-11
-         */
+        /** @example 11-11 */
         month_day?: string;
       };
     };
