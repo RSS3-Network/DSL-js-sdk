@@ -25,3 +25,8 @@ it.concurrent('get activity by hash', async ({ expect }) => {
   const res = await client().activity('0xc7a4eb3c0549f5bca4785eff6b0dc1480cc2fc45b1c12967fae4a77fcdc1ddc8')
   expect(res.result?.actions).length.greaterThan(0)
 })
+
+it.concurrent('get activity by assets', async ({ expect }) => {
+  const res = await client().assets('vitalik.eth', { limit: 5 })
+  expect(res.results).toHaveLength(5)
+})

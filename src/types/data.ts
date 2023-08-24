@@ -81,6 +81,36 @@ export interface paths {
       };
     };
   };
+  "/data/v1/accounts/{address}/assets": {
+    get: {
+      parameters: {
+        query?: {
+          /**
+           * @description assets limit, maximum 100
+           * @example 10
+           */
+          limit?: number;
+          cursor?: string | null;
+          refresh?: boolean;
+        };
+        path: {
+          /**
+           * @description address or domain
+           * @example vitalik.eth
+           */
+          address: string;
+        };
+      };
+      responses: {
+        /** @description Response */
+        200: {
+          content: {
+            "application/json": components["schemas"]["AssetsResponse"];
+          };
+        };
+      };
+    };
+  };
   "/data/v1/accounts/{address}/profiles": {
     get: {
       parameters: {
@@ -93,7 +123,7 @@ export interface paths {
            * @description address or domain
            * @example vitalik.eth
            */
-          address: string | null;
+          address: string;
         };
       };
       responses: {
@@ -516,6 +546,36 @@ export interface components {
       /** @enum {string} */
       type: "vote";
     };
+    Address: number[];
+    /**
+     * Asset
+     * @description github.com/naturalselectionlabs/rss3api/common/schema.Asset
+     */
+    Asset: {
+      address: components["schemas"]["Address"];
+      created_at: number;
+      description: string;
+      external_url: string;
+      id: components["schemas"]["Decimal"];
+      image_url: string;
+      media_url: components["schemas"]["Media1"];
+      network: components["schemas"]["Network"];
+      owner: components["schemas"]["Address"];
+      standard: string;
+      timestamp: number;
+      title: string;
+      updated_at: number;
+    };
+    /**
+     * AssetsResponse
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v1/handler.AssetsResponse
+     */
+    AssetsResponse: {
+      cursor?: string;
+      is_indexing: Record<string, never>;
+      latest_refresh: number;
+      results: (components["schemas"]["Asset"] | null)[];
+    };
     /**
      * Bridge
      * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Bridge
@@ -571,6 +631,14 @@ export interface components {
       mime_type: string;
     };
     /**
+     * Media
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.Media
+     */
+    Media1: {
+      address: string;
+      mime_type: string;
+    };
+    /**
      * MultiSig
      * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.MultiSig
      */
@@ -610,7 +678,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Platform
      * @enum {string}
      */
-    Platform: "1inch" | "Aavegotchi" | "Arbitrum" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Foundation" | "Gitcoin" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync" | "zkSync Era" | "zkSync Lite";
+    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "ENS" | "Foundation" | "Gitcoin" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync" | "zkSync Era" | "zkSync Lite";
     /**
      * Post
      * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Post

@@ -77,5 +77,23 @@ export function client(opt: ClientOptions = {}) {
 
       return data
     },
+
+    /**
+     * Query assets.
+     */
+    async assets(
+      address: string,
+      query: paths['/data/v1/accounts/{address}/assets']['get']['parameters']['query'] = {},
+    ) {
+      const { data, error } = await client.get('/data/v1/accounts/{address}/assets', {
+        params: {
+          path: { address },
+          query,
+        },
+      })
+      if (error || !data) throw error
+
+      return data
+    },
   }
 }
