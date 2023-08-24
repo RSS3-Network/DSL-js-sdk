@@ -30,3 +30,8 @@ it.concurrent('get activity by assets', async ({ expect }) => {
   const res = await client().assets('vitalik.eth', { limit: 5 })
   expect(res.results).toHaveLength(5)
 })
+
+it.concurrent('get mastodon activities', async ({ expect }) => {
+  const res = await client().mastodonActivities('kel@toot.cafe', { limit: 5 })
+  expect(res.results).toHaveLength(5)
+})

@@ -95,5 +95,23 @@ export function client(opt: ClientOptions = {}) {
 
       return data
     },
+
+    /**
+     * Query mastodon activities.
+     */
+    async mastodonActivities(
+      address: string,
+      query: paths['/data/v1/mastodon/{address}/activities']['get']['parameters']['query'] = {},
+    ) {
+      const { data, error } = await client.get('/data/v1/mastodon/{address}/activities', {
+        params: {
+          path: { address },
+          query,
+        },
+      })
+      if (error || !data) throw error
+
+      return data
+    },
   }
 }
