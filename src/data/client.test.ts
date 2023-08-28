@@ -1,18 +1,18 @@
 import { it } from 'vitest'
 import { client } from './client'
 
-it.concurrent('get 5 activities by address', async ({ expect }) => {
-  const res = await client().activities({ address: ['vitalik.eth'], limit: 5 })
+it.concurrent('get 5 activities by account', async ({ expect }) => {
+  const res = await client().activities({ account: ['vitalik.eth'], limit: 5 })
   expect(res.results).toHaveLength(5)
 })
 
 it.skip.concurrent('get 5 activities by platform', async ({ expect }) => {
-  const res = await client().activities({ address: [], platform: ['Lens'], limit: 5 })
+  const res = await client().activities({ account: [], platform: ['Lens'], limit: 5 })
   expect(res.results).toHaveLength(5)
 })
 
-it.concurrent('get 10 activities by address', async ({ expect }) => {
-  const res = await client().activities({ address: ['vitalik.eth'], limit: 10 })
+it.concurrent('get 10 activities by account', async ({ expect }) => {
+  const res = await client().activities({ account: ['vitalik.eth'], limit: 10 })
   expect(res.results).toHaveLength(10)
 })
 

@@ -12,10 +12,10 @@ export interface paths {
       requestBody: {
         content: {
           "application/json": {
+            /** @description address or domain */
+            account: string[];
             /** @description actions limit, maximum 20 */
             action_limit?: number;
-            /** @description address or domain */
-            address: string[];
             cursor?: string | null;
             direction?: string | null;
             /** @description transactions limit, maximum 500 */
@@ -39,7 +39,7 @@ export interface paths {
       };
     };
   };
-  "/data/v1/accounts/{address}/activities": {
+  "/data/v1/accounts/{account}/activities": {
     get: {
       parameters: {
         query?: {
@@ -68,7 +68,7 @@ export interface paths {
            * @description address or domain
            * @example vitalik.eth
            */
-          address: string;
+          account: string;
         };
       };
       responses: {
@@ -81,7 +81,7 @@ export interface paths {
       };
     };
   };
-  "/data/v1/accounts/{address}/assets": {
+  "/data/v1/accounts/{account}/assets": {
     get: {
       parameters: {
         query?: {
@@ -98,7 +98,7 @@ export interface paths {
            * @description address or domain
            * @example vitalik.eth
            */
-          address: string;
+          account: string;
         };
       };
       responses: {
@@ -111,7 +111,7 @@ export interface paths {
       };
     };
   };
-  "/data/v1/accounts/{address}/profiles": {
+  "/data/v1/accounts/{account}/profiles": {
     get: {
       parameters: {
         query?: {
@@ -123,7 +123,7 @@ export interface paths {
            * @description address or domain
            * @example vitalik.eth
            */
-          address: string;
+          account: string;
         };
       };
       responses: {
@@ -169,7 +169,7 @@ export interface paths {
       };
     };
   };
-  "/data/v1/mastodon/{address}/activities": {
+  "/data/v1/mastodon/{account}/activities": {
     get: {
       parameters: {
         query?: {
@@ -181,7 +181,7 @@ export interface paths {
         };
         path: {
           /** @description address */
-          address: string;
+          account: string;
         };
       };
       responses: {
@@ -236,10 +236,10 @@ export interface components {
      * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v1/handler.AccountsTransactionsRequest
      */
     AccountsTransactionsRequest: {
+      /** @description address or domain */
+      account: string[];
       /** @description actions limit, maximum 20 */
       action_limit?: number;
-      /** @description address or domain */
-      address: string[];
       cursor?: string | null;
       direction?: string | null;
       /** @description transactions limit, maximum 500 */
@@ -527,7 +527,7 @@ export interface components {
       type: "donate";
     } | {
       from: string;
-      metadata: components["schemas"]["SnapShot"];
+      metadata: components["schemas"]["Proposal"];
       platform?: components["schemas"]["Platform"];
       related_urls?: string[];
       /** @enum {string} */
@@ -639,6 +639,16 @@ export interface components {
       mime_type: string;
     };
     /**
+     * Metadata
+     * @description github.com/naturalselectionlabs/sakuin/common/schema.Metadata
+     */
+    Metadata: Record<string, never>;
+    /**
+     * Metadata
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Metadata
+     */
+    Metadata1: Record<string, never>;
+    /**
      * MultiSig
      * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.MultiSig
      */
@@ -678,7 +688,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Platform
      * @enum {string}
      */
-    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "ENS" | "Foundation" | "Gitcoin" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync" | "zkSync Era" | "zkSync Lite";
+    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Foundation" | "Gitcoin" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "Polygon" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync" | "zkSync Era" | "zkSync Lite";
     /**
      * Post
      * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.Post
@@ -744,20 +754,6 @@ export interface components {
       start_at: components["schemas"]["Time"];
       title?: string;
       type_on_platform?: components["schemas"]["Platform"][];
-    };
-    /**
-     * RawMessage
-     * @description encoding/json.RawMessage
-     */
-    RawMessage: number[];
-    /**
-     * SnapShot
-     * @description github.com/naturalselectionlabs/rss3api/common/schema/v1/metadata.SnapShot
-     */
-    SnapShot: {
-      choice: components["schemas"]["RawMessage"];
-      proposal: components["schemas"]["RawMessage"];
-      space: components["schemas"]["RawMessage"];
     };
     /**
      * Staking
@@ -874,7 +870,7 @@ export interface components {
     Transfer: {
       address_from: string;
       address_to?: string;
-      metadata: Record<string, never>;
+      metadata: components["schemas"]["Metadata1"];
       platform?: components["schemas"]["Platform"];
       related_urls: string[];
       tag: components["schemas"]["Tag"];

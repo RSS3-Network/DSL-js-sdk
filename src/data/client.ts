@@ -23,7 +23,7 @@ export function client(opt: ClientOptions = {}) {
     async activities(
       query: paths['/data/v1/accounts/activities']['post']['requestBody']['content']['application/json'],
     ) {
-      if (query.address.length === 0 && query.platform?.length === 1) {
+      if (query.account.length === 0 && query.platform?.length === 1) {
         const { data, error } = await client.get('/data/v1/platforms/{platform}/activities', {
           params: {
             path: { platform: query.platform[0] },
@@ -64,12 +64,12 @@ export function client(opt: ClientOptions = {}) {
      * Query profiles.
      */
     async profiles(
-      address: string,
-      query: paths['/data/v1/accounts/{address}/profiles']['get']['parameters']['query'] = {},
+      account: string,
+      query: paths['/data/v1/accounts/{account}/profiles']['get']['parameters']['query'] = {},
     ) {
-      const { data, error } = await client.get('/data/v1/accounts/{address}/profiles', {
+      const { data, error } = await client.get('/data/v1/accounts/{account}/profiles', {
         params: {
-          path: { address },
+          path: { account },
           query,
         },
       })
@@ -82,12 +82,12 @@ export function client(opt: ClientOptions = {}) {
      * Query assets.
      */
     async assets(
-      address: string,
-      query: paths['/data/v1/accounts/{address}/assets']['get']['parameters']['query'] = {},
+      account: string,
+      query: paths['/data/v1/accounts/{account}/assets']['get']['parameters']['query'] = {},
     ) {
-      const { data, error } = await client.get('/data/v1/accounts/{address}/assets', {
+      const { data, error } = await client.get('/data/v1/accounts/{account}/assets', {
         params: {
-          path: { address },
+          path: { account },
           query,
         },
       })
@@ -100,12 +100,12 @@ export function client(opt: ClientOptions = {}) {
      * Query mastodon activities.
      */
     async mastodonActivities(
-      address: string,
-      query: paths['/data/v1/mastodon/{address}/activities']['get']['parameters']['query'] = {},
+      account: string,
+      query: paths['/data/v1/mastodon/{account}/activities']['get']['parameters']['query'] = {},
     ) {
-      const { data, error } = await client.get('/data/v1/mastodon/{address}/activities', {
+      const { data, error } = await client.get('/data/v1/mastodon/{account}/activities', {
         params: {
-          path: { address },
+          path: { account },
           query,
         },
       })

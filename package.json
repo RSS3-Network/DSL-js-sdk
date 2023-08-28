@@ -1,6 +1,6 @@
 {
   "name": "@the-index/js-sdk",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "main": "lib/index.js",
   "engines": {
     "node": ">=v19.8.1"

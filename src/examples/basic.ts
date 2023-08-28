@@ -4,7 +4,7 @@ async function main() {
   const data = dataClient()
 
   // Get activities posted by Vitalik
-  const { results: activities } = await data.activities({ address: ['vitalik.eth'], limit: 5 })
+  const { results: activities } = await data.activities({ account: ['vitalik.eth'], limit: 5 })
   console.log(activities)
 
   // Get profiles of Vitalik

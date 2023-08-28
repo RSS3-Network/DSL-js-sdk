@@ -19,7 +19,7 @@ const myTheme: Theme<JSX.Element> = {
 async function main() {
   const client = await dataClient()
 
-  const { results: activities } = await client.activities({ address: ['vitalik.eth'], limit: 5 })
+  const { results: activities } = await client.activities({ account: ['vitalik.eth'], limit: 5 })
 
   if (!activities) throw 'no activities'
 

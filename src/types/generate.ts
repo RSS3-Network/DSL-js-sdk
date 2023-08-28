@@ -60,6 +60,7 @@ async function main() {
     'https://api.rss3.io/data/v1/openapi?json=true',
     (schema) => {
       delete schema.components.schemas.TransferTypes
+      schema.components.schemas.Platform.enum.sort()
       return schema
     },
     (schema) => {
