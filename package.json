@@ -1,5 +1,5 @@
 {
-  "name": "@the-index/js-sdk",
+  "name": "@rss3/js-sdk",
   "version": "0.6.0",
   "main": "lib/index.js",
   "engines": {
