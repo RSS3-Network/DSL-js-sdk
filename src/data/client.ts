@@ -18,10 +18,20 @@ export function client(opt: ClientOptions = {}) {
 
   return {
     /**
+     * Query transactions.
+     */
+    async activity(id: string) {
+      const { data, error } = await client.get('/activities/{id}', { params: { path: { id } } })
+      if (error || !data) throw error
+
+      return data
+    },
+
+    /**
      * Query activities.
      */
-    async activities(query: paths['/notes']['post']['requestBody']['content']['application/json']) {
-      const { data, error } = await client.post('/notes', {
+    async activities(query: paths['/accounts/activities']['post']['requestBody']['content']['application/json']) {
+      const { data, error } = await client.post('/accounts/activities', {
         body: query,
       })
       if (error || !data) throw error
@@ -32,12 +42,15 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query mastodon activities.
      */
-    async mastodonActivities(address: string, query: paths['/mastodon/{address}']['get']['parameters']['query'] = {}) {
+    async mastodonActivities(
+      account: string,
+      query: paths['/mastodon/{account}/activities']['get']['parameters']['query'] = {},
+    ) {
       const client = createClient<paths>(opt)
 
-      const { data, error } = await client.get('/mastodon/{address}', {
+      const { data, error } = await client.get('/mastodon/{account}/activities', {
         params: {
-          path: { address },
+          path: { account },
           query,
         },
       })
@@ -49,38 +62,13 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query profiles.
      */
-    async profiles(address: string, query: paths['/profiles/{address}']['get']['parameters']['query'] = {}) {
-      const { data, error } = await client.get('/profiles/{address}', {
+    async profiles(account: string, query: paths['/accounts/{account}/profiles']['get']['parameters']['query'] = {}) {
+      const { data, error } = await client.get('/accounts/{account}/profiles', {
         params: {
-          path: { address },
+          path: { account },
           query,
         },
       })
-      if (error || !data) throw error
-
-      return data
-    },
-
-    /**
-     * Query assets.
-     */
-    async assets(address: string, query: paths['/assets/{address}']['get']['parameters']['query'] = {}) {
-      const { data, error } = await client.get('/assets/{address}', {
-        params: {
-          path: { address },
-          query,
-        },
-      })
-      if (error || !data) throw error
-
-      return data
-    },
-
-    /**
-     * Query transactions.
-     */
-    async transaction(hash: string) {
-      const { data, error } = await client.get('/tx/{hash}', { params: { path: { hash } } })
       if (error || !data) throw error
 
       return data

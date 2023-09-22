@@ -7,422 +7,341 @@
 
 
 export interface paths {
-  "/apikey/apply": {
+  "/": {
+    /** @description It will auto redirect the browser to the Swagger UI to render the generated OpenAPI doc. If you request it with `Accept: application/json` header, it will return the OpenAPI doc in JSON format. */
+    get: {
+      parameters: {
+        header?: {
+          accept?: string;
+        };
+      };
+      responses: {
+        /** @description It will return the OpenAPI doc in JSON format. */
+        200: {
+          content: {
+            "application/json": unknown;
+          };
+        };
+        /** @description It will redirect the browser to the Swagger UI to render the generated OpenAPI doc. */
+        302: never;
+      };
+    };
+  };
+  "/accounts/activities": {
     post: {
       requestBody: {
         content: {
-          "application/json": {
-            address: string;
-          };
+          "application/json": components["schemas"]["AccountsActivitiesRequest"];
         };
       };
       responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": components["schemas"]["APIKey"];
-          };
-        };
-      };
-    };
-  };
-  "/apikey/{address}": {
-    get: {
-      parameters: {
-        path: {
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": components["schemas"]["APIKey"];
-          };
-        };
-      };
-    };
-  };
-  "/assets/{address}": {
-    get: {
-      parameters: {
-        query?: {
-          network?: components["schemas"]["NetworkName"][];
-          token_address?: string;
-          token_id?: string;
-          cursor?: string;
-          limit?: number;
-          refresh?: boolean;
-          block_spam?: boolean | null;
-        };
-        path: {
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
+        /** @description OK */
         200: {
           content: {
             "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Asset"][];
-              /** @description total number of items */
-              total?: number | null;
+              data: (components["schemas"]["Activity"] | null)[];
+              meta: components["schemas"]["MetaCursor"] | null;
+            };
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
             };
           };
         };
       };
     };
   };
-  "/exchanges/{exchange_type}": {
+  "/accounts/{account}/activities": {
     get: {
       parameters: {
         query?: {
-          cursor?: number;
-          name?: string[];
-          network?: components["schemas"]["NetworkName"][];
-        };
-        path: {
-          exchange_type: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["ExchangeResult"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/mastodon/{address}": {
-    get: {
-      parameters: {
-        query?: {
+          /** @description transactions limit, maximum 500 */
           limit?: number;
-          cursor?: string;
-          type?: string[];
-          tag?: string[];
-          network?: components["schemas"]["NetworkName"][];
-          platform?: components["schemas"]["PlatformName"][];
-          timestamp?: components["schemas"]["Time"];
-          hash?: string;
-          hash_list?: string[];
-          include_poap?: boolean;
-          refresh?: boolean;
-          page?: number;
-          query_status?: boolean;
-          token_id?: string;
-          count_only?: boolean;
+          /** @description actions limit, maximum 20 */
           action_limit?: number;
+          cursor?: string;
+          start_timestamp?: number;
+          end_timestamp?: number;
+          /** @description status */
+          status?: components["schemas"]["Status"];
+          direction?: components["schemas"]["Direction"];
+          network?: components["schemas"]["Network"][];
+          tag?: components["schemas"]["Tag"][];
+          type?: components["schemas"]["Type"][];
+          platform?: components["schemas"]["Platform"][];
         };
         path: {
-          /** @description address to query */
-          address: string;
+          /** @description account */
+          account: string;
         };
       };
       responses: {
-        /** @description Response */
+        /** @description OK */
         200: {
           content: {
             "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
+              data: (components["schemas"]["Activity"] | null)[];
+              meta: components["schemas"]["MetaCursor"] | null;
+            };
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
             };
           };
         };
       };
     };
   };
-  "/notes": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            action_limit?: number;
-            address: string[];
-            count_only?: boolean;
-            cursor?: string;
-            ignore_contract?: boolean;
-            include_poap?: boolean;
-            limit?: number;
-            network?: components["schemas"]["NetworkName"][];
-            page?: number;
-            platform?: components["schemas"]["PlatformName"][];
-            query_status?: boolean;
-            refresh?: boolean;
-            tag?: string[];
-            timestamp?: components["schemas"]["Time"];
-            type?: string[];
-          };
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/notes/social": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            address: string[];
-            count_only?: boolean;
-            cursor?: string;
-            limit?: number;
-            network?: components["schemas"]["NetworkName"][];
-            page?: number;
-            platform?: components["schemas"]["PlatformName"][];
-            tag?: string[];
-            timestamp?: components["schemas"]["Time"];
-            type?: string[];
-          };
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/notes/{address}": {
+  "/accounts/{account}/profiles": {
     get: {
       parameters: {
         query?: {
-          limit?: number;
-          cursor?: string;
-          type?: string[];
-          tag?: string[];
-          network?: components["schemas"]["NetworkName"][];
-          platform?: components["schemas"]["PlatformName"][];
-          timestamp?: components["schemas"]["Time"];
-          hash?: string;
-          hash_list?: string[];
-          include_poap?: boolean;
-          refresh?: boolean;
-          page?: number;
-          query_status?: boolean;
-          token_id?: string;
-          count_only?: boolean;
+          network?: components["schemas"]["Network"][];
+          platform?: components["schemas"]["Platform"][];
+        };
+        path: {
+          /** @description account */
+          account: string;
+        };
+      };
+      responses: {
+        /** @description OK */
+        200: {
+          content: {
+            "application/json": {
+              data: (components["schemas"]["Profile"] | null)[];
+            };
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+      };
+    };
+  };
+  "/activities/{id}": {
+    get: {
+      parameters: {
+        query?: {
+          /** @description actions limit, minimum 1, maximum 20 */
           action_limit?: number;
+          /** @description actions pag, minimum 1 */
+          action_page?: number;
         };
         path: {
-          /** @description address to query */
-          address: string;
+          /** @description id */
+          id: string;
         };
       };
       responses: {
-        /** @description Response */
+        /** @description OK */
         200: {
           content: {
             "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
+              data: components["schemas"]["Activity"] | null;
+              meta: components["schemas"]["MetaTotalPages"] | null;
+            };
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Not Found */
+        404: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
             };
           };
         };
       };
     };
   };
-  "/ns/{address}": {
-    get: {
-      parameters: {
-        path: {
-          address: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": components["schemas"]["NameServiceResult"];
-          };
-        };
-      };
-    };
-  };
-  "/platforms/notes/{platform}": {
+  "/mastodon/{account}/activities": {
     get: {
       parameters: {
         query?: {
+          /** @description mastodon limit, maximum 40 */
           limit?: number;
-          cursor?: string;
         };
         path: {
-          /** @description platform to query */
-          platform: components["schemas"]["PlatformName"];
+          /** @description mastodon handle */
+          account: string;
         };
       };
       responses: {
-        /** @description Response */
+        /** @description OK */
         200: {
           content: {
             "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Transaction"][];
-              /** @description total number of items */
-              total?: number | null;
+              data: (components["schemas"]["Activity"] | null)[];
+              meta: components["schemas"]["MetaCursor"] | null;
+            };
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
             };
           };
         };
       };
     };
   };
-  "/platforms/{platform_type}": {
+  "/networks/{network}/activities": {
     get: {
       parameters: {
         query?: {
-          network?: components["schemas"]["NetworkName"][];
-        };
-        path: {
-          platform_type: string;
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["PlatformResult"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/profiles": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": {
-            address: string[];
-            network?: components["schemas"]["NetworkName"][];
-            platform?: components["schemas"]["PlatformName"][];
-            refresh?: boolean;
-          };
-        };
-      };
-      responses: {
-        /** @description Response */
-        200: {
-          content: {
-            "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Profile"][];
-              /** @description total number of items */
-              total?: number | null;
-            };
-          };
-        };
-      };
-    };
-  };
-  "/profiles/{address}": {
-    get: {
-      parameters: {
-        query?: {
+          /** @description transactions limit, maximum 500 */
           limit?: number;
-          cursor?: string;
-          type?: string[];
-          tag?: string[];
-          network?: components["schemas"]["NetworkName"][];
-          platform?: components["schemas"]["PlatformName"][];
-          timestamp?: components["schemas"]["Time"];
-          hash?: string;
-          hash_list?: string[];
-          include_poap?: boolean;
-          refresh?: boolean;
-          page?: number;
-          query_status?: boolean;
-          token_id?: string;
-          count_only?: boolean;
+          /** @description actions limit, maximum 20 */
           action_limit?: number;
+          cursor?: string;
+          start_timestamp?: number;
+          end_timestamp?: number;
+          status?: components["schemas"]["Status"];
+          direction?: components["schemas"]["Direction"];
         };
         path: {
-          /** @description address to query */
-          address: string;
+          /** @description network */
+          network: components["schemas"]["Network"];
         };
       };
       responses: {
-        /** @description Response */
+        /** @description OK */
         200: {
           content: {
             "application/json": {
-              address_status?: components["schemas"]["Address"][];
-              cursor?: string;
-              message?: string;
-              result?: components["schemas"]["Profile"][];
-              /** @description total number of items */
-              total?: number | null;
+              data: (components["schemas"]["Activity"] | null)[];
+              meta: components["schemas"]["MetaCursor"] | null;
+            };
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
             };
           };
         };
       };
     };
   };
-  "/tx/{hash}": {
+  "/platforms/{platform}/activities": {
     get: {
       parameters: {
+        query?: {
+          /** @description transactions limit, maximum 500 */
+          limit?: number;
+          /** @description actions limit, maximum 20 */
+          action_limit?: number;
+          cursor?: string;
+          start_timestamp?: number;
+          end_timestamp?: number;
+          status?: components["schemas"]["Status"];
+          direction?: components["schemas"]["Direction"];
+          network?: components["schemas"]["Network"][];
+          tag?: components["schemas"]["Tag"][];
+          type?: components["schemas"]["Type"][];
+        };
         path: {
-          hash: string;
+          /** @description platform */
+          platform: components["schemas"]["Platform"];
         };
       };
       responses: {
-        /** @description Response */
+        /** @description OK */
         200: {
           content: {
-            "application/json": components["schemas"]["Transaction"];
+            "application/json": {
+              data: (components["schemas"]["Activity"] | null)[];
+              meta: components["schemas"]["MetaCursor"] | null;
+            };
+          };
+        };
+        /** @description Bad Request */
+        400: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
+          };
+        };
+        /** @description Internal Server Error */
+        500: {
+          content: {
+            "application/json": {
+              error: components["schemas"]["Error"];
+            };
           };
         };
       };
@@ -435,904 +354,710 @@ export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
     /**
-     * APIKey
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.APIKey
+     * AccountsActivitiesRequest
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/handler.AccountsActivitiesRequest
      */
-    APIKey: {
-      address: string;
-      key: string;
+    AccountsActivitiesRequest: {
+      /** @description account */
+      account: string[];
+      /**
+       * @description actions limit, default is 10
+       * @example 10
+       */
+      action_limit?: number;
+      cursor?: string | null;
+      direction?: components["schemas"]["Direction"] | null;
+      end_timestamp?: number | null;
+      /**
+       * @description transactions limit, default is 100
+       * @example 100
+       */
+      limit?: number;
+      network?: components["schemas"]["Network"][];
+      platform?: components["schemas"]["Platform"][];
+      start_timestamp?: number | null;
+      status?: components["schemas"]["Status"] | null;
+      tag?: components["schemas"]["Tag"][];
+      type?: components["schemas"]["Type"][];
     };
     /**
      * Action
-     * @description github.com/naturalselectionlabs/pregod/common/types.Action
+     * @description github.com/naturalselectionlabs/rss3api/internal/database/model.Action
      */
     Action: {
-      comment?: string;
-      examples?: components["schemas"]["Example"][];
+      from: string;
+      metadata: components["schemas"]["Metadata"];
+      platform?: string;
+      related_urls?: string[];
+      tag: components["schemas"]["Tag"];
+      to: string;
+      type: components["schemas"]["Type"];
+    };
+    /**
+     * Activity
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v2.Activity
+     */
+    Activity: {
+      actions: components["schemas"]["Action"][];
+      direction?: components["schemas"]["Direction"];
+      feeToken?: string | null;
+      feeValue?: components["schemas"]["Decimal"] | null;
+      from: string;
+      id: string;
+      network: string;
+      owner?: string;
+      platform?: components["schemas"]["Platform"] | null;
+      status: components["schemas"]["Status"];
+      tag: components["schemas"]["Tag"];
+      timestamp: number;
+      to: string;
+      type: components["schemas"]["Type"];
+    };
+    Address: number[];
+    /**
+     * Bytes
+     * @description github.com/ethereum/go-ethereum/common/hexutil.Bytes
+     */
+    Bytes: number[];
+    /**
+     * Chain
+     * @description github.com/naturalselectionlabs/sakuin/common/schema.Chain
+     */
+    Chain: {
+      chain_id: number;
       name?: string;
-      platforms?: string[];
+      network: components["schemas"]["Network1"];
+      symbol?: string;
     };
     /**
-     * Address
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.Address
+     * CollectibleApproval
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.CollectibleApproval
      */
-    Address: {
-      address: string;
-      count: number;
-      done_networks: components["schemas"]["StringArray"];
-      indexing_networks: components["schemas"]["StringArray"];
-      /**
-       * RawMessage
-       * @description encoding/json.RawMessage
-       */
-      nonce: unknown;
-      status: boolean;
-      /**
-       * Time
-       * @description time.Time
-       */
-      updated_at: string;
+    CollectibleApproval: {
+      action: components["schemas"]["CollectibleApprovalAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      /** RawMessage */
+      properties?: unknown;
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * Asset
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.Asset
+     * CollectibleApprovalAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.CollectibleApprovalAction
+     * @enum {unknown}
      */
-    Asset: {
-      attributes?: components["schemas"]["RawMessage"];
-      description: string;
-      image: string;
-      network: components["schemas"]["NetworkName"];
-      owner: string;
-      related_urls: components["schemas"]["StringArray"];
-      timestamp: components["schemas"]["Time"];
-      title: string;
-      token_address: string;
-      token_id: string;
-      token_standard: string;
+    CollectibleApprovalAction: "approve" | "revoke";
+    /**
+     * CollectibleAuction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.CollectibleAuction
+     */
+    CollectibleAuction: {
+      action: components["schemas"]["CollectibleAuctionAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      cost?: components["schemas"]["TokenMetadata"] | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * BatchGetNotesRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetNotesRequest
+     * CollectibleAuctionAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.CollectibleAuctionAction
+     * @enum {unknown}
      */
-    BatchGetNotesRequest: {
-      action_limit?: number;
-      address: string[];
-      count_only?: boolean;
-      cursor?: string;
-      ignore_contract?: boolean;
-      include_poap?: boolean;
-      limit?: number;
-      network?: components["schemas"]["NetworkName"][];
-      page?: number;
-      platform?: components["schemas"]["PlatformName"][];
-      query_status?: boolean;
-      refresh?: boolean;
-      tag?: string[];
-      timestamp?: components["schemas"]["Time"];
-      type?: string[];
+    CollectibleAuctionAction: "bid" | "cancel" | "create" | "finalize" | "invalidate" | "update";
+    /**
+     * CollectibleTrade
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.CollectibleTrade
+     */
+    CollectibleTrade: {
+      action: components["schemas"]["CollectibleTradeAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      cost?: components["schemas"]["TokenMetadata"] | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * BatchGetProfilesRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetProfilesRequest
+     * CollectibleTradeAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.CollectibleTradeAction
+     * @enum {unknown}
      */
-    BatchGetProfilesRequest: {
-      address: string[];
-      network?: components["schemas"]["NetworkName"][];
-      platform?: components["schemas"]["PlatformName"][];
-      refresh?: boolean;
+    CollectibleTradeAction: "buy" | "cancel" | "invalidate" | "offer" | "sell" | "set" | "update";
+    /**
+     * CollectibleTransfer
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.CollectibleTransfer
+     */
+    CollectibleTransfer: {
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * BatchGetSocialNotesRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.BatchGetSocialNotesRequest
+     * CollectibleType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.CollectibleType
+     * @enum {unknown}
      */
-    BatchGetSocialNotesRequest: {
-      address: string[];
-      count_only?: boolean;
-      cursor?: string;
-      limit?: number;
-      network?: components["schemas"]["NetworkName"][];
-      page?: number;
-      platform?: components["schemas"]["PlatformName"][];
-      tag?: string[];
-      timestamp?: components["schemas"]["Time"];
-      type?: string[];
-    };
+    CollectibleType: "approval" | "auction" | "burn" | "mint" | "trade" | "transfer";
     /**
-     * Bridge
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Bridge
+     * CommonError[github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
+     * @description github.com/NaturalSelectionLabs/goapi/lib/openapi.CommonError[github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
      */
-    Bridge: {
-      action: string;
-      target_network: components["schemas"]["TargetNetwork"];
-      token: components["schemas"]["Token"];
-    };
-    /**
-     * CexResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.CexResult
-     */
-    CexResult: {
-      address: string;
-      name: string;
-      network: components["schemas"]["NetworkName"];
+    CommonError: {
+      code: components["schemas"]["ErrorCode"];
+      details?: components["schemas"]["CommonError"][];
+      innererror?: unknown;
+      message?: string;
+      target?: string;
     };
     /**
      * Decimal
      * @description github.com/shopspring/decimal.Decimal
      */
-    Decimal: string;
+    Decimal: Record<string, never>;
     /**
-     * DexResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.DexResult
+     * Direction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Direction
+     * @enum {unknown}
      */
-    DexResult: {
-      address: string;
-      name: string;
-      network: components["schemas"]["NetworkName"];
-      pair: string;
-    };
+    Direction: "in" | "out";
     /**
      * Donation
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Donation
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.Donation
      */
     Donation: {
-      description: string;
-      logo: string;
-      platform: components["schemas"]["PlatformName"];
-      title: string;
-      token: components["schemas"]["Token"];
+      description?: string;
+      logo?: string;
+      title?: string;
+      token: components["schemas"]["TokenMetadata"];
     };
     /**
-     * Example
-     * @description github.com/naturalselectionlabs/pregod/common/types.Example
+     * DonationType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.DonationType
+     * @enum {unknown}
      */
-    Example: {
-      hash?: string;
-      text?: string;
+    DonationType: "donate";
+    /**
+     * Error
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.Error
+     */
+    Error: {
+      code: components["schemas"]["ErrorCode"];
+      details?: components["schemas"]["CommonError"][];
+      innererror?: unknown;
+      message?: string;
+      target?: string;
     };
     /**
-     * ExchangeResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.ExchangeResult
+     * ErrorCode
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.ErrorCode
+     * @enum {unknown}
      */
-    ExchangeResult: components["schemas"]["CexResult"] | components["schemas"]["DexResult"];
+    ErrorCode: "address_is_empty" | "address_is_invalid" | "bad_params" | "bad_request" | "internal_error" | "not_found" | "validate_failed";
+    /**
+     * ExchangeLiquidity
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.ExchangeLiquidity
+     */
+    ExchangeLiquidity: {
+      action: components["schemas"]["ExchangeLiquidityAction"];
+      tokens: components["schemas"]["TokenMetadata"][];
+    };
+    /**
+     * ExchangeLiquidityAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.ExchangeLiquidityAction
+     * @enum {unknown}
+     */
+    ExchangeLiquidityAction: "add" | "borrow" | "collect" | "remove" | "repay" | "supply" | "withdraw";
+    /**
+     * ExchangeLoan
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.ExchangeLoan
+     */
+    ExchangeLoan: {
+      action: components["schemas"]["ExchangeLoanAction"];
+      amount?: components["schemas"]["TokenMetadata"] | null;
+      collateral: components["schemas"]["TokenMetadata"];
+    };
+    /**
+     * ExchangeLoanAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.ExchangeLoanAction
+     * @enum {unknown}
+     */
+    ExchangeLoanAction: "create" | "liquidate" | "refinance" | "repay" | "seize";
+    /**
+     * ExchangeSwap
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.ExchangeSwap
+     */
+    ExchangeSwap: {
+      from: components["schemas"]["TokenMetadata"];
+      to: components["schemas"]["TokenMetadata"];
+    };
+    /**
+     * ExchangeType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.ExchangeType
+     * @enum {unknown}
+     */
+    ExchangeType: "liquidity" | "loan" | "staking" | "swap";
+    /**
+     * GovernanceOrganization
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.GovernanceOrganization
+     */
+    GovernanceOrganization: {
+      about?: string;
+      id: string;
+      name: string;
+    };
+    /**
+     * GovernanceProposal
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.GovernanceProposal
+     */
+    GovernanceProposal: {
+      body?: string;
+      end_at?: components["schemas"]["Time"] | null;
+      end_block?: components["schemas"]["Decimal"] | null;
+      id: string;
+      link?: string;
+      options?: string[];
+      organization?: components["schemas"]["GovernanceOrganization"] | null;
+      /** Time */
+      start_at?: string | null;
+      start_block?: components["schemas"]["Decimal"] | null;
+      title?: string;
+    };
+    /**
+     * GovernanceType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.GovernanceType
+     * @enum {unknown}
+     */
+    GovernanceType: "propose" | "vote";
+    /**
+     * GovernanceVote
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.GovernanceVote
+     */
+    GovernanceVote: {
+      choice: string;
+      count?: components["schemas"]["Decimal"] | null;
+      proposal: components["schemas"]["GovernanceProposal"] | null;
+      reason?: string;
+    };
     /**
      * Int
      * @description math/big.Int
      */
-    Int: number;
-    /**
-     * Liquidity
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Liquidity
-     */
-    Liquidity: {
-      action: string;
-      protocol: string;
-      tokens: components["schemas"]["Token"][];
-    };
+    Int: Record<string, never>;
     /**
      * Media
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Media
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.Media
      */
     Media: {
       address: string;
       mime_type: string;
     };
     /**
-     * MultiSig
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.MultiSig
+     * MetaCursor
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/handler.MetaCursor
      */
-    MultiSig: {
-      action: string;
-      owner?: string | null;
-      success?: boolean;
-      /**
-       * Int
-       * @description math/big.Int
-       */
-      threshold?: number | null;
-      vault: components["schemas"]["Vault"];
+    MetaCursor: {
+      cursor: string;
     };
     /**
-     * NameServiceResult
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.NameServiceResult
+     * MetaTotalPages
+     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/handler.MetaTotalPages
      */
-    NameServiceResult: {
-      address: string;
-      arb: string;
-      avvy: string;
-      bit: string;
-      crossbell: string;
-      cyber: string;
-      ens: string;
-      lens: string;
-      spaceid: string;
-      unstoppable_domains: string;
+    MetaTotalPages: {
+      totalPages: number;
     };
     /**
-     * NetworkName
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.NetworkName
-     * @enum {string}
+     * Metadata
+     * @description github.com/naturalselectionlabs/sakuin/common/schema.Metadata
      */
-    NetworkName: "EIP-1577" | "aptos" | "arbitrum" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "celo" | "conflux" | "crossbell" | "ethereum" | "ethereum_classic" | "fantom" | "farcaster" | "optimism" | "polygon" | "xdai" | "zksync";
+    Metadata: components["schemas"]["CollectibleApproval"] | components["schemas"]["CollectibleAuction"] | components["schemas"]["CollectibleTrade"] | components["schemas"]["CollectibleTransfer"] | components["schemas"]["Donation"] | components["schemas"]["ExchangeLiquidity"] | components["schemas"]["ExchangeLoan"] | components["schemas"]["ExchangeSwap"] | components["schemas"]["GovernanceProposal"] | components["schemas"]["GovernanceVote"] | components["schemas"]["MetaverseTrade"] | components["schemas"]["MetaverseTransfer"] | components["schemas"]["SocialPost"] | components["schemas"]["SocialProfile"] | components["schemas"]["SocialProxy"] | components["schemas"]["TransactionApproval"] | components["schemas"]["TransactionBridge"] | components["schemas"]["TransactionDeploy"] | components["schemas"]["TransactionMultisig"] | components["schemas"]["TransactionTransfer"];
     /**
-     * Organization
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Organization
+     * MetaverseTrade
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.MetaverseTrade
      */
-    Organization: {
-      about?: string;
-      id: string;
-      name: string;
-      type_on_platform?: components["schemas"]["PlatformName"][];
-    };
-    /**
-     * Period
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Period
-     */
-    Period: {
-      end: string;
-      start: string;
-    };
-    /**
-     * PlatformName
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.PlatformName
-     * @enum {string}
-     */
-    PlatformName: "0x" | "1inch" | "AAVE" | "Avvy" | "BendDAO" | "Blur" | "Crossbell" | "Curve" | "DODO" | "EIP-1577" | "ENS Registrar" | "Element" | "Farcaster" | "Foundation" | "Galaxy" | "Gem" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lenster" | "Link3" | "LooksRare" | "MetaMask" | "Mirror" | "NSwap" | "Nouns" | "OpenSea" | "Orb" | "POAP" | "PancakeSwap" | "Paraswap" | "QuickSwap" | "Quix" | "RARA" | "Rainbow" | "Snapshot" | "Sound" | "Space ID" | "SpookySwap" | "SushiSwap" | "TraderJoe" | "Uniswap" | "Unstoppable" | "Velodrome" | "Zerion" | "Zora" | "tofuNFT" | "xLog";
-    /**
-     * PlatformResult
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.PlatformResult
-     */
-    PlatformResult: {
-      name: string;
-      network?: components["schemas"]["NetworkName"];
-      tag: string;
-      type?: string;
-    };
-    /**
-     * Post
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Post
-     */
-    Post: {
-      action?: string;
-      author?: string[];
-      body?: string;
-      categories?: string[];
-      created_at?: string;
-      media?: components["schemas"]["Media"][];
-      origin_note_id?: string;
-      profile_id?: components["schemas"]["Int"] | null;
-      publication_id?: components["schemas"]["Int"] | null;
-      reward?: components["schemas"]["Token"] | null;
-      summary?: string;
-      tags?: string[];
-      target?: components["schemas"]["Post"] | null;
-      target_url?: string;
+    MetaverseTrade: {
+      action?: components["schemas"]["MetaverseTradeAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      cost?: components["schemas"]["TokenMetadata"];
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
       title?: string;
-      type_on_platform?: components["schemas"]["PlatformName"][];
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * PostAPIKeyRequest
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.PostAPIKeyRequest
+     * MetaverseTradeAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.MetaverseTradeAction
+     * @enum {unknown}
      */
-    PostAPIKeyRequest: {
-      address: string;
+    MetaverseTradeAction: "buy" | "list" | "sell";
+    /**
+     * MetaverseTransfer
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.MetaverseTransfer
+     */
+    MetaverseTransfer: {
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
+    /**
+     * MetaverseType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.MetaverseType
+     * @enum {unknown}
+     */
+    MetaverseType: "approval" | "burn" | "claim" | "mint" | "trade" | "transfer";
+    /**
+     * Network
+     * @description github.com/naturalselectionlabs/rss3api/common/schema.Network
+     * @enum {unknown}
+     */
+    Network: "arbitrum_nova" | "arbitrum_one" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "crossbell" | "erc1577" | "ethereum" | "farcaster" | "gnosis" | "optimism" | "polygon" | "zksync_era" | "zksync_lite";
+    /**
+     * Network
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Network
+     * @enum {unknown}
+     */
+    Network1: "arweave" | "erc1577" | "ethereum" | "farcaster" | "unknown" | "zksync_lite";
+    /**
+     * Platform
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Platform
+     * @enum {unknown}
+     */
+    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "Polygon" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync Era" | "zkSync Lite" | "zkSync";
     /**
      * Profile
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/social.Profile
+     * @description github.com/naturalselectionlabs/rss3api/common/schema/v2.Profile
      */
     Profile: {
-      action?: string;
-      address: string;
-      banner_uri?: components["schemas"]["StringArray"];
-      bio: string;
-      expire_at?: components["schemas"]["Time"] | null;
-      handle: string;
-      name: string;
-      network: components["schemas"]["NetworkName"];
-      platform: components["schemas"]["PlatformName"];
-      profile_uri?: components["schemas"]["StringArray"];
-      proxy?: string;
-      social_uri?: components["schemas"]["StringArray"];
-      source: string;
+      action?: components["schemas"]["SocialProfileAction"];
+      address?: components["schemas"]["Address"];
+      bannerURI?: string[];
+      bio?: string;
+      expireAt?: components["schemas"]["Time"] | null;
+      expiry?: components["schemas"]["Time"] | null;
+      handle?: string;
+      image_uri?: string;
+      key?: string;
+      name?: string;
+      network: string;
+      platform: string;
+      profileURI?: string[];
+      profile_id?: string;
+      socialURI?: string[];
       url?: string;
+      value?: string;
     };
-    /**
-     * Proposal
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Proposal
-     */
-    Proposal: {
-      body?: string;
-      end_at: components["schemas"]["Time"];
-      id: string;
-      options: string[];
-      organization?: components["schemas"]["Organization"] | null;
-      start_at: components["schemas"]["Time"];
-      title?: string;
-      type_on_platform?: components["schemas"]["PlatformName"][];
-    };
-    /**
-     * RawMessage
-     * @description encoding/json.RawMessage
-     */
+    /** RawMessage */
     RawMessage: unknown;
     /**
-     * Response
-     * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.Response
+     * SocialPost
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialPost
      */
-    Response: {
-      address_status?: components["schemas"]["Address"][];
-      cursor?: string;
-      message?: string;
-      result?: Record<string, never>;
-      /** @description total number of items */
-      total?: number | null;
+    SocialPost: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: components["schemas"]["Media"][];
+      profile_id?: string;
+      publication_id?: string;
+      summary?: string;
+      tags?: string[];
+      target?: components["schemas"]["SocialPost"] | null;
+      target_url?: string;
+      title?: string;
     };
     /**
-     * SnapShot
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.SnapShot
+     * SocialProfile
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialProfile
      */
-    SnapShot: {
-      choice: components["schemas"]["RawMessage"];
-      proposal: components["schemas"]["RawMessage"];
-      space: components["schemas"]["RawMessage"];
+    SocialProfile: {
+      action?: components["schemas"]["SocialProfileAction"];
+      address?: components["schemas"]["Address"];
+      bio?: string;
+      expiry?: components["schemas"]["Time"] | null;
+      handle?: string;
+      image_uri?: string;
+      key?: string;
+      name?: string;
+      profile_id?: string;
+      value?: string;
     };
     /**
-     * Staking
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.Staking
+     * SocialProfileAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialProfileAction
+     * @enum {unknown}
      */
-    Staking: {
-      action: string;
-      period?: components["schemas"]["Period"] | null;
-      token: components["schemas"]["Token"];
+    SocialProfileAction: "create" | "renew" | "transfer" | "unwrap" | "update" | "wrap";
+    /**
+     * SocialProxy
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialProxy
+     */
+    SocialProxy: {
+      action?: components["schemas"]["SocialProxyAction"];
+      profile?: components["schemas"]["SocialProfile"];
+      proxy_address: components["schemas"]["Address"];
     };
     /**
-     * StringArray
-     * @description github.com/lib/pq.StringArray
+     * SocialProxyAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialProxyAction
+     * @enum {unknown}
      */
-    StringArray: string[];
+    SocialProxyAction: "appoint" | "remove";
     /**
-     * Swap
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Swap
+     * SocialType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.SocialType
+     * @enum {unknown}
      */
-    Swap: {
-      from: components["schemas"]["Token"];
-      protocol: string;
-      to: components["schemas"]["Token"];
-    };
+    SocialType: "comment" | "delete" | "follow" | "mint" | "post" | "profile" | "proxy" | "revise" | "share" | "unfollow";
     /**
-     * TargetNetwork
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/transaction.TargetNetwork
+     * Standard
+     * @description github.com/naturalselectionlabs/sakuin/common/ethereum/contract.Standard
      */
-    TargetNetwork: {
-      chain_id: number;
-      name: string;
-      symbol: string;
-    };
+    Standard: number;
+    /**
+     * Status
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Status
+     * @enum {unknown}
+     */
+    Status: "failed" | "successful";
+    /**
+     * Tag
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Tag
+     * @enum {unknown}
+     */
+    Tag: "collectible" | "donation" | "exchange" | "governance" | "metaverse" | "social" | "transaction" | "unknown";
     /**
      * Time
      * @description time.Time
      */
     Time: string;
     /**
-     * Token
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Token
+     * TokenMetadata
+     * @description github.com/naturalselectionlabs/sakuin/common/schema.TokenMetadata
      */
-    Token: {
-      action?: string;
+    TokenMetadata: {
       animation_url?: string;
-      attributes?: components["schemas"]["TokenAttribute"][];
-      collection?: string;
-      contract_address?: string;
-      cost?: components["schemas"]["Token"] | null;
+      contract_address?: string | null;
       decimals?: number;
       description?: string;
-      end_time?: components["schemas"]["Time"] | null;
-      external_link?: string;
       external_url?: string;
-      id?: string;
+      id?: components["schemas"]["Decimal"] | null;
       image?: string;
-      name: string;
-      standard: string;
-      start_time?: components["schemas"]["Time"] | null;
-      symbol: string;
-      /**
-       * Decimal
-       * @description github.com/shopspring/decimal.Decimal
-       */
-      value?: string | null;
-      value_display?: components["schemas"]["Decimal"] | null;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * TokenAttribute
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.TokenAttribute
+     * TransactionApproval
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionApproval
      */
-    TokenAttribute: {
-      trait_type: string;
-      value: Record<string, never>;
+    TransactionApproval: {
+      action: components["schemas"]["TransactionApprovalAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
     /**
-     * Transaction
-     * @description github.com/naturalselectionlabs/pregod/common/database/model.Transaction
+     * TransactionApprovalAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionApprovalAction
+     * @enum {unknown}
      */
-    Transaction: {
-      actions: components["schemas"]["Transfer"][];
-      address_from: string;
-      address_to?: string;
-      created_at: components["schemas"]["Time"];
-      fee?: components["schemas"]["Decimal"] | null;
-      hash: string;
-      network: components["schemas"]["NetworkName"];
-      owner: string;
-      platform?: components["schemas"]["PlatformName"];
-      success: boolean | null;
-      tag: string;
-      timestamp: components["schemas"]["Time"];
-      type: string;
-      updated_at: components["schemas"]["Time"];
+    TransactionApprovalAction: "approve" | "revoke";
+    /**
+     * TransactionBridge
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionBridge
+     */
+    TransactionBridge: {
+      action: components["schemas"]["TransactionBridgeAction"];
+      source_network: components["schemas"]["Chain"];
+      target_network: components["schemas"]["Chain"];
+      token: components["schemas"]["TokenMetadata"];
     };
     /**
-     * Transfer
-     * @description For all the possible types of transfer, see the TransferTypes in this doc.
+     * TransactionBridgeAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionBridgeAction
+     * @enum {unknown}
      */
-    Transfer: {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "transfer";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "burn";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "approval";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "withdraw";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "deposit";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "transfer";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "auction";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "trade";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "burn";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "approval";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "edit";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "trade";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "list";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "unlist";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "metaverse";
-      /** @enum {string} */
-      type: "claim";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "music";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["MultiSig"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "multisig";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Swap"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "swap";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Liquidity"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "liquidity";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "post";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "revise";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "comment";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "share";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "mint";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "wiki";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Post"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "reward";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "proxy";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "profile";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "follow";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Profile"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "social";
-      /** @enum {string} */
-      type: "unfollow";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Donation"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "donation";
-      /** @enum {string} */
-      type: "donate";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["SnapShot"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "governance";
-      /** @enum {string} */
-      type: "propose";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Vote"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "governance";
-      /** @enum {string} */
-      type: "vote";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Staking"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "exchange";
-      /** @enum {string} */
-      type: "staking";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Bridge"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "transaction";
-      /** @enum {string} */
-      type: "bridge";
-    } | {
-      address_from: string;
-      address_to?: string;
-      index: number;
-      metadata: components["schemas"]["Token"];
-      platform?: components["schemas"]["PlatformName"];
-      related_urls: components["schemas"]["StringArray"];
-      /** @enum {string} */
-      tag: "collectible";
-      /** @enum {string} */
-      type: "poap";
-    };
+    TransactionBridgeAction: "deposit" | "withdraw";
     /**
-     * TransferType
-     * @description github.com/naturalselectionlabs/pregod/common/types.TransferType
+     * TransactionDeploy
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionDeploy
      */
-    TransferType: {
-      Actions: components["schemas"]["Action"][];
-      Metadata: Record<string, never>;
-      Tag: string;
-      Type: string;
-    };
-    /**
-     * Vault
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Vault
-     */
-    Vault: {
+    TransactionDeploy: {
       address: string;
-      owners: string[];
-      threshold: components["schemas"]["Int"] | null;
+      code?: components["schemas"]["Bytes"];
+      name?: string;
+    };
+    /**
+     * TransactionMultisig
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionMultisig
+     */
+    TransactionMultisig: {
+      action: components["schemas"]["TransactionMultisigAction"];
+      owner?: string | null;
+      success?: boolean | null;
+      threshold?: components["schemas"]["Int"] | null;
+      vault: components["schemas"]["TransactionMultisigVault"];
+    };
+    /**
+     * TransactionMultisigAction
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionMultisigAction
+     * @enum {unknown}
+     */
+    TransactionMultisigAction: "add_owner" | "change_threshold" | "create" | "execution" | "rejection" | "remove_owner";
+    /**
+     * TransactionMultisigVault
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionMultisigVault
+     */
+    TransactionMultisigVault: {
+      address: string;
       version: string;
     };
     /**
-     * Vote
-     * @description github.com/naturalselectionlabs/pregod/common/database/model/metadata.Vote
+     * TransactionTransfer
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionTransfer
      */
-    Vote: {
-      choice: string;
-      proposal: components["schemas"]["Proposal"] | null;
-      type_on_platform?: components["schemas"]["PlatformName"][];
+    TransactionTransfer: {
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: components["schemas"]["RawMessage"];
+      standard?: components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: components["schemas"]["Decimal"] | null;
     };
+    /**
+     * TransactionType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.TransactionType
+     * @enum {unknown}
+     */
+    TransactionType: "approval" | "bridge" | "burn" | "deploy" | "mint" | "multisig" | "transfer";
+    /**
+     * Type
+     * @description github.com/naturalselectionlabs/rss3api/common/schema.Type
+     * @enum {unknown}
+     */
+    Type: "approval" | "auction" | "bridge" | "burn" | "claim" | "comment" | "delete" | "deploy" | "donate" | "follow" | "liquidity" | "loan" | "mint" | "multisig" | "post" | "profile" | "propose" | "proxy" | "revise" | "share" | "staking" | "swap" | "trade" | "transfer" | "unfollow" | "unknown" | "vote";
+    /**
+     * Type
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Type
+     */
+    Type1: unknown;
+    /**
+     * UnknownType
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.UnknownType
+     * @enum {unknown}
+     */
+    UnknownType: "unknown";
   };
   responses: never;
   parameters: never;

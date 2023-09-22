@@ -5,67 +5,13 @@ main()
 
 async function main() {
   await generate(
-    'search',
-    'https://dev-search.rss3.dev/v3/api-docs',
-    (schema) => {
-      schema.components.schemas.FeedRankActionDoc4ExternalDTO = {
-        allOf: [
-          {
-            $ref: '#/components/schemas/FeedRankActionDoc4ExternalDetailDTO',
-          },
-          {
-            type: 'object',
-            properties: {
-              search_extension: { $ref: '#/components/schemas/ActivitiesExDTO' },
-            },
-          },
-        ],
-      }
-
-      schema.components.schemas.WikiActionDTO = {
-        allOf: [
-          {
-            $ref: '#/components/schemas/FeedRankActionDoc4ExternalDetailDTO',
-          },
-          {
-            type: 'object',
-            properties: {
-              search_extension: { $ref: '#/components/schemas/WikiExDTO' },
-            },
-          },
-        ],
-      }
-
-      return schema
-    },
-    (schema) => {
-      schema = schema
-        .replace(/\*\/\*/g, 'application/json')
-        .replace(/innerMap\?: \{[\s\S]+?\};/g, '')
-        .replace(/Record<string, never>/g, 'Record<string, any>')
-        .replace(/empty\?: boolean;/g, '')
-        .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
-        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
-        .replace(
-          /FeedRankActionDoc4ExternalDetailDTO: {[^{}]+}/,
-          `FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer']`,
-        )
-
-      return (schema = `import {components as data} from './data'\n${schema}`)
-    },
-  )
-
-  await generate(
     'data',
-    'https://test-pregod.rss3.dev/v1/openapi?json=true',
+    'http://localhost:8080/',
     (schema) => {
-      delete schema.components.schemas.TransferTypes
       return schema
     },
     (schema) => {
       return schema
-        .replace(/(platform\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["PlatformName"]$3;')
-        .replace(/(network\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["NetworkName"]$3;')
     },
   )
 }
@@ -77,7 +23,7 @@ async function generate(
   jsonFn: null | ((schema: any) => any),
   tsFn: (schema: string) => string,
 ) {
-  let schema = await (await fetch(url)).json()
+  let schema = await (await fetch(url, { headers: { Accept: 'application/json' } })).json()
   schema = jsonFn ? jsonFn(schema) : schema
   writeFileSync(`tmp/${name}.json`, JSON.stringify(schema))
   spawnSync('npx', ['--yes', 'openapi-typescript@6.3.9', `tmp/${name}.json`, '--output', `src/types/${name}.ts`], {

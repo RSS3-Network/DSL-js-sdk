@@ -380,7 +380,7 @@ export interface components {
       network?: string;
       platform?: string;
       relatedUrls?: string[];
-      metadata?: data['schemas']['Transfer']['metadata'];
+      metadata?: data['schemas']['Metadata'];
       owner?: string;
       /** Format: float */
       score?: number;
@@ -628,7 +628,7 @@ export interface components {
       network_agg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
       platform_agg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
     };
-    FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer'];
+    FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Metadata'];
     FeedRankDoc4ExternalDetailDTO: {
       id?: string;
       owner?: string;
