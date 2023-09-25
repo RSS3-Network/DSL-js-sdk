@@ -1,11 +1,13 @@
 {
   "name": "@rss3/js-sdk",
-  "version": "0.6.1",
+  "description": "RSS3 JavaScript SDK, the Turbocharger🌪️ for Your Next Open Web Development.",
+  "version": "0.6.2",
+  "author": "Natural Selection Labs and RSS3 Contributors",
+  "license": "MIT",
   "main": "lib/index.js",
   "engines": {
     "node": ">=v19.8.1"
   },
-  "description": "js sdk for rss3 services",
   "scripts": {
     "generate": "npm run build && node lib/types/generate",
     "build": "rm -rf lib && tsc",
@@ -14,8 +16,6 @@
     "format": "eslint --fix && prettier -w .",
     "prepare": "npm run build"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@types/debug": "^4.1.8",
     "@types/html-to-text": "^9.0.1",
