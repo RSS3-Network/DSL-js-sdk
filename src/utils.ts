@@ -1,4 +1,4 @@
-import { components } from './types/search'
+import { components } from './types/search-internal'
 import Debug from 'debug'
 
 export const debug = Debug('@rss3/js-sdk')

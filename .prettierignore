@@ -2,5 +2,7 @@ lib/
 tmp/
 cspell.json
 src/types/data.ts
-src/types/search.ts
+src/types/search-external.ts
+src/types/search-internal.ts
+src/metadata-doc.ts
 src/format/activity-examples

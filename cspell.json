@@ -4,20 +4,23 @@
   "ignorePaths": [
     "lib",
     "tmp",
-    "src/types/{data,search}.ts",
-    "src/format/activity-examples"
+    "src/types/{data,search-internal,search-external}.ts",
+    "src/format/activity-examples",
+    "src/metadata-doc.ts"
   ],
   "words": [
     "AAVE",
     "Aavegotchi",
     "azuki",
     "Carv",
+    "Correctionv",
     "crossbell",
     "GHST",
     "Lenster",
     "metaverse",
     "openapi",
     "poap",
+    "Pourteaux",
     "pregod",
     "punkess",
     "searchv",

@@ -2,7 +2,7 @@
 
 import { spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
-import { DEFAULT_DATA_SERVER } from '../constants'
+import { DEFAULT_DATA_SERVER, DEFAULT_SEARCH_SERVER } from '../constants'
 
 main()
 
@@ -16,6 +16,44 @@ async function main() {
     },
     (schema) => {
       return schema
+    },
+  )
+
+  await generate(
+    'search-external',
+    DEFAULT_SEARCH_SERVER + '/v3/api-docs/External API',
+    (schema) => {
+      return schema
+    },
+    (schema) => {
+      schema = schema
+        .replace(/\*\/\*/g, 'application/json')
+        .replace(/innerMap\?: \{[\s\S]+?\};/g, '')
+        .replace(/Record<string, never>/g, 'Record<string, any>')
+        .replace(/empty\?: boolean;/g, '')
+        .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Metadata']")
+
+      return (schema = `import {components as data} from './data'\n${schema}`)
+    },
+  )
+
+  await generate(
+    'search-internal',
+    DEFAULT_SEARCH_SERVER + '/v3/api-docs/Internal API',
+    (schema) => {
+      return schema
+    },
+    (schema) => {
+      schema = schema
+        .replace(/\*\/\*/g, 'application/json')
+        .replace(/innerMap\?: \{[\s\S]+?\};/g, '')
+        .replace(/Record<string, never>/g, 'Record<string, any>')
+        .replace(/empty\?: boolean;/g, '')
+        .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Metadata']")
+
+      return (schema = `import {components as data} from './data'\n${schema}`)
     },
   )
 }
