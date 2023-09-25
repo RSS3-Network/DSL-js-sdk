@@ -7,26 +7,6 @@
 
 
 export interface paths {
-  "/": {
-    /** @description It will auto redirect the browser to the Swagger UI to render the generated OpenAPI doc. If you request it with `Accept: application/json` header, it will return the OpenAPI doc in JSON format. */
-    get: {
-      parameters: {
-        header?: {
-          accept?: string;
-        };
-      };
-      responses: {
-        /** @description It will return the OpenAPI doc in JSON format. */
-        200: {
-          content: {
-            "application/json": unknown;
-          };
-        };
-        /** @description It will redirect the browser to the Swagger UI to render the generated OpenAPI doc. */
-        302: never;
-      };
-    };
-  };
   "/accounts/activities": {
     post: {
       requestBody: {
@@ -74,7 +54,6 @@ export interface paths {
           cursor?: string;
           start_timestamp?: number;
           end_timestamp?: number;
-          /** @description status */
           status?: components["schemas"]["Status"];
           direction?: components["schemas"]["Direction"];
           network?: components["schemas"]["Network"][];
@@ -263,7 +242,6 @@ export interface paths {
           direction?: components["schemas"]["Direction"];
         };
         path: {
-          /** @description network */
           network: components["schemas"]["Network"];
         };
       };
@@ -296,6 +274,19 @@ export interface paths {
       };
     };
   };
+  "/openapi.json": {
+    /** @description It responds the OpenAPI doc for this service in JSON format. */
+    get: {
+      responses: {
+        /** @description It will return the OpenAPI doc in JSON format. */
+        200: {
+          content: {
+            "application/json": unknown;
+          };
+        };
+      };
+    };
+  };
   "/platforms/{platform}/activities": {
     get: {
       parameters: {
@@ -314,7 +305,6 @@ export interface paths {
           type?: components["schemas"]["Type"][];
         };
         path: {
-          /** @description platform */
           platform: components["schemas"]["Platform"];
         };
       };
@@ -355,13 +345,14 @@ export interface components {
   schemas: {
     /**
      * AccountsActivitiesRequest
-     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/handler.AccountsActivitiesRequest
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.AccountsActivitiesRequest
      */
     AccountsActivitiesRequest: {
       /** @description account */
       account: string[];
       /**
        * @description actions limit, default is 10
+       * @default 10
        * @example 10
        */
       action_limit?: number;
@@ -370,6 +361,7 @@ export interface components {
       end_timestamp?: number | null;
       /**
        * @description transactions limit, default is 100
+       * @default 10
        * @example 100
        */
       limit?: number;
@@ -382,7 +374,7 @@ export interface components {
     };
     /**
      * Action
-     * @description github.com/naturalselectionlabs/rss3api/internal/database/model.Action
+     * @description github.com/naturalselectionlabs/data-api/internal/database/model.Action
      */
     Action: {
       from: string;
@@ -395,7 +387,7 @@ export interface components {
     };
     /**
      * Activity
-     * @description github.com/naturalselectionlabs/rss3api/common/schema/v2.Activity
+     * @description github.com/naturalselectionlabs/data-api/common/schema/v2.Activity
      */
     Activity: {
       actions: components["schemas"]["Action"][];
@@ -411,14 +403,18 @@ export interface components {
       tag: components["schemas"]["Tag"];
       timestamp: number;
       to: string;
-      type: components["schemas"]["Type"];
+      type: components["schemas"]["Type1"];
     };
-    Address: number[];
+    /**
+     * Address
+     * @description github.com/ethereum/go-ethereum/common.Address
+     */
+    Address: string;
     /**
      * Bytes
      * @description github.com/ethereum/go-ethereum/common/hexutil.Bytes
      */
-    Bytes: number[];
+    Bytes: string;
     /**
      * Chain
      * @description github.com/naturalselectionlabs/sakuin/common/schema.Chain
@@ -446,8 +442,7 @@ export interface components {
       logo?: string;
       media_url?: string;
       name?: string;
-      /** RawMessage */
-      properties?: unknown;
+      properties?: components["schemas"]["RawMessage"];
       standard?: components["schemas"]["Standard"];
       symbol?: string;
       title?: string;
@@ -552,8 +547,8 @@ export interface components {
      */
     CollectibleType: "approval" | "auction" | "burn" | "mint" | "trade" | "transfer";
     /**
-     * CommonError[github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
-     * @description github.com/NaturalSelectionLabs/goapi/lib/openapi.CommonError[github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
+     * CommonError[github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
+     * @description github.com/NaturalSelectionLabs/goapi/lib/openapi.CommonError[github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
      */
     CommonError: {
       code: components["schemas"]["ErrorCode"];
@@ -566,7 +561,7 @@ export interface components {
      * Decimal
      * @description github.com/shopspring/decimal.Decimal
      */
-    Decimal: Record<string, never>;
+    Decimal: string;
     /**
      * Direction
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Direction
@@ -591,7 +586,7 @@ export interface components {
     DonationType: "donate";
     /**
      * Error
-     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.Error
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.Error
      */
     Error: {
       code: components["schemas"]["ErrorCode"];
@@ -602,7 +597,7 @@ export interface components {
     };
     /**
      * ErrorCode
-     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/errorx.ErrorCode
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.ErrorCode
      * @enum {unknown}
      */
     ErrorCode: "address_is_empty" | "address_is_invalid" | "bad_params" | "bad_request" | "internal_error" | "not_found" | "validate_failed";
@@ -670,8 +665,7 @@ export interface components {
       link?: string;
       options?: string[];
       organization?: components["schemas"]["GovernanceOrganization"] | null;
-      /** Time */
-      start_at?: string | null;
+      start_at?: components["schemas"]["Time"] | null;
       start_block?: components["schemas"]["Decimal"] | null;
       title?: string;
     };
@@ -695,7 +689,7 @@ export interface components {
      * Int
      * @description math/big.Int
      */
-    Int: Record<string, never>;
+    Int: number;
     /**
      * Media
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.Media
@@ -706,14 +700,14 @@ export interface components {
     };
     /**
      * MetaCursor
-     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/handler.MetaCursor
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.MetaCursor
      */
     MetaCursor: {
       cursor: string;
     };
     /**
      * MetaTotalPages
-     * @description github.com/naturalselectionlabs/rss3api/internal/service/explorer/explorer/v2/handler.MetaTotalPages
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.MetaTotalPages
      */
     MetaTotalPages: {
       totalPages: number;
@@ -785,7 +779,7 @@ export interface components {
     MetaverseType: "approval" | "burn" | "claim" | "mint" | "trade" | "transfer";
     /**
      * Network
-     * @description github.com/naturalselectionlabs/rss3api/common/schema.Network
+     * @description github.com/naturalselectionlabs/data-api/common/schema.Network
      * @enum {unknown}
      */
     Network: "arbitrum_nova" | "arbitrum_one" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "crossbell" | "erc1577" | "ethereum" | "farcaster" | "gnosis" | "optimism" | "polygon" | "zksync_era" | "zksync_lite";
@@ -803,7 +797,7 @@ export interface components {
     Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "Polygon" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync Era" | "zkSync Lite" | "zkSync";
     /**
      * Profile
-     * @description github.com/naturalselectionlabs/rss3api/common/schema/v2.Profile
+     * @description github.com/naturalselectionlabs/data-api/common/schema/v2.Profile
      */
     Profile: {
       action?: components["schemas"]["SocialProfileAction"];
@@ -824,7 +818,10 @@ export interface components {
       url?: string;
       value?: string;
     };
-    /** RawMessage */
+    /**
+     * RawMessage
+     * @description encoding/json.RawMessage
+     */
     RawMessage: unknown;
     /**
      * SocialPost
@@ -1043,7 +1040,7 @@ export interface components {
     TransactionType: "approval" | "bridge" | "burn" | "deploy" | "mint" | "multisig" | "transfer";
     /**
      * Type
-     * @description github.com/naturalselectionlabs/rss3api/common/schema.Type
+     * @description github.com/naturalselectionlabs/data-api/common/schema.Type
      * @enum {unknown}
      */
     Type: "approval" | "auction" | "bridge" | "burn" | "claim" | "comment" | "delete" | "deploy" | "donate" | "follow" | "liquidity" | "loan" | "mint" | "multisig" | "post" | "profile" | "propose" | "proxy" | "revise" | "share" | "staking" | "swap" | "trade" | "transfer" | "unfollow" | "unknown" | "vote";
@@ -1051,7 +1048,7 @@ export interface components {
      * Type
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Type
      */
-    Type1: unknown;
+    Type1: components["schemas"]["CollectibleType"] | components["schemas"]["DonationType"] | components["schemas"]["ExchangeType"] | components["schemas"]["GovernanceType"] | components["schemas"]["MetaverseType"] | components["schemas"]["SocialType"] | components["schemas"]["TransactionType"] | components["schemas"]["UnknownType"];
     /**
      * UnknownType
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.UnknownType
