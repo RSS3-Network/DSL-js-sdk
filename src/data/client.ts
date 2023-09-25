@@ -1,14 +1,14 @@
 import createClient from 'openapi-fetch'
 import { paths } from '../types/data'
 import { ClientOptions } from '../types/utils'
-import { DEFAULT_DATA_SERVER } from '../constants'
+import { DEFAULT_RSS3_MAINNET } from '../constants'
 import { debug, fetchWithLog } from '../utils'
 
 /**
  * Data client for interacting with the data server.
  */
 export function client(opt: ClientOptions = {}) {
-  if (!opt.baseUrl) opt.baseUrl = DEFAULT_DATA_SERVER
+  if (!opt.baseUrl) opt.baseUrl = DEFAULT_RSS3_MAINNET + '/data'
 
   const debugSearch = debug.extend('search')
 

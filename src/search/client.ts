@@ -2,14 +2,14 @@ import createClient from 'openapi-fetch'
 import { paths, operations } from '../types/search-external'
 import { paths as pathsIT, operations as operationsIT } from '../types/search-internal'
 import { ClientOptions } from '../types/utils'
-import { DEFAULT_SEARCH_SERVER } from '../constants'
+import { DEFAULT_RSS3_MAINNET } from '../constants'
 import { fetchWithLog, debug } from '../utils'
 
 /**
  * Search client for interacting with the search server.
  */
 export function client(opt: ClientOptions = {}) {
-  if (!opt.baseUrl) opt.baseUrl = DEFAULT_SEARCH_SERVER
+  if (!opt.baseUrl) opt.baseUrl = DEFAULT_RSS3_MAINNET + '/search'
 
   const debugSearch = debug.extend('search')
 
