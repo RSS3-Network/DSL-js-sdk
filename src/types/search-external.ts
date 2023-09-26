@@ -337,9 +337,9 @@ export interface operations {
          */
         limit?: number;
         /** @example ALL */
-        platforms?: ("ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON")[];
+        platform?: ("ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON")[];
         /** @example ALL */
-        networks?: ("ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER")[];
+        network?: ("ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER")[];
         /**
          * @description sort by, default is NONE
          * @example NONE

@@ -8,334 +8,29 @@
 
 export interface paths {
   "/accounts/activities": {
-    post: {
-      requestBody: {
-        content: {
-          "application/json": components["schemas"]["AccountsActivitiesRequest"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": {
-              data: (components["schemas"]["Activity"] | null)[];
-              meta: components["schemas"]["MetaCursor"] | null;
-            };
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-      };
-    };
+    post: operations["batchGetAccountsActivitiesFm"];
   };
   "/accounts/{account}/activities": {
-    get: {
-      parameters: {
-        query?: {
-          /** @description transactions limit, maximum 500 */
-          limit?: number;
-          /** @description actions limit, maximum 20 */
-          action_limit?: number;
-          cursor?: string;
-          start_timestamp?: number;
-          end_timestamp?: number;
-          status?: components["schemas"]["Status"];
-          direction?: components["schemas"]["Direction"];
-          network?: components["schemas"]["Network"][];
-          tag?: components["schemas"]["Tag"][];
-          type?: components["schemas"]["Type"][];
-          platform?: components["schemas"]["Platform"][];
-        };
-        path: {
-          /** @description account */
-          account: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": {
-              data: (components["schemas"]["Activity"] | null)[];
-              meta: components["schemas"]["MetaCursor"] | null;
-            };
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-      };
-    };
+    get: operations["getAccountActivitiesFm"];
   };
   "/accounts/{account}/profiles": {
-    get: {
-      parameters: {
-        query?: {
-          network?: components["schemas"]["Network"][];
-          platform?: components["schemas"]["Platform"][];
-        };
-        path: {
-          /** @description account */
-          account: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": {
-              data: (components["schemas"]["Profile"] | null)[];
-            };
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-      };
-    };
+    get: operations["getAccountProfilesFm"];
   };
   "/activities/{id}": {
-    get: {
-      parameters: {
-        query?: {
-          /** @description actions limit, minimum 1, maximum 20 */
-          action_limit?: number;
-          /** @description actions pag, minimum 1 */
-          action_page?: number;
-        };
-        path: {
-          /** @description id */
-          id: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": {
-              data: components["schemas"]["Activity"] | null;
-              meta: components["schemas"]["MetaTotalPages"] | null;
-            };
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Not Found */
-        404: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-      };
-    };
+    get: operations["getActivityFm"];
   };
   "/mastodon/{account}/activities": {
-    get: {
-      parameters: {
-        query?: {
-          /** @description mastodon limit, maximum 40 */
-          limit?: number;
-        };
-        path: {
-          /** @description mastodon handle */
-          account: string;
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": {
-              data: (components["schemas"]["Activity"] | null)[];
-              meta: components["schemas"]["MetaCursor"] | null;
-            };
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-      };
-    };
+    get: operations["getMastodonActivitiesFm"];
   };
   "/networks/{network}/activities": {
-    get: {
-      parameters: {
-        query?: {
-          /** @description transactions limit, maximum 500 */
-          limit?: number;
-          /** @description actions limit, maximum 20 */
-          action_limit?: number;
-          cursor?: string;
-          start_timestamp?: number;
-          end_timestamp?: number;
-          status?: components["schemas"]["Status"];
-          direction?: components["schemas"]["Direction"];
-        };
-        path: {
-          network: components["schemas"]["Network"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": {
-              data: (components["schemas"]["Activity"] | null)[];
-              meta: components["schemas"]["MetaCursor"] | null;
-            };
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-      };
-    };
+    get: operations["getNetworkActivitiesFm"];
   };
   "/openapi.json": {
     /** @description It responds the OpenAPI doc for this service in JSON format. */
-    get: {
-      responses: {
-        /** @description It will return the OpenAPI doc in JSON format. */
-        200: {
-          content: {
-            "application/json": unknown;
-          };
-        };
-      };
-    };
+    get: operations["func2"];
   };
   "/platforms/{platform}/activities": {
-    get: {
-      parameters: {
-        query?: {
-          /** @description transactions limit, maximum 500 */
-          limit?: number;
-          /** @description actions limit, maximum 20 */
-          action_limit?: number;
-          cursor?: string;
-          start_timestamp?: number;
-          end_timestamp?: number;
-          status?: components["schemas"]["Status"];
-          direction?: components["schemas"]["Direction"];
-          network?: components["schemas"]["Network"][];
-          tag?: components["schemas"]["Tag"][];
-          type?: components["schemas"]["Type"][];
-        };
-        path: {
-          platform: components["schemas"]["Platform"];
-        };
-      };
-      responses: {
-        /** @description OK */
-        200: {
-          content: {
-            "application/json": {
-              data: (components["schemas"]["Activity"] | null)[];
-              meta: components["schemas"]["MetaCursor"] | null;
-            };
-          };
-        };
-        /** @description Bad Request */
-        400: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-        /** @description Internal Server Error */
-        500: {
-          content: {
-            "application/json": {
-              error: components["schemas"]["Error"];
-            };
-          };
-        };
-      };
-    };
+    get: operations["getPlatformActivitiesFm"];
   };
 }
 
@@ -348,12 +43,11 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.AccountsActivitiesRequest
      */
     AccountsActivitiesRequest: {
-      /** @description account */
+      /** @description accounts size limit */
       account: string[];
       /**
        * @description actions limit, default is 10
        * @default 10
-       * @example 10
        */
       action_limit?: number;
       cursor?: string | null;
@@ -362,7 +56,6 @@ export interface components {
       /**
        * @description transactions limit, default is 100
        * @default 10
-       * @example 100
        */
       limit?: number;
       network?: components["schemas"]["Network"][];
@@ -405,15 +98,9 @@ export interface components {
       to: string;
       type: components["schemas"]["Type1"];
     };
-    /**
-     * Address
-     * @description github.com/ethereum/go-ethereum/common.Address
-     */
+    /** @description github.com/ethereum/go-ethereum/common.Address */
     Address: string;
-    /**
-     * Bytes
-     * @description github.com/ethereum/go-ethereum/common/hexutil.Bytes
-     */
+    /** @description github.com/ethereum/go-ethereum/common/hexutil.Bytes */
     Bytes: string;
     /**
      * Chain
@@ -557,10 +244,7 @@ export interface components {
       message?: string;
       target?: string;
     };
-    /**
-     * Decimal
-     * @description github.com/shopspring/decimal.Decimal
-     */
+    /** @description github.com/shopspring/decimal.Decimal */
     Decimal: string;
     /**
      * Direction
@@ -716,7 +400,7 @@ export interface components {
      * Metadata
      * @description github.com/naturalselectionlabs/sakuin/common/schema.Metadata
      */
-    Metadata: components["schemas"]["CollectibleApproval"] | components["schemas"]["CollectibleAuction"] | components["schemas"]["CollectibleTrade"] | components["schemas"]["CollectibleTransfer"] | components["schemas"]["Donation"] | components["schemas"]["ExchangeLiquidity"] | components["schemas"]["ExchangeLoan"] | components["schemas"]["ExchangeSwap"] | components["schemas"]["GovernanceProposal"] | components["schemas"]["GovernanceVote"] | components["schemas"]["MetaverseTrade"] | components["schemas"]["MetaverseTransfer"] | components["schemas"]["SocialPost"] | components["schemas"]["SocialProfile"] | components["schemas"]["SocialProxy"] | components["schemas"]["TransactionApproval"] | components["schemas"]["TransactionBridge"] | components["schemas"]["TransactionDeploy"] | components["schemas"]["TransactionMultisig"] | components["schemas"]["TransactionTransfer"];
+    Metadata: components["schemas"]["CollectibleApproval"] | components["schemas"]["CollectibleAuction"] | components["schemas"]["CollectibleTrade"] | components["schemas"]["CollectibleTransfer"] | components["schemas"]["Donation"] | components["schemas"]["ExchangeLiquidity"] | components["schemas"]["ExchangeLoan"] | components["schemas"]["ExchangeSwap"] | components["schemas"]["GovernanceProposal"] | components["schemas"]["GovernanceVote"] | components["schemas"]["MetaverseTrade"] | components["schemas"]["MetaverseTransfer"] | components["schemas"]["SocialFollow"] | components["schemas"]["SocialPost"] | components["schemas"]["SocialProfile"] | components["schemas"]["SocialProxy"] | components["schemas"]["TransactionApproval"] | components["schemas"]["TransactionBridge"] | components["schemas"]["TransactionDeploy"] | components["schemas"]["TransactionMultisig"] | components["schemas"]["TransactionTransfer"];
     /**
      * MetaverseTrade
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.MetaverseTrade
@@ -823,6 +507,14 @@ export interface components {
      * @description encoding/json.RawMessage
      */
     RawMessage: unknown;
+    /**
+     * SocialFollow
+     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialFollow
+     */
+    SocialFollow: {
+      from?: components["schemas"]["SocialProfile"];
+      to?: components["schemas"]["SocialProfile"];
+    };
     /**
      * SocialPost
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialPost
@@ -1065,4 +757,320 @@ export interface components {
 
 export type external = Record<string, never>;
 
-export type operations = Record<string, never>;
+export interface operations {
+
+  batchGetAccountsActivitiesFm: {
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["AccountsActivitiesRequest"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": {
+            data: (components["schemas"]["Activity"] | null)[];
+            meta: components["schemas"]["MetaCursor"] | null;
+          };
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+    };
+  };
+  getAccountActivitiesFm: {
+    parameters: {
+      query?: {
+        /** @description transactions limit, maximum 500 */
+        limit?: number;
+        /** @description actions limit, maximum 20 */
+        action_limit?: number;
+        cursor?: string;
+        start_timestamp?: number;
+        end_timestamp?: number;
+        status?: components["schemas"]["Status"];
+        direction?: components["schemas"]["Direction"];
+        network?: components["schemas"]["Network"][];
+        tag?: components["schemas"]["Tag"][];
+        type?: components["schemas"]["Type"][];
+        platform?: components["schemas"]["Platform"][];
+      };
+      path: {
+        /** @description account */
+        account: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": {
+            data: (components["schemas"]["Activity"] | null)[];
+            meta: components["schemas"]["MetaCursor"] | null;
+          };
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+    };
+  };
+  getAccountProfilesFm: {
+    parameters: {
+      query?: {
+        network?: components["schemas"]["Network"][];
+        platform?: components["schemas"]["Platform"][];
+      };
+      path: {
+        /** @description account */
+        account: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": {
+            data: (components["schemas"]["Profile"] | null)[];
+          };
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+    };
+  };
+  getActivityFm: {
+    parameters: {
+      query?: {
+        /** @description actions limit, minimum 1, maximum 20 */
+        action_limit?: number;
+        /** @description actions pag, minimum 1 */
+        action_page?: number;
+      };
+      path: {
+        /** @description id */
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": {
+            data: components["schemas"]["Activity"] | null;
+            meta: components["schemas"]["MetaTotalPages"] | null;
+          };
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+    };
+  };
+  getMastodonActivitiesFm: {
+    parameters: {
+      query?: {
+        /** @description mastodon limit, maximum 40 */
+        limit?: number;
+      };
+      path: {
+        /** @description mastodon handle */
+        account: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": {
+            data: (components["schemas"]["Activity"] | null)[];
+            meta: components["schemas"]["MetaCursor"] | null;
+          };
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+    };
+  };
+  getNetworkActivitiesFm: {
+    parameters: {
+      query?: {
+        /** @description transactions limit, maximum 500 */
+        limit?: number;
+        /** @description actions limit, maximum 20 */
+        action_limit?: number;
+        cursor?: string;
+        start_timestamp?: number;
+        end_timestamp?: number;
+        status?: components["schemas"]["Status"];
+        direction?: components["schemas"]["Direction"];
+      };
+      path: {
+        network: components["schemas"]["Network"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": {
+            data: (components["schemas"]["Activity"] | null)[];
+            meta: components["schemas"]["MetaCursor"] | null;
+          };
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+    };
+  };
+  /** @description It responds the OpenAPI doc for this service in JSON format. */
+  func2: {
+    responses: {
+      /** @description It will return the OpenAPI doc in JSON format. */
+      200: {
+        content: {
+          "application/json": unknown;
+        };
+      };
+    };
+  };
+  getPlatformActivitiesFm: {
+    parameters: {
+      query?: {
+        /** @description transactions limit, maximum 500 */
+        limit?: number;
+        /** @description actions limit, maximum 20 */
+        action_limit?: number;
+        cursor?: string;
+        start_timestamp?: number;
+        end_timestamp?: number;
+        status?: components["schemas"]["Status"];
+        direction?: components["schemas"]["Direction"];
+        network?: components["schemas"]["Network"][];
+        tag?: components["schemas"]["Tag"][];
+        type?: components["schemas"]["Type"][];
+      };
+      path: {
+        platform: components["schemas"]["Platform"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": {
+            data: (components["schemas"]["Activity"] | null)[];
+            meta: components["schemas"]["MetaCursor"] | null;
+          };
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+      /** @description Internal Server Error */
+      500: {
+        content: {
+          "application/json": {
+            error: components["schemas"]["Error"];
+          };
+        };
+      };
+    };
+  };
+}

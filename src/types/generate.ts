@@ -2,14 +2,13 @@
 
 import { spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
-import { DEFAULT_DATA_SERVER, DEFAULT_SEARCH_SERVER } from '../constants'
 
 main()
 
 async function main() {
   await generate(
     'data',
-    DEFAULT_DATA_SERVER + '/openapi.json',
+    'https://api.dev.rss3.io/data/openapi.json',
     (schema) => {
       genMetadataDoc(schema['x-extension']['metadataTypes'])
       return schema
@@ -21,7 +20,7 @@ async function main() {
 
   await generate(
     'search-external',
-    DEFAULT_SEARCH_SERVER + '/v3/api-docs/External API',
+    'https://api.dev.rss3.io/search/v3/api-docs/External API',
     (schema) => {
       return schema
     },
@@ -40,7 +39,7 @@ async function main() {
 
   await generate(
     'search-internal',
-    DEFAULT_SEARCH_SERVER + '/v3/api-docs/Internal API',
+    'https://api.dev.rss3.io/search/v3/api-docs/Internal API',
     (schema) => {
       return schema
     },
