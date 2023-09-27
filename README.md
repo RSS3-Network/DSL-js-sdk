@@ -83,7 +83,7 @@ const searchResults = await searchClient().activities({
 })
 ```
 
-### Add Artifical Intelligence to Your Applications
+### Add Artificial Intelligence to Your Applications
 
 > Coming soon.
 

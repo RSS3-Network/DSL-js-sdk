@@ -448,7 +448,7 @@ export const metadataDoc = {
     ]
   },
   "social-follow": {
-    'ref': {} as components['schemas']['SocialProfile'],
+    'ref': {} as components['schemas']['SocialFollow'],
     "tag": "social",
     "type": "follow",
     "platforms": [
