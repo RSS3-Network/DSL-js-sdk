@@ -676,7 +676,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/handler/doc.PlatformName
      * @enum {string}
      */
-    PlatformName: "0x" | "1inch" | "AAVE" | "Avvy" | "BendDAO" | "Blur" | "Crossbell" | "Curve" | "DODO" | "EIP-1577" | "ENS Registrar" | "Element" | "Farcaster" | "Foundation" | "Galaxy" | "Gem" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lenster" | "Link3" | "LooksRare" | "MetaMask" | "Mirror" | "NSwap" | "Nouns" | "OpenSea" | "Orb" | "POAP" | "PancakeSwap" | "Paraswap" | "QuickSwap" | "Quix" | "RARA" | "Rainbow" | "Snapshot" | "Sound" | "Space ID" | "SpookySwap" | "SushiSwap" | "TraderJoe" | "Uniswap" | "Unstoppable" | "Velodrome" | "Zerion" | "Zora" | "tofuNFT" | "xLog";
+    PlatformName: "0x" | "1inch" | "AAVE" | "Avvy" | "BendDAO" | "Blur" | "Crossbell" | "Curve" | "DODO" | "EIP-1577" | "ENS Registrar" | "Element" | "Farcaster" | "Foundation" | "Galaxy" | "Gem" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lenster" | "Link3" | "LooksRare" | "MetaMask" | "Mirror" | "NSwap" | "Nouns" | "OpenSea" | "Orb" | "POAP" | "PancakeSwap" | "Paraswap" | "QuickSwap" | "Quix" | "RARA" | "Rainbow" | "Snapshot" | "Sound" | "Space ID" | "SpookySwap" | "SushiSwap" | "TraderJoe" | "Uniswap" | "Unstoppable" | "Velodrome" | "Zerion" | "Zora" | "friend.tech" | "tofuNFT" | "xLog";
     /**
      * PlatformResult
      * @description github.com/naturalselectionlabs/pregod/service/hub/internal/server/model.PlatformResult

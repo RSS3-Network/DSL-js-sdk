@@ -16,61 +16,25 @@ export interface paths {
     /** Feed搜索 */
     post: operations["searchFeedV2"];
   };
-  "/v2/wikis": {
-    /** Search wikis */
-    get: operations["searchV2"];
-  };
-  "/v2/today-in-history": {
-    /** Today in history */
-    get: operations["todayInHistory"];
-  };
-  "/v2/suggestions/spellcheck": {
+  "/suggestions/spellcheck": {
     /** Spell correction (did-you-mean) */
     get: operations["spellCorrectionv2"];
   };
-  "/v2/suggestions/related-addresses": {
+  "/suggestions/related-addresses": {
     /** Related addresses */
     get: operations["relatedAddresses"];
   };
-  "/v2/suggestions/autocomplete": {
+  "/suggestions/autocomplete": {
     /** Autocomplete */
     get: operations["autoCompleteV2"];
   };
-  "/v2/price-chart": {
-    /** Get coin price chart */
-    get: operations["priceChart"];
-  };
-  "/v2/nft-images": {
-    /** Get images of NFT collection */
-    get: operations["nftImages"];
-  };
-  "/v2/nft-image": {
-    /** Get NFT image */
-    get: operations["nftImageDetail"];
-  };
-  "/v2/nft-collections": {
-    /** Search NFT collections */
-    get: operations["searchNftCollectionV2_1"];
-  };
-  "/v2/dapps": {
+  "/dapps": {
     /** Search dapps */
     get: operations["searchv2"];
   };
-  "/v2/coins": {
-    /** Search coins */
-    get: operations["search"];
-  };
-  "/v2/activities": {
-    /** Search activities */
-    get: operations["searchFeedV2_1"];
-  };
-  "/v2/activities/{id}": {
-    /** Get activity */
-    get: operations["activityDetail"];
-  };
   "/api/wiki/search": {
     /** 搜索wiki */
-    get: operations["search_1"];
+    get: operations["search"];
   };
   "/api/wiki/profile": {
     /** 查询wiki profile */
@@ -102,11 +66,11 @@ export interface paths {
   };
   "/api/nft/nftImages": {
     /** NFT图片列表 */
-    get: operations["nftImages_1"];
+    get: operations["nftImages"];
   };
   "/api/nft/nftImageDetail": {
     /** NFT图片详情 */
-    get: operations["nftImageDetail_1"];
+    get: operations["nftImageDetail"];
   };
   "/api/nft/autocomplete": {
     /** NFT自动补全 */
@@ -114,19 +78,27 @@ export interface paths {
   };
   "/api/news/today-in-history": {
     /** today in history */
-    get: operations["todayInHistory_1"];
+    get: operations["todayInHistory"];
   };
   "/api/dapp/search": {
     /** 搜索dapp */
-    get: operations["search_2"];
+    get: operations["search_1"];
   };
   "/api/coin/search": {
     /** 币价搜索 */
-    get: operations["search_3"];
+    get: operations["search_2"];
   };
   "/api/coin/priceChart": {
     /** 走势图 */
-    get: operations["priceChart_1"];
+    get: operations["priceChart"];
+  };
+  "/activities": {
+    /** Search activities */
+    get: operations["searchFeedV2_1"];
+  };
+  "/activities/{id}": {
+    /** Get activity */
+    get: operations["activityDetail"];
   };
 }
 
@@ -153,12 +125,12 @@ export interface components {
        */
       sortType?: "NONE" | "_6H_VOLUME_RANK" | "_6H_SALES_RANK" | "_1D_VOLUME_RANK" | "_1D_SALES_RANK" | "_7D_VOLUME_RANK" | "_7D_SALES_RANK" | "_30D_VOLUME_RANK" | "_30D_SALES_RANK" | "_6H_MINT_RANK" | "_1D_MINT_RANK" | "_3D_MINT_RANK" | "_GAS_FEE_1H_RANK" | "GAS_FEE_12H_RANK" | "GAS_FEE_24H_RANK" | "VOLUME_TOTAL_RANK" | "MARKET_CAP_RANK";
       /**
-       * @description available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
+       * @description available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
        * @example [
        *   "ALL"
        * ]
        */
-      networks?: ("ALL" | "AVAX" | "ETHEREUM" | "ARBITRUM" | "OPTIMISM" | "POLYGON" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARWEAVE" | "AVALANCHE" | "FANTOM" | "XDAI" | "ZKSYNC")[];
+      networks?: ("ALL" | "AVAX" | "ETHEREUM" | "ARBITRUM" | "OPTIMISM" | "POLYGON" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARWEAVE" | "AVALANCHE" | "XDAI" | "ZKSYNC")[];
     };
     CollectionDocDTO: {
       id?: string;
@@ -343,12 +315,12 @@ export interface components {
        */
       platform?: ("ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON")[];
       /**
-       * @description available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
+       * @description available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
        * @example [
        *   "ALL"
        * ]
        */
-      network?: ("ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "FANTOM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER")[];
+      network?: ("ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER")[];
       /**
        * @default NONE
        * @example NONE
@@ -393,7 +365,7 @@ export interface components {
     };
     FeedSearchNetworkAggDTO: {
       /** @enum {string} */
-      network?: "ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "FANTOM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER";
+      network?: "ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER";
       /** Format: int64 */
       count?: number;
     };
@@ -411,46 +383,20 @@ export interface components {
       platformAgg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
     };
     JSONObject: any;
-    WikiActionDTO: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"] & {
-      search_extension?: components["schemas"]["WikiExDTO"];
-    };
-    WikiDocDTO: {
-      id?: string;
-      owner?: string;
-      /** Format: int64 */
-      timestamp?: number;
-      tag?: string;
-      type?: string;
-      network?: string;
-      platform?: string;
-      actions?: components["schemas"]["WikiActionDTO"][];
-      transaction_hash?: string;
-    };
-    WikiExDTO: {
-      /** Format: float */
-      score?: number;
-    };
-    WikiSearchRespDTO: {
-      docs?: components["schemas"]["WikiDocDTO"][];
-      /** Format: int64 */
-      total?: number;
-    };
-    Event: {
-      /** Format: int64 */
-      id?: number;
-      dayStr?: string;
-      monthDay?: string;
-      title?: string;
-      body?: string;
-      catalog?: string;
-      link?: string;
-      coin?: string;
-      images?: string;
+    UniRespListString: {
+      data?: string[];
+      meta?: string;
+      error?: string;
     };
     /** @description RelatedAddressRespDTO */
     RelatedAddressRespDTO: {
       option?: string;
       address?: string;
+    };
+    UniRespListRelatedAddressRespDTO: {
+      data?: components["schemas"]["RelatedAddressRespDTO"][];
+      meta?: string;
+      error?: string;
     };
     /** @description 自动补全响应 */
     AutoCompleteRespDTO: {
@@ -461,60 +407,10 @@ export interface components {
       thumb?: string;
       address?: string;
     };
-    PriceChartDTO: {
-      ohlc?: Record<string, any>;
-    };
-    NFTImageResp4ExternalDTO: {
-      images?: components["schemas"]["NftImage4ExternalDTO"][];
-      /** Format: int64 */
-      total?: number;
-    };
-    NftImage4ExternalDTO: {
-      id?: string;
-      collection?: components["schemas"]["NftCollectionDTO"];
-      name?: string;
-      attributes?: string;
-      /** Format: date-time */
-      timestamp?: string;
-      prompt?: string;
-      standard?: string;
-      owner?: string;
-      network?: string;
-      token_id?: string;
-      token_url?: string;
-      image_url?: string;
-      /** Format: double */
-      rarity_score?: number;
-      /** Format: double */
-      latest_trade_price?: number;
-      /** Format: double */
-      mint_price?: number;
-      latest_trade_symbol?: string;
-    };
-    CollectionDoc4ExternalDTO: {
-      id?: string;
-      network?: string;
-      name?: string;
-      symbol?: string;
-      description?: string;
-      standard?: string;
-      discord?: string;
-      twitter?: string;
-      telegram?: string;
-      /** Format: int32 */
-      items_total?: number;
-      contract_address?: string;
-      logo_url?: string;
-      price_symbol?: string;
-      official_url?: string;
-      /** Format: double */
-      floor_price?: number;
-      top_3_images?: components["schemas"]["NftImage4ExternalDTO"][];
-    };
-    CollectionSearchResp4ExternalDTO: {
-      docs?: components["schemas"]["CollectionDoc4ExternalDTO"][];
-      /** Format: int64 */
-      total?: number;
+    UniRespListAutoCompleteRespDTO: {
+      data?: components["schemas"]["AutoCompleteRespDTO"][];
+      meta?: string;
+      error?: string;
     };
     DaapDocDTO: {
       id?: string;
@@ -549,14 +445,43 @@ export interface components {
       /** Format: int64 */
       total?: number;
     };
+    UniRespDaapSearchRespDTO: {
+      data?: components["schemas"]["DaapSearchRespDTO"];
+      meta?: string;
+      error?: string;
+    };
+    WikiActionDTO: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"] & {
+      search_extension?: components["schemas"]["WikiExDTO"];
+    };
+    WikiDocDTO: {
+      id?: string;
+      owner?: string;
+      /** Format: int64 */
+      timestamp?: number;
+      tag?: string;
+      type?: string;
+      network?: string;
+      platform?: string;
+      actions?: components["schemas"]["WikiActionDTO"][];
+      transaction_hash?: string;
+    };
+    WikiExDTO: {
+      /** Format: float */
+      score?: number;
+    };
+    WikiSearchRespDTO: {
+      docs?: components["schemas"]["WikiDocDTO"][];
+      /** Format: int64 */
+      total?: number;
+    };
+    WikiProfileRespDTO: {
+      url?: string;
+      /** @enum {string} */
+      type?: "UNKNOWN" | "YOUTUBE" | "GITHUB" | "TWITTER" | "EMAIL" | "FACEBOOK" | "INSTAGRAM" | "LINKEDIN" | "REDDIT" | "TELEGRAM" | "COINMARKETCAP" | "COINGECKO" | "DISCORD";
+    };
     /** @description 币价模块响应 */
     CoinSearchRespDTO: {
-      /** @description 1天market信息 */
-      market?: {
-        
-        
-        [key: string]: Record<string, any> | undefined;
-      };
+      market?: components["schemas"]["JSONObject"];
       coin_vs_currency?: components["schemas"]["CoinVsCurrencyDTO"];
       coin_vs_coin?: components["schemas"]["CoinVsCoinDTO"];
       price_chart_of_1_day?: components["schemas"]["PriceChartDTO"];
@@ -599,52 +524,9 @@ export interface components {
       rate?: number;
       coin_id?: string;
     };
-    ActivitiesExDTO: {
-      author?: string;
-      media?: string[];
-      /** Format: float */
-      score?: number;
-      highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
-    };
-    FeedRankActionDoc4ExternalDTO: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"] & {
-      search_extension?: components["schemas"]["ActivitiesExDTO"];
-    };
-    FeedRankDoc4ExternalDTO: {
-      id?: string;
-      owner?: string;
-      /** Format: int64 */
-      timestamp?: number;
-      tag?: string;
-      type?: string;
-      network?: string;
-      platform?: string;
-      actions?: components["schemas"]["FeedRankActionDoc4ExternalDTO"][];
-      transaction_hash?: string;
-    };
-    FeedSearchResp4ExternalDTO: {
-      /** Format: int32 */
-      total?: number;
-      docs?: components["schemas"]["FeedRankDoc4ExternalDTO"][];
-      network_agg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
-      platform_agg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
-    };
-    FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer'];
-    FeedRankDoc4ExternalDetailDTO: {
-      id?: string;
-      owner?: string;
-      /** Format: int64 */
-      timestamp?: number;
-      tag?: string;
-      type?: string;
-      network?: string;
-      platform?: string;
-      actions?: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"][];
-      transaction_hash?: string;
-    };
-    WikiProfileRespDTO: {
-      url?: string;
-      /** @enum {string} */
-      type?: "UNKNOWN" | "YOUTUBE" | "GITHUB" | "TWITTER" | "EMAIL" | "FACEBOOK" | "INSTAGRAM" | "LINKEDIN" | "REDDIT" | "TELEGRAM" | "COINMARKETCAP" | "COINGECKO" | "DISCORD";
+    /** @description 1天走势图 */
+    PriceChartDTO: {
+      ohlc?: Record<string, any>;
     };
     /** @description 项目 */
     ProjectDocDTO: {
@@ -768,6 +650,70 @@ export interface components {
       option?: string;
       thumb?: string;
     };
+    Event: {
+      /** Format: int64 */
+      id?: number;
+      dayStr?: string;
+      monthDay?: string;
+      title?: string;
+      body?: string;
+      catalog?: string;
+      link?: string;
+      coin?: string;
+      images?: string;
+    };
+    ActivitiesExDTO: {
+      author?: string;
+      media?: string[];
+      /** Format: float */
+      score?: number;
+      highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
+    };
+    FeedRankActionDoc4ExternalDTO: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"] & {
+      search_extension?: components["schemas"]["ActivitiesExDTO"];
+    };
+    FeedRankDoc4ExternalDTO: {
+      id?: string;
+      owner?: string;
+      /** Format: int64 */
+      timestamp?: number;
+      tag?: string;
+      type?: string;
+      network?: string;
+      platform?: string;
+      actions?: components["schemas"]["FeedRankActionDoc4ExternalDTO"][];
+      transaction_hash?: string;
+    };
+    FeedSearchResp4ExternalDTO: {
+      /** Format: int32 */
+      total?: number;
+      docs?: components["schemas"]["FeedRankDoc4ExternalDTO"][];
+      network_agg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
+      platform_agg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
+    };
+    UniRespFeedSearchResp4ExternalDTO: {
+      data?: components["schemas"]["FeedSearchResp4ExternalDTO"];
+      meta?: string;
+      error?: string;
+    };
+    FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer'];
+    FeedRankDoc4ExternalDetailDTO: {
+      id?: string;
+      owner?: string;
+      /** Format: int64 */
+      timestamp?: number;
+      tag?: string;
+      type?: string;
+      network?: string;
+      platform?: string;
+      actions?: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"][];
+      transaction_hash?: string;
+    };
+    UniRespFeedRankDoc4ExternalDetailDTO: {
+      data?: components["schemas"]["FeedRankDoc4ExternalDetailDTO"];
+      meta?: string;
+      error?: string;
+    };
   };
   responses: never;
   parameters: never;
@@ -824,62 +770,6 @@ export interface operations {
       };
     };
   };
-  /** Search wikis */
-  searchV2: {
-    parameters: {
-      query: {
-        /**
-         * @description search keyword
-         * @example vitalik
-         */
-        keyword: string;
-        /** @description pagination offset, min offset is 0 */
-        offset?: number;
-        /** @description pagination limit, max limit is 20 */
-        limit?: number;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["WikiSearchRespDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Today in history */
-  todayInHistory: {
-    parameters: {
-      query?: {
-        /**
-         * @description month day
-         * @example 09-15
-         */
-        month_day?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["Event"][];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
   /** Spell correction (did-you-mean) */
   spellCorrectionv2: {
     parameters: {
@@ -887,7 +777,7 @@ export interface operations {
         /** @example vitalak */
         keyword: string;
         /** @description return count */
-        count?: number;
+        limit?: number;
         /** @description type */
         type?: "ALL" | "DOMAIN" | "CONTENT" | "WIKI" | "DAPP";
       };
@@ -896,7 +786,7 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": string[];
+          "application/json": components["schemas"]["UniRespListString"];
         };
       };
       /** @description Bad Request */
@@ -914,14 +804,14 @@ export interface operations {
         /** @example vitalik */
         keyword: string;
         /** @description return count */
-        count?: number;
+        limit?: number;
       };
     };
     responses: {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["RelatedAddressRespDTO"][];
+          "application/json": components["schemas"]["UniRespListRelatedAddressRespDTO"];
         };
       };
       /** @description Bad Request */
@@ -942,7 +832,7 @@ export interface operations {
          */
         keyword: string;
         /** @description return count */
-        count?: number;
+        limit?: number;
         /** @description type */
         type?: "ALL" | "DOMAIN" | "CONTENT" | "WIKI" | "DAPP";
       };
@@ -951,134 +841,7 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["AutoCompleteRespDTO"][];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Get coin price chart */
-  priceChart: {
-    parameters: {
-      query: {
-        /** @description coin id */
-        coin_id: string;
-        /** @description currency */
-        currency: string;
-        /** @description days, 1/7/14/30/90/180/365/max */
-        days: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["PriceChartDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Get images of NFT collection */
-  nftImages: {
-    parameters: {
-      query: {
-        /** @description contractAddress */
-        contract_address: string;
-        /** @description pagination offset, min offset is 0 */
-        offset?: number;
-        /** @description pagination limit, max limit is 20 */
-        limit?: number;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["NFTImageResp4ExternalDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Get NFT image */
-  nftImageDetail: {
-    parameters: {
-      query: {
-        /** @description contractAddress */
-        contract_address: string;
-        /**
-         * @description network
-         * @example ETHEREUM
-         */
-        network: "ALL" | "AVAX" | "ETHEREUM" | "ARBITRUM" | "OPTIMISM" | "POLYGON" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARWEAVE" | "AVALANCHE" | "FANTOM" | "XDAI" | "ZKSYNC";
-        /**
-         * @description tokenId
-         * @example 1
-         */
-        token_id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["NftImage4ExternalDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Search NFT collections */
-  searchNftCollectionV2_1: {
-    parameters: {
-      query: {
-        /**
-         * @description keyword
-         * @example azuki
-         */
-        keyword: string;
-        /** @description pagination offset, min offset is 0 */
-        offset?: number;
-        /** @description pagination limit, max limit is 20 */
-        limit?: number;
-        /**
-         * @description sort type, default is NONE
-         * @example NONE
-         */
-        sort_type?: "NONE" | "_6H_VOLUME_RANK" | "_6H_SALES_RANK" | "_1D_VOLUME_RANK" | "_1D_SALES_RANK" | "_7D_VOLUME_RANK" | "_7D_SALES_RANK" | "_30D_VOLUME_RANK" | "_30D_SALES_RANK" | "_6H_MINT_RANK" | "_1D_MINT_RANK" | "_3D_MINT_RANK" | "_GAS_FEE_1H_RANK" | "GAS_FEE_12H_RANK" | "GAS_FEE_24H_RANK" | "VOLUME_TOTAL_RANK" | "MARKET_CAP_RANK";
-        /**
-         * @description str join with ",", available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
-         * @example EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
-         */
-        networks?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["CollectionSearchResp4ExternalDTO"];
+          "application/json": components["schemas"]["UniRespListAutoCompleteRespDTO"];
         };
       };
       /** @description Bad Request */
@@ -1108,125 +871,7 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["DaapSearchRespDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Search coins */
-  search: {
-    parameters: {
-      query: {
-        /**
-         * @description keyword
-         * @example 3
-         */
-        keyword: string;
-        /** @description client language，window.navigator.language */
-        lang?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["CoinSearchRespDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Search activities */
-  searchFeedV2_1: {
-    parameters: {
-      query: {
-        /**
-         * @description search keyword
-         * @example vitalik
-         */
-        keyword: string;
-        /**
-         * @description pagination offset, min offset is 0
-         * @example 0
-         */
-        offset?: number;
-        /**
-         * @description pagination limit, max limit is 20
-         * @example 12
-         */
-        limit?: number;
-        /**
-         * @description STR join with ",", available value: ALL,MIRROR,FARCASTER,XLOG,CROSSBELL,LENS,MATTERS
-         * @example ALL
-         */
-        platforms?: string;
-        /**
-         * @description STR join with ",", available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
-         * @example ALL
-         */
-        networks?: string;
-        /**
-         * @description sort by, default is NONE
-         * @example NONE
-         */
-        sort?: "NONE" | "TIMESTAMP_DESC";
-        /**
-         * @description language, default is ALL
-         * @example ALL
-         */
-        lang?: "ALL" | "ENGLISH" | "CHINESE" | "JAPANESE";
-        /**
-         * @description Timestamp, date range gte
-         * @example -1
-         */
-        gte?: number;
-        /**
-         * @description Timestamp, date range lte
-         * @example -1
-         */
-        lte?: number;
-        /** @description author */
-        author?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["FeedSearchResp4ExternalDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Get activity */
-  activityDetail: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["FeedRankDoc4ExternalDetailDTO"];
+          "application/json": components["schemas"]["UniRespDaapSearchRespDTO"];
         };
       };
       /** @description Bad Request */
@@ -1238,7 +883,7 @@ export interface operations {
     };
   };
   /** 搜索wiki */
-  search_1: {
+  search: {
     parameters: {
       query: {
         keyword: string;
@@ -1435,7 +1080,7 @@ export interface operations {
     };
   };
   /** NFT图片列表 */
-  nftImages_1: {
+  nftImages: {
     parameters: {
       query: {
         contractAddress: string;
@@ -1459,11 +1104,11 @@ export interface operations {
     };
   };
   /** NFT图片详情 */
-  nftImageDetail_1: {
+  nftImageDetail: {
     parameters: {
       query: {
         contractAddress: string;
-        network: "ALL" | "AVAX" | "ETHEREUM" | "ARBITRUM" | "OPTIMISM" | "POLYGON" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARWEAVE" | "AVALANCHE" | "FANTOM" | "XDAI" | "ZKSYNC";
+        network: "ALL" | "AVAX" | "ETHEREUM" | "ARBITRUM" | "OPTIMISM" | "POLYGON" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARWEAVE" | "AVALANCHE" | "XDAI" | "ZKSYNC";
         tokenId: string;
       };
     };
@@ -1507,7 +1152,7 @@ export interface operations {
     };
   };
   /** today in history */
-  todayInHistory_1: {
+  todayInHistory: {
     parameters: {
       query?: {
         /** @example 11-11 */
@@ -1530,7 +1175,7 @@ export interface operations {
     };
   };
   /** 搜索dapp */
-  search_2: {
+  search_1: {
     parameters: {
       query: {
         keyword?: string;
@@ -1554,7 +1199,7 @@ export interface operations {
     };
   };
   /** 币价搜索 */
-  search_3: {
+  search_2: {
     parameters: {
       query: {
         /** @description keyword */
@@ -1579,7 +1224,7 @@ export interface operations {
     };
   };
   /** 走势图 */
-  priceChart_1: {
+  priceChart: {
     parameters: {
       query: {
         /** @description coinId */
@@ -1595,6 +1240,96 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["PriceChartDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Search activities */
+  searchFeedV2_1: {
+    parameters: {
+      query: {
+        /**
+         * @description search keyword
+         * @example vitalik
+         */
+        keyword: string;
+        /**
+         * @description pagination offset, min offset is 0
+         * @example 0
+         */
+        offset?: number;
+        /**
+         * @description pagination limit, max limit is 20
+         * @example 12
+         */
+        limit?: number;
+        /**
+         * @description available value: ALL,MIRROR,FARCASTER,XLOG,CROSSBELL,LENS,MATTERS
+         * @example ALL
+         */
+        platforms?: ("ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON")[];
+        /**
+         * @description available value: ALL,EIP1577,BINANCE_SMART_CHAIN,ARBITRUM,ARWEAVE,AVALANCHE,ETHEREUM,FANTOM,OPTIMISM,POLYGON,XDAI,ZKSYNC,AVAX
+         * @example ALL
+         */
+        networks?: ("ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER")[];
+        /**
+         * @description sort by, default is NONE
+         * @example NONE
+         */
+        sort?: "NONE" | "TIMESTAMP_DESC";
+        /**
+         * @description language, default is ALL
+         * @example ALL
+         */
+        lang?: "ALL" | "ENGLISH" | "CHINESE" | "JAPANESE";
+        /**
+         * @description Timestamp, date range gte
+         * @example -1
+         */
+        gte?: number;
+        /**
+         * @description Timestamp, date range lte
+         * @example -1
+         */
+        lte?: number;
+        /** @description author */
+        author?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UniRespFeedSearchResp4ExternalDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Get activity */
+  activityDetail: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UniRespFeedRankDoc4ExternalDetailDTO"];
         };
       };
       /** @description Bad Request */
