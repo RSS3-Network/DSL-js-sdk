@@ -50,6 +50,7 @@ async function main() {
           /FeedRankActionDoc4ExternalDetailDTO: {[^{}]+}/,
           `FeedRankActionDoc4ExternalDetailDTO: data['schemas']['Transfer']`,
         )
+        .replace(/\/api\/nft\/v2\/searchNftCollection/, '/search/nft-collections')
 
       return (schema = `import {components as data} from './data'\n${schema}`)
     },

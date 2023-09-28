@@ -30,6 +30,11 @@ it.concurrent('get related addresses', async ({ expect }) => {
   expect(res.data).toHaveLength(6)
 })
 
+it.concurrent('get nft', async ({ expect }) => {
+  const res = await client().nft({ keyword: 'azuki', offset: 0, limit: 5 })
+  expect(res.data.docs).toHaveLength(5)
+})
+
 it.concurrent('get nft images', async ({ expect }) => {
   const res = await client().nftImages({
     contractAddress: '0xeaa708c29ffce22db864385f0c6509907af45c03',

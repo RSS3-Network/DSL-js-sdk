@@ -69,9 +69,9 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Search nft.
      */
-    async nft(query: operations['searchNftCollectionV2']['requestBody']['content']['application/json']) {
-      const { data, error } = await client.post('/api/nft/v2/searchNftCollection', {
-        body: query,
+    async nft(query: operations['searchNftCollectionV2']['parameters']['query']) {
+      const { data, error } = await client.get('/nft-collections', {
+        params: { query },
       })
       if (error || !data) throw error
 

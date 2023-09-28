@@ -8,9 +8,9 @@ import {components as data} from './data'
 
 
 export interface paths {
-  "/api/nft/v2/searchNftCollection": {
+  "/nft-collections": {
     /** NFT collection搜索 */
-    post: operations["searchNftCollectionV2"];
+    get: operations["searchNftCollectionV2"];
   };
   "/api/Feed/v2/search": {
     /** Feed搜索 */
@@ -111,14 +111,14 @@ export interface components {
       keyword: string;
       /**
        * Format: int32
-       * @example 1
+       * @example 0
        */
-      page: number;
+      offset: number;
       /**
        * Format: int32
        * @example 12
        */
-      size: number;
+      limit: number;
       /**
        * @example NONE
        * @enum {string}
@@ -154,9 +154,11 @@ export interface components {
       top3images?: components["schemas"]["NftImageDTO"][];
     };
     CollectionSearchRespDTO: {
-      collections?: components["schemas"]["CollectionDocDTO"][];
-      /** Format: int64 */
-      total?: number;
+      data: {
+        docs?: components["schemas"]["CollectionDocDTO"][];
+        /** Format: int64 */
+        total?: number;
+      }
     };
     NftCollectionDTO: {
       description?: string;
@@ -728,10 +730,8 @@ export interface operations {
 
   /** NFT collection搜索 */
   searchNftCollectionV2: {
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["CollectionSearchReqDTO"];
-      };
+    parameters: {
+      query: components["schemas"]["CollectionSearchReqDTO"];
     };
     responses: {
       /** @description OK */
