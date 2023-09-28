@@ -73,5 +73,40 @@ export function client(opt: ClientOptions = {}) {
 
       return data
     },
+
+    /**
+     * Query mastodon profiles.
+     */
+    async mastodonProfiles(
+      account: string,
+    ): Promise<paths['/accounts/{account}/profiles']['get']['responses']['200']['content']['application/json']> {
+      const [handle, domain] = account.split('@')
+
+      const data = await fetch(`https://${domain}/api/v2/search?q=${handle}&resolve=false&limit=1`)
+        .then((res) => res.json())
+        .catch(() => {
+          return { data: [] }
+        })
+
+      if (data.accounts.length === 0) {
+        return { data: [] }
+      } else {
+        const profile = data.accounts[0]
+        return {
+          data: [
+            {
+              address: `${profile.username}@${domain}`,
+              bio: profile.note,
+              handle: `${profile.username}@${domain}`,
+              name: profile.username,
+              network: 'Mastodon',
+              platform: 'Mastodon',
+              profileURI: [profile.avatar],
+              url: profile.url,
+            },
+          ],
+        }
+      }
+    },
   }
 }
