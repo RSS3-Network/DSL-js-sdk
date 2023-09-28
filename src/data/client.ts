@@ -1,5 +1,5 @@
 import createClient from 'openapi-fetch'
-import { components, paths } from '../types/data'
+import { paths } from '../types/data'
 import { ClientOptions } from '../types/utils'
 import { DEFAULT_DATA_SERVER } from '../constants'
 import { debug, fetchWithLog } from '../utils'
