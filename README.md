@@ -79,7 +79,7 @@ import searchClient from '@rss3/js-sdk'
 
 const searchResults = await searchClient().activities({
   keyword: 'Ethereum',
-  platform: 'mirror',
+  platform: ['mirror'],
 })
 ```
 
