@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
-    <img width="180" src="https://file.notion.so/f/s/632407fb-f9ea-4bab-97c8-64f0182c7131/RSS3.svg?id=b85899b3-afe8-451a-91b4-ed312d87992c&table=block&spaceId=65d56479-c868-4cdb-930c-ac594e1f032c&expirationTimestamp=1695758400000&signature=WOELQIO8Nq3b9ZWrqOptVu9ib1GJs-pUz7Puy-01sqk&downloadName=RSS3.svg" alt="RSS3 logo">
+  <a href="https://rss3.io" target="_blank" rel="noopener noreferrer">
+    <img width="180" src="./RSS3.svg" alt="RSS3 logo">
   </a>
 </p>
 <br/>
@@ -43,10 +43,10 @@ Get open social activities of anyone, here we get `vitalik.eth`'s comments on `f
 import dataClient from '@rss3/js-sdk'
 
 const socialActivities = await dataClient().activities({
-  account: 'vitalik.eth', // or many other supported domains.
-  tag: 'social',
-  type: 'comment',
-  platform: 'farcaster',
+  account: ['vitalik.eth'], // or many other supported domains.
+  tag: ['social'],
+  type: ['comment'],
+  platform: ['farcaster'],
 })
 ```
 
