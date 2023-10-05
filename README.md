@@ -56,7 +56,7 @@ Or simply query cross-network and human-readable feed of anyone:
 import dataClient from '@rss3/js-sdk'
 
 const readableFeed = await dataClient().activities({
-  account: '0xcccc',
+  account: ['0xd8da6bf26964af9d7eed9e03e53415d37aa96045'],
 })
 ```
 
