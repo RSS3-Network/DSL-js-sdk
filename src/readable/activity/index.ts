@@ -308,6 +308,7 @@ export function tokenizeAction(
       }
     },
     // todo type error
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     'social-unfollow': (m: any) => {
       if (direction === 'in') {
         return join([
