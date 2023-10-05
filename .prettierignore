@@ -4,5 +4,5 @@ cspell.json
 src/types/data.ts
 src/types/search-external.ts
 src/types/search-internal.ts
-src/metadata-doc.ts
+src/readable/metadata/doc.ts
 src/format/activity-examples

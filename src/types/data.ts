@@ -8,29 +8,36 @@
 
 export interface paths {
   "/accounts/activities": {
-    post: operations["batchGetAccountsActivitiesFm"];
+    /** @description Retrieve activities of a list of accounts. */
+    post: operations["PostAccountsActivities"];
   };
   "/accounts/{account}/activities": {
-    get: operations["getAccountActivitiesFm"];
+    /** @description Retrieve all activities of a specific account. */
+    get: operations["GetAccountActivities"];
   };
   "/accounts/{account}/profiles": {
-    get: operations["getAccountProfilesFm"];
+    /** @description Retrieve profiles of a specific account. */
+    get: operations["GetAccountProfiles"];
   };
   "/activities/{id}": {
-    get: operations["getActivityFm"];
+    /** @description Retrieve the details of a specific activity. */
+    get: operations["GetActivity"];
   };
   "/mastodon/{account}/activities": {
-    get: operations["getMastodonActivitiesFm"];
+    /** @description Retrieve activities of a specific account (Mastodon handle). */
+    get: operations["GetMastodonActivities"];
   };
   "/networks/{network}/activities": {
-    get: operations["getNetworkActivitiesFm"];
+    /** @description Retrieve activities of a specific network. */
+    get: operations["GetNetworkActivities"];
   };
   "/openapi.json": {
     /** @description It responds the OpenAPI doc for this service in JSON format. */
     get: operations["func2"];
   };
   "/platforms/{platform}/activities": {
-    get: operations["getPlatformActivitiesFm"];
+    /** @description Retrieve activities of a specific Platform. */
+    get: operations["GetPlatformActivities"];
   };
 }
 
@@ -43,27 +50,36 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.AccountsActivitiesRequest
      */
     AccountsActivitiesRequest: {
-      /** @description accounts size limit */
-      account: string[];
+      /** @description The list of accounts to retrieve activities from */
+      account?: string[];
       /**
-       * @description actions limit, default is 10
+       * @description The number of actions within the activity to retrieve
        * @default 10
        */
       action_limit?: number;
+      /** @description The cursor used for pagination */
       cursor?: string | null;
+      /** @description The direction of the activity */
       direction?: components["schemas"]["Direction"] | null;
-      end_timestamp?: number | null;
       /**
-       * @description transactions limit, default is 100
-       * @default 10
+       * @description The number of activities to retrieve
+       * @default 100
        */
       limit?: number;
+      /** @description Filter the activities by networks */
       network?: components["schemas"]["Network"][];
+      /** @description Filter the activities by platforms */
       platform?: components["schemas"]["Platform"][];
-      start_timestamp?: number | null;
+      /** @description Filter data after this timestamp */
+      since_timestamp?: number | null;
+      /** @description The status of the activity */
       status?: components["schemas"]["Status"] | null;
+      /** @description Filter the activities by tags */
       tag?: components["schemas"]["Tag"][];
+      /** @description Filter the activities by types */
       type?: components["schemas"]["Type"][];
+      /** @description Filter data before this timestamp */
+      util_timestamp?: number | null;
     };
     /**
      * Action
@@ -772,7 +788,8 @@ export type external = Record<string, never>;
 
 export interface operations {
 
-  batchGetAccountsActivitiesFm: {
+  /** @description Retrieve activities of a list of accounts. */
+  PostAccountsActivities: {
     requestBody: {
       content: {
         "application/json": components["schemas"]["AccountsActivitiesRequest"];
@@ -806,25 +823,33 @@ export interface operations {
       };
     };
   };
-  getAccountActivitiesFm: {
+  /** @description Retrieve all activities of a specific account. */
+  GetAccountActivities: {
     parameters: {
       query?: {
-        /** @description transactions limit, maximum 500 */
+        /** @description The number of activities to retrieve */
         limit?: number;
-        /** @description actions limit, maximum 20 */
+        /** @description The number of actions within the activity to retrieve */
         action_limit?: number;
+        /** @description The cursor used for pagination */
         cursor?: string;
-        start_timestamp?: number;
-        end_timestamp?: number;
+        /** @description Filter data after this timestamp */
+        since_timestamp?: number;
+        /** @description Filter data before this timestamp */
+        until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
+        /** @description Filter the activities by networks */
         network?: components["schemas"]["Network"][];
+        /** @description Filter the activities by tags */
         tag?: components["schemas"]["Tag"][];
+        /** @description Filter the activities by types */
         type?: components["schemas"]["Type"][];
+        /** @description Filter the activities by platforms */
         platform?: components["schemas"]["Platform"][];
       };
       path: {
-        /** @description account */
+        /** @description The account to retrieve activities from */
         account: string;
       };
     };
@@ -856,14 +881,17 @@ export interface operations {
       };
     };
   };
-  getAccountProfilesFm: {
+  /** @description Retrieve profiles of a specific account. */
+  GetAccountProfiles: {
     parameters: {
       query?: {
+        /** @description Filter the activities by networks */
         network?: components["schemas"]["Network"][];
+        /** @description Filter the activities by platforms */
         platform?: components["schemas"]["Platform"][];
       };
       path: {
-        /** @description account */
+        /** @description The account to retrieve profiles from */
         account: string;
       };
     };
@@ -894,16 +922,17 @@ export interface operations {
       };
     };
   };
-  getActivityFm: {
+  /** @description Retrieve the details of a specific activity. */
+  GetActivity: {
     parameters: {
       query?: {
-        /** @description actions limit, minimum 1, maximum 20 */
+        /** @description The number of actions within the activity to retrieve */
         action_limit?: number;
-        /** @description actions pag, minimum 1 */
+        /** @description The pagination for actions */
         action_page?: number;
       };
       path: {
-        /** @description id */
+        /** @description The ID of the activity to retrieve */
         id: string;
       };
     };
@@ -943,14 +972,15 @@ export interface operations {
       };
     };
   };
-  getMastodonActivitiesFm: {
+  /** @description Retrieve activities of a specific account (Mastodon handle). */
+  GetMastodonActivities: {
     parameters: {
       query?: {
-        /** @description mastodon limit, maximum 40 */
+        /** @description The number of activities to retrieve */
         limit?: number;
       };
       path: {
-        /** @description mastodon handle */
+        /** @description The Mastodon handle to retrieve activities from */
         account: string;
       };
     };
@@ -982,16 +1012,20 @@ export interface operations {
       };
     };
   };
-  getNetworkActivitiesFm: {
+  /** @description Retrieve activities of a specific network. */
+  GetNetworkActivities: {
     parameters: {
       query?: {
-        /** @description transactions limit, maximum 500 */
+        /** @description The number of activities to retrieve */
         limit?: number;
-        /** @description actions limit, maximum 20 */
+        /** @description The number of actions within the activity to retrieve */
         action_limit?: number;
+        /** @description The cursor used for pagination */
         cursor?: string;
-        start_timestamp?: number;
-        end_timestamp?: number;
+        /** @description Filter data after this timestamp */
+        since_timestamp?: number;
+        /** @description Filter data before this timestamp */
+        until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
       };
@@ -1038,20 +1072,27 @@ export interface operations {
       };
     };
   };
-  getPlatformActivitiesFm: {
+  /** @description Retrieve activities of a specific Platform. */
+  GetPlatformActivities: {
     parameters: {
       query?: {
-        /** @description transactions limit, maximum 500 */
+        /** @description The number of activities to retrieve */
         limit?: number;
-        /** @description actions limit, maximum 20 */
+        /** @description The number of actions within the activity to retrieve */
         action_limit?: number;
+        /** @description The cursor used for pagination */
         cursor?: string;
-        start_timestamp?: number;
-        end_timestamp?: number;
+        /** @description Filter data after this timestamp */
+        since_timestamp?: number;
+        /** @description Filter data before this timestamp */
+        until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
+        /** @description Filter the activities by networks */
         network?: components["schemas"]["Network"][];
+        /** @description Filter the activities by tags */
         tag?: components["schemas"]["Tag"][];
+        /** @description Filter the activities by types */
         type?: components["schemas"]["Type"][];
       };
       path: {

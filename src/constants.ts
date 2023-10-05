@@ -1,2 +1,3 @@
 export const DEFAULT_DATA_SERVER = 'https://api.dev.rss3.io/data'
 export const DEFAULT_SEARCH_SERVER = 'https://api.dev.rss3.io/search'
+export const INFINITY_VALUE = '115792089237316195423570985008687907853269984665640564039457584007913129639935'

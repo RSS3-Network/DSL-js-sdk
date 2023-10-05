@@ -6,7 +6,7 @@
     "tmp",
     "src/types/{data,search-internal,search-external}.ts",
     "src/format/activity-examples",
-    "src/metadata-doc.ts"
+    "src/readable/metadata/doc.ts"
   ],
   "words": [
     "AAVE",
