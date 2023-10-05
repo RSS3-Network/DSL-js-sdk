@@ -51,33 +51,35 @@ export interface components {
      */
     AccountsActivitiesRequest: {
       /** @description The list of accounts to retrieve activities from */
-      Account: string[];
+      account?: string[];
       /**
        * @description The number of actions within the activity to retrieve
        * @default 10
        */
-      ActionLimit: number;
+      action_limit?: number;
       /** @description The cursor used for pagination */
-      Cursor: string | null;
+      cursor?: string | null;
       /** @description The direction of the activity */
-      Direction: components["schemas"]["Direction"] | null;
+      direction?: components["schemas"]["Direction"] | null;
       /**
        * @description The number of activities to retrieve
        * @default 100
        */
-      Limit: number;
+      limit?: number;
       /** @description Filter the activities by networks */
-      Network: components["schemas"]["Network"][];
+      network?: components["schemas"]["Network"][];
       /** @description Filter the activities by platforms */
-      Platform: components["schemas"]["Platform"][];
+      platform?: components["schemas"]["Platform"][];
+      /** @description Filter data after this timestamp */
+      since_timestamp?: number | null;
       /** @description The status of the activity */
-      Status: components["schemas"]["Status"] | null;
+      status?: components["schemas"]["Status"] | null;
       /** @description Filter the activities by tags */
-      Tag: components["schemas"]["Tag"][];
+      tag?: components["schemas"]["Tag"][];
       /** @description Filter the activities by types */
-      Type: components["schemas"]["Type"][];
-      end_timestamp?: number | null;
-      start_timestamp?: number | null;
+      type?: components["schemas"]["Type"][];
+      /** @description Filter data before this timestamp */
+      util_timestamp?: number | null;
     };
     /**
      * Action
@@ -831,8 +833,10 @@ export interface operations {
         action_limit?: number;
         /** @description The cursor used for pagination */
         cursor?: string;
-        start_timestamp?: number;
-        end_timestamp?: number;
+        /** @description Filter data after this timestamp */
+        since_timestamp?: number;
+        /** @description Filter data before this timestamp */
+        until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
         /** @description Filter the activities by networks */
@@ -1018,8 +1022,10 @@ export interface operations {
         action_limit?: number;
         /** @description The cursor used for pagination */
         cursor?: string;
-        start_timestamp?: number;
-        end_timestamp?: number;
+        /** @description Filter data after this timestamp */
+        since_timestamp?: number;
+        /** @description Filter data before this timestamp */
+        until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
       };
@@ -1076,8 +1082,10 @@ export interface operations {
         action_limit?: number;
         /** @description The cursor used for pagination */
         cursor?: string;
-        start_timestamp?: number;
-        end_timestamp?: number;
+        /** @description Filter data after this timestamp */
+        since_timestamp?: number;
+        /** @description Filter data before this timestamp */
+        until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
         /** @description Filter the activities by networks */

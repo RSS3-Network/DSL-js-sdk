@@ -305,9 +305,7 @@ export function tokenizeAction(
         ...tokenPlatform(action),
       ])
     },
-    // todo type error
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    'social-unfollow': (m: any) => {
+    'social-unfollow': (m) => {
       return join([
         tokenImage(m.from?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.from?.handle}?s=300`),
         tokenName(m.from?.name || m.from?.handle || ''),
