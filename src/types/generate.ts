@@ -78,7 +78,7 @@ async function generate(
 }
 
 function genMetadataDoc(data: any) {
-  let doc = `import { components } from './types/data'\n\n`
+  let doc = `import { components } from '../../types/data'\n\n`
 
   const map = {} as any
 
@@ -92,5 +92,5 @@ function genMetadataDoc(data: any) {
 
   doc = doc.replace(/"metadataRef": "#\/components\/schemas\/([^/"]+)"/g, `'ref': {} as components['schemas']['$1']`)
 
-  writeFileSync('src/metadata-doc.ts', doc)
+  writeFileSync('src/readable/metadata/doc.ts', doc)
 }

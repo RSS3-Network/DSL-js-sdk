@@ -1,4 +1,4 @@
-import { components } from './types/data'
+import { components } from '../../types/data'
 
 export const metadataDoc = {
   "transaction-transfer": {
@@ -463,7 +463,7 @@ export const metadataDoc = {
     ]
   },
   "social-unfollow": {
-    'ref': {} as components['schemas']['SocialProfile'],
+    'ref': {} as components['schemas']['SocialFollow'],
     "tag": "social",
     "type": "unfollow",
     "platforms": [

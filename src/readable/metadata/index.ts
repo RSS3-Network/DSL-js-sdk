@@ -1,5 +1,6 @@
-import { components } from './types/data'
-import { metadataDoc } from './metadata-doc'
+import { components } from '../../types/data'
+import { getTagType } from '../../utils'
+import { metadataDoc } from './doc'
 
 type NotUndefined<T> = T extends undefined ? never : T
 
@@ -9,14 +10,10 @@ type MakeKeysOptional<T> = {
 
 type Doc = typeof metadataDoc
 
-type Map = MakeKeysOptional<Doc>
-
-function getTagType(action: components['schemas']['Action']): keyof Map {
-  return `${action.tag}-${action.type}` as keyof Map
-}
+export type TagTypeMap = MakeKeysOptional<Doc>
 
 type Handlers = {
-  [key in keyof Map]: (metadata: NotUndefined<NotUndefined<Map[key]>['ref']>) => void
+  [key in keyof TagTypeMap]: (metadata: NotUndefined<NotUndefined<TagTypeMap[key]>['ref']>) => void
 }
 
 export function handleMetadata(action: components['schemas']['Action'], hs: Handlers) {

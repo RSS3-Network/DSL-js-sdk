@@ -1,6 +1,6 @@
 import { it } from 'vitest'
 import { client } from './client'
-import { handleMetadata } from '../metadata'
+import { handleMetadata } from '../readable/metadata'
 
 it.concurrent('get activities by address', async ({ expect }) => {
   const res = await client().activities({ account: ['vitalik.eth'], limit: 5 })
@@ -16,7 +16,7 @@ it.concurrent(
   'get mastodon activities',
   async ({ expect }) => {
     const res = await client().mastodonActivities('kel@toot.cafe')
-    expect(res.data).toHaveLength(10)
+    expect(res.data).toHaveLength(40)
   },
   30000,
 )
