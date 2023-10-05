@@ -274,7 +274,7 @@ export interface components {
      */
     Error: {
       code: components["schemas"]["ErrorCode"];
-      details?: components["schemas"]["CommonError"][];
+      details?: unknown;
       innererror?: unknown;
       message?: string;
       target?: string;
@@ -529,7 +529,20 @@ export interface components {
       publication_id?: string;
       summary?: string;
       tags?: string[];
-      target?: components["schemas"]["SocialPost"] | null;
+      target?: {
+        author_url?: string;
+        body?: string;
+        content_uri?: string;
+        handle?: string;
+        media?: components["schemas"]["Media"][];
+        profile_id?: string;
+        publication_id?: string;
+        summary?: string;
+        tags?: string[];
+        target?: unknown;
+        target_url?: string;
+        title?: string;
+      } | null;
       target_url?: string;
       title?: string;
     };
