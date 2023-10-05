@@ -52,34 +52,50 @@ export function tokenizeAction(
   action: components['schemas']['Action'],
 ): Token[] {
   const owner = activity.owner
-  const direction = activity.direction
   handleMetadata(action, {
     'transaction-transfer': (m) => {
-      if (direction === 'in') {
-        return join([tokenText('Received'), ...tokenValue(m), tokenText('from'), ...tokenAddr(owner)])
-      } else if (owner === action.from) {
-        return join([tokenText('Sent'), ...tokenValue(m), tokenText('to'), ...tokenAddr(action.to)])
+      if (owner === action.from) {
+        return join([
+          ...tokenAddr(action.from),
+          tokenText('sent'),
+          ...tokenValue(m),
+          tokenText('to'),
+          ...tokenAddr(action.to),
+        ])
       } else {
-        return join([tokenText('Claimed'), ...tokenValue(m), tokenText('from'), ...tokenAddr(action.from)])
+        return join([
+          ...tokenAddr(action.to),
+          tokenText('claimed'),
+          ...tokenValue(m),
+          tokenText('from'),
+          ...tokenAddr(action.from),
+        ])
       }
     },
     'transaction-approval': (m) => {
       if (m.action === 'approve') {
-        return join([tokenText('Approved'), ...tokenValue(m), tokenText('to'), ...tokenAddr(action.to)])
+        return join([
+          ...tokenAddr(action.from),
+          tokenText('approved'),
+          ...tokenValue(m),
+          tokenText('to'),
+          ...tokenAddr(action.to),
+        ])
       } else {
         return join([
-          tokenText('Revoked the approval of'),
+          ...tokenAddr(action.from),
+          tokenText('revoked the approval of'),
           ...tokenValue(m),
-          tokenText('from'),
+          tokenText('to'),
           ...tokenAddr(action.to),
         ])
       }
     },
     'transaction-mint': (m) => {
-      return join([tokenText('Minted'), ...tokenValue(m)])
+      return join([...tokenAddr(action.from), tokenText('Minted'), ...tokenValue(m)])
     },
     'transaction-burn': (m) => {
-      return join([tokenText('Burned'), ...tokenValue(m)])
+      return join([...tokenAddr(action.from), tokenText('Burned'), ...tokenValue(m)])
     },
     // todo need to double check the multisig action
     'transaction-multisig': (m) => {
@@ -135,23 +151,14 @@ export function tokenizeAction(
     },
     // for collectible or nft related action, it will use image_url as the image link
     'collectible-transfer': (m) => {
-      if (direction === 'out') {
-        return join([
-          tokenText('Transferred'),
-          tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'NFT'),
-          tokenText('to'),
-          ...tokenAddr(action.to),
-        ])
-      } else {
-        return join([
-          tokenText('Received'),
-          tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'NFT'),
-          tokenText('from'),
-          ...tokenAddr(action.from),
-        ])
-      }
+      return join([
+        ...tokenAddr(action.from),
+        tokenText('Transferred'),
+        tokenImage(m.image_url),
+        tokenName(m.name || m.title || 'NFT'),
+        tokenText('to'),
+        ...tokenAddr(action.to),
+      ])
     },
     'collectible-approval': (m) => {
       if (m.action === 'approve') {
@@ -280,11 +287,7 @@ export function tokenizeAction(
       return join([tokenText('Published post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-comment': () => {
-      if (direction === 'out') {
-        return join([tokenText('Commented'), tokenPost(action), ...tokenPlatform(action)])
-      } else {
-        return join([tokenText('Received'), tokenPost(action), ...tokenPlatform(action)])
-      }
+      return join([...tokenAddr(action.to), tokenText('Commented'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-share': () => {
       return join([tokenText('Shared'), tokenPost(action), ...tokenPlatform(action)])
@@ -293,36 +296,26 @@ export function tokenizeAction(
       return join([tokenText('Minted'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-follow': (m) => {
-      if (direction === 'in') {
-        return join([
-          tokenText('Followed by'),
-          tokenImage(m.from?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.from?.handle}?s=300`),
-          ...tokenPlatform(action),
-        ])
-      } else {
-        return join([
-          tokenText('Followed'),
-          tokenImage(m.to?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.to?.handle}?s=300`),
-          ...tokenPlatform(action),
-        ])
-      }
+      return join([
+        tokenImage(m.to?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.to?.handle}?s=300`),
+        tokenName(m.to?.name || m.to?.handle || ''),
+        tokenText('followed'),
+        tokenImage(m.from?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.from?.handle}?s=300`),
+        tokenName(m.from?.name || m.from?.handle || ''),
+        ...tokenPlatform(action),
+      ])
     },
     // todo type error
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     'social-unfollow': (m: any) => {
-      if (direction === 'in') {
-        return join([
-          tokenText('Unfollowed by'),
-          tokenImage(m.from?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.from?.handle}?s=300`),
-          ...tokenPlatform(action),
-        ])
-      } else {
-        return join([
-          tokenText('Unfollowed'),
-          tokenImage(m.to?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.to?.handle}?s=300`),
-          ...tokenPlatform(action),
-        ])
-      }
+      return join([
+        tokenImage(m.from?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.from?.handle}?s=300`),
+        tokenName(m.from?.name || m.from?.handle || ''),
+        tokenText('unfollowed'),
+        tokenImage(m.to?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.to?.handle}?s=300`),
+        tokenName(m.to?.name || m.to?.handle || ''),
+        ...tokenPlatform(action),
+      ])
     },
     'social-revise': () => {
       return join([tokenText('Revised'), tokenPost(action), ...tokenPlatform(action)])
