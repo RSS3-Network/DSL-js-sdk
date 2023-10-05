@@ -16,7 +16,7 @@ it.concurrent(
   'get mastodon activities',
   async ({ expect }) => {
     const res = await client().mastodonActivities('kel@toot.cafe')
-    expect(res.data).toHaveLength(10)
+    expect(res.data).toHaveLength(40)
   },
   30000,
 )
