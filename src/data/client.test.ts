@@ -1,6 +1,7 @@
 import { it } from 'vitest'
 import { client } from './client'
 import { handleMetadata } from '../readable/metadata'
+import { handleTokenValue } from '../readable/number'
 
 it.concurrent('get activities by address', async ({ expect }) => {
   const res = await client().activities({ account: ['vitalik.eth'], limit: 5 })

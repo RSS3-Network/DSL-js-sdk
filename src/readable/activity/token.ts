@@ -1,5 +1,6 @@
 import { INFINITY_VALUE } from '../../constants'
 import { components } from '../../types/data'
+import { handleTokenValue } from '../number'
 
 export type TokenType =
   | 'text' // plain text
@@ -54,7 +55,7 @@ export function tokenNetwork(t: string | null | undefined) {
 export function tokenValue(t: components['schemas']['TokenMetadata'] | null | undefined) {
   if (!t) return [token('number', '0')]
   if (t.value === INFINITY_VALUE) return [token('number', 'infinite'), token('symbol', t.symbol)]
-  return [tokenImage(t.image), token('number', t.value?.toString() || '0'), token('symbol', t.symbol)]
+  return [tokenImage(t.image), token('number', handleTokenValue(t.value, t.decimals) || '0'), token('symbol', t.symbol)]
 }
 
 export function tokenPlatform(t: components['schemas']['Activity'] | components['schemas']['Action']) {
