@@ -1,5 +1,7 @@
-import { components } from './types/search-internal'
+import { components as searchComponents } from './types/search-internal'
+import { components as dataComponents } from './types/data'
 import Debug from 'debug'
+import { TagTypeMap } from './readable/metadata'
 
 export const debug = Debug('@rss3/js-sdk')
 
@@ -13,7 +15,7 @@ export function fetchWithLog(logger: typeof debug, f: typeof fetch = fetch): typ
 
 export type TimeRange = 'all' | 'day' | 'week' | 'month' | 'year'
 
-export function timeRange(range: TimeRange = 'all'): components['schemas']['FeedSearchReqDTO']['between'] {
+export function timeRange(range: TimeRange = 'all'): searchComponents['schemas']['FeedSearchReqDTO']['between'] {
   const now = Date.now()
   const day = 24 * 60 * 60 * 1000
   const week = 7 * day
@@ -32,4 +34,17 @@ export function timeRange(range: TimeRange = 'all'): components['schemas']['Feed
     case 'year':
       return { lte: now, gte: now - year }
   }
+}
+
+export function getActions(activity: dataComponents['schemas']['Activity']): dataComponents['schemas']['Action'][] {
+  if (activity.actions.length === 1) {
+    return activity.actions
+  } else if (activity.actions) {
+    return activity.actions.filter((t) => t.tag === activity.tag && t.type === activity.type)
+  }
+  return []
+}
+
+export function getTagType(action: dataComponents['schemas']['Action']): keyof TagTypeMap {
+  return `${action.tag}-${action.type}` as keyof TagTypeMap
 }
