@@ -197,7 +197,7 @@ export function tokenizeAction(
         ])
       } else {
         return join([
-          tokenText('Sell'),
+          tokenText('Sold'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           tokenText('to'),
@@ -398,7 +398,7 @@ export function tokenizeAction(
         ])
       } else if (m.action === 'sell') {
         return join([
-          tokenText('Sell'),
+          tokenText('Sold'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           tokenText('from'),
