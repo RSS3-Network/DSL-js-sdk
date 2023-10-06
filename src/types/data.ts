@@ -50,36 +50,36 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.AccountsActivitiesRequest
      */
     AccountsActivitiesRequest: {
-      /** @description The list of accounts to retrieve activities from */
+      /** @description Retrieve activities from the specified list of accounts */
       account?: string[];
       /**
-       * @description The number of actions within the activity to retrieve
+       * @description Specify the number of actions within the activity to retrieve
        * @default 10
        */
       action_limit?: number;
-      /** @description The cursor used for pagination */
+      /** @description Specify the cursor used for pagination */
       cursor?: string | null;
-      /** @description The direction of the activity */
+      /** @description Retrieve activities based on direction */
       direction?: components["schemas"]["Direction"] | null;
       /**
-       * @description The number of activities to retrieve
+       * @description Specify the number of activities to retrieve
        * @default 100
        */
       limit?: number;
-      /** @description Filter the activities by networks */
+      /** @description Retrieve activities from the specified network(s) */
       network?: components["schemas"]["Network"][];
-      /** @description Filter the activities by platforms */
+      /** @description Retrieve activities from the specified platform(s) */
       platform?: components["schemas"]["Platform"][];
-      /** @description Filter data after this timestamp */
+      /** @description Retrieve activities starting from this timestamp */
       since_timestamp?: number | null;
-      /** @description The status of the activity */
+      /** @description Retrieve activities based on status */
       status?: components["schemas"]["Status"] | null;
-      /** @description Filter the activities by tags */
+      /** @description Retrieve activities from the specified tag(s) */
       tag?: components["schemas"]["Tag"][];
-      /** @description Filter the activities by types */
+      /** @description Retrieve activities from the specified type(s) */
       type?: components["schemas"]["Type"][];
-      /** @description Filter data before this timestamp */
-      util_timestamp?: number | null;
+      /** @description Retrieve activities up to this timestamp */
+      until_timestamp?: number | null;
     };
     /**
      * Action
@@ -827,29 +827,29 @@ export interface operations {
   GetAccountActivities: {
     parameters: {
       query?: {
-        /** @description The number of activities to retrieve */
+        /** @description Specify the number of activities to retrieve */
         limit?: number;
-        /** @description The number of actions within the activity to retrieve */
+        /** @description Specify the number of actions within the activity to retrieve */
         action_limit?: number;
-        /** @description The cursor used for pagination */
+        /** @description Specify the cursor used for pagination */
         cursor?: string;
-        /** @description Filter data after this timestamp */
+        /** @description Retrieve activities starting from this timestamp */
         since_timestamp?: number;
-        /** @description Filter data before this timestamp */
+        /** @description Retrieve activities up to this timestamp */
         until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
-        /** @description Filter the activities by networks */
+        /** @description Retrieve activities from the specified network(s) */
         network?: components["schemas"]["Network"][];
-        /** @description Filter the activities by tags */
+        /** @description Retrieve activities from the specified tag(s) */
         tag?: components["schemas"]["Tag"][];
-        /** @description Filter the activities by types */
+        /** @description Retrieve activities from the specified type(s) */
         type?: components["schemas"]["Type"][];
-        /** @description Filter the activities by platforms */
+        /** @description Retrieve activities from the specified platform(s) */
         platform?: components["schemas"]["Platform"][];
       };
       path: {
-        /** @description The account to retrieve activities from */
+        /** @description Retrieve activities from the specified account */
         account: string;
       };
     };
@@ -885,13 +885,13 @@ export interface operations {
   GetAccountProfiles: {
     parameters: {
       query?: {
-        /** @description Filter the activities by networks */
+        /** @description Retrieve activities from the specified network(s) */
         network?: components["schemas"]["Network"][];
-        /** @description Filter the activities by platforms */
+        /** @description Retrieve activities from the specified platform(s) */
         platform?: components["schemas"]["Platform"][];
       };
       path: {
-        /** @description The account to retrieve profiles from */
+        /** @description Retrieve activities from the specified account */
         account: string;
       };
     };
@@ -926,13 +926,13 @@ export interface operations {
   GetActivity: {
     parameters: {
       query?: {
-        /** @description The number of actions within the activity to retrieve */
+        /** @description Specify the number of actions within the activity to retrieve */
         action_limit?: number;
-        /** @description The pagination for actions */
+        /** @description Specify the pagination for actions */
         action_page?: number;
       };
       path: {
-        /** @description The ID of the activity to retrieve */
+        /** @description Retrieve details for the specified activity ID */
         id: string;
       };
     };
@@ -976,11 +976,11 @@ export interface operations {
   GetMastodonActivities: {
     parameters: {
       query?: {
-        /** @description The number of activities to retrieve */
+        /** @description Specify the number of activities to retrieve */
         limit?: number;
       };
       path: {
-        /** @description The Mastodon handle to retrieve activities from */
+        /** @description Retrieve activities from the specified Mastodon handle */
         account: string;
       };
     };
@@ -1016,15 +1016,15 @@ export interface operations {
   GetNetworkActivities: {
     parameters: {
       query?: {
-        /** @description The number of activities to retrieve */
+        /** @description Specify the number of activities to retrieve */
         limit?: number;
-        /** @description The number of actions within the activity to retrieve */
+        /** @description Specify the number of actions within the activity to retrieve */
         action_limit?: number;
-        /** @description The cursor used for pagination */
+        /** @description Specify the cursor used for pagination */
         cursor?: string;
-        /** @description Filter data after this timestamp */
+        /** @description Retrieve activities starting from this timestamp */
         since_timestamp?: number;
-        /** @description Filter data before this timestamp */
+        /** @description Retrieve activities up to this timestamp */
         until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
@@ -1076,23 +1076,23 @@ export interface operations {
   GetPlatformActivities: {
     parameters: {
       query?: {
-        /** @description The number of activities to retrieve */
+        /** @description Specify the number of activities to retrieve */
         limit?: number;
-        /** @description The number of actions within the activity to retrieve */
+        /** @description Specify the number of actions within the activity to retrieve */
         action_limit?: number;
-        /** @description The cursor used for pagination */
+        /** @description Specify the cursor used for pagination */
         cursor?: string;
-        /** @description Filter data after this timestamp */
+        /** @description Retrieve activities starting from this timestamp */
         since_timestamp?: number;
-        /** @description Filter data before this timestamp */
+        /** @description Retrieve activities up to this timestamp */
         until_timestamp?: number;
         status?: components["schemas"]["Status"];
         direction?: components["schemas"]["Direction"];
-        /** @description Filter the activities by networks */
+        /** @description Retrieve activities from the specified network(s) */
         network?: components["schemas"]["Network"][];
-        /** @description Filter the activities by tags */
+        /** @description Retrieve activities from the specified tag(s) */
         tag?: components["schemas"]["Tag"][];
-        /** @description Filter the activities by types */
+        /** @description Retrieve activities from the specified type(s) */
         type?: components["schemas"]["Type"][];
       };
       path: {
