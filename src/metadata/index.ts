@@ -1,5 +1,5 @@
-import { components } from '../../types/data'
-import { getTagType } from '../../utils'
+import { components } from '../types/data'
+import { getTagType } from '../utils'
 import { metadataDoc } from './doc'
 
 type NotUndefined<T> = T extends undefined ? never : T

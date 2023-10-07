@@ -494,7 +494,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Platform
      * @enum {unknown}
      */
-    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "IQ.Wiki" | "Lens" | "Lido" | "Mars4" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "PlanetIX" | "Polygon" | "RSS3" | "Rainbow" | "Safe" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "zkSync Era" | "zkSync Lite" | "zkSync";
+    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "Gnosis" | "IQ.Wiki" | "KyberSwap" | "Lens" | "Lido" | "Linea" | "LooksRare" | "Mars4" | "Matters" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "ParaSwap" | "PlanetIX" | "Polygon" | "RARA" | "RSS3" | "Rainbow" | "Safe" | "Stargate" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "friend.tech" | "zkSync Era" | "zkSync Lite" | "zkSync";
     /**
      * Profile
      * @description github.com/naturalselectionlabs/data-api/common/schema/v2.Profile
@@ -543,9 +543,10 @@ export interface components {
       media?: components["schemas"]["Media"][];
       profile_id?: string;
       publication_id?: string;
+      reward?: components["schemas"]["TokenMetadata"] | null;
       summary?: string;
       tags?: string[];
-      target?: {
+      target?: ({
         author_url?: string;
         body?: string;
         content_uri?: string;
@@ -553,12 +554,13 @@ export interface components {
         media?: components["schemas"]["Media"][];
         profile_id?: string;
         publication_id?: string;
+        reward?: components["schemas"]["TokenMetadata"] | null;
         summary?: string;
         tags?: string[];
         target?: unknown;
         target_url?: string;
         title?: string;
-      } | null;
+      }) | null;
       target_url?: string;
       title?: string;
     };
@@ -583,7 +585,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialProfileAction
      * @enum {unknown}
      */
-    SocialProfileAction: "create" | "renew" | "transfer" | "unwrap" | "update" | "wrap";
+    SocialProfileAction: "create" | "renew" | "unwrap" | "update" | "wrap";
     /**
      * SocialProxy
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialProxy
@@ -604,7 +606,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.SocialType
      * @enum {unknown}
      */
-    SocialType: "comment" | "delete" | "follow" | "mint" | "post" | "profile" | "proxy" | "revise" | "share" | "unfollow";
+    SocialType: "comment" | "delete" | "follow" | "mint" | "post" | "profile" | "proxy" | "revise" | "reward" | "share" | "unfollow";
     /**
      * Standard
      * @description github.com/naturalselectionlabs/sakuin/common/ethereum/contract.Standard
@@ -721,7 +723,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionMultisigAction
      * @enum {unknown}
      */
-    TransactionMultisigAction: "add_owner" | "change_threshold" | "create" | "execution" | "rejection" | "remove_owner";
+    TransactionMultisigAction: "add_owner" | "change_threshold" | "create" | "execution" | "remove_owner";
     /**
      * TransactionMultisigVault
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.TransactionMultisigVault
@@ -764,7 +766,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/common/schema.Type
      * @enum {unknown}
      */
-    Type: "approval" | "auction" | "bridge" | "burn" | "claim" | "comment" | "delete" | "deploy" | "donate" | "follow" | "liquidity" | "loan" | "mint" | "multisig" | "post" | "profile" | "propose" | "proxy" | "revise" | "share" | "staking" | "swap" | "trade" | "transfer" | "unfollow" | "unknown" | "vote";
+    Type: "approval" | "auction" | "bridge" | "burn" | "claim" | "comment" | "delete" | "deploy" | "donate" | "follow" | "liquidity" | "loan" | "mint" | "multisig" | "post" | "profile" | "propose" | "proxy" | "revise" | "reward" | "share" | "staking" | "swap" | "trade" | "transfer" | "unfollow" | "unknown" | "vote";
     /**
      * Type
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Type

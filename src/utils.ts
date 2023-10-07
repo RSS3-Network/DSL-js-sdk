@@ -1,7 +1,7 @@
 import { components as searchComponents } from './types/search-internal'
 import { components as dataComponents } from './types/data'
 import Debug from 'debug'
-import { TagTypeMap } from './readable/metadata'
+import { TagTypeMap } from './metadata'
 
 export const debug = Debug('@rss3/js-sdk')
 

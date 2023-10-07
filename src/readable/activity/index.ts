@@ -1,6 +1,6 @@
 import { components } from '../../types/data'
 import { getActions } from '../../utils'
-import { handleMetadata } from '../metadata'
+import { handleMetadata } from '../../metadata'
 import { Theme, themePlain } from './theme'
 import {
   Token,
@@ -125,8 +125,6 @@ export function tokenizeAction(
         ])
       } else if (m.action === 'change_threshold') {
         res = join([tokenText('Changed the threshold of'), ...tokenAddr(m.vault.address), ...tokenPlatform(activity)])
-      } else if (m.action === 'rejection') {
-        res = join([tokenText('Rejected a multisig transaction'), ...tokenPlatform(activity)])
       } else if (m.action === 'execution') {
         res = join([tokenText('Executed a multisig transaction'), ...tokenPlatform(activity)])
       }
