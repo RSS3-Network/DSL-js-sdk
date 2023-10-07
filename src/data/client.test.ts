@@ -1,10 +1,10 @@
 import { it } from 'vitest'
 import { client } from './client'
-import { handleMetadata } from '../readable/metadata'
+import { handleMetadata } from '../metadata'
 
 it.concurrent('get activities by address', async ({ expect }) => {
   const res = await client().activities({ account: ['vitalik.eth'], limit: 5 })
-  expect(res.data).toHaveLength(2)
+  expect(res.data).toHaveLength(5)
 })
 
 it.concurrent('get profile', async ({ expect }) => {

@@ -1,4 +1,5 @@
 import { INFINITY_VALUE } from '../../constants'
+import { Activity } from '../../data/client'
 import { components } from '../../types/data'
 import { handleTokenValue } from '../number'
 
@@ -58,7 +59,7 @@ export function tokenValue(t: components['schemas']['TokenMetadata'] | null | un
   return [tokenImage(t.image), token('number', handleTokenValue(t.value, t.decimals) || '0'), token('symbol', t.symbol)]
 }
 
-export function tokenPlatform(t: components['schemas']['Activity'] | components['schemas']['Action']) {
+export function tokenPlatform(t: Activity | components['schemas']['Action']) {
   let platform = ''
   if (t.platform) {
     platform = t.platform

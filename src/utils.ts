@@ -2,6 +2,9 @@ import { components as searchComponents } from './types/search-internal'
 import { components as dataComponents } from './types/data'
 import Debug from 'debug'
 import { TagTypeMap } from './metadata'
+import { Activity } from './data/client'
+
+export type Res<Data, Meta> = Promise<{ data: Data; meta: Meta }>
 
 export const debug = Debug('@rss3/js-sdk')
 
@@ -36,7 +39,7 @@ export function timeRange(range: TimeRange = 'all'): searchComponents['schemas']
   }
 }
 
-export function getActions(activity: dataComponents['schemas']['Activity']): dataComponents['schemas']['Action'][] {
+export function getActions(activity: Activity): dataComponents['schemas']['Action'][] {
   if (activity.actions.length === 1) {
     return activity.actions
   } else if (activity.actions) {

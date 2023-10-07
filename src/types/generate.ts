@@ -2,14 +2,14 @@
 
 import { spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
-import { DEFAULT_RSS3_MAINNET } from '../constants'
+import { DEFAULT_RSS3_NET } from '../constants'
 
 main()
 
 async function main() {
   await generate(
     'data',
-    DEFAULT_RSS3_MAINNET + '/data/openapi.json',
+    DEFAULT_RSS3_NET + '/data/openapi.json',
     (schema) => {
       genMetadataDoc(schema['x-extension']['metadataTypes'])
       return schema
@@ -21,7 +21,7 @@ async function main() {
 
   await generate(
     'search-external',
-    DEFAULT_RSS3_MAINNET + '/search/v3/api-docs/ExternalAPI',
+    DEFAULT_RSS3_NET + '/search/v3/api-docs/ExternalAPI',
     (schema) => {
       return schema
     },
@@ -40,7 +40,7 @@ async function main() {
 
   await generate(
     'search-internal',
-    DEFAULT_RSS3_MAINNET + '/search/v3/api-docs/Internal API',
+    DEFAULT_RSS3_NET + '/search/v3/api-docs/Internal API',
     (schema) => {
       return schema
     },
@@ -78,7 +78,7 @@ async function generate(
 }
 
 function genMetadataDoc(data: any) {
-  let doc = `import { components } from '../../types/data'\n\n`
+  let doc = `import { components } from '../types/data'\n\n`
 
   const map = {} as any
 
@@ -92,5 +92,5 @@ function genMetadataDoc(data: any) {
 
   doc = doc.replace(/"metadataRef": "#\/components\/schemas\/([^/"]+)"/g, `'ref': {} as components['schemas']['$1']`)
 
-  writeFileSync('src/readable/metadata/doc.ts', doc)
+  writeFileSync('src/metadata/doc.ts', doc)
 }

@@ -9,7 +9,7 @@
     "node": ">=v19.8.1"
   },
   "scripts": {
-    "generate": "npm run build && node lib/types/generate",
+    "generate": "npm run build && DEFAULT_RSS3_NET='https://api.dev.rss3.io' node lib/types/generate",
     "build": "rm -rf lib && tsc",
     "test": "vitest run",
     "lint": "cspell --no-progress '**' && eslint --max-warnings=0 src && prettier -c . && tsc --noEmit",

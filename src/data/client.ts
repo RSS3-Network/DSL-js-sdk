@@ -1,14 +1,19 @@
 import createClient from 'openapi-fetch'
-import { paths } from '../types/data'
+import { components, paths, operations } from '../types/data'
 import { ClientOptions } from '../types/utils'
-import { DEFAULT_RSS3_MAINNET } from '../constants'
-import { debug, fetchWithLog } from '../utils'
+import { DEFAULT_RSS3_NET } from '../constants'
+import { Res, debug, fetchWithLog } from '../utils'
+
+export type Activity = components['schemas']['Activity']
+export type Profile = components['schemas']['Profile']
+export type TotalPage = components['schemas']['MetaTotalPages']
+export type Cursor = components['schemas']['MetaCursor']
 
 /**
  * Data client for interacting with the data server.
  */
 export function client(opt: ClientOptions = {}) {
-  if (!opt.baseUrl) opt.baseUrl = DEFAULT_RSS3_MAINNET + '/data'
+  if (!opt.baseUrl) opt.baseUrl = DEFAULT_RSS3_NET + '/data'
 
   const debugSearch = debug.extend('search')
 
@@ -20,23 +25,35 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query transactions.
      */
-    async activity(id: string) {
+    async activity(id: string): Res<Activity, TotalPage> {
       const { data, error } = await client.get('/activities/{id}', { params: { path: { id } } })
       if (error || !data) throw error
 
-      return data
+      if (!data.data || !data.meta) return data as never
+
+      return {
+        data: data.data,
+        meta: data.meta,
+      }
     },
 
     /**
      * Query activities.
      */
-    async activities(query: paths['/accounts/activities']['post']['requestBody']['content']['application/json']) {
+    async activities(query: components['schemas']['AccountsActivitiesRequest']): Res<Activity[], Cursor> {
       const { data, error } = await client.post('/accounts/activities', {
         body: query,
       })
       if (error || !data) throw error
 
-      return data
+      if (!data.meta) return data as never
+
+      const list = data.data.map((a) => a as Activity)
+
+      return {
+        data: list,
+        meta: data.meta,
+      }
     },
 
     /**
@@ -44,8 +61,8 @@ export function client(opt: ClientOptions = {}) {
      */
     async mastodonActivities(
       account: string,
-      query: paths['/mastodon/{account}/activities']['get']['parameters']['query'] = {},
-    ) {
+      query: operations['GetMastodonActivities']['parameters']['query'] = {},
+    ): Res<Activity[], Cursor> {
       const client = createClient<paths>(opt)
 
       const { data, error } = await client.get('/mastodon/{account}/activities', {
@@ -56,13 +73,23 @@ export function client(opt: ClientOptions = {}) {
       })
       if (error || !data) throw error
 
-      return data
+      if (!data.meta) return data as never
+
+      const list = data.data.map((a) => a as Activity)
+
+      return {
+        data: list,
+        meta: data.meta,
+      }
     },
 
     /**
      * Query profiles.
      */
-    async profiles(account: string, query: paths['/accounts/{account}/profiles']['get']['parameters']['query'] = {}) {
+    async profiles(
+      account: string,
+      query: operations['GetAccountProfiles']['parameters']['query'] = {},
+    ): Res<Profile[], null> {
       const { data, error } = await client.get('/accounts/{account}/profiles', {
         params: {
           path: { account },
@@ -71,15 +98,18 @@ export function client(opt: ClientOptions = {}) {
       })
       if (error || !data) throw error
 
-      return data
+      const list = data.data.map((a) => a as Profile)
+
+      return {
+        data: list,
+        meta: null,
+      }
     },
 
     /**
      * Query mastodon profiles.
      */
-    async mastodonProfiles(
-      account: string,
-    ): Promise<paths['/accounts/{account}/profiles']['get']['responses']['200']['content']['application/json']> {
+    async mastodonProfiles(account: string): Res<Profile[], null> {
       const [handle, domain] = account.split('@')
 
       const data = await fetch(`https://${domain}/api/v2/search?q=${handle}&resolve=false&limit=1`)
@@ -89,7 +119,7 @@ export function client(opt: ClientOptions = {}) {
         })
 
       if (data.accounts.length === 0) {
-        return { data: [] }
+        return { data: [], meta: null }
       } else {
         const profile = data.accounts[0]
         return {
@@ -105,6 +135,7 @@ export function client(opt: ClientOptions = {}) {
               url: profile.url,
             },
           ],
+          meta: null,
         }
       }
     },

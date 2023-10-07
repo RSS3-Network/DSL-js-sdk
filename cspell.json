@@ -4,9 +4,10 @@
   "ignorePaths": [
     "lib",
     "tmp",
+    "*.snap",
     "src/types/{data,search-internal,search-external}.ts",
     "src/format/activity-examples",
-    "src/readable/metadata/doc.ts",
+    "src/metadata/doc.ts",
     "src/constants.ts"
   ],
   "words": [

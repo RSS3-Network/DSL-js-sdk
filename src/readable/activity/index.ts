@@ -15,15 +15,24 @@ import {
   tokenImage,
   tokenNetwork,
 } from './token'
+import { Activity } from '../../data/client'
 
-export function handleActivity(activity: components['schemas']['Activity']): string {
-  return format(activity, themePlain).join('')
+export function formatPlain(activity: Activity): string {
+  const list = format(activity, themePlain).filter((s) => s !== '')
+
+  const clean: string[] = []
+  for (let i = 0; i < list.length; i++) {
+    if (list[i] === ' ' && list[i + 1] === ' ') continue
+    clean.push(list[i])
+  }
+
+  return clean.join('')
 }
 
 /**
- * returns a plain string summary of the activity.
+ * Format an activity into a list of tokens that can be used to custom render the output of a activity, such as CLI output.
  */
-export function format<T>(activity: components['schemas']['Activity'], theme: Theme<T>): T[] {
+export function format<T>(activity: Activity, theme: Theme<T>): T[] {
   const ts = tokenizeActivity(activity)
   return ts.map((t) => theme[t.type](t.content))
 }
@@ -32,7 +41,7 @@ export function format<T>(activity: components['schemas']['Activity'], theme: Th
  * Returns a list of tokens that can be used to custom render the output of a activity, such as CLI output
  * all the symbols in blue color.
  */
-export function tokenizeActivity(activity: components['schemas']['Activity']): Token[] {
+export function tokenizeActivity(activity: Activity): Token[] {
   const actions = getActions(activity)
 
   return actions.reduce((acc, action) => {
@@ -47,10 +56,7 @@ export function tokenizeActivity(activity: components['schemas']['Activity']): T
 /**
  * Returns a list of tokens that can be used to custom render the output of an action, such as CLI output
  */
-export function tokenizeAction(
-  activity: components['schemas']['Activity'],
-  action: components['schemas']['Action'],
-): Token[] {
+export function tokenizeAction(activity: Activity, action: components['schemas']['Action']): Token[] {
   const owner = activity.owner
   let res = [tokenText('Carried out an activity')]
   handleMetadata(action, {
@@ -267,11 +273,28 @@ export function tokenizeAction(
         res = join([tokenText('Removed'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
       } else if (m.action === 'collect') {
         res = join([tokenText('Collected'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
+      } else if (m.action === 'borrow') {
+        res = join([tokenText('Borrowed'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
+      } else if (m.action === 'repay') {
+        res = join([tokenText('Repaid'), ...tokens, tokenText('to liquidity'), ...tokenPlatform(action)])
+      } else if (m.action === 'supply') {
+        res = join([tokenText('Supplied'), ...tokens, tokenText('to liquidity'), ...tokenPlatform(action)])
+      } else if (m.action === 'withdraw') {
+        res = join([tokenText('WithDrew'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
       }
     },
-    // todo support exchange loan type
-    'exchange-loan': () => {
-      return [tokenText('Carried out an activity')]
+    'exchange-loan': (m) => {
+      if (m.action === 'create') {
+        res = join([tokenText('Created loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+      } else if (m.action === 'liquidate') {
+        res = join([tokenText('liquidated loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+      } else if (m.action === 'refinance') {
+        res = join([tokenText('Refinanced loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+      } else if (m.action === 'repay') {
+        res = join([tokenText('Repaid loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+      } else if (m.action === 'seize') {
+        res = join([tokenText('Seized loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+      }
     },
     'donation-donate': (m) => {
       res = join([tokenText('Donated'), tokenImage(m.logo), tokenName(m.title || ''), ...tokenPlatform(action)])
