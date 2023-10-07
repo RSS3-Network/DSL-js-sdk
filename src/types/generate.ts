@@ -21,7 +21,7 @@ async function main() {
 
   await generate(
     'search-external',
-    DEFAULT_RSS3_MAINNET + '/search/v3/api-docs/External API',
+    DEFAULT_RSS3_MAINNET + '/search/v3/api-docs/ExternalAPI',
     (schema) => {
       return schema
     },
