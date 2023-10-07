@@ -8,7 +8,8 @@
     "src/types/{data,search-internal,search-external}.ts",
     "src/format/activity-examples",
     "src/metadata/doc.ts",
-    "src/constants.ts"
+    "src/constants.ts",
+    "umd/"
   ],
   "words": [
     "AAVE",
