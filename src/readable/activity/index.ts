@@ -266,7 +266,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       ])
     },
     'exchange-liquidity': (m) => {
-      const tokens = m.tokens.flatMap((t) => join([...tokenValue(t), tokenText(',')]))
+      const tokens = m.tokens.flatMap((t) => join([...tokenValue(t), tokenText(',')])).slice(0, -1)
       if (m.action === 'add') {
         res = join([tokenText('Added'), ...tokens, tokenText('to liquidity'), ...tokenPlatform(action)])
       } else if (m.action === 'remove') {
