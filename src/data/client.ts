@@ -40,7 +40,32 @@ export function client(opt: ClientOptions = {}) {
     /**
      * Query activities.
      */
-    async activities(query: components['schemas']['AccountsActivitiesRequest']): Res<Activity[], Cursor> {
+    async activities(
+      account: string,
+      query: operations['GetAccountActivities']['parameters']['query'],
+    ): Res<Activity[], Cursor> {
+      const { data, error } = await client.get('/accounts/{account}/activities', {
+        params: {
+          path: { account },
+          query,
+        },
+      })
+      if (error || !data) throw error
+
+      if (!data.meta) return data as never
+
+      const list = data.data.map((a) => a as Activity)
+
+      return {
+        data: list,
+        meta: data.meta,
+      }
+    },
+
+    /**
+     * Query activities by multiple accounts.
+     */
+    async activitiesBatch(query: components['schemas']['AccountsActivitiesRequest']): Res<Activity[], Cursor> {
       const { data, error } = await client.post('/accounts/activities', {
         body: query,
       })
