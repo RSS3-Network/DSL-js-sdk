@@ -1,3 +1,4 @@
+import { formatAddressAndNS } from '../address'
 import { TokenType } from './token'
 import { compile } from 'html-to-text'
 
@@ -16,6 +17,20 @@ export const themePlain: Theme<string> = {
   number: (c) => c,
   image: () => '',
   symbol: (c) => c,
+  text: (c) => c,
+  separator: (c) => c,
+  unknown: (c) => c,
+}
+
+export const simpleHTML: Theme<string> = {
+  html: (c) => `<span style="color: blueviolet;">${JSON.stringify(ellipsis(compiledConvert(c)))}</span>`,
+  name: (c) => `<span style="color: blue;">${c}</span>`,
+  platform: (c) => `<span style="color: red;">${c}</span>`,
+  address: (c) => `<span style="color: green;">${formatAddressAndNS(c)}</span>`,
+  network: (c) => `<span style="color: red;">${c}</span>`,
+  number: (c) => c,
+  image: (c) => (c ? `<img src="${c}" style="height: 16px;" />` : ''),
+  symbol: (c) => `<span style="color: green;">${c}</span>`,
   text: (c) => c,
   separator: (c) => c,
   unknown: (c) => c,

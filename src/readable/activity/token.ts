@@ -41,6 +41,11 @@ export function tokenName(t: string): Token {
   return token('name', t)
 }
 
+export function tokenSocialProfile(p?: components['schemas']['SocialProfile']) {
+  if (p?.name) return [tokenName(p.name)]
+  return tokenAddr(p ? p.handle || p.address || '' : '')
+}
+
 export function tokenAddr(t: string | null | undefined) {
   return [tokenImage(`https://cdn.stamp.fyi/avatar/${t || 'address'}?s=300`), token('address', t || '')]
 }

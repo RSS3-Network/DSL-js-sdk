@@ -14,6 +14,7 @@ import {
   tokenName,
   tokenImage,
   tokenNetwork,
+  tokenSocialProfile,
 } from './token'
 import { Activity } from '../../data/client'
 
@@ -319,21 +320,17 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'social-follow': (m) => {
       res = join([
-        tokenImage(m.to?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.to?.handle}?s=300`),
-        tokenName(m.to?.name || m.to?.handle || ''),
+        ...tokenSocialProfile(m.to),
         tokenText('followed'),
-        tokenImage(m.from?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.from?.handle}?s=300`),
-        tokenName(m.from?.name || m.from?.handle || ''),
+        ...tokenSocialProfile(m.from),
         ...tokenPlatform(action),
       ])
     },
     'social-unfollow': (m) => {
       res = join([
-        tokenImage(m.from?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.from?.handle}?s=300`),
-        tokenName(m.from?.name || m.from?.handle || ''),
+        ...tokenSocialProfile(m.from),
         tokenText('unfollowed'),
-        tokenImage(m.to?.image_uri?.[0] || `https://cdn.stamp.fyi/avatar/${m.to?.handle}?s=300`),
-        tokenName(m.to?.name || m.to?.handle || ''),
+        ...tokenSocialProfile(m.to),
         ...tokenPlatform(action),
       ])
     },
@@ -346,28 +343,28 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       } else if (m.action === 'update') {
         res = join([
           tokenText('Updated a profile'),
-          tokenImage(m.image_uri?.[0]),
+          tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'renew') {
         res = join([
           tokenText('Renewed a profile'),
-          tokenImage(m.image_uri?.[0]),
+          tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'wrap') {
         res = join([
           tokenText('Wrapped a profile'),
-          tokenImage(m.image_uri?.[0]),
+          tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'unwrap') {
         res = join([
           tokenText('Unwrapped a profile'),
-          tokenImage(m.image_uri?.[0]),
+          tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
