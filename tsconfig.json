@@ -9,7 +9,6 @@
     "allowSyntheticDefaultImports": true,
     "rootDir": "src",
     "outDir": "lib",
-    "jsx": "react",
     "paths": {
       "@rss3/js-sdk": ["./src/index.ts"],
       "@rss3/js-sdk/lib/data/client.js": ["./src/data/client.ts"]

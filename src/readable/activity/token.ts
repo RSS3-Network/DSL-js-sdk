@@ -14,6 +14,7 @@ export type TokenType =
   | 'platform' // platform name
   | 'network' // network name
   | 'separator' // separator for actions
+  | 'time' // time
   | 'unknown' // unknown data type to tokenize
 
 export type Token = {
@@ -41,21 +42,28 @@ export function tokenName(t: string): Token {
   return token('name', t)
 }
 
-export function tokenSocialProfile(p?: components['schemas']['SocialProfile']) {
-  if (p?.name) return [tokenName(p.name)]
-  return tokenAddr(p ? p.handle || p.address || '' : '')
-}
-
-export function tokenAddr(t: string | null | undefined) {
-  return [tokenImage(`https://cdn.stamp.fyi/avatar/${t || 'address'}?s=300`), token('address', t || '')]
-}
-
 export function tokenImage(t: string | null | undefined) {
   return token('image', t || '')
 }
 
 export function tokenNetwork(t: string | null | undefined) {
   return token('network', t || '')
+}
+
+export function tokenTime(t: number) {
+  return token('time', new Date(t * 1000).toJSON())
+}
+
+export function tokenSocialProfile(p?: components['schemas']['SocialProfile']): Token {
+  if (!p) return token('unknown', '')
+
+  if (!p.handle && !p.address && p.name) [tokenName(p.name)]
+
+  return tokenAddr(p.handle || p.address)
+}
+
+export function tokenAddr(t: string | null | undefined) {
+  return token('address', t || '')
 }
 
 export function tokenValue(t: components['schemas']['TokenMetadata'] | null | undefined) {

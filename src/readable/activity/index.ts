@@ -15,6 +15,8 @@ import {
   tokenImage,
   tokenNetwork,
   tokenSocialProfile,
+  tokenTime,
+  tokenSpace,
 } from './token'
 import { Activity } from '../../data/client'
 
@@ -45,13 +47,17 @@ export function format<T>(activity: Activity, theme: Theme<T>): T[] {
 export function tokenizeActivity(activity: Activity): Token[] {
   const actions = getActions(activity)
 
-  return actions.reduce((acc, action) => {
+  const ts = actions.reduce((acc, action) => {
     if (acc.length === 0) {
       return tokenizeAction(activity, action)
     }
 
     return [...acc, tokenSeparator, ...tokenizeAction(activity, action)]
   }, [] as Token[])
+
+  ts.push(tokenSpace, tokenTime(activity.timestamp))
+
+  return ts
 }
 
 /**
@@ -63,47 +69,41 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
   handleMetadata(action, {
     'transaction-transfer': (m) => {
       if (owner === action.from) {
-        res = join([
-          ...tokenAddr(action.from),
-          tokenText('sent'),
-          ...tokenValue(m),
-          tokenText('to'),
-          ...tokenAddr(action.to),
-        ])
+        res = join([tokenAddr(action.from), tokenText('sent'), ...tokenValue(m), tokenText('to'), tokenAddr(action.to)])
       } else {
         res = join([
-          ...tokenAddr(action.to),
+          tokenAddr(action.to),
           tokenText('claimed'),
           ...tokenValue(m),
           tokenText('from'),
-          ...tokenAddr(action.from),
+          tokenAddr(action.from),
         ])
       }
     },
     'transaction-approval': (m) => {
       if (m.action === 'approve') {
         res = join([
-          ...tokenAddr(action.from),
+          tokenAddr(action.from),
           tokenText('approved'),
           ...tokenValue(m),
           tokenText('to'),
-          ...tokenAddr(action.to),
+          tokenAddr(action.to),
         ])
       } else {
         res = join([
-          ...tokenAddr(action.from),
+          tokenAddr(action.from),
           tokenText('revoked the approval of'),
           ...tokenValue(m),
           tokenText('to'),
-          ...tokenAddr(action.to),
+          tokenAddr(action.to),
         ])
       }
     },
     'transaction-mint': (m) => {
-      res = join([...tokenAddr(action.from), tokenText('Minted'), ...tokenValue(m)])
+      res = join([tokenAddr(action.from), tokenText('minted'), ...tokenValue(m)])
     },
     'transaction-burn': (m) => {
-      res = join([...tokenAddr(action.from), tokenText('Burned'), ...tokenValue(m)])
+      res = join([tokenAddr(action.from), tokenText('burned'), ...tokenValue(m)])
     },
     // todo need to double check the multisig action
     'transaction-multisig': (m) => {
@@ -111,27 +111,27 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         res = join([
           tokenText('Created a multisig transaction'),
           tokenText('to'),
-          ...tokenAddr(action.to),
+          tokenAddr(action.to),
           ...tokenPlatform(activity),
         ])
       } else if (m.action === 'add_owner') {
         res = join([
           tokenText('Added'),
-          ...tokenAddr(m.owner),
+          tokenAddr(m.owner),
           tokenText('to'),
-          ...tokenAddr(m.vault.address),
+          tokenAddr(m.vault.address),
           ...tokenPlatform(activity),
         ])
       } else if (m.action === 'remove_owner') {
         res = join([
           tokenText('Removed'),
-          ...tokenAddr(m.owner),
+          tokenAddr(m.owner),
           tokenText('from'),
-          ...tokenAddr(m.vault.address),
+          tokenAddr(m.vault.address),
           ...tokenPlatform(activity),
         ])
       } else if (m.action === 'change_threshold') {
-        res = join([tokenText('Changed the threshold of'), ...tokenAddr(m.vault.address), ...tokenPlatform(activity)])
+        res = join([tokenText('Changed the threshold of'), tokenAddr(m.vault.address), ...tokenPlatform(activity)])
       } else if (m.action === 'execution') {
         res = join([tokenText('Executed a multisig transaction'), ...tokenPlatform(activity)])
       }
@@ -153,17 +153,17 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       }
     },
     'transaction-deploy': (m) => {
-      res = join([tokenText('Deployed a contract'), ...tokenAddr(m.address)])
+      res = join([tokenText('Deployed a contract'), tokenAddr(m.address)])
     },
     // for collectible or nft related action, it will use image_url as the image link
     'collectible-transfer': (m) => {
       res = join([
-        ...tokenAddr(action.from),
+        tokenAddr(action.from),
         tokenText('transferred'),
         tokenImage(m.image_url),
         tokenName(m.name || m.title || 'NFT'),
         tokenText('to'),
-        ...tokenAddr(action.to),
+        tokenAddr(action.to),
       ])
     },
     'collectible-approval': (m) => {
@@ -173,7 +173,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenImage(m.image_url),
           tokenName(`${m.name} collection`),
           tokenText('to'),
-          ...tokenAddr(action.to),
+          tokenAddr(action.to),
         ])
       } else {
         res = join([
@@ -181,12 +181,17 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenImage(m.image_url),
           tokenName(`${m.name} collection`),
           tokenText('to'),
-          ...tokenAddr(action.to),
+          tokenAddr(action.to),
         ])
       }
     },
     'collectible-mint': (m) => {
-      res = join([tokenText('Minted'), tokenImage(m.image_url), tokenName(m.name || m.title || 'NFT')])
+      res = join([
+        tokenAddr(owner),
+        tokenText('minted'),
+        tokenImage(m.image_url),
+        tokenName(m.name || m.title || 'NFT'),
+      ])
     },
     'collectible-burn': (m) => {
       res = join([tokenText('Burned'), tokenImage(m.image_url), tokenName(m.name || m.title || 'NFT')])
@@ -198,7 +203,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           tokenText('from'),
-          ...tokenAddr(action.from),
+          tokenAddr(action.from),
           ...tokenPlatform(action),
         ])
       } else {
@@ -207,7 +212,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           tokenText('to'),
-          ...tokenAddr(action.to),
+          tokenAddr(action.to),
           ...tokenPlatform(action),
         ])
       }
@@ -236,21 +241,24 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ])
       } else if (m.action === 'update') {
         res = join([
-          tokenText('Updated an auction for'),
+          tokenAddr(owner),
+          tokenText('updated an auction for'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'finalize') {
         res = join([
-          tokenText('Won an auction for'),
+          tokenAddr(owner),
+          tokenText('won an auction for'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           ...tokenPlatform(action),
         ])
       } else {
         res = join([
-          tokenText('Invalidated an auction for'),
+          tokenAddr(owner),
+          tokenText('invalidated an auction for'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           ...tokenPlatform(action),
@@ -259,7 +267,8 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'exchange-swap': (m) => {
       res = join([
-        tokenText('Swapped'),
+        tokenAddr(owner),
+        tokenText('swapped'),
         ...tokenValue(m.from),
         tokenText('to'),
         ...tokenValue(m.to),
@@ -310,27 +319,27 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       res = join([tokenText('published a post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-comment': () => {
-      res = join([...tokenAddr(action.to), tokenText('commented'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([tokenAddr(action.to), tokenText('commented'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-share': () => {
       res = join([tokenText('Shared'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-mint': () => {
-      res = join([tokenText('Minted'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([tokenAddr(owner), tokenText('minted'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-follow': (m) => {
       res = join([
-        ...tokenSocialProfile(m.to),
+        tokenSocialProfile(m.to),
         tokenText('followed'),
-        ...tokenSocialProfile(m.from),
+        tokenSocialProfile(m.from),
         ...tokenPlatform(action),
       ])
     },
     'social-unfollow': (m) => {
       res = join([
-        ...tokenSocialProfile(m.from),
+        tokenSocialProfile(m.from),
         tokenText('unfollowed'),
-        ...tokenSocialProfile(m.to),
+        tokenSocialProfile(m.to),
         ...tokenPlatform(action),
       ])
     },
@@ -382,16 +391,18 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'metaverse-transfer': (m) => {
       res = join([
-        tokenText('Transferred'),
+        tokenAddr(owner),
+        tokenText('transferred'),
         tokenImage(m.image_url),
         tokenName(m.name || m.title || 'NFT'),
         tokenText('to'),
-        ...tokenAddr(action.to),
+        tokenAddr(action.to),
       ])
     },
     'metaverse-mint': (m) => {
       res = join([
-        tokenText('Minted'),
+        tokenAddr(owner),
+        tokenText('minted'),
         tokenImage(m.image_url),
         tokenName(m.name || m.title || 'NFT'),
         ...tokenPlatform(action),
@@ -399,7 +410,8 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'metaverse-burn': (m) => {
       res = join([
-        tokenText('Burned'),
+        tokenAddr(owner),
+        tokenText('burned'),
         tokenImage(m.image_url),
         tokenName(m.name || m.title || 'NFT'),
         ...tokenPlatform(action),
@@ -408,29 +420,32 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     'metaverse-trade': (m) => {
       if (m.action === 'buy') {
         res = join([
-          tokenText('Bought'),
+          tokenAddr(owner),
+          tokenText('bought'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           tokenText('from'),
-          ...tokenAddr(action.from),
+          tokenAddr(action.from),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'sell') {
         res = join([
-          tokenText('Sold'),
+          tokenAddr(owner),
+          tokenText('sold'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           tokenText('from'),
-          ...tokenAddr(action.from),
+          tokenAddr(action.from),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'list') {
         res = join([
-          tokenText('Listed'),
+          tokenAddr(owner),
+          tokenText('listed'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'NFT'),
           tokenText('from'),
-          ...tokenAddr(action.from),
+          tokenAddr(action.from),
           ...tokenPlatform(action),
         ])
       }

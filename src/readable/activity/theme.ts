@@ -18,20 +18,25 @@ export const themePlain: Theme<string> = {
   image: () => '',
   symbol: (c) => c,
   text: (c) => c,
+  time: (c) => c,
   separator: (c) => c,
   unknown: (c) => c,
 }
 
-export const simpleHTML: Theme<string> = {
+export const themeHTML: Theme<string> = {
   html: (c) => `<span style="color: blueviolet;">${JSON.stringify(ellipsis(compiledConvert(c)))}</span>`,
   name: (c) => `<span style="color: blue;">${c}</span>`,
   platform: (c) => `<span style="color: red;">${c}</span>`,
-  address: (c) => `<span style="color: green;">${formatAddressAndNS(c)}</span>`,
+  address: (c) =>
+    `<img src="https://cdn.stamp.fyi/avatar/${c}?s=300" style="height: 32px;" /> <span style="color: green;">${formatAddressAndNS(
+      c,
+    )}</span>`,
   network: (c) => `<span style="color: red;">${c}</span>`,
   number: (c) => c,
-  image: (c) => (c ? `<img src="${c}" style="height: 16px;" />` : ''),
+  image: (c) => (c ? `<img src="${c}" style="height: 64px;" />` : ''),
   symbol: (c) => `<span style="color: green;">${c}</span>`,
   text: (c) => c,
+  time: (c) => `<span style="color: gray;">${new Date(c).toLocaleString()}</span>`,
   separator: (c) => c,
   unknown: (c) => c,
 }
