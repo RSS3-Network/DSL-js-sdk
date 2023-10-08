@@ -159,7 +159,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     'collectible-transfer': (m) => {
       res = join([
         ...tokenAddr(action.from),
-        tokenText('Transferred'),
+        tokenText('transferred'),
         tokenImage(m.image_url),
         tokenName(m.name || m.title || 'NFT'),
         tokenText('to'),
@@ -307,10 +307,10 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       res = join([tokenText('Voted for'), tokenName(m.proposal?.options?.join(',') || ''), ...tokenPlatform(action)])
     },
     'social-post': () => {
-      res = join([tokenText('Published post'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([tokenText('published a post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-comment': () => {
-      res = join([...tokenAddr(action.to), tokenText('Commented'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([...tokenAddr(action.to), tokenText('commented'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-share': () => {
       res = join([tokenText('Shared'), tokenPost(action), ...tokenPlatform(action)])
