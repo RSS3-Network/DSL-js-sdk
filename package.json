@@ -9,7 +9,7 @@
     "node": ">=v19.8.1"
   },
   "scripts": {
-    "generate": "npm run build && DEFAULT_RSS3_NET='https://api.dev.rss3.io' node lib/types/generate",
+    "generate": "npm run build && DEFAULT_RSS3_NET='https://api.dev.rss3.io' babel-node --presets 'es2015' lib/types/generate",
     "build": "rm -rf lib dist && tsc && webpack",
     "watch-ts": "tsc -w",
     "watch-js": "webpack -w",
@@ -28,6 +28,8 @@
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
     "concurrently": "^8.2.1",
     "cspell": "^6.31.1",
     "eslint": "^8.43.0",
