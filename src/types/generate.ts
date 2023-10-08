@@ -20,6 +20,20 @@ async function main() {
   )
 
   await generate(
+    'data-v1',
+    'https://test-pregod.rss3.dev/v1/openapi?json=true',
+    (schema) => {
+      delete schema.components.schemas.TransferTypes
+      return schema
+    },
+    (schema) => {
+      return schema
+        .replace(/(platform\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["PlatformName"]$3;')
+        .replace(/(network\??): (\(?string\)?)(\[\])?;/g, '$1: components["schemas"]["NetworkName"]$3;')
+    },
+  )
+
+  await generate(
     'search-external',
     DEFAULT_RSS3_NET + '/search/v3/api-docs/ExternalAPI',
     (schema) => {
@@ -32,9 +46,9 @@ async function main() {
         .replace(/Record<string, never>/g, 'Record<string, any>')
         .replace(/empty\?: boolean;/g, '')
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
-        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Metadata']")
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
 
-      return (schema = `import {components as data} from './data'\n${schema}`)
+      return (schema = `import {components as data} from './data-v1'\n${schema}`)
     },
   )
 
@@ -51,9 +65,9 @@ async function main() {
         .replace(/Record<string, never>/g, 'Record<string, any>')
         .replace(/empty\?: boolean;/g, '')
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
-        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Metadata']")
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
 
-      return (schema = `import {components as data} from './data'\n${schema}`)
+      return (schema = `import {components as data} from './data-v1'\n${schema}`)
     },
   )
 }

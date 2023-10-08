@@ -47,11 +47,11 @@ export interface components {
   schemas: {
     /**
      * AccountsActivitiesRequest
-     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.AccountsActivitiesRequest
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/handler.AccountsActivitiesRequest
      */
     AccountsActivitiesRequest: {
       /** @description Retrieve activities from the specified list of accounts */
-      account?: string[];
+      account: string[];
       /**
        * @description Specify the number of actions within the activity to retrieve
        * @default 10
@@ -96,7 +96,7 @@ export interface components {
     };
     /**
      * Activity
-     * @description github.com/naturalselectionlabs/data-api/common/schema/v2.Activity
+     * @description github.com/naturalselectionlabs/data-api/common/schema.Activity
      */
     Activity: {
       actions: components["schemas"]["Action"][];
@@ -250,8 +250,8 @@ export interface components {
      */
     CollectibleType: "approval" | "auction" | "burn" | "mint" | "trade" | "transfer";
     /**
-     * CommonError[github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
-     * @description github.com/NaturalSelectionLabs/goapi/lib/openapi.CommonError[github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.ErrorCode]
+     * CommonError[github.com/naturalselectionlabs/data-api/internal/service/explorer/middlewarex/errorx.ErrorCode]
+     * @description github.com/NaturalSelectionLabs/goapi/lib/openapi.CommonError[github.com/naturalselectionlabs/data-api/internal/service/explorer/middlewarex/errorx.ErrorCode]
      */
     CommonError: {
       code: components["schemas"]["ErrorCode"];
@@ -286,7 +286,7 @@ export interface components {
     DonationType: "donate";
     /**
      * Error
-     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.Error
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/middlewarex/errorx.Error
      */
     Error: {
       code: components["schemas"]["ErrorCode"];
@@ -297,7 +297,7 @@ export interface components {
     };
     /**
      * ErrorCode
-     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/errorx.ErrorCode
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/middlewarex/errorx.ErrorCode
      * @enum {unknown}
      */
     ErrorCode: "address_is_empty" | "address_is_invalid" | "bad_params" | "bad_request" | "internal_error" | "not_found" | "validate_failed";
@@ -400,14 +400,14 @@ export interface components {
     };
     /**
      * MetaCursor
-     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.MetaCursor
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/handler.MetaCursor
      */
     MetaCursor: {
       cursor: string;
     };
     /**
      * MetaTotalPages
-     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/explorer/v2/handler.MetaTotalPages
+     * @description github.com/naturalselectionlabs/data-api/internal/service/explorer/handler.MetaTotalPages
      */
     MetaTotalPages: {
       totalPages: number;
@@ -497,7 +497,7 @@ export interface components {
     Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "Gnosis" | "IQ.Wiki" | "KyberSwap" | "Lens" | "Lido" | "Linea" | "LooksRare" | "Mars4" | "Matters" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "ParaSwap" | "PlanetIX" | "Polygon" | "RARA" | "RSS3" | "Rainbow" | "Safe" | "Stargate" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "friend.tech" | "zkSync Era" | "zkSync Lite" | "zkSync";
     /**
      * Profile
-     * @description github.com/naturalselectionlabs/data-api/common/schema/v2.Profile
+     * @description github.com/naturalselectionlabs/data-api/common/schema.Profile
      */
     Profile: {
       action?: components["schemas"]["SocialProfileAction"];
