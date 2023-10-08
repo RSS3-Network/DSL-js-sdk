@@ -11,6 +11,9 @@
   "scripts": {
     "generate": "npm run build && DEFAULT_RSS3_NET='https://api.dev.rss3.io' node lib/types/generate",
     "build": "rm -rf lib dist && tsc && webpack",
+    "watch-ts": "tsc -w",
+    "watch-js": "webpack -w",
+    "watch": "concurrently npm:watch-ts npm:watch-js",
     "test": "vitest run",
     "lint": "cspell --no-progress '**' && eslint --max-warnings=0 src && prettier -c . && tsc --noEmit",
     "format": "eslint --fix && prettier -w .",
@@ -25,6 +28,7 @@
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
     "@typescript-eslint/parser": "^5.60.1",
+    "concurrently": "^8.2.1",
     "cspell": "^6.31.1",
     "eslint": "^8.43.0",
     "prettier": "^2.8.8",
