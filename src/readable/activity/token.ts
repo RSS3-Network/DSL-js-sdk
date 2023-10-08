@@ -8,6 +8,7 @@ export type TokenType =
   | 'html' // html text
   | 'number' // number value, such as token exchange rate
   | 'image' // image url
+  | 'symbolImage' // symbol image url
   | 'symbol' // short name for a token, such as BTC, ETH
   | 'address' // wallet address or txn address, such as https://help.coinbase.com/en/coinbase/getting-started/crypto-education/what-is-a-transaction-hash-hash-id
   | 'name' // name for NFT, etc
@@ -69,7 +70,11 @@ export function tokenAddr(t: string | null | undefined) {
 export function tokenValue(t: components['schemas']['TokenMetadata'] | null | undefined) {
   if (!t) return [token('number', '0')]
   if (t.value === INFINITY_VALUE) return [token('number', 'infinite'), token('symbol', t.symbol)]
-  return [tokenImage(t.image), token('number', handleTokenValue(t.value, t.decimals) || '0'), token('symbol', t.symbol)]
+  return [
+    token('symbolImage', t.image),
+    token('number', handleTokenValue(t.value, t.decimals) || '0'),
+    token('symbol', t.symbol),
+  ]
 }
 
 export function tokenPlatform(t: Activity | components['schemas']['Action']) {

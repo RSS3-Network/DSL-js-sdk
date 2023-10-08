@@ -307,22 +307,33 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       }
     },
     'donation-donate': (m) => {
-      res = join([tokenText('Donated'), tokenImage(m.logo), tokenName(m.title || ''), ...tokenPlatform(action)])
+      res = join([
+        tokenAddr(owner),
+        tokenText('donated'),
+        tokenImage(m.logo),
+        tokenName(m.title || ''),
+        ...tokenPlatform(action),
+      ])
     },
     'governance-propose': (m) => {
-      res = join([tokenText('Proposed for'), tokenName(m.title || ''), ...tokenPlatform(action)])
+      res = join([tokenAddr(owner), tokenText('proposed for'), tokenName(m.title || ''), ...tokenPlatform(action)])
     },
     'governance-vote': (m) => {
-      res = join([tokenText('Voted for'), tokenName(m.proposal?.options?.join(',') || ''), ...tokenPlatform(action)])
+      res = join([
+        tokenAddr(owner),
+        tokenText('voted for'),
+        tokenName(m.proposal?.options?.join(',') || ''),
+        ...tokenPlatform(action),
+      ])
     },
     'social-post': () => {
-      res = join([tokenText('published a post'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([tokenAddr(owner), tokenText('published a post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-comment': () => {
       res = join([tokenAddr(action.to), tokenText('commented'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-share': () => {
-      res = join([tokenText('Shared'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([tokenAddr(owner), tokenText('shared'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-mint': () => {
       res = join([tokenAddr(owner), tokenText('minted'), tokenPost(action), ...tokenPlatform(action)])

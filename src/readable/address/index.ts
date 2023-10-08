@@ -36,3 +36,7 @@ export function formatAddressAndNS(address: string): string {
       .join('.')
   else return address
 }
+
+export function addressToAvatarURL(address: string, size: number): string {
+  return `https://cdn.stamp.fyi/avatar/${address}?s=${size}`
+}

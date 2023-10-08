@@ -1,21 +1,19 @@
 import { formatAddressAndNS } from '../address'
 import { TokenType } from './token'
-import { compile } from 'html-to-text'
-
-export const compiledConvert = compile()
 
 export type Theme<T> = {
   [key in TokenType]: (content: string) => T
 }
 
 export const themePlain: Theme<string> = {
-  html: (c) => JSON.stringify(ellipsis(compiledConvert(c))),
+  html: (c) => JSON.stringify(ellipsis(stripHTMLTags(c))),
   name: (c) => JSON.stringify(c),
   platform: (c) => JSON.stringify(c),
   address: (c) => c,
   network: (c) => JSON.stringify(c),
   number: (c) => c,
   image: () => '',
+  symbolImage: () => '',
   symbol: (c) => c,
   text: (c) => c,
   time: (c) => c,
@@ -24,7 +22,7 @@ export const themePlain: Theme<string> = {
 }
 
 export const themeHTML: Theme<string> = {
-  html: (c) => `<span style="color: blueviolet;">${JSON.stringify(ellipsis(compiledConvert(c)))}</span>`,
+  html: (c) => `<span style="color: blueviolet;">${JSON.stringify(ellipsis(stripHTMLTags(c)))}</span>`,
   name: (c) => `<span style="color: blue;">${c}</span>`,
   platform: (c) => `<span style="color: red;">${c}</span>`,
   address: (c) =>
@@ -34,6 +32,7 @@ export const themeHTML: Theme<string> = {
   network: (c) => `<span style="color: red;">${c}</span>`,
   number: (c) => c,
   image: (c) => (c ? `<img src="${c}" style="height: 64px;" />` : ''),
+  symbolImage: (c) => (c ? `<img src="${c}" style="height: 16px;" />` : ''),
   symbol: (c) => `<span style="color: green;">${c}</span>`,
   text: (c) => c,
   time: (c) => `<span style="color: gray;">${new Date(c).toLocaleString()}</span>`,
@@ -55,4 +54,14 @@ function ellipsis(s: string): string {
   }
 
   return s + (trimmed ? '...' : '')
+}
+
+function stripHTMLTags(s: string) {
+  return s.replace(/<[^>]*>?/gm, '')
+}
+
+export function summaryOfHTML(s: string) {
+  const node = document.createElement('div')
+  node.innerHTML = s
+  return ellipsis(node.innerText)
 }
