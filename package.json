@@ -1,7 +1,7 @@
 {
   "name": "@rss3/js-sdk",
   "description": "RSS3 JavaScript SDK, the Turbocharger🌪️ for Your Next Open Web Development.",
-  "version": "0.6.8",
+  "version": "0.6.9",
   "author": "Natural Selection Labs and RSS3 Contributors",
   "license": "MIT",
   "main": "lib/index.js",
