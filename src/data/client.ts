@@ -8,6 +8,7 @@ export type Activity = components['schemas']['Activity']
 export type Profile = components['schemas']['Profile']
 export type TotalPage = components['schemas']['MetaTotalPages']
 export type Cursor = components['schemas']['MetaCursor']
+export type Error = components['schemas']['Error']
 
 /**
  * Data client for interacting with the data server.
