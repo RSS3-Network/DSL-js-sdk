@@ -43,13 +43,14 @@ export const themeHTML: Theme<string> = {
 function ellipsis(s: string): string {
   let trimmed = false
   const max = 50
-  if (s.length > max) {
-    s = s.slice(0, max)
-    trimmed = true
-  }
 
   if (/\n/.test(s)) {
-    s = s.replace(/\n[\s\S]+/g, '')
+    s = s.replace(/\n[\s\S]+/g, ' ')
+    s = s.trim()
+  }
+
+  if (s.length > max) {
+    s = s.slice(0, max)
     trimmed = true
   }
 
