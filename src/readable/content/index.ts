@@ -1,5 +1,7 @@
+import { Activity } from '../../data/client'
 import { handleMetadata } from '../../metadata'
 import { components } from '../../types/data'
+import { getActions } from '../../utils'
 
 export type Content = {
   author_url?: string
@@ -14,7 +16,15 @@ export type PostContent = Content & {
   target?: Content
 }
 
-export function handleContent(action: components['schemas']['Action']): PostContent | undefined {
+export function handleContent(activity: Activity) {
+  const action = getActions(activity)
+  if (action.length > 0) {
+    return extractContent(action[0])
+  }
+  return undefined
+}
+
+export function extractContent(action: components['schemas']['Action']): PostContent | undefined {
   let content: PostContent | undefined
   handleMetadata(action, {
     'social-post': (m) => {
