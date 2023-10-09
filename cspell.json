@@ -9,6 +9,7 @@
     "src/format/activity-examples",
     "src/metadata/doc.ts",
     "src/constants.ts",
+    "src/readable/content/index.test.ts",
     "umd/"
   ],
   "words": [
