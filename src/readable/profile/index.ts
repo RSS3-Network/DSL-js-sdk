@@ -1,5 +1,5 @@
 import { components } from '../../types/data'
-import { formatAddress, isAddress } from '../address'
+import { addressToAvatarURL, formatAddress, isAddress } from '../address'
 
 /**
  * it will add the basic wallet address to profile as the default profile
@@ -21,7 +21,7 @@ export function formatProfiles(profiles: components['schemas']['Profile'][] | un
       name: formatAddress(wallet),
       network: 'Ethereum',
       platform: 'Ethereum',
-      profileURI: [`https://cdn.stamp.fyi/avatar/${wallet}?s=300`],
+      profileURI: [addressToAvatarURL(wallet, 30)],
       socialURI: [],
     })
   }
@@ -52,9 +52,7 @@ export function formatProfiles(profiles: components['schemas']['Profile'][] | un
 export function extractProfile(profile: components['schemas']['Profile'] | null | undefined) {
   return {
     name: profile?.name || '',
-    avatar: profile?.profileURI?.[0]
-      ? profile?.profileURI?.[0]
-      : `https://cdn.stamp.fyi/avatar/${profile?.handle}?s=300`,
+    avatar: profile?.profileURI?.[0] ? profile?.profileURI?.[0] : addressToAvatarURL(profile?.handle || '', 30),
     handle: profile?.handle || '',
     banner: profile?.bannerURI?.[0] || '',
     address: profile?.address || '',
