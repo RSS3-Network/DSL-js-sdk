@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
@@ -14,10 +13,4 @@ module.exports = {
       type: 'var',
     },
   },
-  plugins: [
-    // fix "process is not defined" error:
-    new webpack.ProvidePlugin({
-      process: 'process/browser',
-    }),
-  ],
 }
