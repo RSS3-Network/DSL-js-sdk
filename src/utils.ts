@@ -57,5 +57,7 @@ export function markdownToTxt(raw: string) {
   let str = raw?.replaceAll(/!\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\)/g, '')
   // remove html tags from markdown
   str = str?.replace(/(<([^>]+)>)/gi, ' ')
+  // remove all the markdown headers
+  str = str?.replace(/(#+\s)/gi, '')
   return str
 }
