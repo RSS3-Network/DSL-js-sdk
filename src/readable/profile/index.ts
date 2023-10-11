@@ -5,7 +5,7 @@ import { formatAddress, isAddress } from '../address'
  * it will add the basic wallet address to profile as the default profile
  * also sort the profile list and fix the avatar logic, the ens registrar profile will be the first
  */
-export function handleProfiles(profiles: components['schemas']['Profile'][] | undefined, address: string | undefined) {
+export function formatProfiles(profiles: components['schemas']['Profile'][] | undefined, address: string | undefined) {
   if (!profiles) return profiles
   let res: components['schemas']['Profile'][] = profiles || []
   // add the basic wallet address to profile

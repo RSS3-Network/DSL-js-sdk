@@ -10,8 +10,8 @@ export {
   hasMultiPrimaryActions,
   flatActivity,
 } from './readable/activity'
-export { handleContent, Content } from './readable/content'
+export { formatContent, Content } from './readable/content'
 export { Theme, themeHTML, summaryOfHTML } from './readable/activity/theme'
-export { handleTokenValue } from './readable/number'
-export { handleProfiles, extractProfile, extractPrimaryProfile } from './readable/profile'
+export { formatTokenValue } from './readable/number'
+export { formatProfiles, extractProfile, extractPrimaryProfile } from './readable/profile'
 export * from './readable/address'
