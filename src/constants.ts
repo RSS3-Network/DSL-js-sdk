@@ -20,6 +20,7 @@ export const SUPPORTED_NS_LIST = [
   '.arb',
   '.cyber',
 ]
+export const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000'
 
 function getEnv(name: string, defaultVal: string): string {
   if (typeof process !== 'undefined') {
