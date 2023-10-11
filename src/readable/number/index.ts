@@ -1,4 +1,4 @@
-export function handleTokenValue(amount?: string | null, decimals?: number) {
+export function formatTokenValue(amount?: string | null, decimals?: number) {
   let result = '0.00'
   let money
   if (amount) {

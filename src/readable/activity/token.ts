@@ -1,7 +1,7 @@
 import { INFINITY_VALUE } from '../../constants'
 import { Activity } from '../../data/client'
 import { components } from '../../types/data'
-import { handleTokenValue } from '../number'
+import { formatTokenValue } from '../number'
 
 export type TokenType =
   | 'text' // plain text
@@ -72,7 +72,7 @@ export function tokenValue(t: components['schemas']['TokenMetadata'] | null | un
   if (t.value === INFINITY_VALUE) return [token('number', 'infinite'), token('symbol', t.symbol)]
   return [
     token('symbolImage', t.image),
-    token('number', handleTokenValue(t.value, t.decimals) || '0'),
+    token('number', formatTokenValue(t.value, t.decimals) || '0'),
     token('symbol', t.symbol),
   ]
 }

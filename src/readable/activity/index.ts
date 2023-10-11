@@ -477,3 +477,32 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
   })
   return res
 }
+
+export function hasMultiPrimaryActions(activity: Activity): boolean {
+  const actions = getActions(activity)
+  let count = 0
+  actions.forEach((action) => {
+    if (action.type === activity.type && action.tag === activity.tag) {
+      count++
+    }
+  })
+  return count > 1
+}
+
+export function flatActivity(activity: Activity) {
+  const hasMulti = hasMultiPrimaryActions(activity)
+
+  if (hasMulti) {
+    const res: Activity[] = []
+    const actions = getActions(activity)
+    actions.forEach((action) => {
+      res.push({
+        ...activity,
+        actions: [action],
+      })
+    })
+    return res
+  } else {
+    return [activity]
+  }
+}

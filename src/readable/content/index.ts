@@ -16,7 +16,7 @@ export type PostContent = Content & {
   target?: Content
 }
 
-export function handleContent(activity: Activity) {
+export function formatContent(activity: Activity) {
   const action = getActions(activity)
   if (action.length > 0) {
     return extractContent(action[0])
