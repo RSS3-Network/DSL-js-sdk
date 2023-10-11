@@ -52,7 +52,11 @@ export function formatProfiles(profiles: components['schemas']['Profile'][] | un
 export function extractProfile(profile: components['schemas']['Profile'] | null | undefined) {
   return {
     name: profile?.name || '',
-    avatar: profile?.profileURI?.[0] ? profile?.profileURI?.[0] : addressToAvatarURL(profile?.handle || '', 30),
+    avatar: profile?.profileURI?.[0]
+      ? profile?.profileURI?.[0]
+      : profile?.handle
+      ? addressToAvatarURL(profile?.handle, 30) || ''
+      : '',
     handle: profile?.handle || '',
     banner: profile?.bannerURI?.[0] || '',
     address: profile?.address || '',
