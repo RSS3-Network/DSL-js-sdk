@@ -60,6 +60,17 @@ export function tokenizeActivity(activity: Activity): Token[] {
   return ts
 }
 
+export function tokenizeToActions(activity: Activity): Token[][] {
+  const actions = getActions(activity)
+  const ts: Token[][] = []
+
+  actions.map((action) => {
+    ts.push(tokenizeAction(activity, action))
+  })
+
+  return ts
+}
+
 /**
  * Returns a list of tokens that can be used to custom render the output of an action, such as CLI output
  */

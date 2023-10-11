@@ -7,6 +7,7 @@ export {
   format,
   tokenizeAction,
   tokenizeActivity,
+  tokenizeToActions,
   hasMultiPrimaryActions,
   flatActivity,
 } from './readable/activity'
