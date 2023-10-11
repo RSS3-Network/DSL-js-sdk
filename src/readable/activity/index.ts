@@ -37,7 +37,13 @@ export function formatPlain(activity: Activity): string {
  */
 export function format<T>(activity: Activity, theme: Theme<T>): T[] {
   const ts = tokenizeActivity(activity)
-  return ts.map((t) => theme[t.type](t.content))
+  return ts.map((t) => {
+    if (!theme[t.type]) {
+      return theme.unknown(t.content)
+    }
+
+    return theme[t.type](t.content)
+  })
 }
 
 /**
