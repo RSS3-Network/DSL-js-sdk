@@ -51,3 +51,11 @@ export function getActions(activity: Activity): dataComponents['schemas']['Actio
 export function getTagType(action: dataComponents['schemas']['Action']): keyof TagTypeMap {
   return `${action.tag}-${action.type}` as keyof TagTypeMap
 }
+
+export function markdownToTxt(raw: string) {
+  // remove images from markdown
+  let str = raw?.replaceAll(/!\[[^\]]*\]\((.*?)\s*("(?:.*[^"])")?\s*\)/g, '')
+  // remove html tags from markdown
+  str = str?.replace(/(<([^>]+)>)/gi, ' ')
+  return str
+}
