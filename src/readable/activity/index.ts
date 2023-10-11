@@ -351,9 +351,9 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'social-follow': (m) => {
       res = join([
-        tokenSocialProfile(m.to),
-        tokenText('followed'),
         tokenSocialProfile(m.from),
+        tokenText('followed'),
+        tokenSocialProfile(m.to),
         ...tokenPlatform(action),
       ])
     },
