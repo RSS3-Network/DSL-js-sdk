@@ -1,6 +1,6 @@
 export { client as dataClient, Activity, Profile, Cursor, TotalPage } from './data/client'
 export { client as searchClient } from './search/client'
-export { timeRange, TimeRange, fetchWithLog, getActions, getTagType } from './utils'
+export { timeRange, TimeRange, fetchWithLog, getActions, getTagType, markdownToTxt } from './utils'
 export { handleMetadata } from './metadata'
 export {
   formatPlain,
