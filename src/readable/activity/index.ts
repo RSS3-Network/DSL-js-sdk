@@ -53,6 +53,11 @@ export function format<T>(activity: Activity, theme: Theme<T>): T[] {
 export function tokenizeActivity(activity: Activity): Token[] {
   const actions = getActions(activity)
 
+  // used for social actions, remove the duplicate action
+  if (activity.tag === 'social' && actions.length > 1) {
+    return tokenizeAction(activity, actions[0])
+  }
+
   const ts = actions.reduce((acc, action) => {
     if (acc.length === 0) {
       return tokenizeAction(activity, action)
@@ -69,6 +74,11 @@ export function tokenizeActivity(activity: Activity): Token[] {
 export function tokenizeToActions(activity: Activity): Token[][] {
   const actions = getActions(activity)
   const ts: Token[][] = []
+
+  // used for social actions, remove the duplicate action
+  if (activity.tag === 'social' && actions.length > 1) {
+    return [tokenizeAction(activity, actions[0])]
+  }
 
   actions.map((action) => {
     ts.push(tokenizeAction(activity, action))
