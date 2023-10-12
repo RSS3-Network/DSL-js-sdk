@@ -12,7 +12,7 @@ it.concurrent('get activities', async ({ expect }) => {
 })
 
 it.concurrent('get activity', async ({ expect }) => {
-  const { data } = await client().activities({ keyword: 'vitalik', limit: 5 })
+  const { data } = await client().activities({ keyword: 'vitalik', limit: 5, network: ['ETHEREUM', 'FARCASTER'] })
 
   if (!data?.docs) throw 'no docs'
 

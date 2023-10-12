@@ -3,7 +3,7 @@ import { client } from './client'
 import { handleMetadata } from '../metadata'
 
 it.concurrent('get activities by address', async ({ expect }) => {
-  const res = await client().activities('vitalik.eth', { limit: 5 })
+  const res = await client().activities('vitalik.eth', { limit: 5, network: ['ethereum', 'farcaster'] })
   expect(res.data).toHaveLength(5)
 })
 

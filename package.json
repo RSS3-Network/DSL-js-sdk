@@ -25,6 +25,7 @@
     "@types/debug": "^4.1.8",
     "@types/html-to-text": "^9.0.1",
     "@types/node": "^20.3.2",
+    "@types/qs": "^6.9.8",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
     "@typescript-eslint/eslint-plugin": "^5.60.1",
@@ -43,7 +44,8 @@
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "openapi-fetch": "^0.7.10"
+    "openapi-fetch": "^0.7.10",
+    "qs": "^6.11.2"
   },
   "files": [
     "lib",
