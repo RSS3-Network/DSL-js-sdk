@@ -27,7 +27,7 @@ export function client(opt: ClientOptions = {}) {
      * Query transactions.
      */
     async activity(id: string): Res<Activity, TotalPage> {
-      const { data, error } = await client.get('/activities/{id}', { params: { path: { id } } })
+      const { data, error } = await client.GET('/activities/{id}', { params: { path: { id } } })
       if (error || !data) throw error
 
       if (!data.data || !data.meta) return data as never
@@ -45,7 +45,7 @@ export function client(opt: ClientOptions = {}) {
       account: string,
       query: operations['GetAccountActivities']['parameters']['query'],
     ): Res<Activity[], Cursor> {
-      const { data, error } = await client.get('/accounts/{account}/activities', {
+      const { data, error } = await client.GET('/accounts/{account}/activities', {
         params: {
           path: { account },
           query,
@@ -67,7 +67,7 @@ export function client(opt: ClientOptions = {}) {
      * Query activities by multiple accounts.
      */
     async activitiesBatch(query: components['schemas']['AccountsActivitiesRequest']): Res<Activity[], Cursor> {
-      const { data, error } = await client.post('/accounts/activities', {
+      const { data, error } = await client.POST('/accounts/activities', {
         body: query,
       })
       if (error || !data) throw error
@@ -91,7 +91,7 @@ export function client(opt: ClientOptions = {}) {
     ): Res<Activity[], Cursor> {
       const client = createClient<paths>(opt)
 
-      const { data, error } = await client.get('/mastodon/{account}/activities', {
+      const { data, error } = await client.GET('/mastodon/{account}/activities', {
         params: {
           path: { account },
           query,
@@ -116,7 +116,7 @@ export function client(opt: ClientOptions = {}) {
       account: string,
       query: operations['GetAccountProfiles']['parameters']['query'] = {},
     ): Res<Profile[], null> {
-      const { data, error } = await client.get('/accounts/{account}/profiles', {
+      const { data, error } = await client.GET('/accounts/{account}/profiles', {
         params: {
           path: { account },
           query,

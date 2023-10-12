@@ -20,7 +20,7 @@ export function client(opt: ClientOptions = {}) {
 
   return {
     async spellCheck(query: operations['spellCorrectionv2']['parameters']['query']) {
-      const { data, error } = await client.get('/suggestions/spellcheck', {
+      const { data, error } = await client.GET('/suggestions/spellcheck', {
         params: { query },
       })
 
@@ -33,7 +33,7 @@ export function client(opt: ClientOptions = {}) {
      * Suggestions for a keyword.
      */
     async suggestions(query: operations['autoCompleteV2']['parameters']['query']) {
-      const { data, error } = await client.get('/suggestions/autocomplete', {
+      const { data, error } = await client.GET('/suggestions/autocomplete', {
         params: { query },
       })
 
@@ -46,7 +46,7 @@ export function client(opt: ClientOptions = {}) {
      * Get related addresses of a keyword.
      */
     async relatedAddresses(query: operations['relatedAddresses']['parameters']['query']) {
-      const { data, error } = await client.get('/suggestions/related-addresses', {
+      const { data, error } = await client.GET('/suggestions/related-addresses', {
         params: { query },
       })
       if (error || !data) throw error
@@ -58,7 +58,7 @@ export function client(opt: ClientOptions = {}) {
      * Search activities by keyword and filters.
      */
     async activities(query: operations['searchFeedV2']['parameters']['query']) {
-      const { data, error } = await client.get('/activities', {
+      const { data, error } = await client.GET('/activities', {
         params: { query },
       })
       if (error || !data) throw error
@@ -70,7 +70,7 @@ export function client(opt: ClientOptions = {}) {
      * Get the details of an activity.
      */
     async activity(id: string) {
-      const { data, error } = await client.get('/activities/{id}', {
+      const { data, error } = await client.GET('/activities/{id}', {
         params: { path: { id } },
       })
       if (error || !data) throw error
@@ -82,7 +82,7 @@ export function client(opt: ClientOptions = {}) {
      * Search nft.
      */
     async nft(query: operationsIT['searchNftCollectionV2']['requestBody']['content']['application/json']) {
-      const { data, error } = await clientIT.post('/api/nft/v2/searchNftCollection', {
+      const { data, error } = await clientIT.POST('/api/nft/v2/searchNftCollection', {
         body: query,
       })
       if (error || !data) throw error
@@ -94,7 +94,7 @@ export function client(opt: ClientOptions = {}) {
      * Search wiki.
      */
     async wiki(query: operationsIT['search']['parameters']['query']) {
-      const { data, error } = await clientIT.get('/api/wiki/search', {
+      const { data, error } = await clientIT.GET('/api/wiki/search', {
         params: { query },
       })
       if (error || !data) throw error
@@ -106,7 +106,7 @@ export function client(opt: ClientOptions = {}) {
      * Get images of a nft.
      */
     async nftImages(query: operationsIT['nftImages']['parameters']['query']) {
-      const { data, error } = await clientIT.get('/api/nft/nftImages', {
+      const { data, error } = await clientIT.GET('/api/nft/nftImages', {
         params: { query },
       })
       if (error || !data) throw error
@@ -118,7 +118,7 @@ export function client(opt: ClientOptions = {}) {
      * Details of a nft.
      */
     async nftImage(query: operationsIT['nftImageDetail']['parameters']['query']) {
-      const { data, error } = await clientIT.get('/api/nft/nftImageDetail', {
+      const { data, error } = await clientIT.GET('/api/nft/nftImageDetail', {
         params: { query },
       })
       if (error || !data) throw error
@@ -130,7 +130,7 @@ export function client(opt: ClientOptions = {}) {
      * Search dapp.
      */
     async dapp(query: operations['searchv2']['parameters']['query']) {
-      const { data, error } = await client.get('/dapps', {
+      const { data, error } = await client.GET('/dapps', {
         params: { query },
       })
       if (error || !data) throw error
@@ -142,7 +142,7 @@ export function client(opt: ClientOptions = {}) {
      * Get today in history.
      */
     async todayInHistory(query: operationsIT['todayInHistory']['parameters']['query']) {
-      const { data, error } = await clientIT.get('/api/news/today-in-history', {
+      const { data, error } = await clientIT.GET('/api/news/today-in-history', {
         params: { query },
       })
       if (error || !data) throw error
