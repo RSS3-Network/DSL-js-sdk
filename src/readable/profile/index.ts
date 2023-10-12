@@ -62,6 +62,8 @@ export function extractProfile(profile: components['schemas']['Profile'] | null 
     address: profile?.address || '',
     url: profile?.url || '',
     platform: profile?.platform,
+    expireAt: profile?.expireAt,
+    bio: profile?.bio,
   }
 }
 
