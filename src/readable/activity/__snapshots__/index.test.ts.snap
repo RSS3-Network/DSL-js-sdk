@@ -36,7 +36,7 @@ exports[`formatPlain should work as expected > collectible-trade 0xb6412dc1f5852
 
 exports[`formatPlain should work as expected > collectible-transfer 0x000020ba6fd5833d1d54c1be8ee392bf2c5535609d272012a5fe64a23513519c 1`] = `"0x8aE57A027c63fcA8070D1Bf38622321dE8004c67 transferred \\"adidas Originals: Into the Metaverse\\" to 0x137ffd2016152a0e90000Dc193fcCe1BE5513E20 2023-07-27T00:22:23.000Z"`;
 
-exports[`formatPlain should work as expected > donation-donate 0x5a19dd1c81fa00599655bcd4b49ae27baca55ab372a8387d40201bae5ab3eddd 1`] = `"0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated \\"Distributed Solar for Web3 Creators in Nigeria\\" on Gitcoin; 0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated \\"Gitcoin Grants Official Matching Pool Fund\\" on Gitcoin 2023-10-06T06:26:23.000Z"`;
+exports[`formatPlain should work as expected > donation-donate 0x5a19dd1c81fa00599655bcd4b49ae27baca55ab372a8387d40201bae5ab3eddd 1`] = `"0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated \\"\\" on Gitcoin; 0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated \\"\\" on Gitcoin 2023-10-06T06:26:23.000Z"`;
 
 exports[`formatPlain should work as expected > exchange-liquidity 0x00003f9c21c7f631474c1bbc12f0946b3f093b520fb707d9cc661a25b58e4ccd 1`] = `"Added 3,569.612 SDAO , 0.8 WETH to liquidity on Uniswap 2023-02-03T23:47:59.000Z"`;
 
