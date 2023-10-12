@@ -1,3 +1,4 @@
+import { EMPTY_ADDRESS } from '../../constants'
 import { components } from '../../types/data'
 import { addressToAvatarURL, formatAddress, isAddress } from '../address'
 
@@ -70,10 +71,16 @@ export function extractProfile(profile: components['schemas']['Profile'] | null 
 /**
  * returns the primary profile, which handle is matched with the given handle
  * if the ens exists, it will be the primary profile
+ * if those profiles are owned by the empty address, we should not use them
  */
 export function extractPrimaryProfile(profiles: components['schemas']['Profile'][] | undefined, handle?: string) {
   const profile = handle
     ? profiles?.find((profile) => profile?.handle?.toLowerCase() === handle.toLowerCase())
     : profiles?.[0]
-  return extractProfile(profile)
+
+  if (profile?.address === EMPTY_ADDRESS) {
+    return extractProfile(null)
+  } else {
+    return extractProfile(profile)
+  }
 }
