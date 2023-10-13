@@ -379,7 +379,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       res = join([tokenAddr(owner), tokenText('published a post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-comment': () => {
-      res = join([tokenAddr(action.from), tokenText('commented a post'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([tokenAddr(action.from), tokenText('made a comment'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-share': () => {
       res = join([tokenAddr(owner), tokenText('shared a post'), tokenPost(action), ...tokenPlatform(action)])
@@ -452,7 +452,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       }
     },
     'social-delete': () => {
-      res = join([tokenText('Deleted'), tokenPost(action), ...tokenPlatform(action)])
+      res = join([tokenText('Deleted a post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'metaverse-transfer': (m) => {
       res = join([
