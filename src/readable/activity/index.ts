@@ -17,6 +17,7 @@ import {
   tokenSocialProfile,
   tokenTime,
   tokenSpace,
+  token,
 } from './token'
 import { Activity } from '../../data/client'
 
@@ -58,6 +59,11 @@ export function tokenizeActivity(activity: Activity): Token[] {
     return tokenizeAction(activity, actions[0])
   }
 
+  // handle unknown activity
+  if (activity.tag === 'unknown' || activity.type === 'unknown') {
+    return [token('unknown', 'Carried out an activity')]
+  }
+
   const ts = actions.reduce((acc, action) => {
     if (acc.length === 0) {
       return tokenizeAction(activity, action)
@@ -78,6 +84,11 @@ export function tokenizeToActions(activity: Activity): Token[][] {
   // used for social actions, remove the duplicate action
   if (activity.tag === 'social' && actions.length > 1) {
     return [tokenizeAction(activity, actions[0])]
+  }
+
+  // handle unknown activity
+  if (activity.tag === 'unknown' || activity.type === 'unknown') {
+    return [[token('unknown', 'Carried out an activity')]]
   }
 
   actions.map((action) => {
