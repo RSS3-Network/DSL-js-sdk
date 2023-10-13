@@ -2,8 +2,7 @@ import createClient from 'openapi-fetch'
 import { components, paths, operations } from '../types/data'
 import { ClientOptions } from '../types/utils'
 import { DEFAULT_RSS3_NET } from '../constants'
-import { Res, debug, fetchWithLog } from '../utils'
-import qs from 'qs'
+import { Res, debug, fetchWithLog, querySerializer } from '../utils'
 
 export type Activity = components['schemas']['Activity']
 export type Profile = components['schemas']['Profile']
@@ -16,7 +15,7 @@ export type Error = components['schemas']['Error']
  */
 export function client(opt: ClientOptions = {}) {
   if (!opt.baseUrl) opt.baseUrl = DEFAULT_RSS3_NET + '/data'
-  if (!opt.querySerializer) opt.querySerializer = qs.stringify
+  if (!opt.querySerializer) opt.querySerializer = querySerializer
 
   const debugSearch = debug.extend('search')
 

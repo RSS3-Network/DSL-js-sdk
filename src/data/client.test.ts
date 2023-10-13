@@ -5,6 +5,10 @@ import { handleMetadata } from '../metadata'
 it.concurrent('get activities by address', async ({ expect }) => {
   const res = await client().activities('vitalik.eth', { limit: 5, network: ['ethereum', 'farcaster'] })
   expect(res.data).toHaveLength(5)
+
+  res.data.forEach((a) => {
+    expect(a.network).oneOf(['ethereum', 'farcaster'])
+  })
 })
 
 it.concurrent('get activities addresses', async ({ expect }) => {

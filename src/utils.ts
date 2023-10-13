@@ -3,10 +3,16 @@ import { components as dataComponents } from './types/data'
 import Debug from 'debug'
 import { TagTypeMap } from './metadata'
 import { Activity } from './data/client'
+import qs from 'qs'
 
 export type Res<Data, Meta> = Promise<{ data: Data; meta: Meta }>
 
 export const debug = Debug('@rss3/js-sdk')
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function querySerializer(query: Record<string, any>): string {
+  return qs.stringify(query, { arrayFormat: 'repeat' })
+}
 
 export function fetchWithLog(logger: typeof debug, f: typeof fetch = fetch): typeof fetch {
   return (input, init) => {
