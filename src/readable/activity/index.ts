@@ -386,20 +386,40 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ...tokenPlatform(action),
       ])
     },
-    'social-post': () => {
-      res = join([tokenAddr(owner), tokenText('published a post'), tokenPost(action), ...tokenPlatform(action)])
+    'social-post': (m) => {
+      res = join([
+        tokenAddr(m.handle || owner),
+        tokenText('published a post'),
+        tokenPost(action),
+        ...tokenPlatform(action),
+      ])
     },
     'social-comment': () => {
       res = join([tokenAddr(action.from), tokenText('made a comment'), tokenPost(action), ...tokenPlatform(action)])
     },
-    'social-share': () => {
-      res = join([tokenAddr(owner), tokenText('shared a post'), tokenPost(action), ...tokenPlatform(action)])
+    'social-share': (m) => {
+      res = join([
+        tokenAddr(m.handle || owner),
+        tokenText('shared a post'),
+        tokenPost(action),
+        ...tokenPlatform(action),
+      ])
     },
-    'social-mint': () => {
-      res = join([tokenAddr(owner), tokenText('minted a post'), tokenPost(action), ...tokenPlatform(action)])
+    'social-mint': (m) => {
+      res = join([
+        tokenAddr(m.handle || owner),
+        tokenText('minted a post'),
+        tokenPost(action),
+        ...tokenPlatform(action),
+      ])
     },
-    'social-revise': () => {
-      res = join([tokenText('Revised a post'), tokenPost(action), ...tokenPlatform(action)])
+    'social-revise': (m) => {
+      res = join([
+        tokenAddr(m.handle || owner),
+        tokenText('revised a post'),
+        tokenPost(action),
+        ...tokenPlatform(action),
+      ])
     },
     'social-follow': (m) => {
       res = join([
@@ -462,8 +482,13 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         res = join([tokenText('Removed a proxy'), ...tokenPlatform(action)])
       }
     },
-    'social-delete': () => {
-      res = join([tokenText('Deleted a post'), tokenPost(action), ...tokenPlatform(action)])
+    'social-delete': (m) => {
+      res = join([
+        tokenAddr(m.handle || owner),
+        tokenText('deleted a post'),
+        tokenPost(action),
+        ...tokenPlatform(action),
+      ])
     },
     'metaverse-transfer': (m) => {
       res = join([
