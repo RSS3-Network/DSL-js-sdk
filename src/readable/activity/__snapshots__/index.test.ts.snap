@@ -76,13 +76,13 @@ exports[`formatPlain should work as expected > metaverse-transfer 0x096400ee4246
 
 exports[`formatPlain should work as expected > social-comment 0x1faacf487d304e601e100b271fcebc108ec45ff7c11fa68962c6cd09576d8eb4 1`] = `"0x20F2E8650e1A48b6c3AeEdc06cF37DA55F44C634 made a comment \\"Beautiful work!\\" on Hey 2023-10-06T07:45:07.000Z"`;
 
-exports[`formatPlain should work as expected > social-delete 0x071c79c1c380c984657b5fe8ea9eb61459e8ac596bbc2a36145a47f7c32c5e3f 1`] = `"Deleted a post \\"test\\" on Crossbell 2023-08-19T16:47:36.000Z"`;
+exports[`formatPlain should work as expected > social-delete 0x071c79c1c380c984657b5fe8ea9eb61459e8ac596bbc2a36145a47f7c32c5e3f 1`] = `"a-random-handle-hussxqzjry.csb deleted a post \\"test\\" on Crossbell 2023-08-19T16:47:36.000Z"`;
 
 exports[`formatPlain should work as expected > social-follow 0x6f7f8ee07638f3ff69e901fb4ee348a5f7e37fda99b720d53be0f7b4e1f9e8a4 1`] = `"0xc5d246d796c1fa229c3ab5fbf6c57cdeee42b780 followed elshankarimi.lens on Lens 2023-10-06T07:46:57.000Z"`;
 
-exports[`formatPlain should work as expected > social-mint 0xafd4f260528c8274345a6447028d84bc2303eddb0e8bca1f2006a106632cda9a 1`] = `"0x9FE3c6449Dd952b16FD452B096EFb7f50a895ADc minted a post \\"Halfway through week 5 of @verticalcrypto.lens and...\\" on orb 2023-10-06T07:45:49.000Z"`;
+exports[`formatPlain should work as expected > social-mint 0xafd4f260528c8274345a6447028d84bc2303eddb0e8bca1f2006a106632cda9a 1`] = `"pronounceddrop.lens minted a post \\"Halfway through week 5 of @verticalcrypto.lens and...\\" on orb 2023-10-06T07:45:49.000Z"`;
 
-exports[`formatPlain should work as expected > social-post 0xa7f1fc265246844407518f165e2d30a70aea79eb14dd0d00deb589b270d7519c 1`] = `"0x8B4f7Ee0c857F05Dee37AF0471410429ad0F2D58 published a post \\"I think they are blended together.\\" on lenstube 2023-10-06T07:45:19.000Z"`;
+exports[`formatPlain should work as expected > social-post 0xa7f1fc265246844407518f165e2d30a70aea79eb14dd0d00deb589b270d7519c 1`] = `"malicake.lens published a post \\"I think they are blended together.\\" on lenstube 2023-10-06T07:45:19.000Z"`;
 
 exports[`formatPlain should work as expected > social-profile 0x01d8db40858063a945cfe5d22b62eeef3371b065f29353a68a0d4f578ca21d1d 1`] = `"Renewed a profile \\"212022.eth\\" on ENS 2023-01-21T01:40:23.000Z"`;
 
@@ -98,9 +98,9 @@ exports[`formatPlain should work as expected > social-proxy 0x002c594c5c76489420
 
 exports[`formatPlain should work as expected > social-proxy 0x030706597f3c4502896339c8cfd30c088f857abca78033c00cdc3b6605f60c2c 1`] = `"Removed a proxy on Crossbell 2023-08-01T14:17:06.000Z"`;
 
-exports[`formatPlain should work as expected > social-revise GzlgoJetNg9yEI0nRlpx1c4vOww8mDh5Auyy5P9I5uE 1`] = `"Revised a post \\"Privacy Matters: Newsletter #7\\" on Mirror 2023-08-31T09:55:53.000Z"`;
+exports[`formatPlain should work as expected > social-revise GzlgoJetNg9yEI0nRlpx1c4vOww8mDh5Auyy5P9I5uE 1`] = `"0xd0A0012b360B92A14c655A3fD60cfC52A99353e4 revised a post \\"Privacy Matters: Newsletter #7\\" on Mirror 2023-08-31T09:55:53.000Z"`;
 
-exports[`formatPlain should work as expected > social-share 0xddd79ba4fde200f82192ca0306097e4c80904e74c96b64684ff66d818b0379a0 1`] = `"0x25418Bcf53dAe1167cD5d0cad34Eec31C0C37E41 shared a post \\"death busters stickies ;p\\" on orb 2023-10-06T07:46:11.000Z"`;
+exports[`formatPlain should work as expected > social-share 0xddd79ba4fde200f82192ca0306097e4c80904e74c96b64684ff66d818b0379a0 1`] = `"billym2k.lens shared a post \\"death busters stickies ;p\\" on orb 2023-10-06T07:46:11.000Z"`;
 
 exports[`formatPlain should work as expected > social-unfollow 0x27f4849213868ce96c7969c4f652c512ddb659ba5798793ae14c3b24fb55affd 1`] = `"0x56d354fa239f3c7fae38cd41b86d2016cc8c1206 unfollowed flashback.lens on Lens 2023-10-06T07:43:05.000Z"`;
 
