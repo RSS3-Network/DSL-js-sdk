@@ -55,6 +55,16 @@ export function extractContent(action: components['schemas']['Action']): PostCon
   return content
 }
 
+/**
+ * The special case for lens post, which will use the first sentence of the body as the title
+ */
+export function formatTitle(title?: string, body?: string) {
+  if (!title) return title
+  title = title.replaceAll('…', '')
+  if (body?.startsWith(title)) return undefined
+  return title
+}
+
 function extractSocialPost(metadata: components['schemas']['SocialPost']): PostContent {
   const raw = metadata.target
   const target = raw

@@ -11,7 +11,7 @@ export {
   hasMultiPrimaryActions,
   flatActivity,
 } from './readable/activity'
-export { formatContent, Content, extractContent } from './readable/content'
+export { formatContent, Content, extractContent, formatTitle } from './readable/content'
 export { Theme, themeHTML, summaryOfHTML } from './readable/activity/theme'
 export { formatTokenValue } from './readable/number'
 export { formatProfiles, extractProfile, extractPrimaryProfile } from './readable/profile'
