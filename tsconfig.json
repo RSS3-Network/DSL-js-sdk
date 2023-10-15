@@ -7,12 +7,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "rootDir": "src",
-    "outDir": "lib",
-    "paths": {
-      "@rss3/js-sdk": ["./src/index.ts"],
-      "@rss3/js-sdk/lib/data/client.js": ["./src/data/client.ts"]
-    }
+    "outDir": "lib"
   },
-  "exclude": ["lib", "src/**/*.test.ts"]
+  "exclude": ["lib"]
 }

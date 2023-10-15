@@ -44,7 +44,7 @@ export function client(opt: ClientOptions = {}) {
      */
     async activities(
       account: string,
-      query: operations['GetAccountActivities']['parameters']['query'],
+      query?: operations['GetAccountActivities']['parameters']['query'],
     ): Res<Activity[], Cursor> {
       const { data, error } = await client.GET('/accounts/{account}/activities', {
         params: {
@@ -88,7 +88,7 @@ export function client(opt: ClientOptions = {}) {
      */
     async mastodonActivities(
       account: string,
-      query: operations['GetMastodonActivities']['parameters']['query'] = {},
+      query?: operations['GetMastodonActivities']['parameters']['query'],
     ): Res<Activity[], Cursor> {
       const client = createClient<paths>(opt)
 
@@ -115,7 +115,7 @@ export function client(opt: ClientOptions = {}) {
      */
     async profiles(
       account: string,
-      query: operations['GetAccountProfiles']['parameters']['query'] = {},
+      query?: operations['GetAccountProfiles']['parameters']['query'],
     ): Res<Profile[], null> {
       const { data, error } = await client.GET('/accounts/{account}/profiles', {
         params: {
