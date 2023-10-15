@@ -16,6 +16,14 @@ it.concurrent('get activities addresses', async ({ expect }) => {
   expect(res.data).toHaveLength(5)
 })
 
+it.concurrent('get activities next page', async ({ expect }) => {
+  let res = await client().activities('vitalik.eth', { tag: ['social'], limit: 2 })
+  if (res.nextPage) {
+    res = await res.nextPage()
+    expect(res.data).toHaveLength(2)
+  }
+})
+
 it.concurrent('get profile', async ({ expect }) => {
   const res = await client().profiles('vitalik.eth')
   expect(res.data).length.greaterThan(3)

@@ -21,148 +21,172 @@ export function client(opt: ClientOptions = {}) {
 
   const client = createClient<paths>(opt)
 
-  return {
-    /**
-     * Query transactions.
-     */
-    async activity(id: string): Res<Activity, TotalPage> {
-      const { data, error } = await client.GET('/activities/{id}', { params: { path: { id } } })
-      if (error || !data) throw error
+  /**
+   * Query transactions.
+   */
+  async function activity(
+    id: string,
+    query?: operations['GetActivity']['parameters']['query'],
+  ): Res<Activity, TotalPage> {
+    const { data, error } = await client.GET('/activities/{id}', { params: { path: { id }, query } })
+    if (error || !data) throw error
 
-      if (!data.data || !data.meta) return data as never
+    if (!data.data) return data as never
 
-      return {
-        data: data.data,
-        meta: data.meta,
-      }
-    },
+    if (!data.meta) return { data: data.data }
 
-    /**
-     * Query activities.
-     */
-    async activities(
-      account: string,
-      query?: operations['GetAccountActivities']['parameters']['query'],
-    ): Res<Activity[], Cursor> {
-      const { data, error } = await client.GET('/accounts/{account}/activities', {
-        params: {
-          path: { account },
-          query,
-        },
+    return {
+      data: data.data,
+      meta: data.meta,
+      nextPage: () => {
+        if (!query) query = {}
+        return activity(id, { ...query, action_page: (query.action_page || 0) + 1 })
+      },
+    }
+  }
+
+  /**
+   * Query activities.
+   */
+  async function activities(
+    account: string,
+    query?: operations['GetAccountActivities']['parameters']['query'],
+  ): Res<Activity[], Cursor> {
+    const { data, error } = await client.GET('/accounts/{account}/activities', {
+      params: {
+        path: { account },
+        query,
+      },
+    })
+    if (error || !data) throw error
+
+    const list = data.data.map((a) => a as Activity)
+
+    if (!data.meta) return { data: list }
+
+    return {
+      data: list,
+      meta: data.meta,
+      nextPage: () => {
+        if (!data.meta) return {} as never
+        return activities(account, { ...query, cursor: data.meta.cursor })
+      },
+    }
+  }
+
+  /**
+   * Query activities by multiple accounts.
+   */
+  async function activitiesBatch(query: components['schemas']['AccountsActivitiesRequest']): Res<Activity[], Cursor> {
+    const { data, error } = await client.POST('/accounts/activities', {
+      body: query,
+    })
+    if (error || !data) throw error
+
+    const list = data.data.map((a) => a as Activity)
+
+    if (!data.meta) return { data: list }
+
+    return {
+      data: list,
+      meta: data.meta,
+      nextPage: () => {
+        if (!data.meta) return {} as never
+        return activitiesBatch({ ...query, cursor: data.meta.cursor })
+      },
+    }
+  }
+
+  /**
+   * Query mastodon activities.
+   */
+  async function mastodonActivities(
+    account: string,
+    query?: operations['GetMastodonActivities']['parameters']['query'],
+  ): Res<Activity[], Cursor> {
+    const client = createClient<paths>(opt)
+
+    const { data, error } = await client.GET('/mastodon/{account}/activities', {
+      params: {
+        path: { account },
+        query,
+      },
+    })
+    if (error || !data) throw error
+
+    if (!data.meta) return data as never
+
+    const list = data.data.map((a) => a as Activity)
+
+    return {
+      data: list,
+      meta: data.meta,
+    }
+  }
+
+  /**
+   * Query profiles.
+   */
+  async function profiles(
+    account: string,
+    query?: operations['GetAccountProfiles']['parameters']['query'],
+  ): Res<Profile[], null> {
+    const { data, error } = await client.GET('/accounts/{account}/profiles', {
+      params: {
+        path: { account },
+        query,
+      },
+    })
+    if (error || !data) throw error
+
+    const list = data.data.map((a) => a as Profile)
+
+    return {
+      data: list,
+      meta: null,
+    }
+  }
+
+  /**
+   * Query mastodon profiles.
+   */
+  async function mastodonProfiles(account: string): Res<Profile[], null> {
+    const [handle, domain] = account.split('@')
+
+    const data = await fetch(`https://${domain}/api/v2/search?q=${handle}&resolve=false&limit=1`)
+      .then((res) => res.json())
+      .catch(() => {
+        return { data: [] }
       })
-      if (error || !data) throw error
 
-      if (!data.meta) return data as never
-
-      const list = data.data.map((a) => a as Activity)
-
+    if (data.accounts.length === 0) {
+      return { data: [], meta: null }
+    } else {
+      const profile = data.accounts[0]
       return {
-        data: list,
-        meta: data.meta,
-      }
-    },
-
-    /**
-     * Query activities by multiple accounts.
-     */
-    async activitiesBatch(query: components['schemas']['AccountsActivitiesRequest']): Res<Activity[], Cursor> {
-      const { data, error } = await client.POST('/accounts/activities', {
-        body: query,
-      })
-      if (error || !data) throw error
-
-      if (!data.meta) return data as never
-
-      const list = data.data.map((a) => a as Activity)
-
-      return {
-        data: list,
-        meta: data.meta,
-      }
-    },
-
-    /**
-     * Query mastodon activities.
-     */
-    async mastodonActivities(
-      account: string,
-      query?: operations['GetMastodonActivities']['parameters']['query'],
-    ): Res<Activity[], Cursor> {
-      const client = createClient<paths>(opt)
-
-      const { data, error } = await client.GET('/mastodon/{account}/activities', {
-        params: {
-          path: { account },
-          query,
-        },
-      })
-      if (error || !data) throw error
-
-      if (!data.meta) return data as never
-
-      const list = data.data.map((a) => a as Activity)
-
-      return {
-        data: list,
-        meta: data.meta,
-      }
-    },
-
-    /**
-     * Query profiles.
-     */
-    async profiles(
-      account: string,
-      query?: operations['GetAccountProfiles']['parameters']['query'],
-    ): Res<Profile[], null> {
-      const { data, error } = await client.GET('/accounts/{account}/profiles', {
-        params: {
-          path: { account },
-          query,
-        },
-      })
-      if (error || !data) throw error
-
-      const list = data.data.map((a) => a as Profile)
-
-      return {
-        data: list,
+        data: [
+          {
+            address: `${profile.username}@${domain}`,
+            bio: profile.note,
+            handle: `${profile.username}@${domain}`,
+            name: profile.username,
+            network: 'Mastodon',
+            platform: 'Mastodon',
+            profileURI: [profile.avatar],
+            url: profile.url,
+          },
+        ],
         meta: null,
       }
-    },
+    }
+  }
 
-    /**
-     * Query mastodon profiles.
-     */
-    async mastodonProfiles(account: string): Res<Profile[], null> {
-      const [handle, domain] = account.split('@')
-
-      const data = await fetch(`https://${domain}/api/v2/search?q=${handle}&resolve=false&limit=1`)
-        .then((res) => res.json())
-        .catch(() => {
-          return { data: [] }
-        })
-
-      if (data.accounts.length === 0) {
-        return { data: [], meta: null }
-      } else {
-        const profile = data.accounts[0]
-        return {
-          data: [
-            {
-              address: `${profile.username}@${domain}`,
-              bio: profile.note,
-              handle: `${profile.username}@${domain}`,
-              name: profile.username,
-              network: 'Mastodon',
-              platform: 'Mastodon',
-              profileURI: [profile.avatar],
-              url: profile.url,
-            },
-          ],
-          meta: null,
-        }
-      }
-    },
+  return {
+    activity,
+    activities,
+    activitiesBatch,
+    mastodonActivities,
+    profiles,
+    mastodonProfiles,
   }
 }

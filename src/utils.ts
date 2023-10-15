@@ -5,7 +5,7 @@ import { TagTypeMap } from './metadata'
 import { Activity } from './data/client'
 import qs from 'qs'
 
-export type Res<Data, Meta> = Promise<{ data: Data; meta: Meta }>
+export type Res<Data, Meta> = Promise<{ data: Data; meta?: Meta; nextPage?: () => Res<Data, Meta> }>
 
 export const debug = Debug('@rss3/js-sdk')
 
