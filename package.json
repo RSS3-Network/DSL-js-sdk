@@ -14,12 +14,12 @@
     "watch-ts": "tsc -w",
     "watch-js": "webpack -w",
     "watch": "concurrently npm:watch-ts npm:watch-js",
-    "test": "vitest run",
+    "test": "vitest run src",
     "lint": "cspell --no-progress '**' && eslint --max-warnings=0 src && prettier -c . && tsc --noEmit",
     "format": "eslint --fix && prettier -w .",
     "prepare": "npm run build",
     "pub": "npm version patch --force && npm publish",
-    "update": "npx vitest -u"
+    "update": "npx vitest run -u src"
   },
   "devDependencies": {
     "@types/debug": "^4.1.8",
@@ -38,7 +38,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.0.4",
-    "vitest": "^0.32.2",
+    "vitest": "^1.0.0-beta.2",
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {

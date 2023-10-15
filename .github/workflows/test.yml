@@ -22,8 +22,6 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run generate
-
       - run: npm run lint
 
       - run: npm test
