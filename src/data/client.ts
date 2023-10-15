@@ -17,9 +17,7 @@ export function client(opt: ClientOptions = {}) {
   if (!opt.baseUrl) opt.baseUrl = DEFAULT_RSS3_NET + '/data'
   if (!opt.querySerializer) opt.querySerializer = querySerializer
 
-  const debugSearch = debug.extend('search')
-
-  opt.fetch = fetchWithLog(debugSearch.extend('fetch'), opt.fetch)
+  opt.fetch = fetchWithLog(debug.extend('data').extend('fetch'), opt.fetch)
 
   const client = createClient<paths>(opt)
 
