@@ -158,14 +158,16 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     'transaction-multisig': (m) => {
       if (m.action === 'create') {
         res = join([
-          tokenText('Created a multisig transaction'),
+          tokenAddr(action.from),
+          tokenText('created a multisig transaction'),
           tokenText('to'),
           tokenAddr(action.to),
           ...tokenPlatform(activity),
         ])
       } else if (m.action === 'add_owner') {
         res = join([
-          tokenText('Added'),
+          tokenAddr(action.from),
+          tokenText('added'),
           tokenAddr(m.owner),
           tokenText('to'),
           tokenAddr(m.vault.address),
@@ -180,9 +182,14 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           ...tokenPlatform(activity),
         ])
       } else if (m.action === 'change_threshold') {
-        res = join([tokenText('Changed the threshold of'), tokenAddr(m.vault.address), ...tokenPlatform(activity)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('changed the threshold of'),
+          tokenAddr(m.vault.address),
+          ...tokenPlatform(activity),
+        ])
       } else if (m.action === 'execution') {
-        res = join([tokenText('Executed a multisig transaction'), ...tokenPlatform(activity)])
+        res = join([tokenAddr(action.from), tokenText('executed a multisig transaction'), ...tokenPlatform(activity)])
       }
     },
     'transaction-bridge': (m) => {
@@ -196,13 +203,25 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ]
       }
       if (m.action === 'deposit') {
-        res = join([tokenText('Deposited'), ...tokenValue(m.token), ...network, ...tokenPlatform(activity)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('deposited'),
+          ...tokenValue(m.token),
+          ...network,
+          ...tokenPlatform(activity),
+        ])
       } else {
-        res = join([tokenText('Withdrew'), ...tokenValue(m.token), ...network, ...tokenPlatform(activity)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('withdrew'),
+          ...tokenValue(m.token),
+          ...network,
+          ...tokenPlatform(activity),
+        ])
       }
     },
     'transaction-deploy': (m) => {
-      res = join([tokenText('Deployed a contract'), tokenAddr(m.address)])
+      res = join([tokenAddr(action.from), tokenText('deployed a contract'), tokenAddr(m.address)])
     },
     // for collectible or nft related action, it will use image_url as the image link
     'collectible-transfer': (m) => {

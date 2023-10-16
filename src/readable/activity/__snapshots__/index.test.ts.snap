@@ -1,42 +1,42 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`formatPlain should work as expected > collectible-approval 0x000005ec834f55bcd378f2f588e051501af336c1c6259dac20c8a3ee0551f661 1`] = `"Approved "SmallBrosNFT Official collection" to 0x1E0049783F008A0085193E00003D00cd54003c71 2023-08-24T22:13:11.000Z"`;
+exports[`formatPlain should work as expected > collectible-approval 0x000005ec834f55bcd378f2f588e051501af336c1c6259dac20c8a3ee0551f661 1`] = `"Approved \\"SmallBrosNFT Official collection\\" to 0x1E0049783F008A0085193E00003D00cd54003c71 2023-08-24T22:13:11.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-approval 0x00002f42ad98c0a0960847bcdba90054e8d21c49cadb074fcce4c0a730fff7cd 1`] = `"Revoked the approval of "CryptoChads collection" to 0x1E0049783F008A0085193E00003D00cd54003c71 2023-07-02T12:10:11.000Z"`;
+exports[`formatPlain should work as expected > collectible-approval 0x00002f42ad98c0a0960847bcdba90054e8d21c49cadb074fcce4c0a730fff7cd 1`] = `"Revoked the approval of \\"CryptoChads collection\\" to 0x1E0049783F008A0085193E00003D00cd54003c71 2023-07-02T12:10:11.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x0006c67b092640082e392c4a86e2a8cbdcf47a8cc31f9ca31f9f7c87a5cb81f8 1`] = `"0x3626D9B3Ae91a199262556e37aA30b79865fE03D won an auction for "GeneraTive and GliTch" on Foundation 2023-02-02T15:38:23.000Z"`;
+exports[`formatPlain should work as expected > collectible-auction 0x0006c67b092640082e392c4a86e2a8cbdcf47a8cc31f9ca31f9f7c87a5cb81f8 1`] = `"0x3626D9B3Ae91a199262556e37aA30b79865fE03D won an auction for \\"GeneraTive and GliTch\\" on Foundation 2023-02-02T15:38:23.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x00081a2fcf00d00d644b7998330ef4a795419be906b8b2d575bda475e7ea2ad4 1`] = `"Made a bid for "Act of Killing" on Foundation 2023-01-23T06:36:59.000Z"`;
+exports[`formatPlain should work as expected > collectible-auction 0x00081a2fcf00d00d644b7998330ef4a795419be906b8b2d575bda475e7ea2ad4 1`] = `"Made a bid for \\"Act of Killing\\" on Foundation 2023-01-23T06:36:59.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x000590259fdd6ad57f4071878383ac3c378a88c491409e00a444275bc0d3179b 1`] = `"Created an auction for "My Life and My Times" on Foundation 2023-01-14T08:40:23.000Z"`;
+exports[`formatPlain should work as expected > collectible-auction 0x000590259fdd6ad57f4071878383ac3c378a88c491409e00a444275bc0d3179b 1`] = `"Created an auction for \\"My Life and My Times\\" on Foundation 2023-01-14T08:40:23.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x001a0608a2e4273e441e28a5a3f1d41cc3596da3d8d38c842c5d53a76c374b95 1`] = `"0xE3a30103eF14667eecc1bfFe8D01fFB90D54Db48 updated an auction for "FORA - FOLLOW MY ART" on Foundation 2023-01-19T16:52:59.000Z"`;
+exports[`formatPlain should work as expected > collectible-auction 0x001a0608a2e4273e441e28a5a3f1d41cc3596da3d8d38c842c5d53a76c374b95 1`] = `"0xE3a30103eF14667eecc1bfFe8D01fFB90D54Db48 updated an auction for \\"FORA - FOLLOW MY ART\\" on Foundation 2023-01-19T16:52:59.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x0012823ee026f352158ae0b1ceaaef3f7ac7b757fc49501717fc6363455a601b 1`] = `"Canceled an auction for "About me " on Foundation 2023-01-02T07:14:59.000Z"`;
+exports[`formatPlain should work as expected > collectible-auction 0x0012823ee026f352158ae0b1ceaaef3f7ac7b757fc49501717fc6363455a601b 1`] = `"Canceled an auction for \\"About me \\" on Foundation 2023-01-02T07:14:59.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x2787fe62e3f31207524217fed8788329560da5964dbf90f791651aaac00b9131 1`] = `"Bought "UNRIVALLED" from 0x9b0Da6499d6eA156c2FBCa0f2104d42B7f8f2F88 on Foundation 2023-06-08T15:46:11.000Z"`;
+exports[`formatPlain should work as expected > collectible-auction 0x2787fe62e3f31207524217fed8788329560da5964dbf90f791651aaac00b9131 1`] = `"Bought \\"UNRIVALLED\\" from 0x9b0Da6499d6eA156c2FBCa0f2104d42B7f8f2F88 on Foundation 2023-06-08T15:46:11.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-burn 0x000071563c854e34c2534e7e961a53dd648411b62467d6c10b38a80b51d1f51e 1`] = `"Burned "THE MAZE by TAYLOR" 2023-02-07T03:50:23.000Z"`;
+exports[`formatPlain should work as expected > collectible-burn 0x000071563c854e34c2534e7e961a53dd648411b62467d6c10b38a80b51d1f51e 1`] = `"Burned \\"THE MAZE by TAYLOR\\" 2023-02-07T03:50:23.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-mint 0x000002803fd033274860a06bb8b7285c0595f550b73e621a92b7095fcd79afaa 1`] = `"0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie" 2023-01-16T15:17:47.000Z"`;
+exports[`formatPlain should work as expected > collectible-mint 0x000002803fd033274860a06bb8b7285c0595f550b73e621a92b7095fcd79afaa 1`] = `"0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted \\"Chibi Valkyrie\\"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted \\"Chibi Valkyrie\\"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted \\"Chibi Valkyrie\\"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted \\"Chibi Valkyrie\\" 2023-01-16T15:17:47.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x0000020e0e1758d442865233da076d62a5bfa53992229079383096f9fddcc22d 1`] = `"Bought "PORSCHΞ 911" from 0xdb082B9F5C7748E0fEB4618b8676cB2ddfe89a1E on OpenSea 2023-02-03T08:55:23.000Z"`;
+exports[`formatPlain should work as expected > collectible-trade 0x0000020e0e1758d442865233da076d62a5bfa53992229079383096f9fddcc22d 1`] = `"Bought \\"PORSCHΞ 911\\" from 0xdb082B9F5C7748E0fEB4618b8676cB2ddfe89a1E on OpenSea 2023-02-03T08:55:23.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x000043e7d363d7d269c279e888cfe6b569e8a48f315736a00bdf06ff8627cafc 1`] = `"Sold "(B)APETAVERSE" to 0x60f705861aE52E4787543c1c47B6eaf25a4B9ACb on OpenSea 2023-01-19T11:16:11.000Z"`;
+exports[`formatPlain should work as expected > collectible-trade 0x000043e7d363d7d269c279e888cfe6b569e8a48f315736a00bdf06ff8627cafc 1`] = `"Sold \\"(B)APETAVERSE\\" to 0x60f705861aE52E4787543c1c47B6eaf25a4B9ACb on OpenSea 2023-01-19T11:16:11.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x6cd99adfdedf1ef1bb7b9958f41425f6ea15a53a7e5dadcac84900d8d179a4d9 1`] = `"Sold "Catalog" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora 2023-06-03T19:32:35.000Z"`;
+exports[`formatPlain should work as expected > collectible-trade 0x6cd99adfdedf1ef1bb7b9958f41425f6ea15a53a7e5dadcac84900d8d179a4d9 1`] = `"Sold \\"Catalog\\" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora 2023-06-03T19:32:35.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x38baff44e24e7c1df9761f3c9253647ad9edbc08dc254063071b33ff1a4638af 1`] = `"Made a bid for "THE MRC ARTE 1/1 COLLECTION" on Foundation 2023-06-08T20:00:35.000Z"`;
+exports[`formatPlain should work as expected > collectible-trade 0x38baff44e24e7c1df9761f3c9253647ad9edbc08dc254063071b33ff1a4638af 1`] = `"Made a bid for \\"THE MRC ARTE 1/1 COLLECTION\\" on Foundation 2023-06-08T20:00:35.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x57b6aa88319e01dc21f01caf898ae04a5bdc7c477da7d562b648ea3563191890 1`] = `"Sold "Where the Wild Cats Are" to 0xcDA72070E455bb31C7690a170224Ce43623d0B6f on Foundation 2023-06-09T01:26:59.000Z"`;
+exports[`formatPlain should work as expected > collectible-trade 0x57b6aa88319e01dc21f01caf898ae04a5bdc7c477da7d562b648ea3563191890 1`] = `"Sold \\"Where the Wild Cats Are\\" to 0xcDA72070E455bb31C7690a170224Ce43623d0B6f on Foundation 2023-06-09T01:26:59.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x7076d8902b2256666407108bcaae44a207d37e1b2aac379a87f053aee0af0962 1`] = `"Sold "Visage" to 0xcDA72070E455bb31C7690a170224Ce43623d0B6f on Foundation 2023-06-08T22:21:23.000Z"`;
+exports[`formatPlain should work as expected > collectible-trade 0x7076d8902b2256666407108bcaae44a207d37e1b2aac379a87f053aee0af0962 1`] = `"Sold \\"Visage\\" to 0xcDA72070E455bb31C7690a170224Ce43623d0B6f on Foundation 2023-06-08T22:21:23.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0xb6412dc1f5852f73355f135f2d916b1d37a6d696d305585128c13c2fb1374f3d 1`] = `"Sold "Catalog" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora 2023-05-20T13:54:11.000Z"`;
+exports[`formatPlain should work as expected > collectible-trade 0xb6412dc1f5852f73355f135f2d916b1d37a6d696d305585128c13c2fb1374f3d 1`] = `"Sold \\"Catalog\\" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora 2023-05-20T13:54:11.000Z"`;
 
-exports[`formatPlain should work as expected > collectible-transfer 0x000020ba6fd5833d1d54c1be8ee392bf2c5535609d272012a5fe64a23513519c 1`] = `"0x8aE57A027c63fcA8070D1Bf38622321dE8004c67 transferred "adidas Originals: Into the Metaverse" to 0x137ffd2016152a0e90000Dc193fcCe1BE5513E20 2023-07-27T00:22:23.000Z"`;
+exports[`formatPlain should work as expected > collectible-transfer 0x000020ba6fd5833d1d54c1be8ee392bf2c5535609d272012a5fe64a23513519c 1`] = `"0x8aE57A027c63fcA8070D1Bf38622321dE8004c67 transferred \\"adidas Originals: Into the Metaverse\\" to 0x137ffd2016152a0e90000Dc193fcCe1BE5513E20 2023-07-27T00:22:23.000Z"`;
 
-exports[`formatPlain should work as expected > donation-donate 0x5a19dd1c81fa00599655bcd4b49ae27baca55ab372a8387d40201bae5ab3eddd 1`] = `"0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated "" on Gitcoin; 0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated "" on Gitcoin 2023-10-06T06:26:23.000Z"`;
+exports[`formatPlain should work as expected > donation-donate 0x5a19dd1c81fa00599655bcd4b49ae27baca55ab372a8387d40201bae5ab3eddd 1`] = `"0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated \\"\\" on Gitcoin; 0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated \\"\\" on Gitcoin 2023-10-06T06:26:23.000Z"`;
 
 exports[`formatPlain should work as expected > exchange-liquidity 0x00003f9c21c7f631474c1bbc12f0946b3f093b520fb707d9cc661a25b58e4ccd 1`] = `"Added 3,569.612 SDAO , 0.8 WETH to liquidity on Uniswap 2023-02-03T23:47:59.000Z"`;
 
@@ -64,43 +64,43 @@ exports[`formatPlain should work as expected > exchange-loan 0xbe78726deb3efb4ea
 
 exports[`formatPlain should work as expected > exchange-swap 0x000005461c52e2eb738744246388f8b04ad94c9ebb4b87668f9f1936b1816512 1`] = `"0x1111111254fb6c44bAC0beD2854e76F90643097d swapped 0.000765 ETH to 200.171 JUP on 1inch 2023-01-04T04:07:35.000Z"`;
 
-exports[`formatPlain should work as expected > metaverse-mint 0x08effd820f49f2b25c5fcfccedb9384f5d5c35037094b5e492b0c6b75ecfc32b 1`] = `"0xF6A978aB977615eDd6E2299758aE9aedB9c25a7f minted "Mars4" on Mars4 2023-02-01T09:01:59.000Z"`;
+exports[`formatPlain should work as expected > metaverse-mint 0x08effd820f49f2b25c5fcfccedb9384f5d5c35037094b5e492b0c6b75ecfc32b 1`] = `"0xF6A978aB977615eDd6E2299758aE9aedB9c25a7f minted \\"Mars4\\" on Mars4 2023-02-01T09:01:59.000Z"`;
 
-exports[`formatPlain should work as expected > metaverse-trade 0x001a2d0a33b8e67d8056e94c81e57727541c85906efd0134ff72e0d026a1d47f 1`] = `"0x85a52fD3D09b24912b0380E0ed9380Bb81bA91F0 bought "Aavegotchi" from 0xB415Cc05775Fbcfc68cD80BF58f61D2733614203 on Aavegotchi 2023-10-03T01:41:31.000Z"`;
+exports[`formatPlain should work as expected > metaverse-trade 0x001a2d0a33b8e67d8056e94c81e57727541c85906efd0134ff72e0d026a1d47f 1`] = `"0x85a52fD3D09b24912b0380E0ed9380Bb81bA91F0 bought \\"Aavegotchi\\" from 0xB415Cc05775Fbcfc68cD80BF58f61D2733614203 on Aavegotchi 2023-10-03T01:41:31.000Z"`;
 
-exports[`formatPlain should work as expected > metaverse-trade 0x03190712b9bf73189595aa26baa69a680856591cf1c51e7949d1604d8ae38e72 1`] = `"0x86935F11C86623deC8a25696E1C19a8659CbF95d listed "FAKE Gotchis" from 0xB652158F67b9Fb39c29412d6F8e1C563FF6724f2 on Aavegotchi 2023-10-01T04:47:43.000Z"`;
+exports[`formatPlain should work as expected > metaverse-trade 0x03190712b9bf73189595aa26baa69a680856591cf1c51e7949d1604d8ae38e72 1`] = `"0x86935F11C86623deC8a25696E1C19a8659CbF95d listed \\"FAKE Gotchis\\" from 0xB652158F67b9Fb39c29412d6F8e1C563FF6724f2 on Aavegotchi 2023-10-01T04:47:43.000Z"`;
 
-exports[`formatPlain should work as expected > metaverse-trade 0x2a9b1776be9c0dfad8c17536bbf6b4831b49cf482d186938a3388d094d1175b9 1`] = `"0x86935F11C86623deC8a25696E1C19a8659CbF95d sold "FAKE Gotchis" from 0xA7f1C77998bAe58614Be010AD2A806639E280056 on Aavegotchi 2023-07-23T15:22:53.000Z"`;
+exports[`formatPlain should work as expected > metaverse-trade 0x2a9b1776be9c0dfad8c17536bbf6b4831b49cf482d186938a3388d094d1175b9 1`] = `"0x86935F11C86623deC8a25696E1C19a8659CbF95d sold \\"FAKE Gotchis\\" from 0xA7f1C77998bAe58614Be010AD2A806639E280056 on Aavegotchi 2023-07-23T15:22:53.000Z"`;
 
-exports[`formatPlain should work as expected > metaverse-transfer 0x096400ee4246f99aea883ec4bde65c2dd0a23ab708c28bf0540832bf6c69664e 1`] = `"0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi FUD" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi FUD" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi FOMO" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi FOMO" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi ALPHA" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi ALPHA" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi KEK" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred "Aavegotchi KEK" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce 2023-06-24T19:40:54.000Z"`;
+exports[`formatPlain should work as expected > metaverse-transfer 0x096400ee4246f99aea883ec4bde65c2dd0a23ab708c28bf0540832bf6c69664e 1`] = `"0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi FUD\\" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi FUD\\" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi FOMO\\" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi FOMO\\" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi ALPHA\\" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi ALPHA\\" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi KEK\\" to 0x936181C78169f56e2cdd396Fe511a96191a6623E; 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce transferred \\"Aavegotchi KEK\\" to 0x31b3DB5412fbB08F8C1038f3C6b8DEBa73EF01Ce 2023-06-24T19:40:54.000Z"`;
 
-exports[`formatPlain should work as expected > social-comment 0x1faacf487d304e601e100b271fcebc108ec45ff7c11fa68962c6cd09576d8eb4 1`] = `"0x20F2E8650e1A48b6c3AeEdc06cF37DA55F44C634 made a comment "Beautiful work!" on Hey 2023-10-06T07:45:07.000Z"`;
+exports[`formatPlain should work as expected > social-comment 0x1faacf487d304e601e100b271fcebc108ec45ff7c11fa68962c6cd09576d8eb4 1`] = `"0x20F2E8650e1A48b6c3AeEdc06cF37DA55F44C634 made a comment \\"Beautiful work!\\" on Hey 2023-10-06T07:45:07.000Z"`;
 
-exports[`formatPlain should work as expected > social-delete 0x071c79c1c380c984657b5fe8ea9eb61459e8ac596bbc2a36145a47f7c32c5e3f 1`] = `"a-random-handle-hussxqzjry.csb deleted a post "test" on Crossbell 2023-08-19T16:47:36.000Z"`;
+exports[`formatPlain should work as expected > social-delete 0x071c79c1c380c984657b5fe8ea9eb61459e8ac596bbc2a36145a47f7c32c5e3f 1`] = `"a-random-handle-hussxqzjry.csb deleted a post \\"test\\" on Crossbell 2023-08-19T16:47:36.000Z"`;
 
 exports[`formatPlain should work as expected > social-follow 0x6f7f8ee07638f3ff69e901fb4ee348a5f7e37fda99b720d53be0f7b4e1f9e8a4 1`] = `"0xc5d246d796c1fa229c3ab5fbf6c57cdeee42b780 followed elshankarimi.lens on Lens 2023-10-06T07:46:57.000Z"`;
 
-exports[`formatPlain should work as expected > social-mint 0xafd4f260528c8274345a6447028d84bc2303eddb0e8bca1f2006a106632cda9a 1`] = `"pronounceddrop.lens minted a post "Halfway through week 5 of @verticalcrypto.lens and..." on orb 2023-10-06T07:45:49.000Z"`;
+exports[`formatPlain should work as expected > social-mint 0xafd4f260528c8274345a6447028d84bc2303eddb0e8bca1f2006a106632cda9a 1`] = `"pronounceddrop.lens minted a post \\"Halfway through week 5 of @verticalcrypto.lens and...\\" on orb 2023-10-06T07:45:49.000Z"`;
 
-exports[`formatPlain should work as expected > social-post 0xa7f1fc265246844407518f165e2d30a70aea79eb14dd0d00deb589b270d7519c 1`] = `"malicake.lens published a post "I think they are blended together." on lenstube 2023-10-06T07:45:19.000Z"`;
+exports[`formatPlain should work as expected > social-post 0xa7f1fc265246844407518f165e2d30a70aea79eb14dd0d00deb589b270d7519c 1`] = `"malicake.lens published a post \\"I think they are blended together.\\" on lenstube 2023-10-06T07:45:19.000Z"`;
 
-exports[`formatPlain should work as expected > social-profile 0x01d8db40858063a945cfe5d22b62eeef3371b065f29353a68a0d4f578ca21d1d 1`] = `"Renewed a profile "212022.eth" on ENS 2023-01-21T01:40:23.000Z"`;
+exports[`formatPlain should work as expected > social-profile 0x01d8db40858063a945cfe5d22b62eeef3371b065f29353a68a0d4f578ca21d1d 1`] = `"Renewed a profile \\"212022.eth\\" on ENS 2023-01-21T01:40:23.000Z"`;
 
-exports[`formatPlain should work as expected > social-profile 0x8e05239a8a48bea6aeec99321a3150a9668945e041ff60e351c640de34cc4b89 1`] = `"Updated a profile "0385830.eth" on ENS 2023-10-06T07:42:59.000Z"`;
+exports[`formatPlain should work as expected > social-profile 0x8e05239a8a48bea6aeec99321a3150a9668945e041ff60e351c640de34cc4b89 1`] = `"Updated a profile \\"0385830.eth\\" on ENS 2023-10-06T07:42:59.000Z"`;
 
-exports[`formatPlain should work as expected > social-profile 0x14717ac164ae9606abb01567d02c9053758b2821a4c666204b730e49e21cd8d1 1`] = `"Created a profile "tappi.lens" on Lens 2023-10-06T07:42:21.000Z"`;
+exports[`formatPlain should work as expected > social-profile 0x14717ac164ae9606abb01567d02c9053758b2821a4c666204b730e49e21cd8d1 1`] = `"Created a profile \\"tappi.lens\\" on Lens 2023-10-06T07:42:21.000Z"`;
 
-exports[`formatPlain should work as expected > social-profile 0x5597682570383f1a57a82b3b77673a4561d472d0fdc6ba324d8e687e789c9df9 1`] = `"Wrapped a profile "0-770.eth" on ENS 2023-08-17T05:40:23.000Z"`;
+exports[`formatPlain should work as expected > social-profile 0x5597682570383f1a57a82b3b77673a4561d472d0fdc6ba324d8e687e789c9df9 1`] = `"Wrapped a profile \\"0-770.eth\\" on ENS 2023-08-17T05:40:23.000Z"`;
 
-exports[`formatPlain should work as expected > social-profile 0xe2e6f42795b4bbff284d4d68b68e9099ddb7dcb4dcdbb21add936f0e63e01fa7 1`] = `"Unwrapped a profile "notantoine.eth" on ENS 2023-08-15T09:18:35.000Z"`;
+exports[`formatPlain should work as expected > social-profile 0xe2e6f42795b4bbff284d4d68b68e9099ddb7dcb4dcdbb21add936f0e63e01fa7 1`] = `"Unwrapped a profile \\"notantoine.eth\\" on ENS 2023-08-15T09:18:35.000Z"`;
 
 exports[`formatPlain should work as expected > social-proxy 0x002c594c5c76489420b05ad7f4dda9ee096908290d776a307f0e164980553138 1`] = `"Approved a proxy on Crossbell 2023-08-18T05:24:41.000Z"`;
 
 exports[`formatPlain should work as expected > social-proxy 0x030706597f3c4502896339c8cfd30c088f857abca78033c00cdc3b6605f60c2c 1`] = `"Removed a proxy on Crossbell 2023-08-01T14:17:06.000Z"`;
 
-exports[`formatPlain should work as expected > social-revise GzlgoJetNg9yEI0nRlpx1c4vOww8mDh5Auyy5P9I5uE 1`] = `"0xd0A0012b360B92A14c655A3fD60cfC52A99353e4 revised a post "Privacy Matters: Newsletter #7" on Mirror 2023-08-31T09:55:53.000Z"`;
+exports[`formatPlain should work as expected > social-revise GzlgoJetNg9yEI0nRlpx1c4vOww8mDh5Auyy5P9I5uE 1`] = `"0xd0A0012b360B92A14c655A3fD60cfC52A99353e4 revised a post \\"Privacy Matters: Newsletter #7\\" on Mirror 2023-08-31T09:55:53.000Z"`;
 
-exports[`formatPlain should work as expected > social-share 0xddd79ba4fde200f82192ca0306097e4c80904e74c96b64684ff66d818b0379a0 1`] = `"billym2k.lens shared a post "death busters stickies ;p" on orb 2023-10-06T07:46:11.000Z"`;
+exports[`formatPlain should work as expected > social-share 0xddd79ba4fde200f82192ca0306097e4c80904e74c96b64684ff66d818b0379a0 1`] = `"billym2k.lens shared a post \\"death busters stickies ;p\\" on orb 2023-10-06T07:46:11.000Z"`;
 
 exports[`formatPlain should work as expected > social-unfollow 0x27f4849213868ce96c7969c4f652c512ddb659ba5798793ae14c3b24fb55affd 1`] = `"0x56d354fa239f3c7fae38cd41b86d2016cc8c1206 unfollowed flashback.lens on Lens 2023-10-06T07:43:05.000Z"`;
 
@@ -108,24 +108,24 @@ exports[`formatPlain should work as expected > transaction-approval 0x000002b417
 
 exports[`formatPlain should work as expected > transaction-approval 0x00017e026678f05dd015965defe67e336a57afb986a5808cef0a9360e5575659 1`] = `"0x7dbde20Ce34b0555bcEED3f26B8Bd2653c85045A revoked the approval of 0.00 USDC to 0x57891966931Eb4Bb6FB81430E6cE0A03AAbDe063 2023-07-07T02:18:23.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-bridge 0x000011998a7ce3715ea30a4264b246175fc1e59621a919e36d3aeb7686c55764 1`] = `"Deposited 0.062 ETH on zkSync Lite 2023-07-30T01:29:23.000Z"`;
+exports[`formatPlain should work as expected > transaction-bridge 0x000011998a7ce3715ea30a4264b246175fc1e59621a919e36d3aeb7686c55764 1`] = `"0x9DE62C9dE5d8C50D8EeD2B9799eDD3dcC84f6056 deposited 0.062 ETH on zkSync Lite 2023-07-30T01:29:23.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-bridge 0x00214bb9008957c1bed2f7d3c9eee8ee4716c4ed29341a9eebc7ac541805929c 1`] = `"Withdrew 0.00550 ETH on zkSync Lite; Withdrew 0.00157 ETH on zkSync Lite; Withdrew 0.00278 ETH on zkSync Lite; Withdrew 0.465 ETH on zkSync Lite; Withdrew 0.001 ETH on zkSync Lite; Withdrew 0.0265 ETH on zkSync Lite; Withdrew 0.00562 ETH on zkSync Lite; Withdrew 0.113 ETH on zkSync Lite; Withdrew 0.465 ETH on zkSync Lite; Withdrew 3.801 ETH on zkSync Lite 2023-07-20T04:46:11.000Z"`;
+exports[`formatPlain should work as expected > transaction-bridge 0x00214bb9008957c1bed2f7d3c9eee8ee4716c4ed29341a9eebc7ac541805929c 1`] = `"0x5D2E4193480AB2FDDEe5a5481F8f53762384Bb17 withdrew 0.00550 ETH on zkSync Lite; 0xE192e9134A932544e11D240B1F62f18b479cff2D withdrew 0.00157 ETH on zkSync Lite; 0x21aAeD156a681C4c869c28Ad3B5d473a72CC050E withdrew 0.00278 ETH on zkSync Lite; 0x1093938Dd73424f96856F6188ac6E308934D778B withdrew 0.465 ETH on zkSync Lite; 0x05160aA256f20F41e900D038A2C793e61d8acf66 withdrew 0.001 ETH on zkSync Lite; 0x63Cd89E59D2F4D3fccC2B00483e58b2E752470B5 withdrew 0.0265 ETH on zkSync Lite; 0xB0Aa6e40546A7361eab9aFeBF8D18A5BD352d832 withdrew 0.00562 ETH on zkSync Lite; 0x8CE85bd85eC3B68D43f714E2C8DAD327EecBa945 withdrew 0.113 ETH on zkSync Lite; 0x8f692eFcD4D2f2ce9539c14e430eCE8E8bcE1f78 withdrew 0.465 ETH on zkSync Lite; 0x6B4EbC8435f16A8432AD8c1acCF19E50028379da withdrew 3.801 ETH on zkSync Lite 2023-07-20T04:46:11.000Z"`;
 
 exports[`formatPlain should work as expected > transaction-burn 0x0012e3add224dcda949c2f04150ee5b719696d2192ecc539c3a4d33f3d4d0821 1`] = `"0x0063eE34Ed5dc6d0FBAFe66505b9Ad83b23053BE burned 181.368 HEX 2023-02-10T10:03:11.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-deploy 0x01d8ac59932c90ea081feca9c5482b0da5881ea69044ab845994865325687234 1`] = `"Deployed a contract 0xF88FD34aD1f4B6eF690a8abAb9182b001199D85D 2023-03-02T13:18:23.000Z"`;
+exports[`formatPlain should work as expected > transaction-deploy 0x01d8ac59932c90ea081feca9c5482b0da5881ea69044ab845994865325687234 1`] = `"0x479a7E0fbe936504854b8Bc6418622ceCF17B359 deployed a contract 0xF88FD34aD1f4B6eF690a8abAb9182b001199D85D 2023-03-02T13:18:23.000Z"`;
 
 exports[`formatPlain should work as expected > transaction-mint 0x00003fc6bea1d10b9110d631c8eeb84f2bb4450389b774d53dda9dd6743561ab 1`] = `"0x0000000000000000000000000000000000000000 minted 27,717,258.00 XEN 2023-10-06T20:42:23.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-multisig 0x00005c195a19697b221ea6341cdd61f439e37d7193391a96d114c2df83300c90 1`] = `"Created a multisig transaction to 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 on Safe 2023-01-22T07:01:59.000Z"`;
+exports[`formatPlain should work as expected > transaction-multisig 0x00005c195a19697b221ea6341cdd61f439e37d7193391a96d114c2df83300c90 1`] = `"0xAdCf36552eD6B9b31DcDF161FD450B81adCF9F54 created a multisig transaction to 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2 on Safe 2023-01-22T07:01:59.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-multisig 0x002fc61cef05d5f6e6c54b236dc7c817233950065264e73e979b435e9d83a6d6 1`] = `"Added 0x34849637366646E941069B84df256E5F45597944 to 0x59d9AB9C68ef7357de1B96DE91ce7c8f14BB8FE8 on Safe; Executed a multisig transaction on Safe 2023-07-14T07:31:59.000Z"`;
+exports[`formatPlain should work as expected > transaction-multisig 0x002fc61cef05d5f6e6c54b236dc7c817233950065264e73e979b435e9d83a6d6 1`] = `"0x94D8c7b4Bb48A70C5Be1AdA6979c44B05913E1B5 added 0x34849637366646E941069B84df256E5F45597944 to 0x59d9AB9C68ef7357de1B96DE91ce7c8f14BB8FE8 on Safe; 0x94D8c7b4Bb48A70C5Be1AdA6979c44B05913E1B5 executed a multisig transaction on Safe 2023-07-14T07:31:59.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-multisig 0x004be0e60b8375334b14caf6ac0f6beec0de419f841b332746a4a2f77e1a5d1c 1`] = `"Executed a multisig transaction on Safe 2023-07-25T16:25:47.000Z"`;
+exports[`formatPlain should work as expected > transaction-multisig 0x004be0e60b8375334b14caf6ac0f6beec0de419f841b332746a4a2f77e1a5d1c 1`] = `"0x1b961D997843e984ba6655D6b97ede849E49A0d4 executed a multisig transaction on Safe 2023-07-25T16:25:47.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-multisig 0x0013bc2054920660ca961c5cba695cc87a6845dc33d359dbe227865d3803dde9 1`] = `"Changed the threshold of 0xBcCec010d81Fd2001D063F0a5a8c9f7f69a87396 on Safe; Executed a multisig transaction on Safe 2023-08-10T07:33:47.000Z"`;
+exports[`formatPlain should work as expected > transaction-multisig 0x0013bc2054920660ca961c5cba695cc87a6845dc33d359dbe227865d3803dde9 1`] = `"0x36Adca4d480faa083616C230D8f75E49d61671a0 changed the threshold of 0xBcCec010d81Fd2001D063F0a5a8c9f7f69a87396 on Safe; 0x36Adca4d480faa083616C230D8f75E49d61671a0 executed a multisig transaction on Safe 2023-08-10T07:33:47.000Z"`;
 
-exports[`formatPlain should work as expected > transaction-multisig 0x0036591c0ac8c2b0d06bc7080e1c6851190366b917dc0101f9026b667e58bdbc 1`] = `"Removed 0xfD523eED91f509C10800DaCcBffD20270385bbCB from 0xB49EB4543f7B82D2e8fA114C02567A5E1ED4E6c9 on Safe; Added 0x0890aC039CE5D07928576c28CF500E82AD45E3f9 to 0xB49EB4543f7B82D2e8fA114C02567A5E1ED4E6c9 on Safe; Executed a multisig transaction on Safe 2023-08-16T02:57:11.000Z"`;
+exports[`formatPlain should work as expected > transaction-multisig 0x0036591c0ac8c2b0d06bc7080e1c6851190366b917dc0101f9026b667e58bdbc 1`] = `"Removed 0xfD523eED91f509C10800DaCcBffD20270385bbCB from 0xB49EB4543f7B82D2e8fA114C02567A5E1ED4E6c9 on Safe; 0x2F3b9d24D5F85E49CE7fe9ef6B6A9703191974db added 0x0890aC039CE5D07928576c28CF500E82AD45E3f9 to 0xB49EB4543f7B82D2e8fA114C02567A5E1ED4E6c9 on Safe; 0x2F3b9d24D5F85E49CE7fe9ef6B6A9703191974db executed a multisig transaction on Safe 2023-08-16T02:57:11.000Z"`;
 
 exports[`formatPlain should work as expected > transaction-transfer 0x000000c2fb1a34a175aa4bb001ac3b62c2fe62364e7cbe62aab9f635391f9fd1 1`] = `"0x5c5Fb3359461bBA32BFf65eE1e1a9A11F8279c9B sent 0.980 ETH to 0xA9D1e08C7793af67e9d92fe308d5697FB81d3E43 2023-01-15T01:16:11.000Z"`;
