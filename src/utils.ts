@@ -46,6 +46,10 @@ export function timeRange(range: TimeRange = 'all'): searchComponents['schemas']
 }
 
 export function getActions(activity: Activity): dataComponents['schemas']['Action'][] {
+  return activity.actions
+}
+
+export function getSummaryActions(activity: Activity): dataComponents['schemas']['Action'][] {
   if (activity.actions.length === 1) {
     return activity.actions
   } else if (activity.actions) {

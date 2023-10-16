@@ -1,5 +1,5 @@
 import { components } from '../../types/data'
-import { getActions } from '../../utils'
+import { getSummaryActions } from '../../utils'
 import { handleMetadata } from '../../metadata'
 import { Theme, themePlain } from './theme'
 import {
@@ -52,7 +52,7 @@ export function format<T>(activity: Activity, theme: Theme<T>): T[] {
  * all the symbols in blue color.
  */
 export function tokenizeActivity(activity: Activity): Token[] {
-  const actions = getActions(activity)
+  const actions = getSummaryActions(activity)
 
   // used for social actions, remove the duplicate action
   if (activity.tag === 'social' && actions.length > 1) {
@@ -78,7 +78,7 @@ export function tokenizeActivity(activity: Activity): Token[] {
 }
 
 export function tokenizeToActions(activity: Activity): Token[][] {
-  const actions = getActions(activity)
+  const actions = getSummaryActions(activity)
   const ts: Token[][] = []
 
   // used for social actions, remove the duplicate action
@@ -575,7 +575,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
 }
 
 export function hasMultiPrimaryActions(activity: Activity): boolean {
-  const actions = getActions(activity)
+  const actions = getSummaryActions(activity)
   let count = 0
   actions.forEach((action) => {
     if (action.type === activity.type && action.tag === activity.tag) {
@@ -590,7 +590,7 @@ export function flatActivity(activity: Activity) {
 
   if (hasMulti) {
     const res: Activity[] = []
-    const actions = getActions(activity)
+    const actions = getSummaryActions(activity)
     actions.forEach((action) => {
       res.push({
         ...activity,
