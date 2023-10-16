@@ -16,7 +16,7 @@ export const themePlain: Theme<string> = {
   symbolImage: () => '',
   symbol: (c) => c,
   text: (c) => c,
-  time: (c) => c,
+  time: (c) => `[${c}]`,
   separator: (c) => c,
   unknown: (c) => c,
 }
