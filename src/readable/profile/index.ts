@@ -22,7 +22,7 @@ export function formatProfiles(profiles: components['schemas']['Profile'][] | un
       name: formatAddress(wallet),
       network: 'Ethereum',
       platform: 'Ethereum',
-      profileURI: [addressToAvatarURL(wallet, 30)],
+      profileURI: [addressToAvatarURL(wallet, 100)],
       socialURI: [],
     })
   }
