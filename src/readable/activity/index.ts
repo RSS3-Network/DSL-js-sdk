@@ -175,7 +175,8 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ])
       } else if (m.action === 'remove_owner') {
         res = join([
-          tokenText('Removed'),
+          tokenAddr(action.from),
+          tokenText('removed'),
           tokenAddr(m.owner),
           tokenText('from'),
           tokenAddr(m.vault.address),
@@ -237,7 +238,8 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     'collectible-approval': (m) => {
       if (m.action === 'approve') {
         res = join([
-          tokenText('Approved'),
+          tokenAddr(owner),
+          tokenText('approved'),
           tokenImage(m.image_url),
           tokenName(`${m.name} collection`),
           tokenText('to'),
@@ -245,7 +247,8 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ])
       } else {
         res = join([
-          tokenText('Revoked the approval of'),
+          tokenAddr(owner),
+          tokenText('revoked the approval of'),
           tokenImage(m.image_url),
           tokenName(`${m.name} collection`),
           tokenText('to'),
@@ -273,11 +276,17 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       }
     },
     'collectible-burn': (m) => {
-      res = join([tokenText('Burned'), tokenImage(m.image_url), tokenName(m.name || m.title || 'an asset')])
+      res = join([
+        tokenAddr(owner),
+        tokenText('burned'),
+        tokenImage(m.image_url),
+        tokenName(m.name || m.title || 'an asset'),
+      ])
     },
     'collectible-trade': (m) => {
       if (m.action === 'buy') {
         res = join([
+          tokenAddr(action.to),
           tokenText('Bought'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'an asset'),
@@ -287,7 +296,8 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ])
       } else {
         res = join([
-          tokenText('Sold'),
+          tokenAddr(action.from),
+          tokenText('sold'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'an asset'),
           tokenText('to'),
@@ -299,21 +309,24 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     'collectible-auction': (m) => {
       if (m.action === 'create') {
         res = join([
-          tokenText('Created an auction for'),
+          tokenAddr(owner),
+          tokenText('created an auction for'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'an asset'),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'bid') {
         res = join([
-          tokenText('Made a bid for'),
+          tokenAddr(owner),
+          tokenText('made a bid for'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'an asset'),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'cancel') {
         res = join([
-          tokenText('Canceled an auction for'),
+          tokenAddr(owner),
+          tokenText('canceled an auction for'),
           tokenImage(m.image_url),
           tokenName(m.name || m.title || 'an asset'),
           ...tokenPlatform(action),
@@ -354,6 +367,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ...tokenPlatform(action),
       ])
     },
+    // todo add the action invoker
     'exchange-liquidity': (m) => {
       const tokens = m.tokens.flatMap((t) => join([...tokenValue(t), tokenText(',')])).slice(0, -1)
       if (m.action === 'add') {
@@ -372,6 +386,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         res = join([tokenText('WithDrew'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
       }
     },
+    // todo add the action invoker
     'exchange-loan': (m) => {
       if (m.action === 'create') {
         res = join([tokenText('Created loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
@@ -413,8 +428,13 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ...tokenPlatform(action),
       ])
     },
-    'social-comment': () => {
-      res = join([tokenAddr(action.from), tokenText('made a comment'), tokenPost(action), ...tokenPlatform(action)])
+    'social-comment': (m) => {
+      res = join([
+        tokenAddr(m.handle || owner),
+        tokenText('made a comment'),
+        tokenPost(action),
+        ...tokenPlatform(action),
+      ])
     },
     'social-share': (m) => {
       res = join([
@@ -459,35 +479,40 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     'social-profile': (m) => {
       if (m.action === 'create') {
         res = join([
-          tokenText('Created a profile'),
+          tokenAddr(m.handle || owner),
+          tokenText('created a profile'),
           tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'update') {
         res = join([
-          tokenText('Updated a profile'),
+          tokenAddr(m.handle || owner),
+          tokenText('updated a profile'),
           tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'renew') {
         res = join([
-          tokenText('Renewed a profile'),
+          tokenAddr(m.handle || owner),
+          tokenText('renewed a profile'),
           tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'wrap') {
         res = join([
-          tokenText('Wrapped a profile'),
+          tokenAddr(m.handle || owner),
+          tokenText('wrapped a profile'),
           tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'unwrap') {
         res = join([
-          tokenText('Unwrapped a profile'),
+          tokenAddr(m.handle || owner),
+          tokenText('unwrapped a profile'),
           tokenImage(m.image_uri),
           tokenName(m.name || m.handle || ''),
           ...tokenPlatform(action),
@@ -496,9 +521,9 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'social-proxy': (m) => {
       if (m.action === 'appoint') {
-        res = join([tokenText('Approved a proxy'), ...tokenPlatform(action)])
+        res = join([tokenAddr(owner), tokenText('approved a proxy'), ...tokenPlatform(action)])
       } else {
-        res = join([tokenText('Removed a proxy'), ...tokenPlatform(action)])
+        res = join([tokenAddr(owner), tokenText('removed a proxy'), ...tokenPlatform(action)])
       }
     },
     'social-delete': (m) => {
