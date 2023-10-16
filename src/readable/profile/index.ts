@@ -56,7 +56,7 @@ export function extractProfile(profile: components['schemas']['Profile'] | null 
     avatar: profile?.profileURI?.[0]
       ? profile?.profileURI?.[0]
       : profile?.handle
-      ? addressToAvatarURL(profile?.handle, 30) || ''
+      ? addressToAvatarURL(profile?.handle, 100) || ''
       : '',
     handle: profile?.handle || '',
     banner: profile?.bannerURI?.[0] || '',
