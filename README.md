@@ -11,11 +11,14 @@
 </p>
 <!-- markdownlint-enable -->
 
-# RSS3 JavaScript SDK
+# ⚡ RSS3 JavaScript SDK
 
-- Quick Integration with Ethereum, Arbiturm, Base, Polygon and [more....](https://docs.rss3.io/docs/supported-networks)
-- Get started with the RSS3 Network in minutes.
-- Fully type-safe, easy to BUIDL.
+> The Turbocharger🌪️ for Your Next Open Web Development.
+
+- 💡 Quick Integration with Ethereum, Arbiturm, Base, Polygon and [more....](https://docs.rss3.io/docs/supported-networks)
+- ⚡️ Lightning Fast to Interact with the RSS3 Network.
+- 🌐 Many [Web3 Domains Supported](https://docs.rss3.io/docs/name-service-resolution)
+- 🛠️ Fully Typed, Easy to BUIDL.
 
 ## Installation
 
@@ -25,33 +28,49 @@ npm i @rss3/js-sdk
 
 ## Getting Started
 
-In this tutorial we will use RSS3 JavaScript SDK to build a activity viewer to display activities of
-a [ENS address](https://ens.domains/) or [wallet Address](https://en.wikipedia.org/wiki/Cryptocurrency_wallet).
-The features we will implement:
-
-- Display the profile of the address.
-- Display 20 activities of the address.
-- Able to filter the activities by network or platform, etc.
-
 ### Obtain Data from the RSS3 Network
 
-First, let's get all the activities of `vitalik.eth`:
+Get open social activities of anyone, here we get `vitalik.eth`'s comments on `farcaster`:
 
-```ts
-import { dataClient } from '@rss3/js-sdk'
+```js
+import dataClient from '@rss3/js-sdk'
 
-async function fetchActivities() {
-  const { data: activities } = await dataClient().activities('vitalik.eth')
-  console.log(activities)
-}
-
-fetchActivities()
+const socialActivities = await dataClient().activities('vitalik.eth', {
+  tag: ['social'],
+  type: ['comment'],
+  platform: ['farcaster'],
+})
 ```
 
-By default it will fetch only 100 activities. To implement pagination, we can use the `limit` and `cursor`:
+Or simply query cross-network and human-readable feed of anyone:
 
-```ts
+```js
+import dataClient from '@rss3/js-sdk'
 
+const readableFeed = await dataClient().activities('0xd8da6bf26964af9d7eed9e03e53415d37aa96045')
+```
+
+### Perform Searches on the RSS3 Network
+
+Search for keyword `Ethereum` across over 100 blockchains, networks and applications:
+
+```js
+import searchClient from '@rss3/js-sdk'
+
+const searchResults = await searchClient().activities({
+  keyword: 'Ethereum',
+})
+```
+
+Or on a specific platform like `mirror`:
+
+```js
+import searchClient from '@rss3/js-sdk'
+
+const searchResults = await searchClient().activities({
+  keyword: 'Ethereum',
+  platform: ['mirror'],
+})
 ```
 
 ### Add Artificial Intelligence to Your Applications
