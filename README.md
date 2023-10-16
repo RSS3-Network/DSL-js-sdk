@@ -33,7 +33,7 @@ The features we will implement:
 - Able to filter the activities by network or platform, etc.
 - Display the profile of the address.
 
-The result app is [here](https://codesandbox.io/s/rss3-js-sdk-mmx7dk).
+The result app is [here](https://codesandbox.io/p/sandbox/rss3-js-sdk-3v33nl).
 
 ### Obtain Data from the RSS3 Network
 
