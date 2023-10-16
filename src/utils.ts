@@ -53,7 +53,13 @@ export function getSummaryActions(activity: Activity): dataComponents['schemas']
   if (activity.actions.length === 1) {
     return activity.actions
   } else if (activity.actions) {
-    return activity.actions.filter((t) => t.tag === activity.tag && t.type === activity.type)
+    const tagType = `${activity.tag}-${activity.type}`
+    const list = ['transaction-multisig']
+    if (list.includes(tagType)) {
+      return activity.actions
+    } else {
+      return activity.actions.filter((t) => t.tag === activity.tag && t.type === activity.type)
+    }
   }
   return []
 }
