@@ -2,6 +2,8 @@ import { handleMetadata } from '../../metadata'
 import { components } from '../../types/data'
 
 export type BriefAsset = {
+  contract?: string | null
+  id?: string | null
   url?: string
   title?: string
   description?: string
@@ -43,8 +45,10 @@ export function extractNFT(
     | components['schemas']['CollectibleAuction'],
 ) {
   return {
+    contract: m.contract_address,
+    id: m.id,
     url: m.image_url,
-    title: m.name,
+    title: m.title || m.name,
     description: m.description,
   }
 }
