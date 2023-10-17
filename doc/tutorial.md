@@ -2,15 +2,15 @@
 
 ## Getting Started
 
-In this tutorial we will use RSS3 JavaScript SDK to build a activity viewer to display activities of
-a [ENS address](https://ens.domains/) or [wallet Address](https://en.wikipedia.org/wiki/Cryptocurrency_wallet).
-The features we will implement:
+To help you get the taste of how simple it is to use RSS3 SDK, let's use it to create a simple viewer to
+display activities of a [ENS address](https://ens.domains/) or [wallet Address](https://en.wikipedia.org/wiki/Cryptocurrency_wallet).
+Here are the features the viewer will have:
 
 - Display 20 activities of the address.
 - Able to filter the activities by network or platform, etc.
 - Display the profile of the address.
 
-The result app is [here](https://codesandbox.io/p/sandbox/rss3-js-sdk-3v33nl).
+The complete code of the final app is [here](https://codesandbox.io/p/sandbox/rss3-js-sdk-3v33nl).
 
 ### Obtain Data from the RSS3 Network
 
@@ -34,11 +34,12 @@ const res = await dataClient().activities('vitalik.eth', { limit: 20 })
 console.log(res.data)
 ```
 
-You can recursively use the `res.nextPage` helper to get the next page's activities.
+You can recursively use the `res.nextPage` helper to get the next page's activities,
+to make the tutorial simple we will not implement the pagination here.
 
 ### Make the data more readable
 
-The data we get is raw json data which contains a lot of details that we won't use in this tutorial,
+The data we get is raw json data which contains a lot of details that we won't use in this tutorial,  
 we can use the `formatPlain` helper to convert a activity object to a summary string of it:
 
 ```typescript
@@ -56,6 +57,8 @@ It will output a line like:
 ```txt
 vitalik.eth published a post "Hello World" on Farcaster [2023-10-13T05:05:32.000Z]
 ```
+
+It's very useful when testing or debugging.
 
 ### Filter by platform
 
@@ -79,6 +82,21 @@ Here we get 20 activities of `vitalik.eth` on Farcaster.
 The `platform` option is a array, you can get multiple-platform's activities at once.
 
 Not just the `platform`, we can also use other filter options to filter the activities, such as `network`, `type`, and `tag`.
+Such as if we want to get `vitalik.eth`'s comments on `farcaster`:
+
+```typescript
+import { dataClient, formatPlain } from '@rss3/js-sdk'
+
+const res = await dataClient().activities('vitalik.eth', {
+  limit: 20,
+  platform: ['Farcaster'],
+  type: ['comment'],
+})
+
+res.data.forEach((activity) => {
+  console.log(formatPlain(activity))
+})
+```
 
 ### Format customization
 
@@ -88,7 +106,7 @@ TODO
 
 Now we have the data, let's use react to display it.
 
-Beside the SDK, we also provided a lightweight React component library to display the activities.
+Beside the SDK, we also provided a lightweight React component library to display the activities.  
 Here we use it to render the activities:
 
 ```typescript
