@@ -13,6 +13,7 @@ export type Platform = components['schemas']['Platform']
 export type Network = components['schemas']['Network']
 export type TotalPage = components['schemas']['MetaTotalPages']
 export type Cursor = components['schemas']['MetaCursor']
+export type Media = components['schemas']['Media']
 export type Error = components['schemas']['Error']
 
 /**
