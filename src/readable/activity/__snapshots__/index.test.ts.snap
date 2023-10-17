@@ -102,7 +102,7 @@ exports[`formatPlain should work as expected > social-revise GzlgoJetNg9yEI0nRlp
 
 exports[`formatPlain should work as expected > social-share 0xddd79ba4fde200f82192ca0306097e4c80904e74c96b64684ff66d818b0379a0 1`] = `"billym2k.lens shared a post "death busters stickies ;p" on orb [2023-10-06T07:46:11.000Z]"`;
 
-exports[`formatPlain should work as expected > social-unfollow 0x27f4849213868ce96c7969c4f652c512ddb659ba5798793ae14c3b24fb55affd 1`] = `"0x56d354fa239f3c7fae38cd41b86d2016cc8c1206 unfollowed flashback.lens on Lens [2023-10-06T07:43:05.000Z]"`;
+exports[`formatPlain should work as expected > social-unfollow 0x27f4849213868ce96c7969c4f652c512ddb659ba5798793ae14c3b24fb55affd 1`] = `"0x36c5b4EfA8C60a5f3E41eD7eAe8b03f789bb4e25 burned "flashback.lens-Follower" [2023-10-06T07:43:05.000Z]"`;
 
 exports[`formatPlain should work as expected > transaction-approval 0x000002b417ce53396ccbe6e2d25f3a41fddae34496241bbbd6bb3bdec1202b84 1`] = `"0x27c5932eE1B0873e67279066bE914d46203fC738 approved 796.00 APE to 0x5d5092C22c5D0Fd3FEC42b6b2ce796d5B33421C6 [2023-02-04T20:59:11.000Z]"`;
 

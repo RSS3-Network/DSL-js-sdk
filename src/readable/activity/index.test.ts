@@ -24,10 +24,14 @@ describe('formatPlain should work as expected', () => {
 
   Object.entries(metadataDoc as MetadataDoc).map(([key, value]) => {
     value.examples?.forEach((example) => {
-      it.concurrent(`${key} ${example.id}`, async ({ expect }) => {
-        const { data: activity } = await c.activity(example.id)
-        expect(formatPlain(activity)).matchSnapshot()
-      })
+      it.concurrent(
+        `${key} ${example.id}`,
+        async ({ expect }) => {
+          const { data: activity } = await c.activity(example.id)
+          expect(formatPlain(activity)).matchSnapshot()
+        },
+        30 * 1000,
+      )
     })
   })
 })

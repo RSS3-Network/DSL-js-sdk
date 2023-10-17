@@ -10,7 +10,7 @@
     "node": ">=v19.8.1"
   },
   "scripts": {
-    "generate": "npm run build && DEFAULT_RSS3_NET='https://api.dev.rss3.io' babel-node --presets 'es2015' lib/types/generate",
+    "generate": "npm run build && DEFAULT_RSS3_NET='https://api.dev.rss3.io' node lib/types/generate.js",
     "build": "rm -rf lib dist && tsc",
     "watch-ts": "tsc -w",
     "watch": "concurrently npm:watch-ts npm:watch-js",
