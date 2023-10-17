@@ -33,7 +33,7 @@ npm i @rss3/js-sdk
 Get open social activities of anyone, here we get `vitalik.eth`'s comments on `farcaster`:
 
 ```js
-import dataClient from '@rss3/js-sdk'
+import { dataClient } from '@rss3/js-sdk'
 
 const socialActivities = await dataClient().activities('vitalik.eth', {
   tag: ['social'],
@@ -45,7 +45,7 @@ const socialActivities = await dataClient().activities('vitalik.eth', {
 Or simply query cross-network and human-readable feed of anyone:
 
 ```js
-import dataClient from '@rss3/js-sdk'
+import { dataClient } from '@rss3/js-sdk'
 
 const readableFeed = await dataClient().activities('0xd8da6bf26964af9d7eed9e03e53415d37aa96045')
 ```
@@ -55,7 +55,7 @@ const readableFeed = await dataClient().activities('0xd8da6bf26964af9d7eed9e03e5
 Search for keyword `Ethereum` across over 100 blockchains, networks and applications:
 
 ```js
-import searchClient from '@rss3/js-sdk'
+import { searchClient } from '@rss3/js-sdk'
 
 const searchResults = await searchClient().activities({
   keyword: 'Ethereum',
@@ -65,7 +65,7 @@ const searchResults = await searchClient().activities({
 Or on a specific platform like `mirror`:
 
 ```js
-import searchClient from '@rss3/js-sdk'
+import { searchClient } from '@rss3/js-sdk'
 
 const searchResults = await searchClient().activities({
   keyword: 'Ethereum',
