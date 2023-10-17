@@ -6,6 +6,11 @@ import { Res, debug, fetchWithLog, querySerializer } from '../utils'
 
 export type Activity = components['schemas']['Activity']
 export type Profile = components['schemas']['Profile']
+export type Tag = components['schemas']['Tag']
+export type Type = components['schemas']['Type']
+export type Direction = components['schemas']['Direction']
+export type Platform = components['schemas']['Platform']
+export type Network = components['schemas']['Network']
 export type TotalPage = components['schemas']['MetaTotalPages']
 export type Cursor = components['schemas']['MetaCursor']
 export type Error = components['schemas']['Error']
