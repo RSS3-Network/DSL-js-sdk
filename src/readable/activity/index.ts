@@ -241,7 +241,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('approved'),
           tokenImage(m.image_url),
-          tokenName(`${m.title || m.name} collection`),
+          tokenName(m.title || m.name || 'collection'),
           tokenText('to'),
           tokenAddr(action.to),
         ])
@@ -250,7 +250,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('revoked the approval of'),
           tokenImage(m.image_url),
-          tokenName(`${m.title || m.name} collection`),
+          tokenName(m.title || m.name || 'collection'),
           tokenText('to'),
           tokenAddr(action.to),
         ])

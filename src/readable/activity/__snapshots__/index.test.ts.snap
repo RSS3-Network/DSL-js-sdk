@@ -1,8 +1,8 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`formatPlain should work as expected > collectible-approval 0x000005ec834f55bcd378f2f588e051501af336c1c6259dac20c8a3ee0551f661 1`] = `"0x1E0049783F008A0085193E00003D00cd54003c71 approved "SmallBrosNFT Official collection" to 0x1E0049783F008A0085193E00003D00cd54003c71 [2023-08-24T22:13:11.000Z]"`;
+exports[`formatPlain should work as expected > collectible-approval 0x000005ec834f55bcd378f2f588e051501af336c1c6259dac20c8a3ee0551f661 1`] = `"0x1E0049783F008A0085193E00003D00cd54003c71 approved "SmallBrosNFT Official" to 0x1E0049783F008A0085193E00003D00cd54003c71 [2023-08-24T22:13:11.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-approval 0x00002f42ad98c0a0960847bcdba90054e8d21c49cadb074fcce4c0a730fff7cd 1`] = `"0x0548Cd296178434872B29A3c784aF7f6157325fE revoked the approval of "CryptoChads collection" to 0x1E0049783F008A0085193E00003D00cd54003c71 [2023-07-02T12:10:11.000Z]"`;
+exports[`formatPlain should work as expected > collectible-approval 0x00002f42ad98c0a0960847bcdba90054e8d21c49cadb074fcce4c0a730fff7cd 1`] = `"0x0548Cd296178434872B29A3c784aF7f6157325fE revoked the approval of "CryptoChads" to 0x1E0049783F008A0085193E00003D00cd54003c71 [2023-07-02T12:10:11.000Z]"`;
 
 exports[`formatPlain should work as expected > collectible-auction 0x0006c67b092640082e392c4a86e2a8cbdcf47a8cc31f9ca31f9f7c87a5cb81f8 1`] = `"0x3626D9B3Ae91a199262556e37aA30b79865fE03D won an auction for "Seasoned" on Foundation [2023-02-02T15:38:23.000Z]"`;
 
