@@ -18,6 +18,10 @@ it.concurrent('get activities addresses', async ({ expect }) => {
 
 it.concurrent('get activities next page', async ({ expect }) => {
   let res = await client().activities('vitalik.eth', { tag: ['social'], limit: 2 })
+
+  expect(typeof res.nextPage).toBe('function')
+  expect(JSON.parse(JSON.stringify(res)).nextPage).toBe(undefined)
+
   if (res.nextPage) {
     res = await res.nextPage()
     expect(res.data).toHaveLength(2)
