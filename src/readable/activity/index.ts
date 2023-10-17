@@ -230,7 +230,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         tokenAddr(action.from),
         tokenText('transferred'),
         tokenImage(m.image_url),
-        tokenName(m.name || m.title || 'an asset'),
+        tokenName(m.title || m.name || 'an asset'),
         tokenText('to'),
         tokenAddr(action.to),
       ])
@@ -241,7 +241,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('approved'),
           tokenImage(m.image_url),
-          tokenName(`${m.name} collection`),
+          tokenName(`${m.title || m.name} collection`),
           tokenText('to'),
           tokenAddr(action.to),
         ])
@@ -250,7 +250,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('revoked the approval of'),
           tokenImage(m.image_url),
-          tokenName(`${m.name} collection`),
+          tokenName(`${m.title || m.name} collection`),
           tokenText('to'),
           tokenAddr(action.to),
         ])
@@ -262,14 +262,14 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('minted'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
         ])
       } else {
         res = join([
           tokenAddr(action.to),
           tokenText('minted'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           tokenText('from'),
           tokenAddr(action.from),
         ])
@@ -280,7 +280,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         tokenAddr(owner),
         tokenText('burned'),
         tokenImage(m.image_url),
-        tokenName(m.name || m.title || 'an asset'),
+        tokenName(m.title || m.name || 'an asset'),
       ])
     },
     'collectible-trade': (m) => {
@@ -289,7 +289,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(action.to),
           tokenText('Bought'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           tokenText('from'),
           tokenAddr(action.from),
           ...tokenPlatform(action),
@@ -299,7 +299,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(action.from),
           tokenText('sold'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           tokenText('to'),
           tokenAddr(action.to),
           ...tokenPlatform(action),
@@ -312,7 +312,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('created an auction for'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'bid') {
@@ -320,7 +320,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('made a bid for'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'cancel') {
@@ -328,7 +328,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('canceled an auction for'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'update') {
@@ -336,7 +336,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('updated an auction for'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           ...tokenPlatform(action),
         ])
       } else if (m.action === 'finalize') {
@@ -344,7 +344,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('won an auction for'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           ...tokenPlatform(action),
         ])
       } else {
@@ -352,7 +352,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
           tokenAddr(owner),
           tokenText('invalidated an auction for'),
           tokenImage(m.image_url),
-          tokenName(m.name || m.title || 'an asset'),
+          tokenName(m.title || m.name || 'an asset'),
           ...tokenPlatform(action),
         ])
       }

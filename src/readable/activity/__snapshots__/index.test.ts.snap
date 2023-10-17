@@ -4,37 +4,37 @@ exports[`formatPlain should work as expected > collectible-approval 0x000005ec83
 
 exports[`formatPlain should work as expected > collectible-approval 0x00002f42ad98c0a0960847bcdba90054e8d21c49cadb074fcce4c0a730fff7cd 1`] = `"0x0548Cd296178434872B29A3c784aF7f6157325fE revoked the approval of "CryptoChads collection" to 0x1E0049783F008A0085193E00003D00cd54003c71 [2023-07-02T12:10:11.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x0006c67b092640082e392c4a86e2a8cbdcf47a8cc31f9ca31f9f7c87a5cb81f8 1`] = `"0x3626D9B3Ae91a199262556e37aA30b79865fE03D won an auction for "GeneraTive and GliTch" on Foundation [2023-02-02T15:38:23.000Z]"`;
+exports[`formatPlain should work as expected > collectible-auction 0x0006c67b092640082e392c4a86e2a8cbdcf47a8cc31f9ca31f9f7c87a5cb81f8 1`] = `"0x3626D9B3Ae91a199262556e37aA30b79865fE03D won an auction for "Seasoned" on Foundation [2023-02-02T15:38:23.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x00081a2fcf00d00d644b7998330ef4a795419be906b8b2d575bda475e7ea2ad4 1`] = `"0x2a4484DC3700D38E5dEFc2921748AA5B6bd5dA18 made a bid for "Act of Killing" on Foundation [2023-01-23T06:36:59.000Z]"`;
+exports[`formatPlain should work as expected > collectible-auction 0x00081a2fcf00d00d644b7998330ef4a795419be906b8b2d575bda475e7ea2ad4 1`] = `"0x2a4484DC3700D38E5dEFc2921748AA5B6bd5dA18 made a bid for "Dinner" on Foundation [2023-01-23T06:36:59.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x000590259fdd6ad57f4071878383ac3c378a88c491409e00a444275bc0d3179b 1`] = `"0x74283b7c3d01A3fCbB3333949cb3419353F7851B created an auction for "My Life and My Times" on Foundation [2023-01-14T08:40:23.000Z]"`;
+exports[`formatPlain should work as expected > collectible-auction 0x000590259fdd6ad57f4071878383ac3c378a88c491409e00a444275bc0d3179b 1`] = `"0x74283b7c3d01A3fCbB3333949cb3419353F7851B created an auction for "A Beautiful Morning in Istanbul" on Foundation [2023-01-14T08:40:23.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x001a0608a2e4273e441e28a5a3f1d41cc3596da3d8d38c842c5d53a76c374b95 1`] = `"0xE3a30103eF14667eecc1bfFe8D01fFB90D54Db48 updated an auction for "FORA - FOLLOW MY ART" on Foundation [2023-01-19T16:52:59.000Z]"`;
+exports[`formatPlain should work as expected > collectible-auction 0x001a0608a2e4273e441e28a5a3f1d41cc3596da3d8d38c842c5d53a76c374b95 1`] = `"0xE3a30103eF14667eecc1bfFe8D01fFB90D54Db48 updated an auction for "Are you alive?" on Foundation [2023-01-19T16:52:59.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x0012823ee026f352158ae0b1ceaaef3f7ac7b757fc49501717fc6363455a601b 1`] = `"0x4587AC9F91007A9203F4C3755d5a1F038DAFB2ac canceled an auction for "About me " on Foundation [2023-01-02T07:14:59.000Z]"`;
+exports[`formatPlain should work as expected > collectible-auction 0x0012823ee026f352158ae0b1ceaaef3f7ac7b757fc49501717fc6363455a601b 1`] = `"0x4587AC9F91007A9203F4C3755d5a1F038DAFB2ac canceled an auction for "Look into my soul" on Foundation [2023-01-02T07:14:59.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x2787fe62e3f31207524217fed8788329560da5964dbf90f791651aaac00b9131 1`] = `"0xCD432C8F076b740Cb7Be693a18983218588D96Ca Bought "UNRIVALLED" from 0x9b0Da6499d6eA156c2FBCa0f2104d42B7f8f2F88 on Foundation [2023-06-08T15:46:11.000Z]"`;
+exports[`formatPlain should work as expected > collectible-auction 0x2787fe62e3f31207524217fed8788329560da5964dbf90f791651aaac00b9131 1`] = `"0xCD432C8F076b740Cb7Be693a18983218588D96Ca Bought "I still remember you" from 0x9b0Da6499d6eA156c2FBCa0f2104d42B7f8f2F88 on Foundation [2023-06-08T15:46:11.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-burn 0x000071563c854e34c2534e7e961a53dd648411b62467d6c10b38a80b51d1f51e 1`] = `"0x6904Dfa88D5345dc7E2DE0e1eBa32A6c1E672B93 burned "THE MAZE by TAYLOR" [2023-02-07T03:50:23.000Z]"`;
+exports[`formatPlain should work as expected > collectible-burn 0x000071563c854e34c2534e7e961a53dd648411b62467d6c10b38a80b51d1f51e 1`] = `"0x6904Dfa88D5345dc7E2DE0e1eBa32A6c1E672B93 burned "Ticket to DECISION 2" [2023-02-07T03:50:23.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-mint 0x000002803fd033274860a06bb8b7285c0595f550b73e621a92b7095fcd79afaa 1`] = `"0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie" [2023-01-16T15:17:47.000Z]"`;
+exports[`formatPlain should work as expected > collectible-mint 0x000002803fd033274860a06bb8b7285c0595f550b73e621a92b7095fcd79afaa 1`] = `"0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie Prereveal"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie Prereveal"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie Prereveal"; 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 minted "Chibi Valkyrie Prereveal" [2023-01-16T15:17:47.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x0000020e0e1758d442865233da076d62a5bfa53992229079383096f9fddcc22d 1`] = `"0x0c64d2d32ff842fb089d664D425Ca1c12DA8EEc2 Bought "PORSCHΞ 911" from 0xdb082B9F5C7748E0fEB4618b8676cB2ddfe89a1E on OpenSea [2023-02-03T08:55:23.000Z]"`;
+exports[`formatPlain should work as expected > collectible-trade 0x0000020e0e1758d442865233da076d62a5bfa53992229079383096f9fddcc22d 1`] = `"0x0c64d2d32ff842fb089d664D425Ca1c12DA8EEc2 Bought "PORSCHΞ 911 6954" from 0xdb082B9F5C7748E0fEB4618b8676cB2ddfe89a1E on OpenSea [2023-02-03T08:55:23.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x000043e7d363d7d269c279e888cfe6b569e8a48f315736a00bdf06ff8627cafc 1`] = `"0x055a2F5c36df3658E187E491C0524c673dF1E027 sold "(B)APETAVERSE" to 0x60f705861aE52E4787543c1c47B6eaf25a4B9ACb on OpenSea [2023-01-19T11:16:11.000Z]"`;
+exports[`formatPlain should work as expected > collectible-trade 0x000043e7d363d7d269c279e888cfe6b569e8a48f315736a00bdf06ff8627cafc 1`] = `"0x055a2F5c36df3658E187E491C0524c673dF1E027 sold "BYOCraft #2615" to 0x60f705861aE52E4787543c1c47B6eaf25a4B9ACb on OpenSea [2023-01-19T11:16:11.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x6cd99adfdedf1ef1bb7b9958f41425f6ea15a53a7e5dadcac84900d8d179a4d9 1`] = `"0x65FD21584232b1D5064301E20FA447937261781F sold "Catalog" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora [2023-06-03T19:32:35.000Z]"`;
+exports[`formatPlain should work as expected > collectible-trade 0x6cd99adfdedf1ef1bb7b9958f41425f6ea15a53a7e5dadcac84900d8d179a4d9 1`] = `"0x65FD21584232b1D5064301E20FA447937261781F sold "Alex Paul - Despecho" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora [2023-06-03T19:32:35.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x38baff44e24e7c1df9761f3c9253647ad9edbc08dc254063071b33ff1a4638af 1`] = `"0x3A661a18CB0258119636DfDDe098648c6ad5bA62 made a bid for "THE MRC ARTE 1/1 COLLECTION" on Foundation [2023-06-08T20:00:35.000Z]"`;
+exports[`formatPlain should work as expected > collectible-trade 0x38baff44e24e7c1df9761f3c9253647ad9edbc08dc254063071b33ff1a4638af 1`] = `"0x3A661a18CB0258119636DfDDe098648c6ad5bA62 made a bid for "The Angel Watching Over Me..." on Foundation [2023-06-08T20:00:35.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x57b6aa88319e01dc21f01caf898ae04a5bdc7c477da7d562b648ea3563191890 1`] = `"0xf1a26D0D9355AEa843544D941586B6bD8DED7732 sold "Where the Wild Cats Are" to 0xcDA72070E455bb31C7690a170224Ce43623d0B6f on Foundation [2023-06-09T01:26:59.000Z]"`;
+exports[`formatPlain should work as expected > collectible-trade 0x57b6aa88319e01dc21f01caf898ae04a5bdc7c477da7d562b648ea3563191890 1`] = `"0xf1a26D0D9355AEa843544D941586B6bD8DED7732 sold "Into the Mist" to 0xcDA72070E455bb31C7690a170224Ce43623d0B6f on Foundation [2023-06-09T01:26:59.000Z]"`;
 
 exports[`formatPlain should work as expected > collectible-trade 0x7076d8902b2256666407108bcaae44a207d37e1b2aac379a87f053aee0af0962 1`] = `"0x3CcB86a565DAa86D1613A634DD16663779bBD63f sold "Visage" to 0xcDA72070E455bb31C7690a170224Ce43623d0B6f on Foundation [2023-06-08T22:21:23.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0xb6412dc1f5852f73355f135f2d916b1d37a6d696d305585128c13c2fb1374f3d 1`] = `"0x41d22Fc30AA15eee064139089aa80F688F245315 sold "Catalog" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora [2023-05-20T13:54:11.000Z]"`;
+exports[`formatPlain should work as expected > collectible-trade 0xb6412dc1f5852f73355f135f2d916b1d37a6d696d305585128c13c2fb1374f3d 1`] = `"0x41d22Fc30AA15eee064139089aa80F688F245315 sold "Oceantied - Swim" to 0x6170B3C3A54C3d8c854934cBC314eD479b2B29A3 on Zora [2023-05-20T13:54:11.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-transfer 0x000020ba6fd5833d1d54c1be8ee392bf2c5535609d272012a5fe64a23513519c 1`] = `"0x8aE57A027c63fcA8070D1Bf38622321dE8004c67 transferred "adidas Originals: Into the Metaverse" to 0x137ffd2016152a0e90000Dc193fcCe1BE5513E20 [2023-07-27T00:22:23.000Z]"`;
+exports[`formatPlain should work as expected > collectible-transfer 0x000020ba6fd5833d1d54c1be8ee392bf2c5535609d272012a5fe64a23513519c 1`] = `"0x8aE57A027c63fcA8070D1Bf38622321dE8004c67 transferred "adidas Originals: Into the Metaverse (Phase 1)" to 0x137ffd2016152a0e90000Dc193fcCe1BE5513E20 [2023-07-27T00:22:23.000Z]"`;
 
 exports[`formatPlain should work as expected > donation-donate 0x5a19dd1c81fa00599655bcd4b49ae27baca55ab372a8387d40201bae5ab3eddd 1`] = `"0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated "" on Gitcoin; 0x2604AB91d49106EE861BbC2B6718A4EC25318fae donated "" on Gitcoin [2023-10-06T06:26:23.000Z]"`;
 
