@@ -1,6 +1,4 @@
-# Tutorial
-
-## Getting Started
+# Simple Activity Viewer
 
 To help you get the taste of how simple it is to use RSS3 SDK, let's use it to create a simple viewer to
 display activities of a [ENS address](https://ens.domains/) or [wallet Address](https://en.wikipedia.org/wiki/Cryptocurrency_wallet).
@@ -12,7 +10,7 @@ Here are the features the viewer will have:
 
 The complete code of the final app is [here](https://codesandbox.io/p/sandbox/rss3-js-sdk-3v33nl).
 
-### Obtain Data from the RSS3 Network
+## Obtain Data from the RSS3 Network
 
 First, let's get all the activities of `vitalik.eth`:
 
@@ -37,7 +35,7 @@ console.log(res.data)
 You can recursively use the `res.nextPage` helper to get the next page's activities,
 to make the tutorial simple we will not implement the pagination here.
 
-### Make the data more readable
+## Make the data more readable
 
 The data we get is raw json data which contains a lot of details that we won't use in this tutorial,  
 we can use the `formatPlain` helper to convert a activity object to a summary string of it:
@@ -60,7 +58,7 @@ vitalik.eth published a post "Hello World" on Farcaster [2023-10-13T05:05:32.000
 
 It's very useful when testing or debugging.
 
-### Filter by platform
+## Filter by platform
 
 We can use the `platform` option to filter the activities by platform:
 
@@ -98,11 +96,19 @@ res.data.forEach((activity) => {
 })
 ```
 
-### Format customization
+It will output a line like:
+
+```txt
+Jack made a comment "Good to hear that 🙂👏" on post "Hello World" of vitalik on Farcaster [2023-10-17T20:26:45.000Z]
+```
+
+It means jack has made a comment `Good to hear that 🙂👏` on vitalik's post `Hello World` on farcaster.
+
+## Format customization
 
 TODO
 
-### Use react to display the activities
+## Use react to display the activities
 
 Now we have the data, let's use react to display it.
 
@@ -120,10 +126,10 @@ export default () => {
 }
 ```
 
-### Render profile
+## Render profile
 
 TODO
 
-### Add filter
+## Add filter
 
 TODO
