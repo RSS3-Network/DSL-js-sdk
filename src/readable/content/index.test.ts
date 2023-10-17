@@ -1,6 +1,6 @@
 import { it } from 'vitest'
-import { client } from '../../data/client'
-import { formatContent } from './index'
+import { client } from '../../data/client.js'
+import { formatContent } from './index.js'
 
 it.concurrent('get social post content', async ({ expect }) => {
   const res = await client().activity('0xafd4f260528c8274345a6447028d84bc2303eddb0e8bca1f2006a106632cda9a')

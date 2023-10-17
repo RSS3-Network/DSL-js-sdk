@@ -10,6 +10,9 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "ignorePatterns": ["lib", "src/types/search-internal.ts", "src/types/search-external.ts", "src/types/data.ts"]
+  "plugins": ["@typescript-eslint", "import"],
+  "ignorePatterns": ["lib", "src/types/search-internal.ts", "src/types/search-external.ts", "src/types/data.ts"],
+  "rules": {
+    "import/extensions": ["error", "always"]
+  }
 }

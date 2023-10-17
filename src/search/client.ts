@@ -1,9 +1,9 @@
 import createClient from 'openapi-fetch'
-import { paths, operations } from '../types/search-external'
-import { paths as pathsIT, operations as operationsIT } from '../types/search-internal'
-import { ClientOptions } from '../types/utils'
-import { DEFAULT_RSS3_NET } from '../constants'
-import { fetchWithLog, debug, querySerializer } from '../utils'
+import { paths, operations } from '../types/search-external.js'
+import { paths as pathsIT, operations as operationsIT } from '../types/search-internal.js'
+import { ClientOptions } from '../types/utils.js'
+import { DEFAULT_RSS3_NET } from '../constants.js'
+import { fetchWithLog, debug, querySerializer } from '../utils.js'
 
 /**
  * Search client for interacting with the search server.

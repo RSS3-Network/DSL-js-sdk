@@ -1,8 +1,8 @@
 import createClient from 'openapi-fetch'
-import { components, paths, operations } from '../types/data'
-import { ClientOptions } from '../types/utils'
-import { DEFAULT_RSS3_NET } from '../constants'
-import { Res, debug, fetchWithLog, querySerializer } from '../utils'
+import { components, paths, operations } from '../types/data.js'
+import { ClientOptions } from '../types/utils.js'
+import { DEFAULT_RSS3_NET } from '../constants.js'
+import { Res, debug, fetchWithLog, querySerializer } from '../utils.js'
 
 export type Activity = components['schemas']['Activity']
 export type Profile = components['schemas']['Profile']

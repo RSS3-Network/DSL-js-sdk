@@ -1,8 +1,8 @@
-import { components as searchComponents } from './types/search-internal'
-import { components as dataComponents } from './types/data'
+import { components as searchComponents } from './types/search-internal.js'
+import { components as dataComponents } from './types/data.js'
 import Debug from 'debug'
-import { TagTypeMap } from './metadata'
-import { Activity } from './data/client'
+import { TagTypeMap } from './metadata/index.js'
+import { Activity } from './data/client.js'
 import qs from 'qs'
 
 export type Res<Data, Meta> = Promise<{ data: Data; meta?: Meta; nextPage?: () => Res<Data, Meta> }>

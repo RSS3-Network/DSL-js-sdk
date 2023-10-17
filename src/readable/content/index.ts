@@ -1,7 +1,7 @@
-import { Activity } from '../../data/client'
-import { handleMetadata } from '../../metadata'
-import { components } from '../../types/data'
-import { getActions } from '../../utils'
+import { Activity } from '../../data/client.js'
+import { handleMetadata } from '../../metadata/index.js'
+import { components } from '../../types/data.js'
+import { getActions } from '../../utils.js'
 
 export type Content = {
   author_url?: string

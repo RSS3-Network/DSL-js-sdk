@@ -1,4 +1,4 @@
-import { components } from '../types/data'
+import { components } from '../types/data.js'
 
 export const metadataDoc = {
   "transaction-transfer": {

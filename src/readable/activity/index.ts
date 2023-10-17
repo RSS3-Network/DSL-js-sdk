@@ -1,7 +1,7 @@
-import { components } from '../../types/data'
-import { getSummaryActions } from '../../utils'
-import { handleMetadata } from '../../metadata'
-import { Theme, themePlain } from './theme'
+import { components } from '../../types/data.js'
+import { getSummaryActions } from '../../utils.js'
+import { handleMetadata } from '../../metadata/index.js'
+import { Theme, themePlain } from './theme.js'
 import {
   Token,
   tokenSeparator,
@@ -18,8 +18,8 @@ import {
   tokenTime,
   tokenSpace,
   token,
-} from './token'
-import { Activity } from '../../data/client'
+} from './token.js'
+import { Activity } from '../../data/client.js'
 
 export function formatPlain(activity: Activity): string {
   const list = format(activity, themePlain).filter((s) => s !== '')

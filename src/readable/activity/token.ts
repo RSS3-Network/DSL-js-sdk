@@ -1,7 +1,7 @@
-import { EMPTY_ADDRESS, INFINITY_VALUE } from '../../constants'
-import { Activity } from '../../data/client'
-import { components } from '../../types/data'
-import { formatTokenValue } from '../number'
+import { EMPTY_ADDRESS, INFINITY_VALUE } from '../../constants.js'
+import { Activity } from '../../data/client.js'
+import { components } from '../../types/data.js'
+import { formatTokenValue } from '../number/index.js'
 
 export type TokenType =
   | 'text' // plain text

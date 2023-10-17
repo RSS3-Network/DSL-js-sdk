@@ -1,5 +1,5 @@
 import { it } from 'vitest'
-import { client } from './client'
+import { client } from './client.js'
 
 it.concurrent('get suggestions', async ({ expect }) => {
   const { data } = await client().suggestions({ keyword: 'vitalik', limit: 5 })

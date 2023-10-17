@@ -1,6 +1,6 @@
 import { it } from 'vitest'
-import { client } from './client'
-import { handleMetadata } from '../metadata'
+import { client } from './client.js'
+import { handleMetadata } from '../metadata/index.js'
 
 it.concurrent('get activities by address', async ({ expect }) => {
   const res = await client().activities('vitalik.eth', { limit: 5, network: ['ethereum', 'farcaster'] })

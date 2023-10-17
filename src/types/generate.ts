@@ -2,7 +2,7 @@
 
 import { spawnSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
-import { DEFAULT_RSS3_NET } from '../constants'
+import { DEFAULT_RSS3_NET } from '../constants.js'
 
 main()
 
@@ -48,7 +48,7 @@ async function main() {
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
         .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
 
-      return (schema = `import {components as data} from './data-v1'\n${schema}`)
+      return (schema = `import {components as data} from './data-v1.js'\n${schema}`)
     },
   )
 
@@ -67,7 +67,7 @@ async function main() {
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
         .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
 
-      return (schema = `import {components as data} from './data-v1'\n${schema}`)
+      return (schema = `import {components as data} from './data-v1.js'\n${schema}`)
     },
   )
 }
@@ -92,7 +92,7 @@ async function generate(
 }
 
 function genMetadataDoc(data: any) {
-  let doc = `import { components } from '../types/data'\n\n`
+  let doc = `import { components } from '../types/data.js'\n\n`
 
   const map = {} as any
 

@@ -1,5 +1,5 @@
 import { it } from 'vitest'
-import { querySerializer } from './utils'
+import { querySerializer } from './utils.js'
 
 it('querySerializer', async ({ expect }) => {
   expect(querySerializer({ a: 1, b: '2' })).toBe('a=1&b=2')

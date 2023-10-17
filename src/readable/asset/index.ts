@@ -1,5 +1,5 @@
-import { handleMetadata } from '../../metadata'
-import { components } from '../../types/data'
+import { handleMetadata } from '../../metadata/index.js'
+import { components } from '../../types/data.js'
 
 export type BriefAsset = {
   contract?: string | null

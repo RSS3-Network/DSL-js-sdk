@@ -1,6 +1,6 @@
-import { EMPTY_ADDRESS } from '../../constants'
-import { components } from '../../types/data'
-import { addressToAvatarURL, formatAddress, isAddress } from '../address'
+import { EMPTY_ADDRESS } from '../../constants.js'
+import { components } from '../../types/data.js'
+import { addressToAvatarURL, formatAddress, isAddress } from '../address/index.js'
 
 /**
  * it will add the basic wallet address to profile as the default profile

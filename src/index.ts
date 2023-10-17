@@ -1,7 +1,15 @@
-export { client as dataClient, Activity, Profile, Cursor, TotalPage } from './data/client'
-export { client as searchClient } from './search/client'
-export { timeRange, TimeRange, fetchWithLog, getActions, getSummaryActions, getTagType, markdownToTxt } from './utils'
-export { handleMetadata } from './metadata'
+export { client as dataClient, Activity, Profile, Cursor, TotalPage } from './data/client.js'
+export { client as searchClient } from './search/client.js'
+export {
+  timeRange,
+  TimeRange,
+  fetchWithLog,
+  getActions,
+  getSummaryActions,
+  getTagType,
+  markdownToTxt,
+} from './utils.js'
+export { handleMetadata } from './metadata/index.js'
 export {
   formatPlain,
   format,
@@ -10,10 +18,10 @@ export {
   tokenizeToActions,
   hasMultiPrimaryActions,
   flatActivity,
-} from './readable/activity'
-export { formatContent, Content, extractContent, formatTitle } from './readable/content'
-export { Theme, themeHTML, summaryOfHTML } from './readable/activity/theme'
-export { formatTokenValue } from './readable/number'
-export { formatProfiles, extractProfile, extractPrimaryProfile } from './readable/profile'
-export { extractAsset, BriefAsset } from './readable/asset'
-export * from './readable/address'
+} from './readable/activity/index.js'
+export { formatContent, Content, extractContent, formatTitle } from './readable/content/index.js'
+export { Theme, themeHTML, summaryOfHTML } from './readable/activity/theme.js'
+export { formatTokenValue } from './readable/number/index.js'
+export { formatProfiles, extractProfile, extractPrimaryProfile } from './readable/profile/index.js'
+export { extractAsset, BriefAsset } from './readable/asset/index.js'
+export * from './readable/address/index.js'

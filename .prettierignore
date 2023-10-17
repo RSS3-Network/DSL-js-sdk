@@ -8,4 +8,3 @@ src/types/search-internal.ts
 src/readable/metadata/doc.ts
 src/format/activity-examples
 src/metadata/doc.ts
-umd/

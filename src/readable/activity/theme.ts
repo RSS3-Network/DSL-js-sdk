@@ -1,5 +1,5 @@
-import { formatAddressAndNS } from '../address'
-import { TokenType } from './token'
+import { formatAddressAndNS } from '../address/index.js'
+import { TokenType } from './token.js'
 
 export type Theme<T> = {
   [key in TokenType]: (content: string) => T

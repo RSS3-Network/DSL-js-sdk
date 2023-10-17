@@ -1,7 +1,7 @@
 import { it } from 'vitest'
-import { client } from '../../data/client'
-import { extractAsset } from './index'
-import { getActions } from '../../utils'
+import { client } from '../../data/client.js'
+import { extractAsset } from './index.js'
+import { getActions } from '../../utils.js'
 
 // TODO: fix the test
 it.skip.concurrent('get brief asset info', async ({ expect }) => {

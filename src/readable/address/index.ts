@@ -1,4 +1,4 @@
-import { SUPPORTED_NS_LIST } from '../../constants'
+import { SUPPORTED_NS_LIST } from '../../constants.js'
 
 export function isAddress(address: string): boolean {
   return !!/^(0x)?[\dA-Fa-f]{40}$/.test(address)

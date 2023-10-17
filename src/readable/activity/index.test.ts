@@ -1,8 +1,8 @@
 import { describe, it } from 'vitest'
-import { client } from '../../data/client'
-import { metadataDoc } from '../../metadata/doc'
-import { formatPlain } from './index'
-import { components } from '../../types/data'
+import { client } from '../../data/client.js'
+import { metadataDoc } from '../../metadata/doc.js'
+import { formatPlain } from './index.js'
+import { components } from '../../types/data.js'
 
 export type MetadataDoc = {
   [key: string]: {
