@@ -433,6 +433,10 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         tokenAddr(m.handle || owner),
         tokenText('made a comment'),
         tokenPost(action),
+        tokenText('on post'),
+        token('html', m.target?.body),
+        tokenText('of'),
+        tokenAddr(m.target?.handle || owner),
         ...tokenPlatform(action),
       ])
     },
