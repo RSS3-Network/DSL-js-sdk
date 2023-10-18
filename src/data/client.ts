@@ -187,6 +187,31 @@ export function client(opt: ClientOptions = {}) {
     }
   }
 
+  /**
+   * Query platform activities.
+   */
+  async function platformActivities(
+    platform: components['schemas']['Platform'],
+    query?: operations['GetPlatformActivities']['parameters']['query'],
+  ): Res<Activity[], Cursor> {
+    const { data, error } = await client.GET('/platforms/{platform}/activities', {
+      params: {
+        path: { platform },
+        query,
+      },
+    })
+    if (error || !data) throw error
+
+    const list = data.data.map((a) => a as Activity)
+
+    if (!data.meta) return { data: list }
+
+    return {
+      data: list,
+      meta: data.meta,
+    }
+  }
+
   return {
     activity,
     activities,
@@ -194,5 +219,6 @@ export function client(opt: ClientOptions = {}) {
     mastodonActivities,
     profiles,
     mastodonProfiles,
+    platformActivities,
   }
 }
