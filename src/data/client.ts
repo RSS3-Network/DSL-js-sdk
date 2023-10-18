@@ -145,7 +145,7 @@ export function client(opt: ClientOptions = {}) {
     })
     if (error || !data) throw error
 
-    const list = data.data.map((a) => a as Profile)
+    const list = data.data?.map((a) => a as Profile) || []
 
     return {
       data: list,
