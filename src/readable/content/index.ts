@@ -65,23 +65,29 @@ export function formatTitle(title?: string, body?: string) {
   return title
 }
 
+export function checkTargetExist(target?: Content) {
+  if (!target) return false
+  if (!!target.body || !!target.media || !!target.title) return true
+  return false
+}
+
 function extractSocialPost(metadata: components['schemas']['SocialPost']): PostContent {
-  const raw = metadata.target
-  const target = raw
+  let target = metadata.target
+  target = target
     ? {
-        author_url: raw.author_url,
-        handle: raw.handle,
-        profile_id: raw.profile_id,
-        title: raw.title,
-        body: raw.body,
-        media: raw.media,
+        author_url: target.author_url,
+        handle: target.handle,
+        profile_id: target.profile_id,
+        title: formatTitle(target.title, target.body),
+        body: target.body,
+        media: target.media,
       }
     : undefined
   return {
     author_url: metadata.author_url,
     handle: metadata.handle,
     profile_id: metadata.profile_id,
-    title: metadata.title,
+    title: formatTitle(metadata.title, metadata.body),
     body: metadata.body,
     media: metadata.media,
     target: target,
