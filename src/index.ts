@@ -19,7 +19,7 @@ export {
   hasMultiPrimaryActions,
   flatActivity,
 } from './readable/activity/index.js'
-export { formatContent, Content, extractContent, formatTitle } from './readable/content/index.js'
+export { formatContent, Content, extractContent, formatTitle, checkTargetExist } from './readable/content/index.js'
 export { Theme, themeHTML, summaryOfHTML } from './readable/activity/theme.js'
 export { formatTokenValue } from './readable/number/index.js'
 export { formatProfiles, extractProfile, extractPrimaryProfile } from './readable/profile/index.js'
