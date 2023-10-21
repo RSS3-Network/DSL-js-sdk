@@ -460,22 +460,6 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ...tokenPlatform(action),
       ])
     },
-    'social-follow': (m) => {
-      res = join([
-        tokenSocialProfile(m.from, action.from),
-        tokenText('followed'),
-        tokenSocialProfile(m.to, action.to),
-        ...tokenPlatform(action),
-      ])
-    },
-    'social-unfollow': (m) => {
-      res = join([
-        tokenSocialProfile(m.from, action.from),
-        tokenText('unfollowed'),
-        tokenSocialProfile(m.to, action.to),
-        ...tokenPlatform(action),
-      ])
-    },
     'social-profile': (m) => {
       if (m.action === 'create') {
         res = join([

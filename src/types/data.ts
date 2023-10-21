@@ -100,7 +100,7 @@ export interface components {
      */
     Activity: {
       actions: components["schemas"]["Action"][];
-      direction?: components["schemas"]["Direction"];
+      direction?: components["schemas"]["Direction"] | null;
       feeToken?: string | null;
       feeValue?: components["schemas"]["Decimal"] | null;
       from: string;
@@ -416,7 +416,7 @@ export interface components {
      * Metadata
      * @description github.com/naturalselectionlabs/sakuin/common/schema.Metadata
      */
-    Metadata: components["schemas"]["CollectibleApproval"] | components["schemas"]["CollectibleAuction"] | components["schemas"]["CollectibleTrade"] | components["schemas"]["CollectibleTransfer"] | components["schemas"]["Donation"] | components["schemas"]["ExchangeLiquidity"] | components["schemas"]["ExchangeLoan"] | components["schemas"]["ExchangeSwap"] | components["schemas"]["GovernanceProposal"] | components["schemas"]["GovernanceVote"] | components["schemas"]["MetaverseTrade"] | components["schemas"]["MetaverseTransfer"] | components["schemas"]["SocialFollow"] | components["schemas"]["SocialPost"] | components["schemas"]["SocialProfile"] | components["schemas"]["SocialProxy"] | components["schemas"]["TransactionApproval"] | components["schemas"]["TransactionBridge"] | components["schemas"]["TransactionDeploy"] | components["schemas"]["TransactionMultisig"] | components["schemas"]["TransactionTransfer"];
+    Metadata: components["schemas"]["CollectibleApproval"] | components["schemas"]["CollectibleAuction"] | components["schemas"]["CollectibleTrade"] | components["schemas"]["CollectibleTransfer"] | components["schemas"]["Donation"] | components["schemas"]["ExchangeLiquidity"] | components["schemas"]["ExchangeLoan"] | components["schemas"]["ExchangeSwap"] | components["schemas"]["GovernanceProposal"] | components["schemas"]["GovernanceVote"] | components["schemas"]["MetaverseTrade"] | components["schemas"]["MetaverseTransfer"] | components["schemas"]["SocialPost"] | components["schemas"]["SocialProfile"] | components["schemas"]["SocialProxy"] | components["schemas"]["TransactionApproval"] | components["schemas"]["TransactionBridge"] | components["schemas"]["TransactionDeploy"] | components["schemas"]["TransactionMultisig"] | components["schemas"]["TransactionTransfer"];
     /**
      * MetaverseTrade
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.MetaverseTrade
@@ -482,7 +482,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/common/schema.Network
      * @enum {unknown}
      */
-    Network: "arbitrum_nova" | "arbitrum_one" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "crossbell" | "erc1577" | "ethereum" | "farcaster" | "gnosis" | "optimism" | "polygon" | "zksync_era" | "zksync_lite";
+    Network: "arbitrum_nova" | "arbitrum_one" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "crossbell" | "erc1577" | "ethereum" | "farcaster" | "gnosis" | "optimism" | "polygon" | "scroll" | "zksync_era" | "zksync_lite";
     /**
      * Network
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Network
@@ -494,7 +494,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Platform
      * @enum {unknown}
      */
-    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "Gnosis" | "IQ.Wiki" | "KyberSwap" | "Lens" | "Lido" | "Linea" | "LooksRare" | "Mars4" | "Matters" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "ParaSwap" | "PlanetIX" | "Polygon" | "RARA" | "RSS3" | "Rainbow" | "Safe" | "Stargate" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "friend.tech" | "zkSync Era" | "zkSync Lite" | "zkSync";
+    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "Gnosis" | "IQ.Wiki" | "KyberSwap" | "Lens" | "Lido" | "Linea" | "LooksRare" | "Mars4" | "Matters" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "ParaSwap" | "Paragraph" | "PlanetIX" | "Polygon" | "RARA" | "RSS3" | "Rainbow" | "Safe" | "Stargate" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "friend.tech" | "zkSync Era" | "zkSync Lite" | "zkSync";
     /**
      * Profile
      * @description github.com/naturalselectionlabs/data-api/common/schema.Profile
@@ -523,14 +523,6 @@ export interface components {
      * @description encoding/json.RawMessage
      */
     RawMessage: unknown;
-    /**
-     * SocialFollow
-     * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialFollow
-     */
-    SocialFollow: {
-      from?: components["schemas"]["SocialProfile"];
-      to?: components["schemas"]["SocialProfile"];
-    };
     /**
      * SocialPost
      * @description github.com/naturalselectionlabs/sakuin/common/schema/metadata.SocialPost
@@ -606,7 +598,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.SocialType
      * @enum {unknown}
      */
-    SocialType: "comment" | "delete" | "follow" | "mint" | "post" | "profile" | "proxy" | "revise" | "reward" | "share" | "unfollow";
+    SocialType: "comment" | "delete" | "mint" | "post" | "profile" | "proxy" | "revise" | "reward" | "share";
     /**
      * Standard
      * @description github.com/naturalselectionlabs/sakuin/common/ethereum/contract.Standard
@@ -766,7 +758,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/common/schema.Type
      * @enum {unknown}
      */
-    Type: "approval" | "auction" | "bridge" | "burn" | "claim" | "comment" | "delete" | "deploy" | "donate" | "follow" | "liquidity" | "loan" | "mint" | "multisig" | "post" | "profile" | "propose" | "proxy" | "revise" | "reward" | "share" | "staking" | "swap" | "trade" | "transfer" | "unfollow" | "unknown" | "vote";
+    Type: "approval" | "auction" | "bridge" | "burn" | "claim" | "comment" | "delete" | "deploy" | "donate" | "liquidity" | "loan" | "mint" | "multisig" | "post" | "profile" | "propose" | "proxy" | "revise" | "reward" | "share" | "staking" | "swap" | "trade" | "transfer" | "unknown" | "vote";
     /**
      * Type
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Type

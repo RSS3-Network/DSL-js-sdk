@@ -469,36 +469,6 @@ export const metadataDoc = {
       }
     ]
   },
-  "social-follow": {
-    'ref': {} as components['schemas']['SocialFollow'],
-    "tag": "social",
-    "type": "follow",
-    "platforms": [
-      "Crossbell",
-      "Lens"
-    ],
-    "examples": [
-      {
-        "id": "0x6f7f8ee07638f3ff69e901fb4ee348a5f7e37fda99b720d53be0f7b4e1f9e8a4",
-        "comment": "Followed 0xxx…xx on xxxx"
-      }
-    ]
-  },
-  "social-unfollow": {
-    'ref': {} as components['schemas']['SocialFollow'],
-    "tag": "social",
-    "type": "unfollow",
-    "platforms": [
-      "Crossbell",
-      "Lens"
-    ],
-    "examples": [
-      {
-        "id": "0x27f4849213868ce96c7969c4f652c512ddb659ba5798793ae14c3b24fb55affd",
-        "comment": "Unfollowed 0xxx…xx on xxxx"
-      }
-    ]
-  },
   "social-profile": {
     'ref': {} as components['schemas']['SocialProfile'],
     "tag": "social",
