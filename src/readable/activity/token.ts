@@ -1,4 +1,4 @@
-import { EMPTY_ADDRESS, INFINITY_VALUE } from '../../constants.js'
+import { INFINITY_VALUE } from '../../constants.js'
 import { Activity } from '../../data/client.js'
 import { components } from '../../types/data.js'
 import { formatTokenValue } from '../number/index.js'
@@ -53,16 +53,6 @@ export function tokenNetwork(t: string | null | undefined) {
 
 export function tokenTime(t: number) {
   return token('time', new Date(t * 1000).toJSON())
-}
-
-export function tokenSocialProfile(p?: components['schemas']['SocialProfile'], address?: string): Token {
-  if (!p) return token('unknown', '')
-
-  if (!p.handle && !p.address && p.name) [tokenName(p.name)]
-
-  if (p.handle) return tokenAddr(p.handle)
-  if (p.address === EMPTY_ADDRESS) return tokenAddr(address)
-  return tokenAddr(p.address)
 }
 
 export function tokenAddr(t: string | null | undefined) {
