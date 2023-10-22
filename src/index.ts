@@ -26,4 +26,3 @@ export { formatProfiles, extractProfile, extractPrimaryProfile } from './readabl
 export { extractAsset, BriefAsset } from './readable/asset/index.js'
 export * from './readable/address/index.js'
 export { getIcon } from './assets/icon.js'
-export { formatTime, formatFromNow, formatFullTime } from './readable/time/index.js'

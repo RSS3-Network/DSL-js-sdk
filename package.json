@@ -41,7 +41,6 @@
     "vitest": "^1.0.0-beta.2"
   },
   "dependencies": {
-    "dayjs": "^1.11.10",
     "debug": "^4.3.4",
     "openapi-fetch": "^0.7.10",
     "qs": "^6.11.2"
