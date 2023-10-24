@@ -19,37 +19,37 @@ export type PostContent = Content & {
 export function formatContent(activity: Activity) {
   const action = getActions(activity)
   if (action.length > 0) {
-    return extractContent(action[0])
+    return extractContent(activity, action[0])
   }
   return undefined
 }
 
-export function extractContent(action: components['schemas']['Action']): PostContent | undefined {
+export function extractContent(activity: Activity, action: components['schemas']['Action']): PostContent | undefined {
   let content: PostContent | undefined
   handleMetadata(action, {
-    'social-post': (m) => {
-      content = extractSocialPost(m)
+    'social-post': (metadata) => {
+      content = extractSocialPost(activity, metadata)
     },
-    'social-comment': (m) => {
-      content = extractSocialPost(m)
+    'social-comment': (metadata) => {
+      content = extractSocialPost(activity, metadata)
     },
-    'social-mint': (m) => {
-      content = extractSocialPost(m)
+    'social-mint': (metadata) => {
+      content = extractSocialPost(activity, metadata)
     },
-    'social-share': (m) => {
-      content = extractSocialPost(m)
+    'social-share': (metadata) => {
+      content = extractSocialPost(activity, metadata)
     },
-    'social-revise': (m) => {
-      content = extractSocialPost(m)
+    'social-revise': (metadata) => {
+      content = extractSocialPost(activity, metadata)
     },
-    'social-delete': (m) => {
-      content = extractSocialPost(m)
+    'social-delete': (metadata) => {
+      content = extractSocialPost(activity, metadata)
     },
-    'governance-propose': (m) => {
-      content = extractGovernanceProposal(m)
+    'governance-propose': (metadata) => {
+      content = extractGovernanceProposal(metadata)
     },
-    'governance-vote': (m) => {
-      content = extractGovernanceVote(m)
+    'governance-vote': (metadata) => {
+      content = extractGovernanceVote(metadata)
     },
   })
   return content
@@ -71,7 +71,7 @@ export function checkTargetExist(target?: Content) {
   return false
 }
 
-function extractSocialPost(metadata: components['schemas']['SocialPost']): PostContent {
+function extractSocialPost(activity: Activity, metadata: components['schemas']['SocialPost']): PostContent {
   let target = metadata.target
   target = target
     ? {
@@ -83,7 +83,12 @@ function extractSocialPost(metadata: components['schemas']['SocialPost']): PostC
         media: target.media,
       }
     : undefined
-  return {
+  // remove the first media, which is the avatar of the author
+  // this case only happens in mastodon
+  if (target && target.media && activity.network.toLowerCase() === 'mastodon') {
+    target.media = target.media.slice(1)
+  }
+  const res = {
     author_url: metadata.author_url,
     handle: metadata.handle,
     profile_id: metadata.profile_id,
@@ -92,6 +97,11 @@ function extractSocialPost(metadata: components['schemas']['SocialPost']): PostC
     media: metadata.media,
     target: target,
   }
+  // the same as the target
+  if (res.media && activity.network.toLowerCase() === 'mastodon') {
+    res.media = res.media.slice(1)
+  }
+  return res
 }
 
 function extractGovernanceProposal(metadata: components['schemas']['GovernanceProposal']) {
