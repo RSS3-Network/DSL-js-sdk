@@ -76,7 +76,7 @@ exports[`formatPlain should work as expected > metaverse-transfer 0x096400ee4246
 
 exports[`formatPlain should work as expected > social-comment 0x1faacf487d304e601e100b271fcebc108ec45ff7c11fa68962c6cd09576d8eb4 1`] = `"284342363.lens made a comment "Beautiful work!" on Hey [2023-10-06T07:45:07.000Z]"`;
 
-exports[`formatPlain should work as expected > social-delete 0x071c79c1c380c984657b5fe8ea9eb61459e8ac596bbc2a36145a47f7c32c5e3f 1`] = `"a-random-handle-hussxqzjry.csb deleted a post "@zkSync_cn 透明？醉了" on xSync [2023-08-19T16:47:36.000Z]"`;
+exports[`formatPlain should work as expected > social-delete 0x071c79c1c380c984657b5fe8ea9eb61459e8ac596bbc2a36145a47f7c32c5e3f 1`] = `"a-random-handle-hussxqzjry.csb deleted a post "test1" on Crossbell [2023-08-19T16:47:36.000Z]"`;
 
 exports[`formatPlain should work as expected > social-mint 0xafd4f260528c8274345a6447028d84bc2303eddb0e8bca1f2006a106632cda9a 1`] = `"pronounceddrop.lens minted a post "Halfway through week 5 of @verticalcrypto.lens and..." on orb [2023-10-06T07:45:49.000Z]"`;
 
