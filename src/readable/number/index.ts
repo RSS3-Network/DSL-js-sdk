@@ -34,3 +34,18 @@ export function formatUnits(bigNum: string, unit: number) {
       : '0.' + '0'.repeat(unit - bigNum.length) + bigNum
   return bigNum.replace(/0+$/, '')
 }
+
+export function formatThousands(num: number) {
+  if (Number.isNaN(num)) return num.toString()
+  num = Number(num > 1 ? num.toFixed(2) : num.toFixed(4))
+
+  const withDecimal = num.toString().split('.')
+  withDecimal[0] = withDecimal[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+
+  return withDecimal.join('.')
+}
+
+export function formatPrecision(num: number, n = 2) {
+  const scale = 10 ** n
+  return Math.round(num * scale) / scale
+}
