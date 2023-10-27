@@ -77,3 +77,7 @@ export function markdownToTxt(raw: string) {
   str = str?.replace(/(#+\s)/gi, '')
   return str
 }
+
+export function truncateText(text: string, length: number) {
+  return text.length > length ? text.slice(0, length) + '...' : text
+}

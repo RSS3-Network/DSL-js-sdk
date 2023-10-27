@@ -8,6 +8,7 @@ export {
   getSummaryActions,
   getTagType,
   markdownToTxt,
+  truncateText,
 } from './utils.js'
 export { handleMetadata } from './metadata/index.js'
 export {
