@@ -36,9 +36,10 @@ export function extractAuthorFromExtension(data: components['schemas']['FeedRank
   }
 }
 
-export function extractMetadata(data: components['schemas']['FeedRankActionDoc4ExternalDetailDTO']) {
-  const { metadata } = data
-  if (!metadata) return {}
+export function extractMetadata(data: components['schemas']['FeedRankDoc4ExternalDetailDTO']) {
+  const actions = data.actions
+  if (!actions || actions?.length < 1) return {}
+  const metadata = actions[0].metadata
   return metadata
 }
 
@@ -49,8 +50,9 @@ export function extractAuthorFromStringArray(data?: string[]) {
   return res
 }
 
-export function extractMetadataContent(data: components['schemas']['FeedRankDoc4ExternalDTO']): PostContent {
+export function extractMetadataContent(data: components['schemas']['FeedRankDoc4ExternalDetailDTO']): PostContent {
   const metadata = extractMetadata(data)
+  if (!metadata) return {}
   const raw = metadata.target
   const target = raw
     ? {
