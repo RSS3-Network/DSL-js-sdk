@@ -17,6 +17,7 @@ import {
   tokenTime,
   tokenSpace,
   token,
+  tokenHandle,
 } from './token.js'
 import { Activity } from '../../data/client.js'
 
@@ -408,7 +409,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'social-post': (m) => {
       res = join([
-        tokenAddr(m.handle || action.from),
+        tokenHandle(m.handle || action.from, action.from, activity.network),
         tokenText('published a post'),
         tokenPost(action),
         ...tokenPlatform(action),
@@ -416,27 +417,17 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     },
     'social-comment': (m) => {
       res = join([
-        tokenAddr(m.handle || action.from),
+        tokenHandle(m.handle || action.from, action.from, activity.network),
         tokenText('made a comment'),
         tokenPost(action),
         ...tokenPlatform(action),
       ])
     },
-    'social-share': (m) => {
-      res = join([
-        tokenAddr(m.handle || action.from),
-        tokenText('shared a post'),
-        tokenPost(action),
-        ...tokenPlatform(action),
-      ])
+    'social-share': () => {
+      res = join([tokenAddr(action.from), tokenText('shared a post'), tokenPost(action), ...tokenPlatform(action)])
     },
-    'social-mint': (m) => {
-      res = join([
-        tokenAddr(m.handle || action.from),
-        tokenText('minted a post'),
-        tokenPost(action),
-        ...tokenPlatform(action),
-      ])
+    'social-mint': () => {
+      res = join([tokenAddr(action.from), tokenText('minted a post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-revise': (m) => {
       res = join([
@@ -489,13 +480,8 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
         ])
       }
     },
-    'social-delete': (m) => {
-      res = join([
-        tokenAddr(m.handle || action.from),
-        tokenText('deleted a post'),
-        tokenPost(action),
-        ...tokenPlatform(action),
-      ])
+    'social-delete': () => {
+      res = join([tokenAddr(action.from), tokenText('deleted a post'), tokenPost(action), ...tokenPlatform(action)])
     },
     'social-proxy': (m) => {
       if (m.action === 'appoint') {

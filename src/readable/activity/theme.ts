@@ -2,7 +2,13 @@ import { formatAddressAndNS } from '../address/index.js'
 import { TokenType } from './token.js'
 
 export type Theme<T> = {
-  [key in TokenType]: (content: string) => T
+  [key in TokenType]: (
+    content: string,
+    meta?: {
+      address?: string
+      network?: string
+    },
+  ) => T
 }
 
 export const themePlain: Theme<string> = {

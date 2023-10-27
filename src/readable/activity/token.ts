@@ -21,10 +21,14 @@ export type TokenType =
 export type Token = {
   type: TokenType
   content: string
+  meta?: {
+    address?: string
+    network?: string
+  }
 }
 
-export function token(type: Token['type'], content = ''): Token {
-  return { type, content }
+export function token(type: Token['type'], content = '', meta?: Token['meta']): Token {
+  return { type, content, meta }
 }
 
 export const tokenSpace = tokenText(' ')
@@ -57,6 +61,15 @@ export function tokenTime(t: number) {
 
 export function tokenAddr(t: string | null | undefined) {
   return token('address', t || '')
+}
+
+export function tokenHandle(
+  t: string | null | undefined,
+  addr: string | null | undefined,
+  network: string | null | undefined,
+) {
+  if (!addr) return token('address', t || '')
+  return token('address', t || '', { address: addr, network: network || '' })
 }
 
 export function tokenValue(t: components['schemas']['TokenMetadata'] | null | undefined) {
