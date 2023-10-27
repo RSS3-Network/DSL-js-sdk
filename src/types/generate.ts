@@ -46,7 +46,7 @@ async function main() {
         .replace(/Record<string, never>/g, 'Record<string, any>')
         .replace(/empty\?: boolean;/g, '')
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
-        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Post']")
 
       return (schema = `import {components as data} from './data-v1.js'\n${schema}`)
     },

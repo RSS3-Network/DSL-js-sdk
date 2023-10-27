@@ -8,6 +8,14 @@ import {components as data} from './data-v1.js'
 
 
 export interface paths {
+  "/v2/activities": {
+    /** Search activities */
+    get: operations["searchFeedV2"];
+  };
+  "/v2/activities/{id}": {
+    /** Get activity */
+    get: operations["activityDetail"];
+  };
   "/suggestions/spellcheck": {
     /** Spell correction (did-you-mean) */
     get: operations["spellCorrectionv2"];
@@ -26,11 +34,11 @@ export interface paths {
   };
   "/activities": {
     /** Search activities */
-    get: operations["searchFeedV2"];
+    get: operations["searchFeedV2_1"];
   };
   "/activities/{id}": {
     /** Get activity */
-    get: operations["activityDetail"];
+    get: operations["activityDetail_1"];
   };
 }
 
@@ -38,6 +46,91 @@ export type webhooks = Record<string, any>;
 
 export interface components {
   schemas: {
+    Action: {
+      tag?: string;
+      type?: string;
+      platform?: string;
+      from?: string;
+      to?: string;
+      metadata?: data['schemas']['Post'];
+      relatedUrls?: string[];
+    };
+    FeedRankDocHighlightingDTO: {
+      title?: string;
+      author?: string;
+      body?: string;
+    };
+    FeedSearchNetworkAggDTO: {
+      /** @enum {string} */
+      network?: "ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER";
+      /** Format: int64 */
+      count?: number;
+    };
+    FeedSearchPlatformAggDTO: {
+      /** @enum {string} */
+      platform?: "ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON";
+      /** Format: int64 */
+      count?: number;
+    };
+    FeedSearchRespV2DTO: {
+      /** Format: int32 */
+      total?: number;
+      docs?: components["schemas"]["SakuinPostSearchRespDTO"][];
+      networkAgg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
+      platformAgg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
+    };
+    SakuinPostSearchRespDTO: {
+      id?: string;
+      network?: string;
+      from?: string;
+      to?: string;
+      tag?: string;
+      type?: string;
+      platform?: string;
+      status?: string;
+      actions?: components["schemas"]["Action"][];
+      /** Format: int64 */
+      timestamp?: number;
+      highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
+    };
+    UniRespFeedSearchRespV2DTO: {
+      data?: components["schemas"]["FeedSearchRespV2DTO"];
+      meta?: string;
+      error?: string;
+    };
+    ESAutoComplete: {
+      input?: string;
+      /** Format: int32 */
+      weight?: number;
+    };
+    SakuinPostDoc: {
+      id?: string;
+      postId?: string;
+      /** Format: int64 */
+      timestamp?: number;
+      tag?: string;
+      type?: string;
+      from?: string;
+      to?: string;
+      network?: string;
+      platform?: string;
+      status?: string;
+      actions?: string;
+      autoComplete?: components["schemas"]["ESAutoComplete"];
+      simHash?: string;
+      lang?: string;
+      metadataTitle?: string;
+      metadataBody?: string;
+      /** Format: double */
+      metadataBodyLenFactor?: number;
+      metadataBodyStripped?: string;
+      author?: string;
+    };
+    UniRespSakuinPostDoc: {
+      data?: components["schemas"]["SakuinPostDoc"];
+      meta?: string;
+      error?: string;
+    };
     UniRespListString: {
       data?: string[];
       meta?: string;
@@ -136,23 +229,6 @@ export interface components {
       actions?: components["schemas"]["FeedRankActionDoc4ExternalDTO"][];
       transaction_hash?: string;
     };
-    FeedRankDocHighlightingDTO: {
-      title?: string;
-      author?: string;
-      body?: string;
-    };
-    FeedSearchNetworkAggDTO: {
-      /** @enum {string} */
-      network?: "ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER";
-      /** Format: int64 */
-      count?: number;
-    };
-    FeedSearchPlatformAggDTO: {
-      /** @enum {string} */
-      platform?: "ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON";
-      /** Format: int64 */
-      count?: number;
-    };
     FeedSearchResp4ExternalDTO: {
       /** Format: int32 */
       total?: number;
@@ -171,7 +247,7 @@ export interface components {
       type?: string;
       /** Format: int64 */
       index?: number;
-      metadata?: data['schemas']['Transfer']['metadata'];
+      metadata?: data['schemas']['Post'];
       address_from?: string;
       address_to?: string;
       related_urls?: string[];
@@ -205,6 +281,90 @@ export type external = Record<string, any>;
 
 export interface operations {
 
+  /** Search activities */
+  searchFeedV2: {
+    parameters: {
+      query: {
+        /**
+         * @description search keyword
+         * @example vitalik
+         */
+        keyword: string;
+        /**
+         * @description pagination offset, min offset is 0
+         * @example 0
+         */
+        offset?: number;
+        /**
+         * @description pagination limit, max limit is 20
+         * @example 12
+         */
+        limit?: number;
+        /** @example ALL */
+        platform?: ("ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON")[];
+        /** @example ALL */
+        network?: ("ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER")[];
+        /**
+         * @description sort by, default is NONE
+         * @example NONE
+         */
+        sort?: "NONE" | "TIMESTAMP_DESC";
+        /**
+         * @description language, default is ALL
+         * @example ALL
+         */
+        lang?: "ALL" | "ENGLISH" | "CHINESE" | "JAPANESE";
+        /**
+         * @description Timestamp, date range gte
+         * @example -1
+         */
+        gte?: number;
+        /**
+         * @description Timestamp, date range lte
+         * @example -1
+         */
+        lte?: number;
+        /** @description author */
+        author?: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UniRespFeedSearchRespV2DTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
+  /** Get activity */
+  activityDetail: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UniRespSakuinPostDoc"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
   /** Spell correction (did-you-mean) */
   spellCorrectionv2: {
     parameters: {
@@ -318,7 +478,7 @@ export interface operations {
     };
   };
   /** Search activities */
-  searchFeedV2: {
+  searchFeedV2_1: {
     parameters: {
       query: {
         /**
@@ -380,7 +540,7 @@ export interface operations {
     };
   };
   /** Get activity */
-  activityDetail: {
+  activityDetail_1: {
     parameters: {
       path: {
         id: string;
