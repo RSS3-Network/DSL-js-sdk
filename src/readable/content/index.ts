@@ -6,7 +6,7 @@ import { getActions } from '../../utils.js'
 export type Content = {
   author_url?: string
   handle?: string
-  profile_id?: string
+  profile_id?: string | number | null
   title?: string
   body?: string
   media?: components['schemas']['Media'][]

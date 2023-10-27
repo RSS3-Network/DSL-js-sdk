@@ -1,5 +1,6 @@
 import { components } from '../../types/search-external.js'
 import { isAddress, isSupportedNS } from '../address/index.js'
+import { PostContent } from '../content/index.js'
 
 export function extractHighlight(data: components['schemas']['ActivitiesExDTO']) {
   const { highlighting } = data
@@ -48,13 +49,15 @@ export function extractAuthorFromStringArray(data?: string[]) {
   return res
 }
 
-export function extractMetadataContent(data: components['schemas']['FeedRankDoc4ExternalDTO']) {
+export function extractMetadataContent(
+  data: components['schemas']['FeedRankDoc4ExternalDTO'],
+): PostContent | undefined {
   const metadata = extractMetadata(data)
   const raw = metadata.target
   const target = raw
     ? {
         author_url: undefined,
-        handle: extractAuthorFromStringArray(raw.author),
+        handle: extractAuthorFromStringArray(raw.author) || '',
         profile_id: raw.profile_id,
         title: raw.title,
         body: raw.body || raw.summary,
@@ -63,7 +66,7 @@ export function extractMetadataContent(data: components['schemas']['FeedRankDoc4
     : undefined
   const res = {
     author_url: undefined,
-    handle: extractAuthorFromStringArray(metadata.author),
+    handle: extractAuthorFromStringArray(metadata.author) || '',
     profile_id: metadata.profile_id,
     title: metadata.title,
     body: metadata.body || metadata.summary,
