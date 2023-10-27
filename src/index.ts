@@ -27,6 +27,14 @@ export { formatProfiles, extractProfile, extractPrimaryProfile } from './readabl
 export { extractAsset, BriefAsset } from './readable/asset/index.js'
 export * from './readable/address/index.js'
 export { getIcon } from './assets/icon.js'
-export { extractHighlight, extractExtension, extractAction, extractAuthor } from './readable/search/result.js'
+export {
+  extractHighlight,
+  extractExtension,
+  extractAction,
+  extractAuthorFromExtension,
+  extractMetadata,
+  extractAuthorFromStringArray,
+  extractMetadataContent,
+} from './readable/search/result.js'
 export { extractWiki } from './readable/search/wiki.js'
 export { formatLabel, formatLink, DAY_OPTIONS } from './readable/search/coin.js'

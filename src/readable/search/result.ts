@@ -23,7 +23,7 @@ export function extractAction(data: components['schemas']['FeedRankDoc4ExternalD
   return data.actions[0]
 }
 
-export function extractAuthor(data: components['schemas']['FeedRankDoc4ExternalDTO']) {
+export function extractAuthorFromExtension(data: components['schemas']['FeedRankDoc4ExternalDTO']) {
   const action = extractAction(data)
   const info = extractExtension(data)
   const raw = info.author || action?.address_from
@@ -33,4 +33,42 @@ export function extractAuthor(data: components['schemas']['FeedRankDoc4ExternalD
   } else {
     return ''
   }
+}
+
+export function extractMetadata(data: components['schemas']['FeedRankActionDoc4ExternalDetailDTO']) {
+  const { metadata } = data
+  if (!metadata) return {}
+  return metadata
+}
+
+export function extractAuthorFromStringArray(data?: string[]) {
+  if (!data || data.length < 1) return undefined
+  const list = data.sort((a) => (isAddress(a) || isSupportedNS(a) ? -1 : 1))
+  const res = list.find((a) => isAddress(a) || isSupportedNS(a))
+  return res
+}
+
+export function extractMetadataContent(data: components['schemas']['FeedRankDoc4ExternalDTO']) {
+  const metadata = extractMetadata(data)
+  const raw = metadata.target
+  const target = raw
+    ? {
+        author_url: undefined,
+        handle: extractAuthorFromStringArray(raw.author),
+        profile_id: raw.profile_id,
+        title: raw.title,
+        body: raw.body || raw.summary,
+        media: raw.media,
+      }
+    : undefined
+  const res = {
+    author_url: undefined,
+    handle: extractAuthorFromStringArray(metadata.author),
+    profile_id: metadata.profile_id,
+    title: metadata.title,
+    body: metadata.body || metadata.summary,
+    media: metadata.media,
+    target: target,
+  }
+  return res
 }
