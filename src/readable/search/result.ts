@@ -49,9 +49,7 @@ export function extractAuthorFromStringArray(data?: string[]) {
   return res
 }
 
-export function extractMetadataContent(
-  data: components['schemas']['FeedRankDoc4ExternalDTO'],
-): PostContent | undefined {
+export function extractMetadataContent(data: components['schemas']['FeedRankDoc4ExternalDTO']): PostContent {
   const metadata = extractMetadata(data)
   const raw = metadata.target
   const target = raw
