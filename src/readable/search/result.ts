@@ -65,6 +65,11 @@ export function extractMetadataContent(data: components['schemas']['FeedRankDoc4
         media: raw.media,
       }
     : undefined
+  // remove the first media, which is the avatar of the author
+  // this case only happens in mastodon
+  if (target && target.media && data.network?.toLowerCase() === 'mastodon') {
+    target.media = target.media.slice(1)
+  }
   const res = {
     author_url: undefined,
     handle: extractAuthorFromStringArray(metadata.author) || action?.address_from || '',
@@ -73,6 +78,10 @@ export function extractMetadataContent(data: components['schemas']['FeedRankDoc4
     body: metadata.body || metadata.summary,
     media: metadata.media,
     target: target,
+  }
+  // the same as the target
+  if (res.media && data.network?.toLowerCase() === 'mastodon') {
+    res.media = res.media.slice(1)
   }
   return res
 }
