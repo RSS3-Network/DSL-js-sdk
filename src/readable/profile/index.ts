@@ -1,33 +1,15 @@
 import { EMPTY_ADDRESS } from '../../constants.js'
 import { components } from '../../types/data.js'
-import { addressToAvatarURL, formatAddress, isAddress } from '../address/index.js'
+import { addressToAvatarURL } from '../address/index.js'
 
 /**
- * it will add the basic wallet address to profile as the default profile
- * also sort the profile list and fix the avatar logic, the ens registrar profile will be the first
+ * sort the profile list and fix the avatar logic, the ens registrar profile will be the first
  */
-export function formatProfiles(profiles: components['schemas']['Profile'][] | undefined, address: string | undefined) {
+export function formatProfiles(profiles: components['schemas']['Profile'][] | undefined, account: string | undefined) {
   if (!profiles) return profiles
   let res: components['schemas']['Profile'][] = profiles || []
-  // add the basic wallet address to profile
-  let wallet: string | undefined = address
-  if (wallet && !isAddress(wallet)) {
-    wallet = res.find((item) => !!item.address)?.address
-  }
-  if (wallet && isAddress(wallet)) {
-    res.push({
-      address: wallet,
-      bio: '',
-      handle: wallet,
-      name: formatAddress(wallet),
-      network: 'Ethereum',
-      platform: 'Ethereum',
-      profileURI: [addressToAvatarURL(wallet, 100)],
-      socialURI: [],
-    })
-  }
   // sort the matched profile first
-  res = res?.sort((a) => (a?.handle === address ? -1 : 1))
+  res = res?.sort((a) => (a?.handle === account ? -1 : 1))
   // ens registrar first
   res = res?.sort((a) => (a?.platform === 'ENS Registrar' ? -1 : 1))
   res = res?.map((item) => {
