@@ -51,6 +51,7 @@ export function extractAuthorFromStringArray(data?: string[]) {
 }
 
 export function extractMetadataContent(data: components['schemas']['FeedRankDoc4ExternalDetailDTO']): PostContent {
+  const action = extractAction(data)
   const metadata = extractMetadata(data)
   if (!metadata) return {}
   const raw = metadata.target
@@ -66,7 +67,7 @@ export function extractMetadataContent(data: components['schemas']['FeedRankDoc4
     : undefined
   const res = {
     author_url: undefined,
-    handle: extractAuthorFromStringArray(metadata.author) || '',
+    handle: extractAuthorFromStringArray(metadata.author) || action?.address_from || '',
     profile_id: metadata.profile_id,
     title: metadata.title,
     body: metadata.body || metadata.summary,
