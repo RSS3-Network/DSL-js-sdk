@@ -74,9 +74,13 @@ export function extractProfile(profile: components['schemas']['Profile'] | null 
  * if those profiles are owned by the empty address, we should not use them
  */
 export function extractPrimaryProfile(profiles: components['schemas']['Profile'][] | undefined, handle?: string) {
+  if (!profiles || profiles.length < 1) {
+    return extractProfile(null)
+  }
+
   profiles = profiles?.sort((a) => (a?.platform === 'ENS Registrar' ? -1 : 1))
   const profile = handle
-    ? profiles?.find((profile) => profile?.handle?.toLowerCase() === handle.toLowerCase())
+    ? profiles?.find((profile) => profile?.handle?.toLowerCase() === handle.toLowerCase()) || profiles?.[0]
     : profiles?.[0]
 
   if (profile?.address === EMPTY_ADDRESS) {
