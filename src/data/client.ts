@@ -66,7 +66,7 @@ export function client(opt: ClientOptions = {}) {
     })
     if (error || !data) throw error
 
-    const list = data.data.map((a) => a as Activity)
+    const list = data.data?.filter((a): a is Activity => !!a) || []
 
     if (!data.meta) return { data: list }
 
@@ -89,7 +89,7 @@ export function client(opt: ClientOptions = {}) {
     })
     if (error || !data) throw error
 
-    const list = data.data.map((a) => a as Activity)
+    const list = data.data?.filter((a): a is Activity => !!a) || []
 
     if (!data.meta) return { data: list }
 
@@ -122,7 +122,7 @@ export function client(opt: ClientOptions = {}) {
 
     if (!data.meta) return data as never
 
-    const list = data.data.map((a) => a as Activity)
+    const list = data.data?.filter((a): a is Activity => !!a) || []
 
     return {
       data: list,
@@ -145,7 +145,7 @@ export function client(opt: ClientOptions = {}) {
     })
     if (error || !data) throw error
 
-    const list = data.data?.map((a) => a as Profile) || []
+    const list = data.data?.filter((a): a is Profile => !!a) || []
 
     return {
       data: list,
@@ -202,7 +202,7 @@ export function client(opt: ClientOptions = {}) {
     })
     if (error || !data) throw error
 
-    const list = data.data.map((a) => a as Activity)
+    const list = data.data?.filter((a): a is Activity => !!a) || []
 
     if (!data.meta) return { data: list }
 
