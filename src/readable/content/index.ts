@@ -6,6 +6,7 @@ import { getActions } from '../../utils.js'
 export type Content = {
   author_url?: string
   handle?: string
+  address?: string
   profile_id?: string | number | null
   title?: string
   body?: string
@@ -28,22 +29,22 @@ export function extractContent(activity: Activity, action: components['schemas']
   let content: PostContent | undefined
   handleMetadata(action, {
     'social-post': (metadata) => {
-      content = extractSocialPost(activity, metadata)
+      content = extractSocialPost(activity, action, metadata)
     },
     'social-comment': (metadata) => {
-      content = extractSocialPost(activity, metadata)
+      content = extractSocialPost(activity, action, metadata)
     },
     'social-mint': (metadata) => {
-      content = extractSocialPost(activity, metadata)
+      content = extractSocialPost(activity, action, metadata)
     },
     'social-share': (metadata) => {
-      content = extractSocialPost(activity, metadata)
+      content = extractSocialPost(activity, action, metadata)
     },
     'social-revise': (metadata) => {
-      content = extractSocialPost(activity, metadata)
+      content = extractSocialPost(activity, action, metadata)
     },
     'social-delete': (metadata) => {
-      content = extractSocialPost(activity, metadata)
+      content = extractSocialPost(activity, action, metadata)
     },
     'governance-propose': (metadata) => {
       content = extractGovernanceProposal(metadata)
@@ -71,16 +72,21 @@ export function checkTargetExist(target?: Content) {
   return false
 }
 
-function extractSocialPost(activity: Activity, metadata: components['schemas']['SocialPost']): PostContent {
-  let target = metadata.target
-  target = target
+function extractSocialPost(
+  activity: Activity,
+  action: components['schemas']['Action'],
+  metadata: components['schemas']['SocialPost'],
+): PostContent {
+  const raw = metadata.target
+  const target = raw
     ? {
-        author_url: target.author_url,
-        handle: target.handle,
-        profile_id: target.profile_id,
-        title: formatTitle(target.title, target.body),
-        body: target.body,
-        media: target.media,
+        author_url: raw.author_url,
+        handle: raw.handle,
+        address: action.to,
+        profile_id: raw.profile_id,
+        title: formatTitle(raw.title, raw.body),
+        body: raw.body,
+        media: raw.media,
       }
     : undefined
   // remove the first media, which is the avatar of the author
@@ -91,6 +97,7 @@ function extractSocialPost(activity: Activity, metadata: components['schemas']['
   const res = {
     author_url: metadata.author_url,
     handle: metadata.handle,
+    address: action.from,
     profile_id: metadata.profile_id,
     title: formatTitle(metadata.title, metadata.body),
     body: metadata.body,
