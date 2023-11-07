@@ -290,7 +290,7 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
       if (m.action === 'buy') {
         res = join([
           tokenAddr(action.to),
-          tokenText('Bought'),
+          tokenText('bought'),
           ...tokenAsset(m.title || m.name || 'an asset', meta),
           tokenText('from'),
           tokenAddr(action.from),
