@@ -9,6 +9,7 @@ export type TokenType =
   | 'number' // number value, such as token exchange rate
   | 'image' // image url
   | 'symbolImage' // symbol image url
+  | 'assetImage' // asset image url
   | 'symbol' // short name for a token, such as BTC, ETH
   | 'address' // wallet address or txn address, such as https://help.coinbase.com/en/coinbase/getting-started/crypto-education/what-is-a-transaction-hash-hash-id
   | 'name' // name for NFT, etc
@@ -22,8 +23,10 @@ export type Token = {
   type: TokenType
   content: string
   meta?: {
-    address?: string
-    network?: string
+    address?: string | null
+    network?: string | null
+    id?: string | null
+    preview?: string
   }
 }
 
@@ -108,4 +111,13 @@ export function tokenPost(t: components['schemas']['Action']) {
   }
 
   return token('html', out)
+}
+
+export function tokenAsset(name: string, meta?: Token['meta']) {
+  const img = meta?.preview
+  if (img) {
+    return [token('assetImage', img), token('name', name, meta)]
+  } else {
+    return [token('name', name, meta)]
+  }
 }
