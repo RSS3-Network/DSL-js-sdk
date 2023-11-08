@@ -38,29 +38,29 @@ exports[`formatPlain should work as expected > collectible-transfer 0x000020ba6f
 
 exports[`formatPlain should work as expected > donation-donate 0x5a19dd1c81fa00599655bcd4b49ae27baca55ab372a8387d40201bae5ab3eddd 1`] = `"0x4e61A2ec8B12a7557B78698eA75Bde6c02eb6668 donated 0.000642 ETH to "" on Gitcoin; 0x4e61A2ec8B12a7557B78698eA75Bde6c02eb6668 donated 0.0000193 ETH to "" on Gitcoin [2023-10-06T06:26:23.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-liquidity 0x00003f9c21c7f631474c1bbc12f0946b3f093b520fb707d9cc661a25b58e4ccd 1`] = `"Added 3,569.612 SDAO , 0.8 WETH to liquidity on Uniswap [2023-02-03T23:47:59.000Z]"`;
+exports[`formatPlain should work as expected > exchange-liquidity 0x00003f9c21c7f631474c1bbc12f0946b3f093b520fb707d9cc661a25b58e4ccd 1`] = `"0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D added 3,569.612 SDAO , 0.8 WETH to liquidity on Uniswap [2023-02-03T23:47:59.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-liquidity 0x0001b57e2fc71a92426ed1bacdd55430767b8c2aa343c777c4daa48de57e8d9e 1`] = `"Removed 37,992.305 TRISM , 0.404 WETH from liquidity on Uniswap; Collected 38,105.289 TRISM , 0.413 WETH from liquidity on Uniswap [2023-01-11T00:12:59.000Z]"`;
+exports[`formatPlain should work as expected > exchange-liquidity 0x0001b57e2fc71a92426ed1bacdd55430767b8c2aa343c777c4daa48de57e8d9e 1`] = `"0xC36442b4a4522E871399CD717aBDD847Ab11FE88 removed 37,992.305 TRISM , 0.404 WETH from liquidity on Uniswap; 0xC36442b4a4522E871399CD717aBDD847Ab11FE88 collected 38,105.289 TRISM , 0.413 WETH from liquidity on Uniswap [2023-01-11T00:12:59.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-liquidity 0x0006b932a5f8aa61e5ac2c62bdc7e8b9b90112418bc22f24604dd421858e6b88 1`] = `"Collected 1,037,965,041.966 SHI , 0.582 WETH from liquidity on Uniswap [2023-01-19T15:19:23.000Z]"`;
+exports[`formatPlain should work as expected > exchange-liquidity 0x0006b932a5f8aa61e5ac2c62bdc7e8b9b90112418bc22f24604dd421858e6b88 1`] = `"0xC36442b4a4522E871399CD717aBDD847Ab11FE88 collected 1,037,965,041.966 SHI , 0.582 WETH from liquidity on Uniswap [2023-01-19T15:19:23.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-liquidity 0x0020cbebcafbbd57dd4a8dbcfca7372f887f25e4662c000cfc9f392362c11912 1`] = `"Supplied 0.25 WETH to liquidity on BendDAO [2023-02-12T17:19:59.000Z]"`;
+exports[`formatPlain should work as expected > exchange-liquidity 0x0020cbebcafbbd57dd4a8dbcfca7372f887f25e4662c000cfc9f392362c11912 1`] = `"0xc8F7e8566CB717c32E8727700c6d646a967deEAD supplied 0.25 WETH to liquidity on BendDAO [2023-02-12T17:19:59.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-liquidity 0x0095dd2588fdec8af52a28b792a89f0536745b17bdbace39e392041f1eb7d5a6 1`] = `"Borrowed 2,300.00 DAI from liquidity on AAVE [2023-10-06T20:27:47.000Z]"`;
+exports[`formatPlain should work as expected > exchange-liquidity 0x0095dd2588fdec8af52a28b792a89f0536745b17bdbace39e392041f1eb7d5a6 1`] = `"0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2 borrowed 2,300.00 DAI from liquidity on AAVE [2023-10-06T20:27:47.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-liquidity 0x008878041c0a55259ce0b2a89eb07a8620b1256006c8edb659baed38bc844b88 1`] = `"Repaid 85,113.76 USDT to liquidity on AAVE [2023-10-03T18:25:35.000Z]"`;
+exports[`formatPlain should work as expected > exchange-liquidity 0x008878041c0a55259ce0b2a89eb07a8620b1256006c8edb659baed38bc844b88 1`] = `"0x71FF1934C6e7C846561A8b17A18BA279736Cf9f4 repaid 85,113.76 USDT to liquidity on AAVE [2023-10-03T18:25:35.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-liquidity 0x00c9f3aa1fd06fe17cca96bb444f0aaca610e878626dc9baf489d3550a22041e 1`] = `"WithDrew 1,000,000.00 USDT from liquidity on AAVE [2023-10-06T12:53:11.000Z]"`;
+exports[`formatPlain should work as expected > exchange-liquidity 0x00c9f3aa1fd06fe17cca96bb444f0aaca610e878626dc9baf489d3550a22041e 1`] = `"0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2 withDrew 1,000,000.00 USDT from liquidity on AAVE [2023-10-06T12:53:11.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-loan 0x0000145456a508beab27e38dbd14fbeec925e95f4f5eda7fc8560f4f5e529820 1`] = `"Refinanced loan 1.203 ETH on Blur [2023-06-14T07:01:59.000Z]"`;
+exports[`formatPlain should work as expected > exchange-loan 0x0000145456a508beab27e38dbd14fbeec925e95f4f5eda7fc8560f4f5e529820 1`] = `"0x93cfB5Df0dfdbe707542f0d0631Be97db671359b refinanced loan 1.203 ETH on Blur [2023-06-14T07:01:59.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-loan 0x07346d4e4c0c2d547ee0927c607a2e1e717507ab01c13175c54d08313eb0c2fb 1`] = `"Repaid loan 40.787 WETH on BendDAO [2023-01-20T05:01:11.000Z]"`;
+exports[`formatPlain should work as expected > exchange-loan 0x07346d4e4c0c2d547ee0927c607a2e1e717507ab01c13175c54d08313eb0c2fb 1`] = `"0x70b97A0da65C15dfb0FFA02aEE6FA36e507C2762 repaid loan 40.787 WETH on BendDAO [2023-01-20T05:01:11.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-loan 0x074190b9714fc4e306671252d60245ffb6574e336c174ff1e47f77cebe26891c 1`] = `"Created loan 44.243 WETH on BendDAO [2023-01-01T20:54:11.000Z]"`;
+exports[`formatPlain should work as expected > exchange-loan 0x074190b9714fc4e306671252d60245ffb6574e336c174ff1e47f77cebe26891c 1`] = `"0x70b97A0da65C15dfb0FFA02aEE6FA36e507C2762 created loan 44.243 WETH on BendDAO [2023-01-01T20:54:11.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-loan 0xa7e278148dbac1685eae105adad72183ed9ea9170a087fb7d2f742b2fd198b1a 1`] = `"Seized loan 0 on Blur [2023-05-21T01:38:11.000Z]"`;
+exports[`formatPlain should work as expected > exchange-loan 0xa7e278148dbac1685eae105adad72183ed9ea9170a087fb7d2f742b2fd198b1a 1`] = `"0xB06114B9997A4A16A078C4107D8ebA74A869be4e seized loan 0 on Blur [2023-05-21T01:38:11.000Z]"`;
 
-exports[`formatPlain should work as expected > exchange-loan 0xbe78726deb3efb4ea062517fe23cdc11312bea4fda8a5903693f9030fd8b472e 1`] = `"liquidated loan 35.463 WETH on BendDAO [2023-06-19T09:05:59.000Z]"`;
+exports[`formatPlain should work as expected > exchange-loan 0xbe78726deb3efb4ea062517fe23cdc11312bea4fda8a5903693f9030fd8b472e 1`] = `"0x70b97A0da65C15dfb0FFA02aEE6FA36e507C2762 liquidated loan 35.463 WETH on BendDAO [2023-06-19T09:05:59.000Z]"`;
 
 exports[`formatPlain should work as expected > exchange-swap 0x000005461c52e2eb738744246388f8b04ad94c9ebb4b87668f9f1936b1816512 1`] = `"0xDa082Ba1DEdf033738a3138097Bd9D7c98e1fB59 swapped 0.000765 ETH to 200.171 JUP on 1inch [2023-01-04T04:07:35.000Z]"`;
 

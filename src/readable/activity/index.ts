@@ -372,33 +372,100 @@ export function tokenizeAction(activity: Activity, action: components['schemas']
     'exchange-liquidity': (m) => {
       const tokens = m.tokens.flatMap((t) => join([...tokenValue(t), tokenText(',')])).slice(0, -1)
       if (m.action === 'add') {
-        res = join([tokenText('Added'), ...tokens, tokenText('to liquidity'), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('added'),
+          ...tokens,
+          tokenText('to liquidity'),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'remove') {
-        res = join([tokenText('Removed'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('removed'),
+          ...tokens,
+          tokenText('from liquidity'),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'collect') {
-        res = join([tokenText('Collected'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('collected'),
+          ...tokens,
+          tokenText('from liquidity'),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'borrow') {
-        res = join([tokenText('Borrowed'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('borrowed'),
+          ...tokens,
+          tokenText('from liquidity'),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'repay') {
-        res = join([tokenText('Repaid'), ...tokens, tokenText('to liquidity'), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('repaid'),
+          ...tokens,
+          tokenText('to liquidity'),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'supply') {
-        res = join([tokenText('Supplied'), ...tokens, tokenText('to liquidity'), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('supplied'),
+          ...tokens,
+          tokenText('to liquidity'),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'withdraw') {
-        res = join([tokenText('WithDrew'), ...tokens, tokenText('from liquidity'), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('withDrew'),
+          ...tokens,
+          tokenText('from liquidity'),
+          ...tokenPlatform(action),
+        ])
       }
     },
     // todo add the action invoker
     'exchange-loan': (m) => {
       if (m.action === 'create') {
-        res = join([tokenText('Created loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('created loan'),
+          ...tokenValue(m.amount),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'liquidate') {
-        res = join([tokenText('liquidated loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('liquidated loan'),
+          ...tokenValue(m.amount),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'refinance') {
-        res = join([tokenText('Refinanced loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('refinanced loan'),
+          ...tokenValue(m.amount),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'repay') {
-        res = join([tokenText('Repaid loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('repaid loan'),
+          ...tokenValue(m.amount),
+          ...tokenPlatform(action),
+        ])
       } else if (m.action === 'seize') {
-        res = join([tokenText('Seized loan'), ...tokenValue(m.amount), ...tokenPlatform(action)])
+        res = join([
+          tokenAddr(action.from),
+          tokenText('seized loan'),
+          ...tokenValue(m.amount),
+          ...tokenPlatform(action),
+        ])
       }
     },
     'donation-donate': (m) => {
