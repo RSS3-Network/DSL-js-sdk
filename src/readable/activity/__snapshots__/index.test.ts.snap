@@ -14,13 +14,13 @@ exports[`formatPlain should work as expected > collectible-auction 0x001a0608a2e
 
 exports[`formatPlain should work as expected > collectible-auction 0x0012823ee026f352158ae0b1ceaaef3f7ac7b757fc49501717fc6363455a601b 1`] = `"0x4587AC9F91007A9203F4C3755d5a1F038DAFB2ac canceled an auction for "Look into my soul" on Foundation [2023-01-02T07:14:59.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-auction 0x2787fe62e3f31207524217fed8788329560da5964dbf90f791651aaac00b9131 1`] = `"0xCD432C8F076b740Cb7Be693a18983218588D96Ca Bought "I still remember you" from 0x9b0Da6499d6eA156c2FBCa0f2104d42B7f8f2F88 on Foundation [2023-06-08T15:46:11.000Z]"`;
+exports[`formatPlain should work as expected > collectible-auction 0x2787fe62e3f31207524217fed8788329560da5964dbf90f791651aaac00b9131 1`] = `"0xCD432C8F076b740Cb7Be693a18983218588D96Ca bought "I still remember you" from 0x9b0Da6499d6eA156c2FBCa0f2104d42B7f8f2F88 on Foundation [2023-06-08T15:46:11.000Z]"`;
 
 exports[`formatPlain should work as expected > collectible-burn 0x000071563c854e34c2534e7e961a53dd648411b62467d6c10b38a80b51d1f51e 1`] = `"0xa4fb4bfbd70Ae8C81eCe9E0FCCefFa9953e120cB burned "Ticket to DECISION 2" [2023-02-07T03:50:23.000Z]"`;
 
 exports[`formatPlain should work as expected > collectible-mint 0x000002803fd033274860a06bb8b7285c0595f550b73e621a92b7095fcd79afaa 1`] = `"0x0000000000000000000000000000000000000000 minted "Chibi Valkyrie Prereveal" to 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89; 0x0000000000000000000000000000000000000000 minted "Chibi Valkyrie Prereveal" to 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89; 0x0000000000000000000000000000000000000000 minted "Chibi Valkyrie Prereveal" to 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89; 0x0000000000000000000000000000000000000000 minted "Chibi Valkyrie Prereveal" to 0x0b454e00Aa1367Ac82D1C096126e08B92833BB89 [2023-01-16T15:17:47.000Z]"`;
 
-exports[`formatPlain should work as expected > collectible-trade 0x0000020e0e1758d442865233da076d62a5bfa53992229079383096f9fddcc22d 1`] = `"0x0c64d2d32ff842fb089d664D425Ca1c12DA8EEc2 Bought "PORSCHΞ 911 6954" from 0xdb082B9F5C7748E0fEB4618b8676cB2ddfe89a1E on OpenSea [2023-02-03T08:55:23.000Z]"`;
+exports[`formatPlain should work as expected > collectible-trade 0x0000020e0e1758d442865233da076d62a5bfa53992229079383096f9fddcc22d 1`] = `"0x0c64d2d32ff842fb089d664D425Ca1c12DA8EEc2 bought "PORSCHΞ 911 6954" from 0xdb082B9F5C7748E0fEB4618b8676cB2ddfe89a1E on OpenSea [2023-02-03T08:55:23.000Z]"`;
 
 exports[`formatPlain should work as expected > collectible-trade 0x000043e7d363d7d269c279e888cfe6b569e8a48f315736a00bdf06ff8627cafc 1`] = `"0x055a2F5c36df3658E187E491C0524c673dF1E027 sold "BYOCraft #2615" to 0x60f705861aE52E4787543c1c47B6eaf25a4B9ACb on OpenSea [2023-01-19T11:16:11.000Z]"`;
 
