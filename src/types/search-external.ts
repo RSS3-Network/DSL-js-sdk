@@ -8,6 +8,10 @@ import {components as data} from './data-v1.js'
 
 
 export interface paths {
+  "/v2/recent-activities": {
+    /** Get recent activities */
+    get: operations["recentActivities"];
+  };
   "/v2/activities": {
     /** Search activities */
     get: operations["searchFeedV2"];
@@ -46,6 +50,18 @@ export type webhooks = Record<string, any>;
 
 export interface components {
   schemas: {
+    SitemapDocDTO: {
+      id?: string;
+      from?: string;
+      author?: string;
+      /** Format: int64 */
+      timestamp?: number;
+    };
+    UniRespListSitemapDocDTO: {
+      data?: components["schemas"]["SitemapDocDTO"][];
+      meta?: string;
+      error?: string;
+    };
     Action: {
       tag?: string;
       type?: string;
@@ -281,6 +297,28 @@ export type external = Record<string, any>;
 
 export interface operations {
 
+  /** Get recent activities */
+  recentActivities: {
+    parameters: {
+      query: {
+        limit: number;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: {
+        content: {
+          "application/json": components["schemas"]["UniRespListSitemapDocDTO"];
+        };
+      };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "application/json": Record<string, any>;
+        };
+      };
+    };
+  };
   /** Search activities */
   searchFeedV2: {
     parameters: {

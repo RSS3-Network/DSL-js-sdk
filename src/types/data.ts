@@ -86,12 +86,12 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/internal/database/model.Action
      */
     Action: {
-      from: string;
+      from?: string;
       metadata: components["schemas"]["Metadata"];
       platform?: string;
       related_urls?: string[];
       tag: components["schemas"]["Tag"];
-      to: string;
+      to?: string;
       type: components["schemas"]["Type"];
     };
     /**
@@ -108,6 +108,7 @@ export interface components {
       network: string;
       owner?: string;
       platform?: components["schemas"]["Platform"] | null;
+      spam: boolean;
       status: components["schemas"]["Status"];
       tag: components["schemas"]["Tag"];
       timestamp: number;
