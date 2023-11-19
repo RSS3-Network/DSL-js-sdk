@@ -102,7 +102,9 @@ export function tokenPost(t: components['schemas']['Action']) {
 
   let out = ''
 
-  if ('title' in t.metadata && t.metadata.title) {
+  const platform = t.platform || ''
+
+  if ('title' in t.metadata && t.metadata.title && t.metadata.title.startsWith('Post by') && platform !== 'Lens') {
     out = t.metadata.title
   } else if ('body' in t.metadata && t.metadata.body) {
     out = t.metadata.body
