@@ -104,9 +104,12 @@ export function tokenPost(t: components['schemas']['Action']) {
 
   const platform = t.platform || ''
 
-  if ('title' in t.metadata && t.metadata.title && t.metadata.title.startsWith('Post by') && platform !== 'Lens') {
+  if ('title' in t.metadata && t.metadata.title && !(platform === 'Lens' && t.metadata.title)) {
     out = t.metadata.title
-  } else if ('body' in t.metadata && t.metadata.body) {
+    return token('html', out)
+  }
+
+  if ('body' in t.metadata && t.metadata.body) {
     out = t.metadata.body
   } else if ('target' in t.metadata && t.metadata.target && t.metadata.target.body) {
     out = t.metadata.target.body
