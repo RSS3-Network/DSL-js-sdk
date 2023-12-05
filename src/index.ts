@@ -38,3 +38,4 @@ export {
 } from './readable/search/result.js'
 export { extractWiki } from './readable/search/wiki.js'
 export { formatLabel, formatLink, DAY_OPTIONS } from './readable/search/coin.js'
+export { EMPTY_ADDRESS } from './constants.js'
