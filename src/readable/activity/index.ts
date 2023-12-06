@@ -1,5 +1,5 @@
 import { components } from '../../types/data.js'
-import { getSummaryActions } from '../../utils.js'
+import { getActions, getSummaryActions } from '../../utils.js'
 import { handleMetadata } from '../../metadata/index.js'
 import { Theme, themePlain } from './theme.js'
 import {
@@ -79,6 +79,27 @@ export function tokenizeActivity(activity: Activity): Token[] {
 }
 
 export function tokenizeToActions(activity: Activity): Token[][] {
+  const actions = getActions(activity)
+  const ts: Token[][] = []
+
+  // used for social actions, remove the duplicate action
+  if (activity.tag === 'social' && actions.length > 1) {
+    return [tokenizeAction(activity, actions[0])]
+  }
+
+  // handle unknown activity
+  if (activity.tag === 'unknown' || activity.type === 'unknown') {
+    return [[token('unknown', 'Carried out an activity')]]
+  }
+
+  actions.map((action) => {
+    ts.push(tokenizeAction(activity, action))
+  })
+
+  return ts
+}
+
+export function tokenizeToSummaryActions(activity: Activity): Token[][] {
   const actions = getSummaryActions(activity)
   const ts: Token[][] = []
 
