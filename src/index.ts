@@ -17,6 +17,7 @@ export {
   tokenizeAction,
   tokenizeActivity,
   tokenizeToActions,
+  tokenizeToSummaryActions,
   hasMultiPrimaryActions,
   flatActivity,
 } from './readable/activity/index.js'
