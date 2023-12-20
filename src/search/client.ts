@@ -57,7 +57,7 @@ export function client(opt: ClientOptions = {}) {
      * Search activities by keyword and filters.
      */
     async activities(query: operations['searchFeedV2']['parameters']['query']) {
-      const { data, error } = await client.GET('/activities', {
+      const { data, error } = await client.GET('/v2/activities', {
         params: { query },
       })
       if (error || !data) throw error
@@ -69,7 +69,7 @@ export function client(opt: ClientOptions = {}) {
      * Get the details of an activity.
      */
     async activity(id: string) {
-      const { data, error } = await client.GET('/activities/{id}', {
+      const { data, error } = await client.GET('/v2/activities/{id}', {
         params: { path: { id } },
       })
       if (error || !data) throw error
