@@ -85,8 +85,6 @@ export interface components {
     FeedSearchPlatformAggDTO: {
       /** @enum {string} */
       platform?: "ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON";
-      /** Format: int64 */
-      count?: number;
     };
     FeedSearchRespV2DTO: {
       /** Format: int32 */

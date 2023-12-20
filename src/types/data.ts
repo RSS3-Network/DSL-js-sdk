@@ -484,7 +484,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/data-api/common/schema.Network
      * @enum {unknown}
      */
-    Network: "arbitrum_nova" | "arbitrum_one" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "crossbell" | "erc1577" | "ethereum" | "farcaster" | "gnosis" | "optimism" | "polygon" | "scroll" | "snapshot" | "zksync_era" | "zksync_lite";
+    Network: "arbitrum_nova" | "arbitrum_one" | "arweave" | "avalanche" | "base" | "binance_smart_chain" | "crossbell" | "erc1577" | "ethereum" | "farcaster" | "gnosis" | "optimism" | "polygon" | "scroll" | "snapshot" | "x1_testnet" | "zksync_era" | "zksync_lite";
     /**
      * Network
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Network
@@ -496,7 +496,7 @@ export interface components {
      * @description github.com/naturalselectionlabs/sakuin/common/schema/filter.Platform
      * @enum {unknown}
      */
-    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "Gnosis" | "Highlight" | "IQ.Wiki" | "KyberSwap" | "Lens" | "Lido" | "Linea" | "LooksRare" | "Mars4" | "Matters" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "ParaSwap" | "Paragraph" | "PlanetIX" | "Polygon" | "RARA" | "RSS3" | "Rainbow" | "Safe" | "Snapshot" | "Stargate" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "friend.tech" | "zkSync Era" | "zkSync Lite" | "zkSync";
+    Platform: "1inch" | "AAVE" | "Aavegotchi" | "Arbitrum" | "Base" | "BendDAO" | "Blur" | "Carv" | "Cow" | "Crossbell" | "Curve" | "ENS" | "Farcaster" | "Foundation" | "Gitcoin" | "Gnosis" | "Highlight" | "IQ.Wiki" | "KyberSwap" | "Lens" | "Lido" | "Linea" | "LooksRare" | "Mars4" | "Matters" | "MetaMask" | "Mira" | "Mirror" | "Nouns" | "OpenSea" | "Optimism" | "POAP" | "ParaSwap" | "Paragraph" | "PlanetIX" | "Polygon" | "RARA" | "RSS3" | "Rainbow" | "Safe" | "Scroll" | "Snapshot" | "Stargate" | "Synapse" | "Uniswap" | "Zerion" | "Zora" | "friend.tech" | "zkSync Era" | "zkSync Lite" | "zkSync";
     /**
      * Profile
      * @description github.com/naturalselectionlabs/data-api/common/schema.Profile
