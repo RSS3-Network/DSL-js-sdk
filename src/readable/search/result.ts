@@ -58,7 +58,7 @@ export function extractMetadataContent(data: components['schemas']['FeedRankDoc4
   const target = raw
     ? {
         author_url: undefined,
-        handle: extractAuthorFromStringArray(raw.author) || '',
+        handle: raw.handle,
         address: action?.address_to,
         profile_id: raw.profile_id,
         title: raw.title,
@@ -73,7 +73,7 @@ export function extractMetadataContent(data: components['schemas']['FeedRankDoc4
   }
   const res = {
     author_url: undefined,
-    handle: extractAuthorFromStringArray(metadata.author) || action?.address_from || '',
+    handle: metadata.handle || action?.address_from || '',
     address: action?.address_from,
     profile_id: metadata.profile_id,
     title: metadata.title,
