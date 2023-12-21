@@ -30,7 +30,6 @@ export * from './readable/address/index.js'
 export { getIcon } from './assets/icon.js'
 export {
   extractHighlight,
-  extractExtension,
   extractAction,
   extractAuthorFromExtension,
   extractMetadata,
