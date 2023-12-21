@@ -46,7 +46,7 @@ async function main() {
         .replace(/Record<string, never>/g, 'Record<string, any>')
         .replace(/empty\?: boolean;/g, '')
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
-        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Post']")
+        .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['SocialPost']")
 
       return (schema = `import {components as data} from './data.js'\n${schema}`)
     },
@@ -67,7 +67,7 @@ async function main() {
         .replace(/JSONObject: {[^{}]+}/g, 'JSONObject: any')
         .replace(/metadata\?: {[^{}]+}/g, "metadata?: data['schemas']['Transfer']['metadata']")
 
-      return (schema = `import {components as data} from './data.js'\n${schema}`)
+      return (schema = `import {components as data} from './data-v1.js'\n${schema}`)
     },
   )
 }

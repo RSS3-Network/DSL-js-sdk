@@ -36,14 +36,6 @@ export interface paths {
     /** Search dapps */
     get: operations["searchv2"];
   };
-  "/activities": {
-    /** Search activities */
-    get: operations["searchFeedV2_1"];
-  };
-  "/activities/{id}": {
-    /** Get activity */
-    get: operations["activityDetail_1"];
-  };
 }
 
 export type webhooks = Record<string, any>;
@@ -209,77 +201,6 @@ export interface components {
     };
     UniRespDaapSearchRespDTO: {
       data?: components["schemas"]["DaapSearchRespDTO"];
-      meta?: string;
-      error?: string;
-    };
-    ActivitiesExDTO: {
-      author?: string;
-      media?: string[];
-      /** Format: float */
-      score?: number;
-      highlighting?: components["schemas"]["FeedRankDocHighlightingDTO"];
-    };
-    FeedRankActionDoc4ExternalDTO: {
-      tag?: string;
-      type?: string;
-      platform?: string;
-      /** Format: int64 */
-      index?: number;
-      transaction_hash?: string;
-      address_from?: string;
-      address_to?: string;
-      related_urls?: string[];
-      search_extension?: components["schemas"]["ActivitiesExDTO"];
-    };
-    FeedRankDoc4ExternalDTO: {
-      id?: string;
-      owner?: string;
-      /** Format: int64 */
-      timestamp?: number;
-      tag?: string;
-      type?: string;
-      network?: string;
-      platform?: string;
-      actions?: components["schemas"]["FeedRankActionDoc4ExternalDTO"][];
-      transaction_hash?: string;
-    };
-    FeedSearchResp4ExternalDTO: {
-      /** Format: int32 */
-      total?: number;
-      docs?: components["schemas"]["FeedRankDoc4ExternalDTO"][];
-      network_agg?: components["schemas"]["FeedSearchNetworkAggDTO"][];
-      platform_agg?: components["schemas"]["FeedSearchPlatformAggDTO"][];
-    };
-    UniRespFeedSearchResp4ExternalDTO: {
-      data?: components["schemas"]["FeedSearchResp4ExternalDTO"];
-      meta?: string;
-      error?: string;
-    };
-    FeedRankActionDoc4ExternalDetailDTO: {
-      platform?: string;
-      tag?: string;
-      type?: string;
-      /** Format: int64 */
-      index?: number;
-      metadata?: data['schemas']['SocialPost'];
-      address_from?: string;
-      address_to?: string;
-      related_urls?: string[];
-    };
-    FeedRankDoc4ExternalDetailDTO: {
-      id?: string;
-      owner?: string;
-      /** Format: int64 */
-      timestamp?: number;
-      tag?: string;
-      type?: string;
-      network?: string;
-      platform?: string;
-      actions?: components["schemas"]["FeedRankActionDoc4ExternalDetailDTO"][];
-      transaction_hash?: string;
-    };
-    UniRespFeedRankDoc4ExternalDetailDTO: {
-      data?: components["schemas"]["FeedRankDoc4ExternalDetailDTO"];
       meta?: string;
       error?: string;
     };
@@ -503,90 +424,6 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["UniRespDaapSearchRespDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Search activities */
-  searchFeedV2_1: {
-    parameters: {
-      query: {
-        /**
-         * @description search keyword
-         * @example vitalik
-         */
-        keyword: string;
-        /**
-         * @description pagination offset, min offset is 0
-         * @example 0
-         */
-        offset?: number;
-        /**
-         * @description pagination limit, max limit is 20
-         * @example 12
-         */
-        limit?: number;
-        /** @example ALL */
-        platform?: ("ALL" | "MIRROR" | "FARCASTER" | "XLOG" | "CROSSBELL" | "LENS" | "MATTERS" | "MASTODON")[];
-        /** @example ALL */
-        network?: ("ALL" | "EIP1577" | "BINANCE_SMART_CHAIN" | "ARBITRUM" | "ARWEAVE" | "AVALANCHE" | "ETHEREUM" | "OPTIMISM" | "POLYGON" | "XDAI" | "ZKSYNC" | "CROSSBELL" | "AVAX" | "FARCASTER")[];
-        /**
-         * @description sort by, default is NONE
-         * @example NONE
-         */
-        sort?: "NONE" | "TIMESTAMP_DESC";
-        /**
-         * @description language, default is ALL
-         * @example ALL
-         */
-        lang?: "ALL" | "ENGLISH" | "CHINESE" | "JAPANESE";
-        /**
-         * @description Timestamp, date range gte
-         * @example -1
-         */
-        gte?: number;
-        /**
-         * @description Timestamp, date range lte
-         * @example -1
-         */
-        lte?: number;
-        /** @description author */
-        author?: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["UniRespFeedSearchResp4ExternalDTO"];
-        };
-      };
-      /** @description Bad Request */
-      400: {
-        content: {
-          "application/json": Record<string, any>;
-        };
-      };
-    };
-  };
-  /** Get activity */
-  activityDetail_1: {
-    parameters: {
-      path: {
-        id: string;
-      };
-    };
-    responses: {
-      /** @description OK */
-      200: {
-        content: {
-          "application/json": components["schemas"]["UniRespFeedRankDoc4ExternalDetailDTO"];
         };
       };
       /** @description Bad Request */

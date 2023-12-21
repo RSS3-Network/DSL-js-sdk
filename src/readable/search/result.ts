@@ -2,32 +2,23 @@ import { components } from '../../types/search-external.js'
 import { isAddress, isSupportedNS } from '../address/index.js'
 import { PostContent } from '../content/index.js'
 
-export function extractHighlight(data: components['schemas']['ActivitiesExDTO']) {
+export function extractHighlight(data: components['schemas']['SakuinPostSearchRespDTO']) {
   const { highlighting } = data
   if (!highlighting) return {}
   return highlighting
 }
 
-export function extractExtension(data: components['schemas']['FeedRankDoc4ExternalDTO']) {
-  const action = extractAction(data)
-  if (!action) return {}
-  const { search_extension } = action
-  if (!search_extension) return {}
-  search_extension.media = search_extension.media?.filter(Boolean)
-  return search_extension
-}
-
-export function extractAction(data: components['schemas']['FeedRankDoc4ExternalDTO']) {
+export function extractAction(data: components['schemas']['SakuinPostSearchRespDTO']) {
   if (!data.actions || data.actions.length < 1) {
     return null
   }
   return data.actions[0]
 }
 
-export function extractAuthorFromExtension(data: components['schemas']['FeedRankDoc4ExternalDTO']) {
+export function extractAuthorFromExtension(data: components['schemas']['SakuinPostSearchRespDTO']) {
+  const highlight = extractHighlight(data)
   const action = extractAction(data)
-  const info = extractExtension(data)
-  const raw = info.author || action?.address_from
+  const raw = highlight.author || action?.from
   const list = raw?.split(' ').sort((a) => (isAddress(a) || isSupportedNS(a) ? -1 : 1))
   if (list && list.length > 0) {
     return list[0]
@@ -36,10 +27,10 @@ export function extractAuthorFromExtension(data: components['schemas']['FeedRank
   }
 }
 
-export function extractMetadata(data: components['schemas']['FeedRankDoc4ExternalDetailDTO']) {
-  const actions = data.actions
-  if (!actions || actions?.length < 1) return {}
-  const metadata = actions[0].metadata
+export function extractMetadata(data: components['schemas']['SakuinPostSearchRespDTO']) {
+  const action = extractAction(data)
+  if (!action) return {}
+  const metadata = action.metadata
   return metadata
 }
 
@@ -50,40 +41,13 @@ export function extractAuthorFromStringArray(data?: string[]) {
   return res
 }
 
-export function extractMetadataContent(data: components['schemas']['FeedRankDoc4ExternalDetailDTO']): PostContent {
-  const action = extractAction(data)
-  const metadata = extractMetadata(data)
-  if (!metadata) return {}
-  const raw = metadata.target
-  const target = raw
-    ? {
-        author_url: undefined,
-        handle: raw.handle,
-        address: action?.address_to,
-        profile_id: raw.profile_id,
-        title: raw.title,
-        body: raw.body || raw.summary,
-        media: raw.media,
-      }
-    : undefined
-  // remove the first media, which is the avatar of the author
-  // this case only happens in mastodon
-  if (target && target.media && data.network?.toLowerCase() === 'mastodon') {
-    target.media = target.media.slice(1)
-  }
+export function extractMetadataContent(data: components['schemas']['SakuinPostDoc']): PostContent {
   const res = {
     author_url: undefined,
-    handle: metadata.handle || action?.address_from || '',
-    address: action?.address_from,
-    profile_id: metadata.profile_id,
-    title: metadata.title,
-    body: metadata.body || metadata.summary,
-    media: metadata.media,
-    target: target,
-  }
-  // the same as the target
-  if (res.media && data.network?.toLowerCase() === 'mastodon') {
-    res.media = res.media.slice(1)
+    handle: data.author || data.from || '',
+    address: data.from,
+    title: data.metadataTitle,
+    body: data.metadataBody,
   }
   return res
 }
