@@ -104,36 +104,21 @@ export interface components {
       meta?: string;
       error?: string;
     };
-    ESAutoComplete: {
-      input?: string;
-      /** Format: int32 */
-      weight?: number;
-    };
-    SakuinPostDoc: {
+    SakuinPostDetailDTO: {
       id?: string;
-      postId?: string;
-      /** Format: int64 */
-      timestamp?: number;
-      tag?: string;
-      type?: string;
+      network?: string;
       from?: string;
       to?: string;
-      network?: string;
+      tag?: string;
+      type?: string;
       platform?: string;
       status?: string;
-      actions?: string;
-      autoComplete?: components["schemas"]["ESAutoComplete"];
-      simHash?: string;
-      lang?: string;
-      metadataTitle?: string;
-      metadataBody?: string;
-      /** Format: double */
-      metadataBodyLenFactor?: number;
-      metadataBodyStripped?: string;
-      author?: string;
+      actions?: components["schemas"]["Action"][];
+      /** Format: int64 */
+      timestamp?: number;
     };
-    UniRespSakuinPostDoc: {
-      data?: components["schemas"]["SakuinPostDoc"];
+    UniRespSakuinPostDetailDTO: {
+      data?: components["schemas"]["SakuinPostDetailDTO"];
       meta?: string;
       error?: string;
     };
@@ -311,7 +296,7 @@ export interface operations {
       /** @description OK */
       200: {
         content: {
-          "application/json": components["schemas"]["UniRespSakuinPostDoc"];
+          "application/json": components["schemas"]["UniRespSakuinPostDetailDTO"];
         };
       };
       /** @description Bad Request */

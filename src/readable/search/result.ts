@@ -1,6 +1,7 @@
+import { Activity } from '../../data/client.js'
 import { components } from '../../types/search-external.js'
 import { isAddress, isSupportedNS } from '../address/index.js'
-import { PostContent } from '../content/index.js'
+import { formatContent } from '../content/index.js'
 
 export function extractHighlight(data: components['schemas']['SakuinPostSearchRespDTO']) {
   const { highlighting } = data
@@ -41,13 +42,10 @@ export function extractAuthorFromStringArray(data?: string[]) {
   return res
 }
 
-export function extractMetadataContent(data: components['schemas']['SakuinPostDoc']): PostContent {
-  const res = {
-    author_url: undefined,
-    handle: data.author || data.from || '',
-    address: data.from,
-    title: data.metadataTitle,
-    body: data.metadataBody,
-  }
-  return res
+export function extractMetadataContent(data: components['schemas']['SakuinPostDetailDTO']) {
+  // SakuinPostDetailDTO type missing `spam` field
+  // so we use as Activity here
+  const activity = data as Activity
+  const content = formatContent(activity)
+  return content
 }
