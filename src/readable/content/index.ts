@@ -91,7 +91,7 @@ function extractSocialPost(
     : undefined
   // remove the first media, which is the avatar of the author
   // this case only happens in mastodon
-  if (target && target.media && activity.network.toLowerCase() === 'mastodon') {
+  if (target && target.media && activity.network?.toLowerCase() === 'mastodon') {
     target.media = target.media.slice(1)
   }
   const res = {
@@ -105,7 +105,7 @@ function extractSocialPost(
     target: target,
   }
   // the same as the target
-  if (res.media && activity.network.toLowerCase() === 'mastodon') {
+  if (res.media && activity.network?.toLowerCase() === 'mastodon') {
     res.media = res.media.slice(1)
   }
   return res
