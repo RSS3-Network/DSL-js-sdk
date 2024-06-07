@@ -7,9 +7,12 @@
     "lint": "biome check --no-errors-on-unmatched ."
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.8.0",
+    "@biomejs/biome": "^1.8.1",
     "@rss3/ts-config": "workspace:*",
+    "concurrently": "^8.2.2",
     "lefthook": "^1.6.15",
+    "tsup": "^8.1.0",
+    "tsx": "^4.15.3",
     "turbo": "latest"
   },
   "packageManager": "pnpm@9.2.0",

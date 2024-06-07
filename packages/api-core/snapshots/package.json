@@ -1,0 +1,5 @@
+{
+  "types": "../dist/esm/snapshots.d.ts",
+  "module": "../dist/esm/snapshots.js",
+  "main": "../dist/cjs/snapshots.js"
+}

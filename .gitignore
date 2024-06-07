@@ -24,6 +24,7 @@ composer.lock
 .next
 .turbo
 .cache
+.env
 node_modules
 dist
 *.log

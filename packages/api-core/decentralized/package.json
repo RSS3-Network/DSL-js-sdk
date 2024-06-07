@@ -1,0 +1,5 @@
+{
+  "types": "../dist/esm/decentralized.d.ts",
+  "module": "../dist/esm/decentralized.js",
+  "main": "../dist/cjs/decentralized.js"
+}

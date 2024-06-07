@@ -1,0 +1,5 @@
+{
+  "types": "../dist/esm/networks.d.ts",
+  "module": "../dist/esm/networks.js",
+  "main": "../dist/cjs/networks.js"
+}
