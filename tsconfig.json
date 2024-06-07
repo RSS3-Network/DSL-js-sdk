@@ -1,13 +1,3 @@
 {
-  "compilerOptions": {
-    "target": "ESNext",
-    "declaration": true,
-    "strict": true,
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "outDir": "lib"
-  },
-  "exclude": ["lib"]
+  "extends": "@rss3/ts-config/base.json"
 }

@@ -1,0 +1,13 @@
+{
+  "name": "@rss3/api-core",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "devDependencies": {
+    "@rss3/ts-config": "workspace:*",
+    "@types/node": "^20.14.2",
+    "typescript": "^5.4.5"
+  }
+}
