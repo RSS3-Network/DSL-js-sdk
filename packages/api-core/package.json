@@ -10,6 +10,11 @@
       "import": "./dist/esm/index.js",
       "require": "./dist/cjs/index.js"
     },
+    "./client": {
+      "types": "./dist/esm/client.d.ts",
+      "import": "./dist/esm/client.js",
+      "require": "./dist/cjs/client.js"
+    },
     "./decentralized": {
       "types": "./dist/esm/decentralized.d.ts",
       "import": "./dist/esm/decentralized.js",

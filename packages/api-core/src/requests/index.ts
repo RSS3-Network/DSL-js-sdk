@@ -1,13 +1,13 @@
 import type { FetchResponse, MaybeOptionalInit } from "openapi-fetch";
 import { objectToCamel, objectToSnake } from "ts-case-convert";
 
+import { type Client, getDefaultClient } from "../client.js";
 import type { paths } from "../types/openapi-schema.js";
 import type {
   CamelCaseData,
   HttpMethod,
   PathParams,
 } from "../types/utilities.js";
-import { type Client, client as defaultClient } from "./client.js";
 import {
   type RemoveNestedDataObj,
   removeNestedDataObj,
@@ -45,7 +45,7 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
       return async (
         params: Params,
         init?: Omit<MaybeOptionalInit<paths[Path], Method>, "params"> | null,
-        client: Client = defaultClient,
+        client: Client = getDefaultClient(),
       ): Promise<CreateRequestResult<Path, Method, FetchInit>> =>
         formatResult(
           // biome-ignore lint/suspicious/noExplicitAny: Too complex to type
@@ -59,7 +59,7 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
     withoutParams() {
       return async (
         init?: MaybeOptionalInit<paths[Path], Method> | null,
-        client: Client = defaultClient,
+        client: Client = getDefaultClient(),
       ): Promise<
         CreateRequestResult<
           Path,
@@ -221,11 +221,11 @@ export type GetChipSvgParams = RequestParams<typeof getChipSvg>;
 export type GetChipSvgResult = RequestResult<typeof getChipSvg>;
 export const getChipSvgURL = (
   params: GetChipSvgParams,
-  client: Client = defaultClient,
+  client: Client = getDefaultClient(),
 ) => new URL(`/nta/chips/${params.chipId}/image.svg`, client.baseUrl);
 export const getChipSvgSrc = (
   params: GetChipSvgParams,
-  client: Client = defaultClient,
+  client: Client = getDefaultClient(),
 ) => getChipSvgURL(params, client).href;
 export const getChipSvg = buildRequest(
   "/nta/chips/{chip_id}/image.svg",
@@ -326,11 +326,11 @@ export type GetNodeAvatarSvgParams = RequestParams<typeof getNodeAvatarSvg>;
 export type GetNodeAvatarSvgResult = RequestResult<typeof getNodeAvatarSvg>;
 export const getNodeAvatarSvgURL = (
   params: GetNodeAvatarSvgParams,
-  client: Client = defaultClient,
+  client: Client = getDefaultClient(),
 ) => new URL(`/nta/nodes/${params.address}/avatar.svg`, client.baseUrl);
 export const getNodeAvatarSvgSrc = (
   params: GetNodeAvatarSvgParams,
-  client: Client = defaultClient,
+  client: Client = getDefaultClient(),
 ) => getNodeAvatarSvgURL(params, client).href;
 export const getNodeAvatarSvg = buildRequest(
   "/nta/nodes/{address}/avatar.svg",
