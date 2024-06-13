@@ -66,6 +66,22 @@
       "require": "./dist/cjs/networks.js"
     }
   },
+  "files": [
+    "bridge",
+    "chips",
+    "decentralized",
+    "dist",
+    "dsl",
+    "epoch",
+    "networks",
+    "node",
+    "nta",
+    "package.json",
+    "rss",
+    "snapshots",
+    "src",
+    "stake"
+  ],
   "scripts": {
     "build": "concurrently 'tsc -p tsconfig.cjs.json' 'tsc -p tsconfig.esm.json'",
     "prebuild": "rm -rf dist",

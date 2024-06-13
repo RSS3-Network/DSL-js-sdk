@@ -3,7 +3,9 @@
   "compilerOptions": {
     "outDir": "dist/cjs",
     "module": "CommonJS",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "declaration": false,
+    "declarationMap": false
   },
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
