@@ -1,8 +1,5 @@
 {
-  "extends": "@rss3/ts-config/base.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
+  "extends": "../../tsconfig.json",
   "include": ["src", "scripts"],
   "exclude": ["node_modules", "dist"]
 }

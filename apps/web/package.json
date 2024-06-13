@@ -14,7 +14,6 @@
     "next": "15.0.0-rc.0"
   },
   "devDependencies": {
-    "@rss3/ts-config": "workspace:*",
     "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",

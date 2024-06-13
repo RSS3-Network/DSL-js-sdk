@@ -74,7 +74,6 @@
     "categorize-requests": "tsx scripts/categorize-requests.ts"
   },
   "devDependencies": {
-    "@rss3/ts-config": "workspace:*",
     "@types/node": "^20.14.2",
     "map-obj": "^5.0.2",
     "openapi-typescript": "^7.0.0-rc.0",

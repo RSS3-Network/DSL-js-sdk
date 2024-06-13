@@ -1,5 +1,5 @@
 {
-  "extends": "@rss3/ts-config/base.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist/cjs",
     "module": "CommonJS",

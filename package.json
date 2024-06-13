@@ -11,7 +11,6 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.1",
-    "@rss3/ts-config": "workspace:*",
     "bumpp": "^9.4.1",
     "concurrently": "^8.2.2",
     "fast-glob": "^3.3.2",
