@@ -1,19 +1,24 @@
 {
   "name": "rss3-dsl-sdk",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "turbo build",
     "dev": "turbo dev",
-    "lint": "biome check --no-errors-on-unmatched ."
+    "lint": "biome check --no-errors-on-unmatched .",
+    "release": "tsx scripts/release.ts",
+    "release:ci": "tsx scripts/release-ci.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.8.1",
     "@rss3/ts-config": "workspace:*",
+    "bumpp": "^9.4.1",
     "concurrently": "^8.2.2",
+    "fast-glob": "^3.3.2",
     "lefthook": "^1.6.15",
-    "tsup": "^8.1.0",
     "tsx": "^4.15.3",
-    "turbo": "latest"
+    "turbo": "latest",
+    "zx": "^8.1.2"
   },
   "packageManager": "pnpm@9.2.0",
   "engines": {
