@@ -87,6 +87,7 @@
     "src",
     "stake"
   ],
+  "sideEffects": false,
   "scripts": {
     "build": "concurrently 'tsc -p tsconfig.cjs.json' 'tsc -p tsconfig.esm.json'",
     "prebuild": "rm -rf dist",
