@@ -15,8 +15,8 @@
     "bumpp": "^9.4.1",
     "concurrently": "^8.2.2",
     "fast-glob": "^3.3.2",
-    "lefthook": "^1.6.15",
-    "tsx": "^4.15.3",
+    "lefthook": "^1.6.16",
+    "tsx": "^4.15.4",
     "turbo": "latest",
     "zx": "^8.1.2"
   },
