@@ -8,16 +8,21 @@ import type {
   HttpMethod,
   PathParams,
 } from "../types/utilities.js";
-import { RequestError } from "./request-error.js";
+import {
+  type RemoveNestedDataObj,
+  removeNestedDataObj,
+} from "./remove-nested-data-obj.js";
 
 type CreateRequestResult<
   Path extends keyof paths,
   Method extends HttpMethod,
   FetchInit extends MaybeOptionalInit<paths[Path], Method>,
 > = CamelCaseObject<
-  Required<
-    FetchResponse<paths[Path][Method], FetchInit, `${string}/${string}`>
-  >["data"]
+  RemoveNestedDataObj<
+    Required<
+      FetchResponse<paths[Path][Method], FetchInit, `${string}/${string}`>
+    >["data"]
+  >
 >;
 
 function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
@@ -33,19 +38,24 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
     mapResult?: (data: CreateRequestResult<Path, Method, FetchInit>) => Result,
   ): Promise<Result> => {
     // biome-ignore lint/suspicious/noExplicitAny: Too complex to type
-    const { data, error, response } = await (client as any)[
+    const { data, error } = await (client as any)[
       method.toUpperCase() as Uppercase<Method>
     ](path, init);
 
     if (error || !data) {
-      throw new RequestError(path, data, error, response);
+      throw new Error(
+        [
+          "Request failed:",
+          `path: ${path}`,
+          `error: ${error}`,
+          `data: ${data}`,
+        ].join("\n  "),
+      );
     }
 
-    const result = objectToCamel(data) as CreateRequestResult<
-      Path,
-      Method,
-      FetchInit
-    >;
+    const result = objectToCamel(
+      removeNestedDataObj(data),
+    ) as CreateRequestResult<Path, Method, FetchInit>;
 
     return (mapResult?.(result) ?? result) as Result;
   };

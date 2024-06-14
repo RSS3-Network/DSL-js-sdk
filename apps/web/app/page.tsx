@@ -5,16 +5,16 @@ import {
 } from "@rss3/api-core/networks";
 
 export default async function Home() {
-  const { data: networks = [] } = await getCompatibleNetworks();
-  const { data: workers = [] } = await getAvailableWorkers({
+  const networks = await getCompatibleNetworks();
+  const workers = await getAvailableWorkers({
     networkName: networks[0] ?? "",
   });
-  const { data } = await getWorkerConfig({
+  const config = await getWorkerConfig({
     networkName: networks[0] ?? "",
     workerName: workers[0] ?? "",
   });
 
-  console.log({ networks, workers, data });
+  console.log({ networks, workers, config });
 
   return <div>{"data"}</div>;
 }
