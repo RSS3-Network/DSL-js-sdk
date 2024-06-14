@@ -4,76 +4,79 @@ import { objectToCamel, objectToSnake } from "ts-case-convert";
 import { type Client, getDefaultClient } from "../client.js";
 import type { paths } from "../types/openapi-schema.js";
 import type {
-  CamelCaseData,
+  CamelCaseObject,
   HttpMethod,
   PathParams,
 } from "../types/utilities.js";
-import {
-  type RemoveNestedDataObj,
-  removeNestedDataObj,
-} from "./remove-nested-data-obj.js";
+import { RequestError } from "./request-error.js";
 
 type CreateRequestResult<
   Path extends keyof paths,
   Method extends HttpMethod,
   FetchInit extends MaybeOptionalInit<paths[Path], Method>,
-> = RemoveNestedDataObj<
-  CamelCaseData<
+> = CamelCaseObject<
+  Required<
     FetchResponse<paths[Path][Method], FetchInit, `${string}/${string}`>
-  >
+  >["data"]
 >;
 
 function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
   path: Path,
   method: Method,
 ) {
-  const formatResult = <T extends Record<string, unknown>>(res: T) => {
-    const result = removeNestedDataObj(res);
+  const _request = async <
+    Result,
+    FetchInit extends MaybeOptionalInit<paths[Path], Method>,
+  >(
+    client: Client,
+    init?: FetchInit | null,
+    mapResult?: (data: CreateRequestResult<Path, Method, FetchInit>) => Result,
+  ): Promise<Result> => {
+    // biome-ignore lint/suspicious/noExplicitAny: Too complex to type
+    const { data, error, response } = await (client as any)[
+      method.toUpperCase() as Uppercase<Method>
+    ](path, init);
 
-    if (result.data && typeof result.data === "object") {
-      result.data = objectToCamel(result.data);
+    if (error || !data) {
+      throw new RequestError(path, data, error, response);
     }
 
-    return result;
+    const result = objectToCamel(data) as CreateRequestResult<
+      Path,
+      Method,
+      FetchInit
+    >;
+
+    return (mapResult?.(result) ?? result) as Result;
   };
 
   return {
     withParams<
       FetchInit extends MaybeOptionalInit<paths[Path], Method>,
       Params = PathParams<Path, Method>,
-    >(getInit: (params: Params) => FetchInit) {
+      Result = CreateRequestResult<Path, Method, FetchInit>,
+    >(
+      getInit: (params: Params) => FetchInit,
+      mapResult?: (res: CreateRequestResult<Path, Method, FetchInit>) => Result,
+    ) {
       return async (
         params: Params,
         init?: Omit<MaybeOptionalInit<paths[Path], Method>, "params"> | null,
         client: Client = getDefaultClient(),
-      ): Promise<CreateRequestResult<Path, Method, FetchInit>> =>
-        formatResult(
-          // biome-ignore lint/suspicious/noExplicitAny: Too complex to type
-          await (client as any)[method.toUpperCase()](path, {
-            ...getInit(params),
-            ...init,
-          }),
-        );
+      ): Promise<Result> =>
+        _request(client, { ...getInit(params), ...init }, mapResult);
     },
 
-    withoutParams() {
+    withoutParams<
+      FetchInit extends MaybeOptionalInit<paths[Path], Method>,
+      Result = CreateRequestResult<Path, Method, FetchInit>,
+    >(
+      mapResult?: (res: CreateRequestResult<Path, Method, FetchInit>) => Result,
+    ) {
       return async (
-        init?: MaybeOptionalInit<paths[Path], Method> | null,
+        init?: FetchInit | null,
         client: Client = getDefaultClient(),
-      ): Promise<
-        CreateRequestResult<
-          Path,
-          Method,
-          MaybeOptionalInit<paths[Path], Method>
-        >
-      > =>
-        formatResult(
-          // biome-ignore lint/suspicious/noExplicitAny: Too complex to type
-          await (client as any)[method.toUpperCase() as Uppercase<Method>](
-            path,
-            init,
-          ),
-        );
+      ) => _request(client, init, mapResult);
     },
   };
 }
@@ -97,7 +100,7 @@ type RequestParams<T> = T extends (
 
 // biome-ignore lint/suspicious/noExplicitAny: Need any here
 type RequestResult<T extends (...args: any) => Promise<any>> = Exclude<
-  Awaited<ReturnType<T>>["data"],
+  Awaited<ReturnType<T>>,
   undefined
 >;
 

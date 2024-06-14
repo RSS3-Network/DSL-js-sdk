@@ -2,11 +2,7 @@ import type { ObjectToCamel } from "ts-case-convert/lib/caseConvert.js";
 
 import type { paths } from "./openapi-schema.js";
 
-export type CamelCaseKeys<T> = T extends object ? ObjectToCamel<T> : T;
-
-export type CamelCaseData<T> = T extends { data: infer D }
-  ? Omit<T, "data"> & { data: CamelCaseKeys<D> }
-  : T;
+export type CamelCaseObject<T> = T extends object ? ObjectToCamel<T> : T;
 
 export type HttpMethod =
   | "get"
@@ -52,7 +48,7 @@ type RequestBodyParameters<Method> = MapNeverTo<
 export type PathParams<
   Path extends keyof paths,
   Method extends HttpMethod,
-> = CamelCaseKeys<
+> = CamelCaseObject<
   PathParameters<paths[Path][Method]> &
     QueryParameters<paths[Path][Method]> &
     RequestBodyParameters<paths[Path][Method]>
