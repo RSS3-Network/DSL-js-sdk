@@ -165,7 +165,7 @@ const exports: Record<
   string,
   { types: string; import: string; require: string }
 > = { ...pkg.exports };
-const files = ["package.json", "dist", "src"];
+const files = ["package.json", "dist", "src", "README.md"];
 
 for (const [tag, fnNames] of Object.entries(groupedFnNames)) {
   const filename = tag.toLowerCase();

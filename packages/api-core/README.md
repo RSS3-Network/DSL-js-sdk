@@ -4,12 +4,13 @@
 </p>
 <p align="center">
   <a href="https://npmjs.com/package/@rss3/js-sdk"><img src="https://img.shields.io/npm/v/%40rss3%2Fjs-sdk?style=flat&logo=npm&color=%230072ff" alt="npm package"></a>
+  <a href="https://bundlephobia.com/package/@rss3/api-core"><img alt="npm bundle size" src="https://img.shields.io/bundlephobia/minzip/%40rss3%2Fapi-core?style=flat&logo=npm&color=%230072ff"></a>
   <a href="https://twitter.com/intent/follow?screen_name=rss3_"><img src="https://img.shields.io/twitter/follow/rss3_?color=%230072ff" alt="follow RSS3 on X"></a>
   <a href="https://discord.gg/vfhpMjdbGU"><img src="https://img.shields.io/badge/chat-discord-blue?style=flat&logo=discord&color=%230072ff" alt="discord chat"></a>
 </p>
 <!-- markdownlint-enable -->
 
-# RSS3 JavaScript SDK
+# RSS3 API Core
 
 > The Turbocharger for Your Next Open Web Development.
 
@@ -31,7 +32,7 @@ npm i @rss3/api-core
 Get open social activities of anyone, here we get `vitalik.eth`'s comments on `Farcaster`:
 
 ```js
-import { getActivities } from '@rss3/js-sdk'
+import { getActivities } from '@rss3/api-core'
 
 const socialActivities = await getActivities({
   account: "vitalik.eth",
@@ -44,7 +45,7 @@ const socialActivities = await getActivities({
 Or simply query cross-network and human-readable feed of anyone:
 
 ```js
-import { getActivities } from '@rss3/js-sdk'
+import { getActivities } from '@rss3/api-core'
 
 const readableFeed = await getActivities({
   account: "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
