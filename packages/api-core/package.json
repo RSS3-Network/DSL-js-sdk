@@ -91,9 +91,9 @@
   "scripts": {
     "build": "concurrently 'tsc -p tsconfig.cjs.json' 'tsc -p tsconfig.esm.json'",
     "prebuild": "rm -rf dist",
-    "download-openapi-json": "tsx scripts/download-openapi-json",
-    "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/types/openapi-schema.ts",
-    "categorize-requests": "tsx scripts/categorize-requests.ts"
+    "download-openapi-json": "tsx scripts/download-openapi-json && biome check --write scripts",
+    "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/types/openapi-schema.ts && biome check --write src",
+    "categorize-requests": "tsx scripts/categorize-requests.ts && biome check --write ./"
   },
   "devDependencies": {
     "@types/node": "^20.14.2",
