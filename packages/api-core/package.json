@@ -90,6 +90,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "concurrently 'tsc -p tsconfig.cjs.json' 'tsc -p tsconfig.esm.json'",
+    "dev": "concurrently 'tsc -p tsconfig.cjs.json --watch' 'tsc -p tsconfig.esm.json --watch'",
     "prebuild": "rm -rf dist",
     "download-openapi-json": "tsx scripts/download-openapi-json && biome check --write scripts",
     "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/types/openapi-schema.ts && biome check --write src",
