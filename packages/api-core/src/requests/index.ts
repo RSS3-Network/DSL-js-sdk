@@ -5,21 +5,15 @@ import type { CamelCasedPropertiesDeep } from "type-fest";
 import { type Client, getDefaultClient } from "../client.js";
 import type { paths } from "../types/openapi-schema.js";
 import type { HttpMethod, PathParams } from "../types/utilities.js";
-import {
-  type RemoveNestedDataObj,
-  removeNestedDataObj,
-} from "./remove-nested-data-obj.js";
 
 type CreateRequestResult<
   Path extends keyof paths,
   Method extends HttpMethod,
   FetchInit extends MaybeOptionalInit<paths[Path], Method>,
 > = CamelCasedPropertiesDeep<
-  RemoveNestedDataObj<
-    Required<
-      FetchResponse<paths[Path][Method], FetchInit, `${string}/${string}`>
-    >["data"]
-  >
+  Required<
+    FetchResponse<paths[Path][Method], FetchInit, `${string}/${string}`>
+  >["data"]
 >;
 
 function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
@@ -50,9 +44,11 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
       );
     }
 
-    const result = objectToCamel(
-      removeNestedDataObj(data),
-    ) as CreateRequestResult<Path, Method, FetchInit>;
+    const result = objectToCamel(data) as CreateRequestResult<
+      Path,
+      Method,
+      FetchInit
+    >;
 
     return (mapResult?.(result) ?? result) as Result;
   };
@@ -88,22 +84,9 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
   };
 }
 
-type RequestParams<T> = T extends (
-  // biome-ignore lint/suspicious/noExplicitAny: Need any here
-  init?: any,
-  client?: Client,
-  // biome-ignore lint/suspicious/noExplicitAny: Need any here
-) => any
-  ? undefined
-  : T extends (
-        params: infer P,
-        // biome-ignore lint/suspicious/noExplicitAny: Need any here
-        init?: any,
-        client?: Client,
-        // biome-ignore lint/suspicious/noExplicitAny: Need any here
-      ) => any
-    ? P
-    : never;
+// biome-ignore lint/suspicious/noExplicitAny: Need any here
+type RequestParams<T extends (...args: any) => any> =
+  Parameters<T>[2] extends undefined ? never : Parameters<T>[0];
 
 // biome-ignore lint/suspicious/noExplicitAny: Need any here
 type RequestResult<T extends (...args: any) => Promise<any>> = Exclude<
@@ -125,15 +108,25 @@ export type GetActivitiesResult = RequestResult<typeof getActivities>;
 export const getActivities = buildRequest(
   "/decentralized/{account}",
   "get",
-).withParams(({ account, ...query }) => ({
-  params: objectToSnake({ path: { account }, query: query }),
-}));
+).withParams(
+  ({ account, ...query }) => ({
+    params: objectToSnake({ path: { account }, query: query }),
+  }),
+  ({ data, meta }) => ({
+    data,
+    cursor: meta?.cursor,
+  }),
+);
 
 export type GetRSSActivityParams = RequestParams<typeof getRSSActivity>;
 export type GetRSSActivityResult = RequestResult<typeof getRSSActivity>;
 export const getRSSActivity = buildRequest("/rss/{path}", "get").withParams(
   (path) => ({
     params: objectToSnake({ path }),
+  }),
+  ({ data, meta }) => ({
+    data,
+    cursor: meta?.cursor,
   }),
 );
 
