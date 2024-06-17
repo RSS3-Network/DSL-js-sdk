@@ -19,7 +19,7 @@ const pathToRequestMap = {
     get: "getActivity",
   },
   "/decentralized/{account}": {
-    get: "getAccountActivities",
+    get: "getActivities",
   },
   "/rss/{path}": {
     get: "getRSSActivity",

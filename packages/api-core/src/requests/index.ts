@@ -120,13 +120,9 @@ export const getActivity = buildRequest(
   params: objectToSnake({ path: { id }, query: query }),
 }));
 
-export type GetAccountActivitiesParams = RequestParams<
-  typeof getAccountActivities
->;
-export type GetAccountActivitiesResult = RequestResult<
-  typeof getAccountActivities
->;
-export const getAccountActivities = buildRequest(
+export type GetActivitiesParams = RequestParams<typeof getActivities>;
+export type GetActivitiesResult = RequestResult<typeof getActivities>;
+export const getActivities = buildRequest(
   "/decentralized/{account}",
   "get",
 ).withParams(({ account, ...query }) => ({

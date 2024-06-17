@@ -3,7 +3,7 @@ export {
   getActivity,
   type GetActivityParams,
   type GetActivityResult,
-  getAccountActivities,
-  type GetAccountActivitiesParams,
-  type GetAccountActivitiesResult,
+  getActivities,
+  type GetActivitiesParams,
+  type GetActivitiesResult,
 } from "./requests/index.js";
