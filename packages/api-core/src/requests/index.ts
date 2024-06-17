@@ -1,13 +1,10 @@
 import type { FetchResponse, MaybeOptionalInit } from "openapi-fetch";
 import { objectToCamel, objectToSnake } from "ts-case-convert";
+import type { CamelCasedPropertiesDeep } from "type-fest";
 
 import { type Client, getDefaultClient } from "../client.js";
 import type { paths } from "../types/openapi-schema.js";
-import type {
-  CamelCaseObject,
-  HttpMethod,
-  PathParams,
-} from "../types/utilities.js";
+import type { HttpMethod, PathParams } from "../types/utilities.js";
 import {
   type RemoveNestedDataObj,
   removeNestedDataObj,
@@ -17,7 +14,7 @@ type CreateRequestResult<
   Path extends keyof paths,
   Method extends HttpMethod,
   FetchInit extends MaybeOptionalInit<paths[Path], Method>,
-> = CamelCaseObject<
+> = CamelCasedPropertiesDeep<
   RemoveNestedDataObj<
     Required<
       FetchResponse<paths[Path][Method], FetchInit, `${string}/${string}`>

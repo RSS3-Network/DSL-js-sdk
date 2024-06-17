@@ -75,6 +75,9 @@ importers:
       ts-case-convert:
         specifier: ^2.0.7
         version: 2.0.7
+      type-fest:
+        specifier: ^4.20.1
+        version: 4.20.1
     devDependencies:
       '@types/node':
         specifier: ^20.14.2
@@ -1434,8 +1437,8 @@ packages:
     resolution: {integrity: sha512-0fr/mIH1dlO+x7TlcMy+bIDqKPsw/70tVyeHW787goQjhmqaZe10uwLujubK9q9Lg6Fiho1KUKDYz0Z7k7g5/g==}
     engines: {node: '>=4'}
 
-  type-fest@4.20.0:
-    resolution: {integrity: sha512-MBh+PHUHHisjXf4tlx0CFWoMdjx8zCMLJHOjnV1prABYZFHqtFOyauCIK2/7w4oIfwkF8iNhLtnJEfVY2vn3iw==}
+  type-fest@4.20.1:
+    resolution: {integrity: sha512-R6wDsVsoS9xYOpy8vgeBlqpdOyzJ12HNfQhC/aAKWM3YoCV9TtunJzh/QpkMgeDhkoynDcw5f1y+qF9yc/HHyg==}
     engines: {node: '>=16'}
 
   typescript@5.4.5:
@@ -2377,7 +2380,7 @@ snapshots:
     dependencies:
       '@babel/code-frame': 7.24.7
       index-to-position: 0.1.2
-      type-fest: 4.20.0
+      type-fest: 4.20.1
 
   path-key@3.1.1: {}
 
@@ -2709,7 +2712,7 @@ snapshots:
 
   type-detect@4.0.8: {}
 
-  type-fest@4.20.0: {}
+  type-fest@4.20.1: {}
 
   typescript@5.4.5: {}
 
