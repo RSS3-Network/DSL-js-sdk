@@ -1,20 +1,13 @@
-import {
-  getAvailableWorkers,
-  getCompatibleNetworks,
-  getWorkerConfig,
-} from "@rss3/api-core/networks";
+import { getActivities } from "@rss3/api-core";
 
 export default async function Home() {
-  const networks = await getCompatibleNetworks();
-  const workers = await getAvailableWorkers({
-    networkName: networks[0] ?? "",
-  });
-  const config = await getWorkerConfig({
-    networkName: networks[0] ?? "",
-    workerName: workers[0] ?? "",
+  const activities = await getActivities({
+    account: "0x127a9BA058C57E90509a28294685D7De659c2be9",
   });
 
-  console.log({ networks, workers, config });
-
-  return <div>{"data"}</div>;
+  return (
+    <div className="whitespace-pre-wrap font-mono">
+      {JSON.stringify(activities, null, 2)}
+    </div>
+  );
 }
