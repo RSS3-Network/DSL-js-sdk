@@ -92,6 +92,16 @@ importers:
         specifier: ^5.4.5
         version: 5.4.5
 
+  packages/api-utils:
+    dependencies:
+      '@rss3/api-core':
+        specifier: workspace:*
+        version: link:../api-core
+    devDependencies:
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
 packages:
 
   '@alloc/quick-lru@5.2.0':
