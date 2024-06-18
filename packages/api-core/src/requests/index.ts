@@ -137,7 +137,7 @@ export type GetBridgingTransactionsResult = RequestResult<
   typeof getBridgingTransactions
 >;
 export const getBridgingTransactions = buildRequest(
-  "/nta/bridge/transactions",
+  "/nta/bridgings/transactions",
   "get",
 ).withParams((query) => ({
   params: objectToSnake({ query }),
@@ -150,7 +150,7 @@ export type GetBridgingTransactionResult = RequestResult<
   typeof getBridgingTransaction
 >;
 export const getBridgingTransaction = buildRequest(
-  "/nta/bridge/transactions/{transaction_hash}",
+  "/nta/bridgings/transactions/{transaction_hash}",
   "get",
 ).withParams((path) => ({
   params: objectToSnake({ path }),
@@ -163,7 +163,7 @@ export type GetStakingTransactionsResult = RequestResult<
   typeof getStakingTransactions
 >;
 export const getStakingTransactions = buildRequest(
-  "/nta/stake/transactions",
+  "/nta/stakings/transactions",
   "get",
 ).withParams((query) => ({
   params: objectToSnake({ query }),
@@ -176,7 +176,7 @@ export type GetStakingTransactionResult = RequestResult<
   typeof getStakingTransaction
 >;
 export const getStakingTransaction = buildRequest(
-  "/nta/stake/transactions/{transaction_hash}",
+  "/nta/stakings/transactions/{transaction_hash}",
   "get",
 ).withParams((path) => ({
   params: objectToSnake({ path }),
@@ -185,7 +185,7 @@ export const getStakingTransaction = buildRequest(
 export type GetStakingsParams = RequestParams<typeof getStakings>;
 export type GetStakingsResult = RequestResult<typeof getStakings>;
 export const getStakings = buildRequest(
-  "/nta/stake/stakings",
+  "/nta/stakings/stakings",
   "get",
 ).withParams((query) => ({
   params: objectToSnake({ query }),
@@ -194,7 +194,7 @@ export const getStakings = buildRequest(
 export type GetStakingProfitParams = RequestParams<typeof getStakingProfit>;
 export type GetStakingProfitResult = RequestResult<typeof getStakingProfit>;
 export const getStakingProfit = buildRequest(
-  "/nta/stake/{staker_address}/profit",
+  "/nta/stakings/{staker_address}/profit",
   "get",
 ).withParams((path) => ({
   params: objectToSnake({ path }),
@@ -354,7 +354,7 @@ export type GetNodeOperationProfitResult = RequestResult<
   typeof getNodeOperationProfit
 >;
 export const getNodeOperationProfit = buildRequest(
-  "/nta/nodes/{node_address}/operation/profit",
+  "/nta/nodes/{address}/operation/profit",
   "get",
 ).withParams((path) => ({
   params: objectToSnake({ path }),
@@ -393,10 +393,10 @@ export const getEpochTransaction = buildRequest(
 export type GetNodeRewardsParams = RequestParams<typeof getNodeRewards>;
 export type GetNodeRewardsResult = RequestResult<typeof getNodeRewards>;
 export const getNodeRewards = buildRequest(
-  "/nta/epochs/{node_address}/rewards",
+  "/nta/epochs/{address}/rewards",
   "get",
-).withParams(({ nodeAddress, ...query }) => ({
-  params: objectToSnake({ path: { nodeAddress }, query }),
+).withParams(({ address, ...query }) => ({
+  params: objectToSnake({ path: { address }, query }),
 }));
 
 export type GetAverageEpochsApyParams = RequestParams<

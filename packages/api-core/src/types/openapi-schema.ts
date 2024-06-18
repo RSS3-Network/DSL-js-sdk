@@ -11,7 +11,10 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    /** Get Activity by ID */
+    /**
+     * Get Activity by ID
+     * @description This endpoint retrieves the details of a specified decentralized transaction activity by its ID. You can also specify additional query parameters to limit the number of actions retrieved and to paginate through actions.
+     */
     get: {
       parameters: {
         query?: {
@@ -19,55 +22,28 @@ export interface paths {
            * @description Specify the number of actions within the activity to retrieve
            * @example 10
            */
-          action_limit?: number;
+          action_limit?: components["parameters"]["action_limit_query"];
           /**
            * @description Specify the pagination for actions
            * @example 1
            */
-          action_page?: number;
+          action_page?: components["parameters"]["action_page_query"];
         };
         header?: never;
         path: {
           /**
            * @description Retrieve details for the specified activity ID
-           * @example 0x000000000000000000000000113f4b4c3765e5f05fd197c5c35b8a8a9b34245b
+           * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
            */
-          id: string;
+          id: components["parameters"]["activity_id_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description A successful response with the details of the activity. */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": components["schemas"]["ActivityResponse"];
-          };
-        };
-        /** @description The request is malformed or contains invalid parameters. */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        /** @description The specified activity ID was not found. */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        /** @description An internal server error occurred while processing the request. */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        200: components["responses"]["ActivityResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -85,81 +61,57 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    /** Get Account Activities */
+    /**
+     * Get Account Activities
+     * @description This endpoint retrieves the activities associated with a specified account in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
+     */
     get: {
       parameters: {
         query?: {
           /**
-           * @description Specify the number of activities to retrieve
+           * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
            * @example 20
            */
-          limit?: number;
+          limit?: components["parameters"]["limit_query"];
           /**
            * @description Specify the number of actions within the activity to retrieve
            * @example 10
            */
-          action_limit?: number;
-          /** @description Specify the cursor used for pagination */
-          cursor?: string;
-          /** @description Retrieve activities starting from this timestamp */
-          since_timestamp?: number;
-          /** @description Retrieve activities up to this timestamp */
-          until_timestamp?: number;
-          /** @description Retrieve activities based on success status */
-          success?: boolean;
-          /** @description Retrieve activities based on direction */
-          direction?: components["schemas"]["Direction"];
-          /** @description Retrieve activities from the specified network(s) */
-          network?: components["schemas"]["Network"][];
-          /** @description Retrieve activities from the specified tag(s) */
-          tag?: components["schemas"]["Tag"][];
-          /** @description Retrieve activities from the specified type(s) */
-          type?: string[];
-          /** @description Retrieve activities from the specified platform(s) */
-          platform?: components["schemas"]["Platform"][];
+          action_limit?: components["parameters"]["action_limit_query"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+          since_timestamp?: components["parameters"]["since_timestamp_query"];
+          /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+          until_timestamp?: components["parameters"]["until_timestamp_query"];
+          /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+          success?: components["parameters"]["success_query"];
+          /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+          direction?: components["parameters"]["direction_query"];
+          /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
+          network?: components["parameters"]["network_query"];
+          /** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+          tag?: components["parameters"]["action_tag_query"];
+          /** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+          type?: components["parameters"]["action_type_query"];
+          /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+          platform?: components["parameters"]["platform_query"];
         };
         header?: never;
         path: {
           /**
-           * @description Retrieve activities from the specified account
+           * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
            * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
            */
-          account: string;
+          account: components["parameters"]["account_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description A successful response with the activities from the specified account. */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": components["schemas"]["ActivitiesResponse"];
-          };
-        };
-        /** @description The request is malformed or contains invalid parameters. */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        /** @description The specified account was not found. */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        /** @description An internal server error occurred while processing the request. */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        200: components["responses"]["ActivitiesResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -187,28 +139,13 @@ export interface paths {
            * @description Retrieve details for the specified RSS path
            * @example abc
            */
-          path: string;
+          path: components["parameters"]["rss_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description A successful response with the details of the RSS activity. */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": components["schemas"]["ActivitiesResponse"];
-          };
-        };
-        /** @description The request is malformed or contains invalid parameters. */
-        400: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        200: components["responses"]["RSSActivitiesResponse"];
         /** @description The specified RSS path was not found. */
         404: {
           headers: {
@@ -216,13 +153,7 @@ export interface paths {
           };
           content?: never;
         };
-        /** @description An internal server error occurred while processing the request. */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -233,7 +164,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/bridge/transactions": {
+  "/nta/bridgings/transactions": {
     parameters: {
       query?: never;
       header?: never;
@@ -242,17 +173,35 @@ export interface paths {
     };
     /**
      * Get bridging transactions
-     * @description Get bridging transactions
+     * @description Retrieve a list of bridging transactions based on various query parameters such as cursor, sender, receiver, address, transaction type, and limit. This endpoint allows users to filter transactions to get precise data related to deposits and withdrawals. The response includes detailed transaction information, including sender and receiver addresses, token details, and associated events such as deposit initialization and finalization. Use this endpoint for monitoring, auditing, or analyzing bridging transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
      */
     get: {
       parameters: {
         query?: {
-          cursor?: string;
-          sender?: string;
-          receiver?: string;
-          address?: string;
-          type?: "deposit" | "withdraw";
-          limit?: number;
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Sender address
+           * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+           */
+          sender?: components["parameters"]["sender_query"];
+          /**
+           * @description Receiver address
+           * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+           */
+          receiver?: components["parameters"]["receiver_query"];
+          /**
+           * @description Address involved in the transaction
+           * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+           */
+          address?: components["parameters"]["address_query"];
+          /** @description Type of bridging transaction */
+          type?: components["parameters"]["bridging_type_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path?: never;
@@ -260,17 +209,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["BridgeTransaction"][];
-            };
-          };
-        };
+        200: components["responses"]["BridgeTransactionsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -281,7 +222,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/bridge/transactions/{transaction_hash}": {
+  "/nta/bridgings/transactions/{transaction_hash}": {
     parameters: {
       query?: never;
       header?: never;
@@ -290,30 +231,26 @@ export interface paths {
     };
     /**
      * Get bridging transaction by hash
-     * @description Get bridging transaction by transaction hash
+     * @description Retrieve detailed information of a bridging transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single transaction, including sender, receiver, token details, and related events.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          transaction_hash: string;
+          /**
+           * @description The unique hash of the bridging transaction
+           * @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa
+           */
+          transaction_hash: components["parameters"]["bridging_transaction_hash_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["BridgeTransaction"];
-            };
-          };
-        };
+        200: components["responses"]["BridgeTransactionByHashResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -324,7 +261,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/stake/transactions": {
+  "/nta/stakings/transactions": {
     parameters: {
       query?: never;
       header?: never;
@@ -333,17 +270,32 @@ export interface paths {
     };
     /**
      * Get staking transactions
-     * @description Get staking transactions
+     * @description Retrieve a list of staking transactions based on various query parameters such as cursor, staker, node, transaction type, pending status, and limit. This endpoint allows users to filter transactions to get precise data related to staking activities including deposits, withdrawals, stakes, and unstakes. The response includes detailed transaction information such as staker address, node address, value staked, associated chips, and related events. Use this endpoint for monitoring, auditing, or analyzing staking transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
      */
     get: {
       parameters: {
         query?: {
-          cursor?: string;
-          staker?: string;
-          node?: string;
-          type?: "deposit" | "withdraw" | "stake" | "unstake";
-          pending?: boolean;
-          limit?: number;
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Staker address
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker?: components["parameters"]["staker_query"];
+          /**
+           * @description Node address
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          node?: components["parameters"]["node_query"];
+          /** @description Type of staking transaction */
+          type?: components["parameters"]["staking_type_query"];
+          /** @description Pending status of the transaction */
+          pending?: components["parameters"]["pending_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path?: never;
@@ -351,17 +303,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["StakeTransaction"][];
-            };
-          };
-        };
+        200: components["responses"]["StakeTransactionsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -372,7 +316,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/stake/transactions/{transaction_hash}": {
+  "/nta/stakings/transactions/{transaction_hash}": {
     parameters: {
       query?: never;
       header?: never;
@@ -381,30 +325,26 @@ export interface paths {
     };
     /**
      * Get staking transaction by hash
-     * @description Get staking transaction by transaction hash
+     * @description Retrieve detailed information of a staking transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single staking transaction, including staker address, node address, value staked, associated chips, and related events.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          transaction_hash: string;
+          /**
+           * @description The unique hash of the staking transaction
+           * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
+           */
+          transaction_hash: components["parameters"]["staking_transaction_hash_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["StakeTransaction"];
-            };
-          };
-        };
+        200: components["responses"]["StakeTransactionByHashResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -415,7 +355,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/stake/stakings": {
+  "/nta/stakings/stakings": {
     parameters: {
       query?: never;
       header?: never;
@@ -424,15 +364,28 @@ export interface paths {
     };
     /**
      * Get a list of stakers and Nodes
-     * @description Get a list of stakers and Nodes
+     * @description Retrieve a list of stakers and their associated Nodes. This endpoint allows users to filter the results by staker address, node address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each staker, node, and associated chips.
      */
     get: {
       parameters: {
         query?: {
-          staker_address?: string;
-          node_address?: string;
-          limit?: number;
-          cursor?: string;
+          /**
+           * @description Staker address
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker?: components["parameters"]["staker_query"];
+          /**
+           * @description Node address
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          node?: components["parameters"]["node_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
         };
         header?: never;
         path?: never;
@@ -440,19 +393,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["StakeStaking"][];
-              /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-              cursor?: string;
-            };
-          };
-        };
+        200: components["responses"]["StakeStakingsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -463,7 +406,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/stake/{staker_address}/profit": {
+  "/nta/stakings/{staker_address}/profit": {
     parameters: {
       query?: never;
       header?: never;
@@ -472,37 +415,26 @@ export interface paths {
     };
     /**
      * Get staking profit of a staker
-     * @description Get staking profit of a staker
+     * @description Retrieve the staking profit information for a specified staker. This endpoint returns detailed profit data, including the owner's address, total chip amount, total chip value, and profit and loss (PNL) data over different time periods (one day, one week, one month).
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          staker_address: string;
+          /**
+           * @description The address of the staker whose profit information is to be retrieved.
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker_address: components["parameters"]["staker_address_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: {
-                owner?: string;
-                total_chip_amount?: string;
-                total_chip_value?: string;
-                oneDay?: components["schemas"]["ChipPNL"];
-                oneWeek?: components["schemas"]["ChipPNL"];
-                oneMonth?: components["schemas"]["ChipPNL"];
-              };
-            };
-          };
-        };
+        200: components["responses"]["StakingProfitResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -522,16 +454,35 @@ export interface paths {
     };
     /**
      * Get all chips
-     * @description Get all chips
+     * @description Retrieve a list of all chips. This endpoint allows users to filter the results by cursor, chip IDs, node address, owner address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each chip and a cursor for pagination to fetch subsequent sets of results.
      */
     get: {
       parameters: {
         query?: {
-          cursor?: string;
-          id?: number[];
-          node?: string;
-          owner?: string;
-          limit?: number;
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Array of chip IDs to filter the results.
+           * @example [
+           *       1690
+           *     ]
+           */
+          id?: components["parameters"]["chip_ids_query"];
+          /**
+           * @description Node address
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          node?: components["parameters"]["node_query"];
+          /**
+           * @description The address of the chip owner to filter the results.
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          owner?: components["parameters"]["owner_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path?: never;
@@ -539,18 +490,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["Chips"][];
-              cursor?: string;
-            };
-          };
-        };
+        200: components["responses"]["ChipsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -570,28 +512,25 @@ export interface paths {
     };
     /**
      * Get Chips by chip id
-     * @description Get Chips by chip id
+     * @description Retrieve detailed information about a specific chip by its unique chip ID. This endpoint returns comprehensive data about the chip, including its node address, owner address, and metadata such as name, description, and image.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          chip_id: string;
+          /**
+           * @description The unique identifier of the chip to retrieve.
+           * @example 1690
+           */
+          chip_id: components["parameters"]["chip_id_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": components["schemas"]["Chips"];
-          };
-        };
+        200: components["responses"]["ChipResponse"];
+        400: components["responses"]["400"];
         /** @description Not found */
         404: {
           headers: {
@@ -599,6 +538,7 @@ export interface paths {
           };
           content?: never;
         };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -618,28 +558,25 @@ export interface paths {
     };
     /**
      * Get Chips image by id
-     * @description Get Chips image by chip id
+     * @description Retrieve the image of a specific chip by its unique chip ID. This endpoint returns the SVG image associated with the chip.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          chip_id: string;
+          /**
+           * @description The unique identifier of the chip to retrieve.
+           * @example 1690
+           */
+          chip_id: components["parameters"]["chip_id_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "image/svg+xml": string;
-          };
-        };
+        200: components["responses"]["ChipImageResponse"];
+        400: components["responses"]["400"];
         /** @description Not found */
         404: {
           headers: {
@@ -647,6 +584,7 @@ export interface paths {
           };
           content?: never;
         };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -666,7 +604,7 @@ export interface paths {
     };
     /**
      * Get snapshots of Node count
-     * @description Get snapshots of Node count
+     * @description Retrieve snapshots of the node count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of nodes on that date.
      */
     get: {
       parameters: {
@@ -677,20 +615,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: {
-                date?: string;
-                count?: number;
-              }[];
-            };
-          };
-        };
+        200: components["responses"]["NodeCountSnapshotsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -712,7 +639,7 @@ export interface paths {
     put?: never;
     /**
      * Get snapshots of the minimum staking amount
-     * @description Get snapshots of the minimum staking amount for Nodes
+     * @description Retrieve snapshots of the minimum staking amount for specified nodes. This endpoint allows users to specify a list of node addresses and optionally return only the start and end values of the minimum tokens to stake.
      */
     post: {
       parameters: {
@@ -721,27 +648,11 @@ export interface paths {
         path?: never;
         cookie?: never;
       };
-      requestBody?: {
-        content: {
-          "application/json": {
-            node_addresses?: string[];
-            /** @description If true, only return the start and end min_tokens_to_stake */
-            only_start_and_end?: boolean;
-          };
-        };
-      };
+      requestBody: components["requestBodies"]["NodeMinTokensToStakeRequestBody"];
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["NodeMinTokensToStakeSnapshot"][];
-            };
-          };
-        };
+        200: components["responses"]["NodeMinTokensToStakeResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     delete?: never;
@@ -759,7 +670,7 @@ export interface paths {
     };
     /**
      * Get snapshots of staker count
-     * @description Get snapshots of total staker count
+     * @description Retrieve snapshots of the total staker count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of stakers on that date.
      */
     get: {
       parameters: {
@@ -770,20 +681,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: {
-                date?: string;
-                count?: number;
-              }[];
-            };
-          };
-        };
+        200: components["responses"]["StakerCountSnapshotsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -803,19 +703,27 @@ export interface paths {
     };
     /**
      * Get snapshots of the staker profit
-     * @description Get snapshots of the staker profit
+     * @description Retrieve snapshots of the staker profit over time. This endpoint allows filtering by staker address, date range, and pagination parameters.
      */
     get: {
       parameters: {
-        query: {
-          staker_address: string;
-          cursor?: string;
-          /** @description The number of snapshots to return, if not provided, return all snapshots */
-          limit?: number;
-          /** @description The date before which the snapshots are returned */
-          beforeDate?: string;
-          /** @description The date after which the snapshots are returned */
-          afterDate?: string;
+        query?: {
+          /**
+           * @description Staker address
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker_address?: components["parameters"]["staker_address_query"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+          /** @description The date before which the snapshots are returned. */
+          beforeDate?: components["parameters"]["before_date_query"];
+          /** @description The date after which the snapshots are returned. */
+          afterDate?: components["parameters"]["after_date_query"];
         };
         header?: never;
         path?: never;
@@ -823,18 +731,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["StakerProfitSnapshot"][];
-              cursor?: string;
-            };
-          };
-        };
+        200: components["responses"]["StakerProfitSnapshotsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -854,19 +753,27 @@ export interface paths {
     };
     /**
      * Get snapshots of operation profit
-     * @description Get snapshots of operation profit
+     * @description Retrieve snapshots of the operation profit over time for a specific node. This endpoint allows filtering by node address, date range, and pagination parameters.
      */
     get: {
       parameters: {
-        query: {
-          node_address: string;
-          cursor?: string;
-          /** @description The number of snapshots to return, if not provided, return all snapshots */
-          limit?: number;
-          /** @description The date before which the snapshots are returned */
-          beforeDate?: string;
-          /** @description The date after which the snapshots are returned */
-          afterDate?: string;
+        query?: {
+          /**
+           * @description Node address
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+           */
+          node_address?: components["parameters"]["node_address_query"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+          /** @description The date before which the snapshots are returned. */
+          beforeDate?: components["parameters"]["before_date_query"];
+          /** @description The date after which the snapshots are returned. */
+          afterDate?: components["parameters"]["after_date_query"];
         };
         header?: never;
         path?: never;
@@ -874,18 +781,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["OperationProfit"][];
-              cursor?: string;
-            };
-          };
-        };
+        200: components["responses"]["OperationProfitSnapshotsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -904,8 +802,8 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get the apy of epoch snapshots
-     * @description Get the apy of epoch snapshots
+     * Get the APY of epoch snapshots
+     * @description Retrieve the Annual Percentage Yield (APY) for epoch snapshots. This endpoint returns an array of objects, each containing the epoch details and the corresponding APY.
      */
     get: {
       parameters: {
@@ -916,17 +814,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["EpochAPYSnapshot"][];
-            };
-          };
-        };
+        200: components["responses"]["EpochAPYSnapshotsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -946,15 +836,23 @@ export interface paths {
     };
     /**
      * Get all Nodes
-     * @description Get all Nodes
+     * @description Retrieve a list of all nodes. This endpoint allows filtering by cursor, limit, and node address. The default limit is 10 and the maximum limit is 50.
      */
     get: {
       parameters: {
         query?: {
-          cursor?: string;
-          /** @description The number of Nodes to return, default is 10, maximum is 50 */
-          limit?: number;
-          node_address?: string[];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+          /**
+           * @description Node address
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          node?: components["parameters"]["node_query"];
         };
         header?: never;
         path?: never;
@@ -962,15 +860,8 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": components["schemas"]["Node"][];
-          };
-        };
+        200: components["responses"]["NodesResponse"];
+        400: components["responses"]["400"];
         /** @description Not found */
         404: {
           headers: {
@@ -978,13 +869,7 @@ export interface paths {
           };
           content?: never;
         };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1004,28 +889,25 @@ export interface paths {
     };
     /**
      * Get Node by address
-     * @description Get Node by address
+     * @description Retrieve detailed information about a specific node by its address.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          address: string;
+          /**
+           * @description The address of the node to retrieve.
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+           */
+          address: components["parameters"]["node_address_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": components["schemas"]["Node"];
-          };
-        };
+        200: components["responses"]["NodeResponse"];
+        400: components["responses"]["400"];
         /** @description Not found */
         404: {
           headers: {
@@ -1033,13 +915,7 @@ export interface paths {
           };
           content?: never;
         };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1059,28 +935,25 @@ export interface paths {
     };
     /**
      * Get Node avatar by address
-     * @description Get Node avatar by address
+     * @description Retrieve the avatar of a specific node by its address. This endpoint returns the SVG image associated with the node.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          address: string;
+          /**
+           * @description The address of the node to retrieve.
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+           */
+          address: components["parameters"]["node_address_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "image/svg+xml": string;
-          };
-        };
+        200: components["responses"]["NodeAvatarResponse"];
+        400: components["responses"]["400"];
         /** @description Not found */
         404: {
           headers: {
@@ -1088,13 +961,7 @@ export interface paths {
           };
           content?: never;
         };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1114,48 +981,34 @@ export interface paths {
     };
     /**
      * Get Node transaction events by address
-     * @description Get Node transaction events by address
+     * @description Retrieve the transaction events for a specific node by its address. This endpoint allows filtering by cursor and limit for pagination.
      */
     get: {
       parameters: {
         query?: {
-          cursor?: string;
-          limit?: number;
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path: {
-          address: string;
+          /**
+           * @description The address of the node to retrieve.
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+           */
+          address: components["parameters"]["node_address_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["NodeEvent"][];
-              cursor?: string;
-            };
-          };
-        };
-        /** @description Not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        200: components["responses"]["NodeEventsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1166,7 +1019,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/nodes/{node_address}/operation/profit": {
+  "/nta/nodes/{address}/operation/profit": {
     parameters: {
       query?: never;
       header?: never;
@@ -1175,36 +1028,33 @@ export interface paths {
     };
     /**
      * Get Node operation profit by address
-     * @description Get Node operation profit by Node address
+     * @description Retrieve the operation profit details for a specific node by its address. This endpoint provides detailed profit and loss (PNL) information over different time periods.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          node_address: string;
+          /**
+           * @description The address of the node to retrieve.
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+           */
+          address: components["parameters"]["node_address_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
+        200: components["responses"]["NodeOperationProfitResponse"];
+        400: components["responses"]["400"];
+        /** @description Not found */
+        404: {
           headers: {
             [name: string]: unknown;
           };
-          content: {
-            "application/json": {
-              data?: {
-                address?: string;
-                operation_pool?: string;
-                oneDay?: components["schemas"]["OperationProfitPNL"];
-                oneWeek?: components["schemas"]["OperationProfitPNL"];
-                oneMonth?: components["schemas"]["OperationProfitPNL"];
-              };
-            };
-          };
+          content?: never;
         };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1224,13 +1074,18 @@ export interface paths {
     };
     /**
      * Get all epochs
-     * @description Get all epochs
+     * @description Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.
      */
     get: {
       parameters: {
         query?: {
-          cursor?: string;
-          limit?: number;
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path?: never;
@@ -1238,18 +1093,9 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["BriefEpoch"][];
-              cursor?: string;
-            };
-          };
-        };
+        200: components["responses"]["EpochsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1269,28 +1115,33 @@ export interface paths {
     };
     /**
      * Get epoch by id
-     * @description Get epoch by epoch id
+     * @description Retrieve detailed information about a specific epoch by its ID.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          epoch_id: string;
+          /**
+           * @description The ID of the epoch to retrieve.
+           * @example 130
+           */
+          epoch_id: components["parameters"]["epoch_id_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
+        200: components["responses"]["EpochResponse"];
+        400: components["responses"]["400"];
+        /** @description Not found */
+        404: {
           headers: {
             [name: string]: unknown;
           };
-          content: {
-            "application/json": components["schemas"]["Epoch"];
-          };
+          content?: never;
         };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1310,30 +1161,26 @@ export interface paths {
     };
     /**
      * Get epoch transaction by hash
-     * @description Get epoch transaction by hash
+     * @description Retrieve details of an epoch transaction by its hash.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          transaction_hash: string;
+          /**
+           * @description The unique hash of the epoch transaction
+           * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
+           */
+          transaction_hash: components["parameters"]["epoch_transaction_hash_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["EpochDistribution"][];
-            };
-          };
-        };
+        200: components["responses"]["EpochTransactionResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1344,7 +1191,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/epochs/{node_address}/rewards": {
+  "/nta/epochs/{address}/rewards": {
     parameters: {
       query?: never;
       header?: never;
@@ -1353,34 +1200,41 @@ export interface paths {
     };
     /**
      * Get Node rewards by epoch
-     * @description Get Node rewards by epoch
+     * @description Retrieve the rewards of a specific node by epoch. This endpoint allows filtering by cursor and limit for pagination.
      */
     get: {
       parameters: {
         query?: {
-          cursor?: string;
-          limit?: number;
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path: {
-          node_address: string;
+          /**
+           * @description The address of the node to retrieve.
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+           */
+          address: components["parameters"]["node_address_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
+        200: components["responses"]["NodeRewardsByEpochResponse"];
+        400: components["responses"]["400"];
+        /** @description Not found */
+        404: {
           headers: {
             [name: string]: unknown;
           };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["Epoch"][];
-              cursor?: string;
-            };
-          };
+          content?: never;
         };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1400,7 +1254,7 @@ export interface paths {
     };
     /**
      * Get the average of epochs APY
-     * @description Get the average of epochs APY
+     * @description Retrieve the average Annual Percentage Yield (APY) for all epochs.
      */
     get: {
       parameters: {
@@ -1411,17 +1265,8 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: string;
-            };
-          };
-        };
+        200: components["responses"]["EpochsAverageAPYResponse"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1441,7 +1286,7 @@ export interface paths {
     };
     /**
      * Get all compatible networks
-     * @description Get all compatible networks
+     * @description Retrieve a list of all compatible networks.
      */
     get: {
       parameters: {
@@ -1452,29 +1297,8 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": string[];
-          };
-        };
-        /** @description Not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        200: components["responses"]["NetworksResponse"];
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1494,28 +1318,22 @@ export interface paths {
     };
     /**
      * Get available workers by network
-     * @description Get available workers by network
+     * @description Retrieve a list of available workers for a specific network.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          network_name: string;
+          /** @description The name of the network to retrieve available workers for. */
+          network_name: components["parameters"]["network_name_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": string[];
-          };
-        };
+        200: components["responses"]["NetworkWorkersResponse"];
+        400: components["responses"]["400"];
         /** @description Not found */
         404: {
           headers: {
@@ -1523,13 +1341,7 @@ export interface paths {
           };
           content?: never;
         };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1549,31 +1361,27 @@ export interface paths {
     };
     /**
      * Get config by network and worker
-     * @description Get config by network and worker
+     * @description Retrieve the configuration details for a specific worker in a specific network.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
         path: {
-          network_name: string;
-          worker_name: string;
+          /** @description The name of the network to retrieve available workers for. */
+          network_name: components["parameters"]["network_name_path"];
+          /**
+           * @description The name of the worker.
+           * @example core
+           */
+          worker_name: components["parameters"]["worker_name_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        /** @description OK */
-        200: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content: {
-            "application/json": {
-              data?: components["schemas"]["NetworkWorker"][];
-            };
-          };
-        };
+        200: components["responses"]["NetworkWorkerConfigResponse"];
+        400: components["responses"]["400"];
         /** @description Not found */
         404: {
           headers: {
@@ -1581,13 +1389,7 @@ export interface paths {
           };
           content?: never;
         };
-        /** @description Internal Server Error */
-        500: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
+        500: components["responses"]["500"];
       };
     };
     put?: never;
@@ -1602,7 +1404,26 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
   schemas: {
-    /** @description Represents an individual action within an activity. */
+    /**
+     * @description Represents an individual action within an activity.
+     * @example {
+     *       "tag": "transaction",
+     *       "type": "transfer",
+     *       "from": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+     *       "to": "0xefC5f77c5AD5DB85bc287E80d8c3B88c3f27662C",
+     *       "metadata": {
+     *         "address": "0x7964B6A8aE5a71409e7E17a5b2669903A27997Ac",
+     *         "value": "10000000000000000000000",
+     *         "name": "PlayDoge",
+     *         "symbol": "PLAY",
+     *         "decimals": 18,
+     *         "standard": "ERC-20"
+     *       },
+     *       "related_urls": [
+     *         "https://etherscan.io/tx/0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3"
+     *       ]
+     *     }
+     */
     Action: {
       /** @description The address from which the action originated. */
       from?: string;
@@ -1624,38 +1445,66 @@ export interface components {
       meta?: components["schemas"]["MetaCursor"];
     };
     Activity: {
-      /** @description The list of actions within the activity. */
-      actions?: components["schemas"]["Action"][];
+      /**
+       * @description The unique identifier for the activity.
+       * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
+       */
+      id?: string;
+      /**
+       * @description The owner of the activity.
+       * @example 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+       */
+      owner?: string;
+      network?: components["schemas"]["Network"];
+      /**
+       * @description The address from which the activity originated.
+       * @example 0xBAB4d1f27bAA7762a4d822B80C647F715922492f
+       */
+      from?: string;
+      /**
+       * @description The address to which the activity is directed.
+       * @example 0x7964B6A8aE5a71409e7E17a5b2669903A27997Ac
+       */
+      to?: string;
+      /**
+       * @description The index of the activity in the list.
+       * @example 0
+       */
+      index?: number;
+      platform?: components["schemas"]["Platform"];
+      /**
+       * @description Indicates whether the activity was successful.
+       * @example true
+       */
+      success?: boolean;
+      tag?: components["schemas"]["Tag"];
+      type?: components["schemas"]["Type"];
       calldata?: components["schemas"]["Calldata"];
       direction?: components["schemas"]["Direction"];
       fee?: components["schemas"]["Fee"];
-      /** @description The address from which the activity originated. */
-      from?: string;
-      /** @description The unique identifier for the activity. */
-      id?: string;
-      /** @description The index of the activity in the list. */
-      index?: number;
-      network?: components["schemas"]["Network"];
-      /** @description The owner of the activity. */
-      owner?: string;
-      platform?: components["schemas"]["Platform"];
-      /** @description Indicates whether the activity was successful. */
-      success?: boolean;
-      tag?: components["schemas"]["Tag"];
-      /** @description The timestamp of when the activity occurred. */
+      /**
+       * @description The timestamp of when the activity occurred.
+       * @example 1718689727
+       */
       timestamp?: number;
-      /** @description The address to which the activity is directed. */
-      to?: string;
-      /** @description The total number of actions within the activity. */
+      /**
+       * @description The total number of actions within the activity.
+       * @example 1
+       */
       total_actions?: number;
-      /** @description The type of activity performed. */
-      type?: string;
+      /** @description The list of actions within the activity. */
+      actions?: components["schemas"]["Action"][];
     };
     ActivityResponse: {
       data?: components["schemas"]["Activity"];
       meta?: components["schemas"]["MetaTotalPages"];
     };
-    /** @description Represents the call data associated with an activity. */
+    /**
+     * @description Represents the call data associated with an activity.
+     * @example {
+     *       "function_hash": "0x4022b75e"
+     *     }
+     */
     Calldata: {
       /** @description The hash of the function called. */
       function_hash?: string;
@@ -1666,11 +1515,13 @@ export interface components {
     };
     /**
      * @description The direction of an activity.
+     * @example out
      * @enum {string}
      */
     Direction: "in" | "out" | "self";
     /**
      * @description A tag used to categorize activities.
+     * @example transaction
      * @enum {string}
      */
     Tag:
@@ -1682,7 +1533,33 @@ export interface components {
       | "transaction"
       | "unknown";
     /**
+     * @description The type of activity.
+     * @example transfer
+     * @enum {string}
+     */
+    Type:
+      | "approval"
+      | "bridge"
+      | "burn"
+      | "comment"
+      | "delete"
+      | "feed"
+      | "liquidity"
+      | "mint"
+      | "post"
+      | "profile"
+      | "proxy"
+      | "revise"
+      | "reward"
+      | "share"
+      | "staking"
+      | "swap"
+      | "trade"
+      | "transfer"
+      | "unknown";
+    /**
      * @description The network on which activities occur.
+     * @example ethereum
      * @enum {string}
      */
     Network:
@@ -1728,7 +1605,13 @@ export interface components {
       | "Uniswap"
       | "Unknown"
       | "VSL";
-    /** @description Represents fee information for an activity. */
+    /**
+     * @description Represents fee information for an activity.
+     * @example {
+     *       "amount": "315699955320960",
+     *       "decimal": 18
+     *     }
+     */
     Fee: {
       /** @description The address to which the fee is paid. */
       address?: string;
@@ -1744,56 +1627,27 @@ export interface components {
     };
     /** @description Metadata indicating the total number of pages. */
     MetaTotalPages: {
-      /** @description The total number of pages available. */
+      /**
+       * @description The total number of pages available.
+       * @example 1
+       */
       totalPages?: number;
     };
-    /** @example {
-     *       "id": "0xdbfa26e70977dfe2d68f3da7dd7d9e0c04136ecf14e80b98b209314ae7c462ff",
-     *       "sender": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *       "receiver": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *       "token": {
-     *         "address": {
-     *           "l1": "0x3ef1d5be1e2ce46c583a0c8e511f015706a0ab23",
-     *           "l2": "0x4200000000000000000000000000000000000042"
-     *         },
-     *         "value": "10000000000000000000000"
-     *       },
-     *       "event": {
-     *         "deposit": {
-     *           "initialized": {
-     *             "block": {
-     *               "hash": "0x7735d45a54e91e836881c2f185766b391f335b53734b0a57f6c8843f66d03a13",
-     *               "number": 5223592,
-     *               "timestamp": 1707118764
-     *             },
-     *             "transaction": {
-     *               "hash": "0x28e8d8f6cbbdfcf14501ebf0bbd11647dfabab371fc7a989a1e441321af6a6ee",
-     *               "index": 49
-     *             }
-     *           },
-     *           "finalized": {
-     *             "block": {
-     *               "hash": "0xb0208c1b76aca5d51cb3cde5d10a90f20c2e520c935fbb99af0b66031489433e",
-     *               "number": 117285,
-     *               "timestamp": 1707118890
-     *             },
-     *             "transaction": {
-     *               "hash": "0x493972cb6219c74071c69fd9279df74b8cebbac4d087259991253e58930a4edb",
-     *               "index": 1
-     *             }
-     *           }
-     *         }
-     *       }
-     *     } */
     BridgeTransaction: {
+      /** @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa */
       id?: string;
+      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
       sender?: string;
+      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
       receiver?: string;
       token?: {
         address?: {
+          /** @example 0xc98d64da73a6616c42117b582e832812e7b8d57f */
           l1?: string;
+          /** @example 0x4200000000000000000000000000000000000042 */
           l2?: string;
         };
+        /** @example 10000000000000000000000 */
         value?: string;
       };
       event?: {
@@ -1808,45 +1662,16 @@ export interface components {
         } | null;
       };
     };
-    /** @example {
-     *       "id": "0xbfbb8cbffc01c13c1f849ecfb53099309e189b362fd621addbfa9f5d03dcd0c1",
-     *       "staker": "0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944",
-     *       "node": "0x6727a51caefcaf1bc189a8316ea09f844644b195",
-     *       "value": "8239445455124262851652",
-     *       "chips": [
-     *         {
-     *           "id": 2105,
-     *           "node": "0x6727a51caefcaf1bc189a8316ea09f844644b195",
-     *           "owner": "0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944",
-     *           "metadata": {
-     *             "name": "Chip #2105",
-     *             "description": "Chip is a unique NFT that represents a Node in the network. It is generated based on the node's address and token ID.",
-     *             "image": "https://gi.rss3.dev/chips/2105/image.svg"
-     *           }
-     *         }
-     *       ],
-     *       "event": {
-     *         "deposit": {
-     *           "deposited": {
-     *             "block": {
-     *               "hash": "0x37af6202ef8303485aa3db32be6668070b6b9c7e46521325f959369847482015",
-     *               "number": 128115,
-     *               "timestamp": 1707140550
-     *             },
-     *             "transaction": {
-     *               "hash": "0x823d988f7a18215ea850010131e5fa138d8d882ae4f95716d5791a45fac57833",
-     *               "index": 1
-     *             }
-     *           }
-     *         }
-     *       }
-     *     } */
     StakeTransaction: {
+      /** @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb */
       id?: string;
+      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
       staker?: string;
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
       node?: string;
+      /** @example 5000000000000000000000 */
       value?: string;
-      chips?: components["schemas"]["Chips"][] | null;
+      chips?: components["schemas"]["Chip"][] | null;
       event?: {
         deposit?: {
           requested?: components["schemas"]["TransactionEvent"];
@@ -1886,130 +1711,76 @@ export interface components {
         index?: number;
       };
     } | null;
-    /** @example {
-     *       "staker": 3.3926146615919217e+47,
-     *       "node": "0x08d66b34054a174841e2361bd4746ff9f4905cc2",
-     *       "chips": {
-     *         "total": 200,
-     *         "showcase": [
-     *           {
-     *             "id": 275,
-     *             "node": "0x08d66b34054a174841e2361bd4746ff9f4905cc2",
-     *             "owner": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *             "metadata": {
-     *               "name": "Chip #275",
-     *               "description": "Chip is a unique NFT that represents a Node in the network. It is generated based on the node's address and token ID.",
-     *               "image": "https://gi.rss3.dev/chips/275/image.svg"
-     *             }
-     *           },
-     *           {
-     *             "id": 276,
-     *             "node": "0x08d66b34054a174841e2361bd4746ff9f4905cc2",
-     *             "owner": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *             "metadata": {
-     *               "name": "Chip #276",
-     *               "description": "Chip is a unique NFT that represents a Node in the network. It is generated based on the node's address and token ID.",
-     *               "image": "https://gi.rss3.dev/chips/275/image.svg"
-     *             }
-     *           },
-     *           {
-     *             "id": 277,
-     *             "node": "0x08d66b34054a174841e2361bd4746ff9f4905cc2",
-     *             "owner": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *             "metadata": {
-     *               "name": "Chip #277",
-     *               "description": "Chip is a unique NFT that represents a Node in the network. It is generated based on the node's address and token ID.",
-     *               "image": "https://gi.rss3.dev/chips/275/image.svg"
-     *             }
-     *           },
-     *           {
-     *             "id": 278,
-     *             "node": "0x08d66b34054a174841e2361bd4746ff9f4905cc2",
-     *             "owner": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *             "metadata": {
-     *               "name": "Chip #278",
-     *               "description": "Chip is a unique NFT that represents a Node in the network. It is generated based on the node's address and token ID.",
-     *               "image": "https://gi.rss3.dev/chips/275/image.svg"
-     *             }
-     *           },
-     *           {
-     *             "id": 279,
-     *             "node": "0x08d66b34054a174841e2361bd4746ff9f4905cc2",
-     *             "owner": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *             "metadata": {
-     *               "name": "Chip #279",
-     *               "description": "Chip is a unique NFT that represents a Node in the network. It is generated based on the node's address and token ID.",
-     *               "image": "https://gi.rss3.dev/chips/275/image.svg"
-     *             }
-     *           }
-     *         ]
-     *       }
-     *     } */
     StakeStaking: {
+      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
       staker?: string;
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
       node?: string;
       chips?: {
         total?: number;
-        showcase?: components["schemas"]["Chips"][];
+        showcase?: components["schemas"]["Chip"][];
       };
     };
-    /** @example {
-     *       "id": 474,
-     *       "node": "0x08d66b34054a174841e2361bd4746ff9f4905cc2",
-     *       "owner": "0x3b6d02a24df681ffdf621d35d70aba7adaac07c1",
-     *       "metadata": {
-     *         "name": "Chip #474",
-     *         "description": "Chip is a unique NFT that represents a Node in the network. It is generated based on the node's address and token ID.",
-     *         "image": "https://gi.rss3.dev/chips/474/image.svg"
-     *       },
-     *       "value": "5000000000000000000000",
-     *       "latest_value": "5500000000000000000000"
-     *     } */
-    Chips: {
+    Chip: {
+      /** @example 1690 */
       id?: number;
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
       node?: string;
+      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
       owner?: string;
       metadata?: {
+        /** @example Open Chips #1690 */
         name?: string;
+        /** @example Chip Monsters are unique creatures living in the RSS3 Network, each one special because of where it was born. They represent the idea of FREE and OPEN INFORMATION, thriving in a world that values sharing and being different. These Chip Monsters are more than just digital; they symbolize the excitement and importance of being unique in a connected digital world. */
         description?: string;
+        /** @example https://gi.rss3.io/nta/chips/1690/image.svg */
         image?: string;
       };
-      /** @description the value at time of minting */
+      /**
+       * @description the value at time of minting
+       * @example 500000000000000000000
+       */
       value?: string;
-      /** @description The latest value of the chip */
+      /**
+       * @description The latest value of the chip
+       * @example 613891695796128425340
+       */
       latest_value?: string;
     };
     /** @example {
-     *       "id": 1,
-     *       "address": "0xc5999271b01afc77ed7a6738b40c34677c2a581c",
-     *       "name": "RSS3 Node",
-     *       "description": "Get started with RSS3 Node with symphonia",
-     *       "tax_rate_basis_points": 1000,
+     *       "id": 18,
+     *       "address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *       "name": "Natural Selection Labs",
+     *       "description": "A node operated by NSL.",
+     *       "tax_rate_basis_points": 800,
      *       "is_public_good": false,
-     *       "operation_pool_tokens": "10000000000000000000000",
-     *       "staking_pool_tokens": "0",
-     *       "total_shares": "0",
+     *       "operation_pool_tokens": "724429065703690345869831",
+     *       "staking_pool_tokens": "20798363499373370863570687",
+     *       "total_shares": "17339500000000000000000000",
      *       "slashed_tokens": "0",
+     *       "alpha": true,
      *       "status": "online",
-     *       "last_heartbeat": 1709117916,
-     *       "local": [
+     *       "last_heartbeat": 1718694464,
+     *       "location": [
      *         {
-     *           "country": "CN",
-     *           "region": "GD",
-     *           "city": "SZ",
-     *           "latitude": 22.5431,
-     *           "longitude": 114.0579
+     *           "country": "United States",
+     *           "region": "",
+     *           "city": "",
+     *           "latitude": 37.751,
+     *           "longitude": -97.822
      *         }
      *       ],
-     *       "avatar": [
-     *         {
-     *           "name": "Node Avatar",
-     *           "description": "",
-     *           "image": "http://127.0.0.1/nodes/0xC5999271b01AfC77ED7a6738b40C34677C2A581c/avatar.svg"
-     *         }
-     *       ],
-     *       "min_tokens_to_stake": "0",
-     *       "created_at": 1709087910
+     *       "avatar": {
+     *         "name": "Node Avatar",
+     *         "description": "",
+     *         "image": "https://gi.rss3.io/nta/nodes/0x69982E017Acc0FDE3d1542205089A8d3EAfcD1B7/avatar.svg"
+     *       },
+     *       "min_tokens_to_stake": "599739424417467944968",
+     *       "apy": "0.3928765550642588002426864199264",
+     *       "active_score": "0.2712648142772680586868915",
+     *       "reliability_score": "0",
+     *       "type": "alpha",
+     *       "created_at": 1710278898
      *     } */
     Node: {
       id?: number;
@@ -2042,6 +1813,24 @@ export interface components {
       /** @description The timestamp of the Node creation */
       created_at?: number;
     };
+    /** @example {
+     *       "transaction": {
+     *         "hash": "0x84c045a41d6fb83a94f4f2096863faced7c5799bcd382bec49333d017f744c41",
+     *         "index": 1
+     *       },
+     *       "block": {
+     *         "hash": "0x0e9f8868b1fd7aa28183292d198b4375263fbc38541d51efd90aec1de7e4b5bc",
+     *         "number": 210189,
+     *         "timestamp": 1710278897
+     *       },
+     *       "address_from": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *       "address_to": "0x28f14d917fddba0c1f2923c406952478dfda5578",
+     *       "node_id": 18,
+     *       "type": "nodeCreated",
+     *       "log_index": 0,
+     *       "chain_id": 12553,
+     *       "metadata": {}
+     *     } */
     NodeEvent: {
       address_from?: string;
       address_to?: string;
@@ -2080,43 +1869,97 @@ export interface components {
       };
     };
     NodeMinTokensToStakeSnapshot: {
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
       node_address?: string;
       snapshots?: {
-        /** @example 2024-03-13T00:08:38+08:00 */
+        /** @example 2024-03-12T19:00:03Z */
         date?: string;
+        /** @example 1 */
         epoch_id?: number;
+        /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
         node_address?: string;
+        /** @example 517704408563610773574 */
         min_tokens_to_stake?: string;
-        created_at?: string;
-        updated_at?: string;
       }[];
     };
     StakerProfitSnapshot: {
-      owner_address?: string;
-      /** @example 2024-03-13T00:08:38+08:00 */
+      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
+      address?: string;
+      /** @example 2024-06-17T02:01:29Z */
       date?: string;
+      /** @example 1 */
       epoch_id?: number;
+      /** @example 24 */
       total_chip_amount?: string;
+      /** @example 14459771035071565497880 */
       total_chip_value?: string;
     };
     ChipPNL: {
+      /** @example 2024-06-14T01:57:07Z */
       date?: string;
+      /** @example 24 */
       total_chip_amount?: string;
+      /** @example 14459771035071565497880 */
       total_chip_value?: string;
+      /** @example 0.0066375630868202 */
       profit_and_loss?: string;
     };
     OperationProfit: {
-      node_address?: string;
+      address?: string;
       /** @example 2024-03-13T00:08:38+08:00 */
       date?: string;
       epoch_id?: number;
       operation_pool?: string;
     };
     OperationProfitPNL: {
+      /** @example 2024-06-17T20:02:35Z */
       date?: string;
+      /** @example 724429065703690345869831 */
       operation_pool?: string;
+      /** @example 0 */
       profit_and_loss?: string;
     };
+    /** @example {
+     *       "id": 130,
+     *       "start_timestamp": 1718589689,
+     *       "end_timestamp": 1718654555,
+     *       "total_operation_rewards": "0",
+     *       "total_staking_rewards": "61084916609459274004676",
+     *       "total_request_counts": "40",
+     *       "total_rewarded_nodes": 65,
+     *       "distributions": [
+     *         {
+     *           "id": 130,
+     *           "start_timestamp": 1718589689,
+     *           "end_timestamp": 1718654555,
+     *           "transaction": {
+     *             "hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *             "index": 1
+     *           },
+     *           "block": {
+     *             "hash": "0xd9e2a4df54a385507a302ec3c62d3b3833ce8ed80242694d79cfa5b034840379",
+     *             "number": 4398018,
+     *             "timestamp": 1718654555
+     *           },
+     *           "total_operation_rewards": "0",
+     *           "total_staking_rewards": "61084916609459274004676",
+     *           "total_request_counts": "40",
+     *           "total_rewarded_nodes": 65,
+     *           "rewarded_nodes": [
+     *             {
+     *               "epoch_id": 130,
+     *               "index": 48,
+     *               "transaction_hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *               "node_address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *               "operation_rewards": "0",
+     *               "staking_rewards": "18250125229171339678441",
+     *               "tax_collected": "1270138765073564056898",
+     *               "request_count": "0"
+     *             }
+     *           ]
+     *         }
+     *       ]
+     *     } */
     BriefEpoch: {
       id?: number;
       start_timestamp?: number;
@@ -2128,12 +1971,19 @@ export interface components {
       distributions?: components["schemas"]["BriefEpochDistribution"][];
     };
     Epoch: {
+      /** @example 130 */
       id?: number;
+      /** @example 1718589689 */
       start_timestamp?: number;
+      /** @example 1718654555 */
       end_timestamp?: number;
+      /** @example 0 */
       total_operation_rewards?: string;
+      /** @example 61084916609459274004676 */
       total_staking_rewards?: string;
+      /** @example 40 */
       total_request_counts?: string;
+      /** @example 65 */
       total_reward_items?: number;
       distributions?: components["schemas"]["EpochDistribution"][];
     };
@@ -2155,6 +2005,36 @@ export interface components {
       total_request_counts?: string;
       total_reward_items?: number;
     };
+    /** @example {
+     *       "id": 130,
+     *       "start_timestamp": 1718589689,
+     *       "end_timestamp": 1718654555,
+     *       "transaction": {
+     *         "hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *         "index": 1
+     *       },
+     *       "block": {
+     *         "hash": "0xd9e2a4df54a385507a302ec3c62d3b3833ce8ed80242694d79cfa5b034840379",
+     *         "number": 4398018,
+     *         "timestamp": 1718654555
+     *       },
+     *       "total_operation_rewards": "0",
+     *       "total_staking_rewards": "61084916609459274004676",
+     *       "total_request_counts": "40",
+     *       "total_rewarded_nodes": 65,
+     *       "rewarded_nodes": [
+     *         {
+     *           "epoch_id": 130,
+     *           "index": 48,
+     *           "transaction_hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *           "node_address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *           "operation_rewards": "0",
+     *           "staking_rewards": "18250125229171339678441",
+     *           "tax_collected": "1270138765073564056898",
+     *           "request_count": "0"
+     *         }
+     *       ]
+     *     } */
     EpochDistribution: {
       id?: number;
       start_timestamp?: number;
@@ -2193,52 +2073,57 @@ export interface components {
      *       "id": {
      *         "is_required": true,
      *         "type": "string",
-     *         "value": "ethereum-core",
-     *         "description": "You can define your own worker id, you are recommended to use `[network]-[worker]`"
+     *         "value": null,
+     *         "description": "Worker's id, must be unique, for example '[network]-[worker]'"
      *       },
      *       "network": {
      *         "is_required": true,
      *         "type": "string",
      *         "value": "ethereum",
-     *         "description": "Your worker is running on the defined network"
+     *         "description": "The network where the worker operates on"
      *       },
      *       "worker": {
      *         "is_required": true,
      *         "type": "string",
      *         "value": "core",
-     *         "description": "Your worker is running the defined worker"
+     *         "description": "Name of the worker"
      *       },
      *       "endpoint": {
      *         "is_required": true,
-     *         "type": "string",
-     *         "value": "https://rpc.ankr.com/eth",
-     *         "description": "You can fill this field with a global endpoint id (should be pre-defined in endpoints part) or a url"
+     *         "type": "url",
+     *         "value": null,
+     *         "description": "An external endpoint to fetch data from, for example, a blockchain RPC endpoint or a Farcaster api"
      *       },
      *       "parameters": {
-     *         "rpc_thread_blocks": {
+     *         "concurrent_block_requests": {
      *           "is_required": false,
      *           "type": "uint",
-     *           "value": "8",
-     *           "description": "The number of blocks to process in a thread"
+     *           "value": 8,
+     *           "description": "The number of concurrent RPC requests to the blockchain rpc. Default: 8"
      *         },
-     *         "rpc_batch_blocks": {
+     *         "block_batch_size": {
      *           "is_required": false,
      *           "type": "uint",
-     *           "value": "8",
-     *           "description": "The number of blocks to process in a batch"
+     *           "value": 8,
+     *           "description": "The number of blocks to fetch in a single RPC request. Default: 8"
      *         },
-     *         "rpc_batch_receipts": {
+     *         "receipts_batch_size": {
      *           "is_required": false,
      *           "type": "uint",
-     *           "value": "200",
-     *           "description": "The number of receipts to process in a batch"
+     *           "value": 200,
+     *           "description": "The number of receipts to fetch in a single RPC request. Default: 200"
      *         },
-     *         "rpc_batch_block_receipts": {
+     *         "block_receipts_batch_size": {
      *           "is_required": false,
      *           "type": "uint",
-     *           "value": "8",
-     *           "description": "The number of block receipts to process in a batch"
+     *           "value": 8,
+     *           "description": "The number of blocks to fetch receipts in a single RPC request. Default: 8"
      *         }
+     *       },
+     *       "minimum_resource": {
+     *         "cpu_core": 2,
+     *         "memory_in_gb": 2,
+     *         "disk_space_in_gb": 153
      *       }
      *     } */
     NetworkWorker: {
@@ -2247,47 +2132,670 @@ export interface components {
       worker?: components["schemas"]["WorkerDetail"];
       endpoint?: components["schemas"]["WorkerDetail"];
       parameters?: {
-        rpc_thread_blocks?: components["schemas"]["WorkerDetail"];
-        rpc_batch_blocks?: components["schemas"]["WorkerDetail"];
-        rpc_batch_receipts?: components["schemas"]["WorkerDetail"];
-        rpc_batch_block_receipts?: components["schemas"]["WorkerDetail"];
+        concurrent_block_requests?: components["schemas"]["WorkerDetail"];
+        block_batch_size?: components["schemas"]["WorkerDetail"];
+        receipts_batch_size?: components["schemas"]["WorkerDetail"];
+        block_receipts_batch_size?: components["schemas"]["WorkerDetail"];
       };
     };
-    /** @example {
-     *       "date": "2024-03-13T00:08:38+08:00",
-     *       "epoch_id": 1,
-     *       "apy": "0.1"
-     *     } */
     EpochAPYSnapshot: {
+      /** @example 2024-06-17T20:02:35Z */
       date?: string;
+      /** @example 1 */
       epoch_id?: number;
+      /** @example 0.1 */
       apy?: string;
     };
-    /** @enum {unknown} */
-    Type:
-      | "approval"
-      | "bridge"
-      | "burn"
-      | "comment"
-      | "delete"
-      | "feed"
-      | "liquidity"
-      | "mint"
-      | "post"
-      | "profile"
-      | "proxy"
-      | "revise"
-      | "reward"
-      | "share"
-      | "staking"
-      | "swap"
-      | "trade"
-      | "transfer"
-      | "unknown";
+    /**
+     * @description SVG image data of the chip.
+     * @example <?xml version="1.0" encoding="utf-8"?>
+     *       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;background-color:black;" xml:space="preserve">
+     *         <style type="text/css">.f{fill:#FB1467;}.c{fill:#1477FB;}.b{fill:#DEE5D9;}.h{fill:#DEE5D9;}.alpha{fill:#1477FB;}.pg{fill:#FB1467;}.e{fill-rule:evenodd;clip-rule:evenodd;}</style>
+     *         <path class="f" d="M16 88h68v2H16zm0 4h4v2h-4zm6 0h2v2h-2zm4 0h6v2h-6zm12 0h6v2h-6zm8 0h3v2h-3zm5 0h3v2h-3zm-17 0h2v2h-2zm22 0h6v2h-6zm8 0h2v2h-2zm4 0h6v2h-6zm12 0h4v2h-4zm-4 0h2v2h-2zM16 10h68v2H16zm0-4h4v2h-4zm6 0h2v2h-2zm4 0h6v2h-6zm12 0h6v2h-6zm8 0h3v2h-3zm5 0h3v2h-3zM34 6h2v2h-2zm22 0h6v2h-6zm8 0h2v2h-2zm4 0h6v2h-6zm12 0h4v2h-4zm-4 0h2v2h-2zM12 16v68h-2V16zM6 84v-4h2v4zm0-6v-2h2v2zm0-4v-6h2v6zm0-12v-6h2v6zm0-8v-3h2v3zm0-5v-3h2v3zm0 17v-2h2v2zm0-22v-6h2v6zm0-8v-2h2v2zm0-4v-6h2v6zm0-12v-4h2v4zm0 4v-2h2v2zm84-8v68h-2V16zm2 68v-4h2v4zm0-6v-2h2v2zm0-4v-6h2v6zm0-12v-6h2v6zm0-8v-3h2v3zm0-5v-3h2v3zm0 17v-2h2v2zm0-22v-6h2v6zm0-8v-2h2v2zm0-4v-6h2v6zm0-12v-4h2v4zm0 4v-2h2v2z"/>
+     *         <svg class="c">
+     *           <path d="M52 80h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M58 84v2h-6v-2zm0-4v2h-6v-2zm10 0h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M74 84v2h-6v-2zm0-4v2h-6v-2zm6-12h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M86 72v2h-6v-2zm0-4v2h-6v-2zm-6 12h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M86 84v2h-6v-2zm0-4v2h-6v-2zm-6-28h6v6h-6zM54 86h2v2h-2zm4-2v-2h10v2zm16-6h2v2h-2zm-24 4h2v2h-2zm26-6h2v2h-2zm2-2h2v2h-2zm-4 8h6v2h-6zm6-40h6v6h-6zm4 32v6h-2v-6zm0-16v10h-2V58zm0-26v10h-2V32zm-2 16h2v4h-2zM52 20h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M58 16v-2h-6v2zm0 4v-2h-6v2zm10 0h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M74 16v-2h-6v2zm0 4v-2h-6v2zm6 12h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M86 28v-2h-6v2zm0 4v-2h-6v2zm-6-12h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M86 16v-2h-6v2zm0 4v-2h-6v2zm-32-6h2v-2h-2zm4 2v2h10v-2zm16 6h2v-2h-2zm-24-4h2v-2h-2zm26 6h2v-2h-2zm2 2h2v-2h-2zm-4-8h6v-2h-6zm10 8v-6h-2v6zm-36-6h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M42 16v-2h6v2zm0 4v-2h6v2zm-10 0h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M26 16v-2h6v2zm0 4v-2h6v2zm-6 12h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M14 28v-2h6v2zm0 4v-2h6v2zm6-12h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M14 16v-2h6v2zm0 4v-2h6v2zm6 28h-6v-6h6zm26-34h-2v-2h2zm-4 2v2H32v-2zm-16 6h-2v-2h2zm24-4h-2v-2h2zm-26 6h-2v-2h2zm-2 2h-2v-2h2zm4-8h-6v-2h6zm-6 40h-6v-6h6zm-4-32v-6h2v6zm0 16V32h2v10zm0 26V58h2v10zm2-16h-2v-4h2zm30 28h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M42 84v2h6v-2zm0-4v2h6v-2zm-10 0h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M26 84v2h6v-2zm0-4v2h6v-2zm-6-12h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M14 72v2h6v-2zm0-4v2h6v-2zm6 12h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M14 84v2h6v-2zm0-4v2h6v-2zm32 6h-2v2h2zm-4-2v-2H32v2zm-16-6h-2v2h2zm24 4h-2v2h2zm-26-6h-2v2h2zm-2-2h-2v2h2zm4 8h-6v2h6zm-10-8v6h2v-6z"/>
+     *         </svg>
+     *         <path class="alpha" d="M6 6V4h4v2zm4 0v2H6V6H4v6h2v-2h4v2h2V6zm84-2v2h-4V4zm0 2v2h-4V6h-2v6h2v-2h4v2h2V6zM10 88v2H6v-2zm0 2v2H6v-2H4v6h2v-2h4v2h2v-6zm84-2v2h-4v-2zm0 2v2h-4v-2h-2v6h2v-2h4v2h2v-6z"/>
+     *         <polygon class="b" points="72,46 72,64 70,64 70,66 68,66 68,68 66,68 66,70 64,70 64,72 36,72 36,70 34,70 34,68 32,68 32,66   30,66 30,64 28,64 28,46 30,46 30,44 70,44 70,46 "/>
+     *         <path d="M36 50h2v2h-2zm2 2h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm4-4h2v2h-2zm18 0h2v2h-2zm2 2h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm4-4h2v2h-2zm-14 6h4v2h-4zm-2-2h2v2h-2zm6 0h2v2h-2z" fill="#000"/>
+     *         <path d="M40 62h2v2h-2zM42 64h2v2h-2zM42 62h2v2h-2zM44 64h2v2h-2z" fill="#000"/>
+     *         <path d="M44 64h16v4H44z" fill="#000"/>
+     *         <path class="h" d="M28 40h44v2H28z"/>
+     *         <path class="h e" d="M40 33v-3h-2v-2h-2v2h-2v2h-2v2h-2v2h-2v2h5v-2h2v2h5v-3h-4v-2z"/>
+     *         <path class="h e" d="M42 24v2h-4v2h4v2h5v2h-5v6h7V24zm5 4h-2v-2h2zm23 8v-2h-2v-2h-2v-2h-2v-2h-2v2h-2v3h4v2h-6v-3h-3v6h10v-2h2v2h5v-2z"/>
+     *         <path class="h e" d="M58 26v-2h-7v14h2v-8h5v-2h4v-2zm-3 2h-2v-2h2z"/>
+     *       </svg>
+     */
+    Image: string;
+    ResponseError: {
+      /** @enum {string} */
+      error_code?:
+        | "bad_request"
+        | "validate_failed"
+        | "bad_params"
+        | "internal_error";
+      error?: string;
+      details?: string;
+    };
+    CountSnapshot: {
+      /** @example 2024-03-10 */
+      date?: string;
+      /** @example 1 */
+      count?: number;
+    };
   };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
+  responses: {
+    /** @description The request was invalid or malformed. */
+    400: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["ResponseError"];
+      };
+    };
+    /** @description An internal server error occurred while processing the request. */
+    500: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["ResponseError"];
+      };
+    };
+    /** @description A successful response containing the details of the specified activity. The response includes the activity ID, timestamp, and a list of actions performed within the activity. */
+    ActivityResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["ActivityResponse"];
+      };
+    };
+    /** @description A successful response with the activities from the specified account. The response includes details about each activity, such as its ID, timestamp, and associated actions. */
+    ActivitiesResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["ActivitiesResponse"];
+      };
+    };
+    /** @description A successful response with the activities from rss feed. */
+    RSSActivitiesResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["ActivitiesResponse"];
+      };
+    };
+    /** @description List of bridging transactions retrieved successfully */
+    BridgeTransactionsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          data?: components["schemas"]["BridgeTransaction"][];
+        };
+      };
+    };
+    /** @description Bridging transaction details fetched successfully */
+    BridgeTransactionByHashResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          data?: components["schemas"]["BridgeTransaction"];
+        };
+      };
+    };
+    /** @description List of staking transactions retrieved successfully with pagination cursor */
+    StakeTransactionsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          data?: components["schemas"]["StakeTransaction"][];
+          cursor?: string;
+        };
+      };
+    };
+    /** @description Staking transaction details fetched successfully */
+    StakeTransactionByHashResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          data?: components["schemas"]["StakeTransaction"];
+        };
+      };
+    };
+    /** @description A successful response containing a list of stakers and their associated nodes. Each entry in the data array represents a staker and includes detailed information about the staker, the node they are associated with, and any associated chips. The response also includes a cursor for pagination to fetch subsequent sets of results. This allows users to retrieve large datasets incrementally. */
+    StakeStakingsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          data?: components["schemas"]["StakeStaking"][];
+          /**
+           * @description Cursor for pagination to fetch the next set of results.
+           * @example 0xc7d6378960bd3374c31ce6223df0e79355ff3dc4b6dccf28afe84487321ef9fb
+           */
+          cursor?: string;
+        };
+      };
+    };
+    /** @description A successful response containing the staking profit information for the specified staker. The data includes the owner's address, total chip amount, total chip value, and profit and loss (PNL) data for one day, one week, and one month. */
+    StakingProfitResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Staking profit information for the specified staker. */
+          data?: {
+            /**
+             * @description The address of the staker.
+             * @example 0x827431510a5d249ce4fdb7f00c83a3353f471848
+             */
+            owner?: string;
+            /**
+             * @description The total amount of chips owned by the staker.
+             * @example 1000
+             */
+            total_chip_amount?: string;
+            /**
+             * @description The total value of chips owned by the staker.
+             * @example 100000
+             */
+            total_chip_value?: string;
+            oneDay?: components["schemas"]["ChipPNL"];
+            oneWeek?: components["schemas"]["ChipPNL"];
+            oneMonth?: components["schemas"]["ChipPNL"];
+          };
+        };
+      };
+    };
+    /** @description A successful response containing a list of chips based on the provided filters. Each chip includes detailed information such as its ID, node address, owner address, and metadata. The response also includes a cursor for pagination to fetch subsequent sets of results. */
+    ChipsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of chips matching the filter criteria. */
+          data?: components["schemas"]["Chip"][];
+          /**
+           * @description Cursor for pagination to fetch the next set of results.
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          cursor?: string;
+        };
+      };
+    };
+    /** @description A successful response containing detailed information about the specified chip. The data includes the chip's ID, node address, owner address, and metadata such as name, description, and image. */
+    ChipResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["Chip"];
+      };
+    };
+    /** @description A successful response containing the SVG image of the specified chip. The image can be used to visually represent the chip. */
+    ChipImageResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "image/svg+xml": components["schemas"]["Image"];
+      };
+    };
+    /** @description A successful response containing snapshots of node counts over time. Each entry in the data array includes the date and the count of nodes on that date. */
+    NodeCountSnapshotsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of node count snapshots. */
+          data?: components["schemas"]["CountSnapshot"][];
+        };
+      };
+    };
+    /** @description A successful response containing snapshots of the minimum staking amount for the specified nodes. Each entry in the data array includes the node address, date, and the minimum tokens to stake on that date. */
+    NodeMinTokensToStakeResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of minimum staking amount snapshots. */
+          data?: components["schemas"]["NodeMinTokensToStakeSnapshot"][];
+        };
+      };
+    };
+    /** @description A successful response containing snapshots of the total staker count over time. Each entry in the data array includes the date and the count of stakers on that date. */
+    StakerCountSnapshotsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of staker count snapshots. */
+          data?: components["schemas"]["CountSnapshot"][];
+        };
+      };
+    };
+    /** @description A successful response containing snapshots of the staker profit over time. Each entry in the data array includes the date and profit details. The response also includes a cursor for pagination to fetch subsequent sets of results. */
+    StakerProfitSnapshotsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of staker profit snapshots. */
+          data?: components["schemas"]["StakerProfitSnapshot"][];
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+        };
+      };
+    };
+    /** @description A successful response containing snapshots of the operation profit over time for the specified node. Each entry in the data array includes the date and profit details. The response also includes a cursor for pagination to fetch subsequent sets of results. */
+    OperationProfitSnapshotsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of operation profit snapshots. */
+          data?: components["schemas"]["OperationProfit"][];
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+        };
+      };
+    };
+    /** @description A successful response containing the APY for epoch snapshots. Each entry in the data array includes the epoch details and the corresponding APY. */
+    EpochAPYSnapshotsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of epoch APY snapshots. */
+          data?: components["schemas"]["EpochAPYSnapshot"][];
+        };
+      };
+    };
+    /** @description A successful response containing a list of nodes. Each entry includes detailed information about the node. */
+    NodesResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["Node"][];
+      };
+    };
+    /** @description A successful response containing detailed information about the specified node. */
+    NodeResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["Node"];
+      };
+    };
+    /** @description A successful response containing the SVG image of the specified node. The image can be used to visually represent the node. */
+    NodeAvatarResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "image/svg+xml": components["schemas"]["Image"];
+      };
+    };
+    /** @description A successful response containing transaction events for the specified node. Each entry in the data array includes detailed information about the event. */
+    NodeEventsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of node transaction events. */
+          data?: components["schemas"]["NodeEvent"][];
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+        };
+      };
+    };
+    /** @description A successful response containing detailed information about the operation profit of the specified node. Each entry includes address, operation pool, and PNL details for different time periods. */
+    NodeOperationProfitResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Operation profit details for the node. */
+          data?: {
+            /**
+             * @description The address of the node.
+             * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+             */
+            node_address?: string;
+            /**
+             * @description The operation pool of the node.
+             * @example 724429065703690345869831
+             */
+            operation_pool?: string;
+            oneDay?: components["schemas"]["OperationProfitPNL"];
+            oneWeek?: components["schemas"]["OperationProfitPNL"];
+            oneMonth?: components["schemas"]["OperationProfitPNL"];
+          };
+        };
+      };
+    };
+    /** @description A successful response containing a list of epochs. Each entry in the data array includes brief information about the epoch. */
+    EpochsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of epochs. */
+          data?: components["schemas"]["BriefEpoch"][];
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+        };
+      };
+    };
+    /** @description A successful response containing detailed information about the specified epoch. */
+    EpochResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["Epoch"];
+      };
+    };
+    /** @description A successful response containing details of the specified epoch transaction. */
+    EpochTransactionResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of epoch distribution details. */
+          data?: components["schemas"]["EpochDistribution"][];
+        };
+      };
+    };
+    /** @description A successful response containing the rewards of the specified node by epoch. Each entry in the data array includes detailed information about the epoch. */
+    NodeRewardsByEpochResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of epochs with node rewards. */
+          data?: components["schemas"]["Epoch"][];
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+        };
+      };
+    };
+    /** @description A successful response containing the average APY for all epochs. */
+    EpochsAverageAPYResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /**
+           * @description The average APY of all epochs.
+           * @example 1.4665029316918649354
+           */
+          data?: string;
+        };
+      };
+    };
+    /** @description A successful response containing a list of compatible networks. */
+    NetworksResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of compatible network names. */
+          data?: components["schemas"]["Network"][];
+        };
+      };
+    };
+    /** @description A successful response containing a list of available workers for the specified network. */
+    NetworkWorkersResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of worker names for the specified network. */
+          data?: string[];
+        };
+      };
+    };
+    /** @description A successful response containing the configuration details for the specified worker in the specified network. */
+    NetworkWorkerConfigResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          data?: components["schemas"]["NetworkWorker"];
+        };
+      };
+    };
+  };
+  parameters: {
+    /**
+     * @description Retrieve details for the specified activity ID
+     * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
+     */
+    activity_id_path: string;
+    /**
+     * @description Retrieve details for the specified activity ID
+     * @example 0x000000000000000000000000113f4b4c3765e5f05fd197c5c35b8a8a9b34245b
+     */
+    activity_id_query: string;
+    /**
+     * @description Specify the number of actions within the activity to retrieve
+     * @example 10
+     */
+    action_limit_query: number;
+    /**
+     * @description Specify the pagination for actions
+     * @example 1
+     */
+    action_page_query: number;
+    /**
+     * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
+     * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
+     */
+    account_path: string;
+    /**
+     * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+     * @example 20
+     */
+    limit_query: number;
+    /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+    cursor_query: string;
+    /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+    since_timestamp_query: number;
+    /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+    until_timestamp_query: number;
+    /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+    success_query: boolean;
+    /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+    direction_query: components["schemas"]["Direction"];
+    /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
+    network_query: components["schemas"]["Network"][];
+    /** @description The name of the network to retrieve available workers for. */
+    network_name_path: components["schemas"]["Network"];
+    /**
+     * @description The name of the worker.
+     * @example core
+     */
+    worker_name_path: string;
+    /** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+    action_tag_query: components["schemas"]["Tag"][];
+    /** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+    action_type_query: components["schemas"]["Type"][];
+    /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+    platform_query: components["schemas"]["Platform"][];
+    /**
+     * @description Retrieve details for the specified RSS path
+     * @example abc
+     */
+    rss_path: string;
+    /**
+     * @description Sender address
+     * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+     */
+    sender_query: string;
+    /**
+     * @description Receiver address
+     * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+     */
+    receiver_query: string;
+    /**
+     * @description Address involved in the transaction
+     * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+     */
+    address_query: string;
+    /** @description Type of bridging transaction */
+    bridging_type_query: "deposit" | "withdraw";
+    /**
+     * @description Limit the number of results
+     * @example 20
+     */
+    limit_1_20: number;
+    /**
+     * @description The unique hash of the bridging transaction
+     * @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa
+     */
+    bridging_transaction_hash_path: string;
+    /**
+     * @description The unique hash of the staking transaction
+     * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
+     */
+    staking_transaction_hash_path: string;
+    /**
+     * @description The unique hash of the epoch transaction
+     * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
+     */
+    epoch_transaction_hash_path: string;
+    /**
+     * @description Staker address
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    staker_query: string;
+    /**
+     * @description Staker address
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    staker_address_query: string;
+    /**
+     * @description Node address
+     * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+     */
+    node_query: string;
+    /**
+     * @description The address of the node to retrieve.
+     * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+     */
+    node_address_path: string;
+    /**
+     * @description Node address
+     * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+     */
+    node_address_query: string;
+    /** @description Type of staking transaction */
+    staking_type_query: "deposit" | "withdraw" | "stake" | "unstake";
+    /** @description Pending status of the transaction */
+    pending_query: boolean;
+    /**
+     * @description The address of the staker whose profit information is to be retrieved.
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    staker_address_path: string;
+    /**
+     * @description The unique identifier of the chip to retrieve.
+     * @example 1690
+     */
+    chip_id_path: number;
+    /**
+     * @description Array of chip IDs to filter the results.
+     * @example [
+     *       1690
+     *     ]
+     */
+    chip_ids_query: number[];
+    /**
+     * @description The address of the chip owner to filter the results.
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    owner_query: string;
+    /** @description The date before which the snapshots are returned. */
+    before_date_query: string;
+    /** @description The date after which the snapshots are returned. */
+    after_date_query: string;
+    /**
+     * @description The ID of the epoch to retrieve.
+     * @example 130
+     */
+    epoch_id_path: string;
+  };
+  requestBodies: {
+    /** @description Request payload for retrieving snapshots of the minimum staking amount for specified nodes. */
+    NodeMinTokensToStakeRequestBody: {
+      content: {
+        "application/json": {
+          /**
+           * @description List of node addresses to retrieve the minimum staking amount snapshots for.
+           * @example [
+           *       "0x08d66b34054a174841e2361bd4746ff9f4905cc2"
+           *     ]
+           */
+          node_addresses?: string[];
+          /**
+           * @description If true, only return the start and end min_tokens_to_stake.
+           * @example false
+           */
+          only_start_and_end?: boolean;
+        };
+      };
+    };
+  };
   headers: never;
   pathItems: never;
 }

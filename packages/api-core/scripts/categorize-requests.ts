@@ -24,22 +24,22 @@ const pathToRequestMap = {
   "/rss/{path}": {
     get: "getRSSActivity",
   },
-  "/nta/bridge/transactions": {
+  "/nta/bridgings/transactions": {
     get: "getBridgingTransactions",
   },
-  "/nta/bridge/transactions/{transaction_hash}": {
+  "/nta/bridgings/transactions/{transaction_hash}": {
     get: "getBridgingTransaction",
   },
-  "/nta/stake/transactions": {
+  "/nta/stakings/transactions": {
     get: "getStakingTransactions",
   },
-  "/nta/stake/transactions/{transaction_hash}": {
+  "/nta/stakings/transactions/{transaction_hash}": {
     get: "getStakingTransaction",
   },
-  "/nta/stake/stakings": {
+  "/nta/stakings/stakings": {
     get: "getStakings",
   },
-  "/nta/stake/{staker_address}/profit": {
+  "/nta/stakings/{staker_address}/profit": {
     get: "getStakingProfit",
   },
   "/nta/chips": {
@@ -87,7 +87,7 @@ const pathToRequestMap = {
   "/nta/nodes/{address}/events": {
     get: "getNodeEvents",
   },
-  "/nta/nodes/{node_address}/operation/profit": {
+  "/nta/nodes/{address}/operation/profit": {
     get: "getNodeOperationProfit",
   },
   "/nta/epochs": {
@@ -99,7 +99,7 @@ const pathToRequestMap = {
   "/nta/epochs/distributions/{transaction_hash}": {
     get: "getEpochTransaction",
   },
-  "/nta/epochs/{node_address}/rewards": {
+  "/nta/epochs/{address}/rewards": {
     get: "getNodeRewards",
   },
   "/nta/epochs/apy": {
