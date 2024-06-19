@@ -1,5 +1,7 @@
+import type { Action } from "@rss3/api-core";
+
+import type { _components } from "../../metadata/doc.js";
 import { handleMetadata } from "../../metadata/index.js";
-import type { components } from "../../types/data.js";
 
 export type BriefAsset = {
   contract?: string | null;
@@ -9,8 +11,9 @@ export type BriefAsset = {
   description?: string;
 };
 
-export function extractAsset(action: components["schemas"]["Action"]) {
+export function extractAsset(action: Action) {
   let res: BriefAsset | undefined;
+
   handleMetadata(action, {
     "collectible-transfer": (m) => {
       res = extractNFT(m);
@@ -34,15 +37,16 @@ export function extractAsset(action: components["schemas"]["Action"]) {
       res = extractDonation(m);
     },
   });
+
   return res;
 }
 
 export function extractNFT(
   m:
-    | components["schemas"]["CollectibleTransfer"]
-    | components["schemas"]["CollectibleTrade"]
-    | components["schemas"]["CollectibleApproval"]
-    | components["schemas"]["CollectibleAuction"],
+    | _components["schemas"]["CollectibleTransfer"]
+    | _components["schemas"]["CollectibleTrade"]
+    | _components["schemas"]["CollectibleApproval"]
+    | _components["schemas"]["CollectibleAuction"],
 ) {
   return {
     contract: m.contract_address,
@@ -53,7 +57,7 @@ export function extractNFT(
   };
 }
 
-export function extractDonation(m: components["schemas"]["Donation"]) {
+export function extractDonation(m: _components["schemas"]["Donation"]) {
   return {
     url: m.logo,
     title: m.title,

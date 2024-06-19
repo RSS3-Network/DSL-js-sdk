@@ -1,7 +1,6 @@
-import type { Activity } from "../../data/client.js";
+import type { Action, Activity } from "@rss3/api-core";
+
 import { handleMetadata } from "../../metadata/index.js";
-import type { components } from "../../types/data.js";
-import { getActions, getSummaryActions } from "../../utils.js";
 import { type Theme, themePlain } from "./theme.js";
 import {
   type Token,
@@ -22,13 +21,24 @@ import {
   tokenValue,
 } from "./token.js";
 
+export function getSummaryActions({ actions, tag, type }: Activity): Action[] {
+  if (!actions) return [];
+  if (actions.length === 1) return actions;
+
+  const list = ["transaction-multisig"];
+
+  return list.includes(`${tag}-${type}`)
+    ? actions
+    : actions.filter((t) => t.tag === tag && t.type === type);
+}
+
 export function formatPlain(activity: Activity): string {
   const list = format(activity, themePlain).filter((s) => s !== "");
 
   const clean: string[] = [];
   for (let i = 0; i < list.length; i++) {
     if (list[i] === " " && list[i + 1] === " ") continue;
-    clean.push(list[i]);
+    clean.push(list[i] ?? "");
   }
 
   return clean.join("");
@@ -57,7 +67,8 @@ export function tokenizeActivity(activity: Activity): Token[] {
 
   // used for social actions, remove the duplicate action
   if (activity.tag === "social" && actions.length > 1) {
-    return tokenizeAction(activity, actions[0]);
+    // biome-ignore lint/style/noNonNullAssertion: The actions[0] is not null here
+    return tokenizeAction(activity, actions[0]!);
   }
 
   // handle unknown activity
@@ -65,26 +76,29 @@ export function tokenizeActivity(activity: Activity): Token[] {
     return [token("unknown", "Carried out an activity")];
   }
 
-  const ts = actions.reduce((acc, action) => {
-    if (acc.length === 0) {
-      return tokenizeAction(activity, action);
+  const tokens = actions.reduce((acc, action) => {
+    if (acc.length > 0) {
+      acc.push(tokenSeparator);
     }
 
-    return [...acc, tokenSeparator, ...tokenizeAction(activity, action)];
+    acc.push(...tokenizeAction(activity, action));
+
+    return acc;
   }, [] as Token[]);
 
-  ts.push(tokenSpace, tokenTime(activity.timestamp));
+  // biome-ignore lint/style/noNonNullAssertion: FIXME: Remove the non-null assertion once GI's OpenAPI spec is updated
+  tokens.push(tokenSpace, tokenTime(activity.timestamp!));
 
-  return ts;
+  return tokens;
 }
 
 export function tokenizeToActions(activity: Activity): Token[][] {
-  const actions = getActions(activity);
-  const ts: Token[][] = [];
+  const actions = activity.actions ?? [];
 
   // used for social actions, remove the duplicate action
   if (activity.tag === "social" && actions.length > 1) {
-    return [tokenizeAction(activity, actions[0])];
+    // biome-ignore lint/style/noNonNullAssertion: The actions[0] is not null here
+    return [tokenizeAction(activity, actions[0]!)];
   }
 
   // handle unknown activity
@@ -92,20 +106,16 @@ export function tokenizeToActions(activity: Activity): Token[][] {
     return [[token("unknown", "Carried out an activity")]];
   }
 
-  actions.map((action) => {
-    ts.push(tokenizeAction(activity, action));
-  });
-
-  return ts;
+  return actions.map((action) => tokenizeAction(activity, action));
 }
 
 export function tokenizeToSummaryActions(activity: Activity): Token[][] {
   const actions = getSummaryActions(activity);
-  const ts: Token[][] = [];
 
   // used for social actions, remove the duplicate action
   if (activity.tag === "social" && actions.length > 1) {
-    return [tokenizeAction(activity, actions[0])];
+    // biome-ignore lint/style/noNonNullAssertion: The actions[0] is not null here
+    return [tokenizeAction(activity, actions[0]!)];
   }
 
   // handle unknown activity
@@ -113,20 +123,13 @@ export function tokenizeToSummaryActions(activity: Activity): Token[][] {
     return [[token("unknown", "Carried out an activity")]];
   }
 
-  actions.map((action) => {
-    ts.push(tokenizeAction(activity, action));
-  });
-
-  return ts;
+  return actions.map((action) => tokenizeAction(activity, action));
 }
 
 /**
  * Returns a list of tokens that can be used to custom render the output of an action, such as CLI output
  */
-export function tokenizeAction(
-  activity: Activity,
-  action: components["schemas"]["Action"],
-): Token[] {
+export function tokenizeAction(activity: Activity, action: Action): Token[] {
   const direction = activity.direction;
   let res = [tokenText("Carried out an activity")];
   handleMetadata(action, {
@@ -227,7 +230,7 @@ export function tokenizeAction(
     },
     "transaction-bridge": (m) => {
       let network: Token[] = [];
-      if (m.source_network && m.source_network.name) {
+      if (m.source_network?.name) {
         network = [
           tokenText("from"),
           tokenNetwork(m.source_network.name),
@@ -721,28 +724,30 @@ export function tokenizeAction(
 export function hasMultiPrimaryActions(activity: Activity): boolean {
   const actions = getSummaryActions(activity);
   let count = 0;
-  actions.forEach((action) => {
+
+  for (const action of actions) {
     if (action.type === activity.type && action.tag === activity.tag) {
       count++;
+
+      if (count > 1) {
+        return true;
+      }
     }
-  });
-  return count > 1;
+  }
+
+  return false;
 }
 
 export function flatActivity(activity: Activity) {
   const hasMulti = hasMultiPrimaryActions(activity);
 
   if (hasMulti) {
-    const res: Activity[] = [];
-    const actions = getSummaryActions(activity);
-    actions.forEach((action) => {
-      res.push({
+    return getSummaryActions(activity).map(
+      (action): Activity => ({
         ...activity,
         actions: [action],
-      });
-    });
-    return res;
-  } else {
-    return [activity];
+      }),
+    );
   }
+  return [activity];
 }

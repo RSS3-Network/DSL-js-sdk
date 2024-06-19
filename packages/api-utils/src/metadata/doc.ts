@@ -1,8 +1,370 @@
-import type { components } from "../types/data.js";
+// FIXME: types below are copied from the @rss3/js-sdk and should be moved once GI's OpenAPI spec is updated
+export type _components = {
+  schemas: {
+    Int: number;
+    Bytes: string;
+    Network1:
+      | "arweave"
+      | "erc1577"
+      | "ethereum"
+      | "farcaster"
+      | "snapshot"
+      | "unknown"
+      | "zksync_lite";
+    Chain: {
+      chain_id: number;
+      name?: string;
+      network: _components["schemas"]["Network1"];
+      symbol?: string;
+    };
+    Address: string;
+    Decimal: string;
+    RawMessage: unknown;
+    Standard: number;
+    CollectibleApprovalAction: "approve" | "revoke";
+    Time: string;
+    MetaverseTradeAction: "buy" | "list" | "sell";
+    Media: {
+      address: string;
+      mime_type: string;
+    };
+    GovernanceOrganization: {
+      about?: string;
+      id: string;
+      name: string;
+    };
+    ExchangeLoanAction:
+      | "create"
+      | "liquidate"
+      | "refinance"
+      | "repay"
+      | "seize";
+    CollectibleAuctionAction:
+      | "bid"
+      | "cancel"
+      | "create"
+      | "finalize"
+      | "invalidate"
+      | "update";
+    CollectibleTradeAction:
+      | "buy"
+      | "cancel"
+      | "invalidate"
+      | "offer"
+      | "sell"
+      | "set"
+      | "update";
+    ExchangeLiquidityAction:
+      | "add"
+      | "borrow"
+      | "collect"
+      | "remove"
+      | "repay"
+      | "supply"
+      | "withdraw";
+    TokenMetadata: {
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    CollectibleApproval: {
+      action: _components["schemas"]["CollectibleApprovalAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    CollectibleAuction: {
+      action: _components["schemas"]["CollectibleAuctionAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      cost?: _components["schemas"]["TokenMetadata"] | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    CollectibleTrade: {
+      action: _components["schemas"]["CollectibleTradeAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      cost?: _components["schemas"]["TokenMetadata"] | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    CollectibleTransfer: {
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    Donation: {
+      description?: string;
+      logo?: string;
+      project_id?: string;
+      title?: string;
+      token: _components["schemas"]["TokenMetadata"];
+    };
+    ExchangeLiquidity: {
+      action: _components["schemas"]["ExchangeLiquidityAction"];
+      tokens: _components["schemas"]["TokenMetadata"][];
+    };
+    ExchangeLoan: {
+      action: _components["schemas"]["ExchangeLoanAction"];
+      amount?: _components["schemas"]["TokenMetadata"] | null;
+      collateral: _components["schemas"]["TokenMetadata"];
+    };
+    ExchangeSwap: {
+      from: _components["schemas"]["TokenMetadata"];
+      to: _components["schemas"]["TokenMetadata"];
+    };
+    GovernanceProposal: {
+      body?: string;
+      end_at?: _components["schemas"]["Time"] | null;
+      end_block?: _components["schemas"]["Decimal"] | null;
+      id: string;
+      link?: string;
+      options?: string[];
+      organization?: _components["schemas"]["GovernanceOrganization"] | null;
+      start_at?: _components["schemas"]["Time"] | null;
+      start_block?: _components["schemas"]["Decimal"] | null;
+      title?: string;
+    };
+    GovernanceVote: {
+      choice: string;
+      count?: _components["schemas"]["Decimal"] | null;
+      proposal: _components["schemas"]["GovernanceProposal"] | null;
+      reason?: string;
+    };
+    MetaverseTrade: {
+      action?: _components["schemas"]["MetaverseTradeAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      cost?: _components["schemas"]["TokenMetadata"];
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    MetaverseTransfer: {
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    SocialPost: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: _components["schemas"]["Media"][];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: _components["schemas"]["TokenMetadata"] | null;
+      summary?: string;
+      tags?: string[];
+      target?: {
+        author_url?: string;
+        body?: string;
+        content_uri?: string;
+        handle?: string;
+        media?: _components["schemas"]["Media"][];
+        profile_id?: string;
+        publication_id?: string;
+        reward?: _components["schemas"]["TokenMetadata"] | null;
+        summary?: string;
+        tags?: string[];
+        target?: unknown;
+        target_url?: string;
+        title?: string;
+      } | null;
+      target_url?: string;
+      title?: string;
+    };
+    SocialProfileAction: "create" | "renew" | "unwrap" | "update" | "wrap";
+    SocialProfile: {
+      action?: _components["schemas"]["SocialProfileAction"];
+      address?: _components["schemas"]["Address"];
+      bio?: string;
+      expiry?: _components["schemas"]["Time"] | null;
+      handle?: string;
+      image_uri?: string;
+      key?: string;
+      name?: string;
+      profile_id?: string;
+      value?: string;
+    };
+    SocialProxyAction: "appoint" | "remove";
+    SocialProxy: {
+      action?: _components["schemas"]["SocialProxyAction"];
+      profile?: _components["schemas"]["SocialProfile"];
+      proxy_address: _components["schemas"]["Address"];
+    };
+    TransactionApprovalAction: "approve" | "revoke";
+    TransactionApproval: {
+      action: _components["schemas"]["TransactionApprovalAction"];
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+    TransactionBridgeAction: "deposit" | "withdraw";
+    TransactionBridge: {
+      action: _components["schemas"]["TransactionBridgeAction"];
+      source_network: _components["schemas"]["Chain"];
+      target_network: _components["schemas"]["Chain"];
+      token: _components["schemas"]["TokenMetadata"];
+    };
+    TransactionDeploy: {
+      address: string;
+      code?: _components["schemas"]["Bytes"];
+      name?: string;
+    };
+    TransactionMultisigAction:
+      | "add_owner"
+      | "change_threshold"
+      | "create"
+      | "execution"
+      | "remove_owner";
+    TransactionMultisigVault: {
+      address: string;
+      version: string;
+    };
+    TransactionMultisig: {
+      action: _components["schemas"]["TransactionMultisigAction"];
+      owner?: string | null;
+      success?: boolean | null;
+      threshold?: _components["schemas"]["Int"] | null;
+      vault: _components["schemas"]["TransactionMultisigVault"];
+    };
+    TransactionTransfer: {
+      animation_url?: string;
+      contract_address?: string | null;
+      decimals?: number;
+      description?: string;
+      external_url?: string;
+      id?: _components["schemas"]["Decimal"] | null;
+      image?: string;
+      image_url?: string;
+      logo?: string;
+      media_url?: string;
+      name?: string;
+      properties?: _components["schemas"]["RawMessage"];
+      standard?: _components["schemas"]["Standard"];
+      symbol?: string;
+      title?: string;
+      uri?: string;
+      value?: _components["schemas"]["Decimal"] | null;
+    };
+  };
+};
+
+export type MetadataDoc = typeof metadataDoc;
 
 export const metadataDoc = {
   "transaction-transfer": {
-    ref: {} as components["schemas"]["TransactionTransfer"],
+    ref: {} as _components["schemas"]["TransactionTransfer"],
     tag: "transaction",
     type: "transfer",
     examples: [
@@ -12,7 +374,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-approval": {
-    ref: {} as components["schemas"]["TransactionApproval"],
+    ref: {} as _components["schemas"]["TransactionApproval"],
     tag: "transaction",
     type: "approval",
     actions: ["approve", "revoke"],
@@ -31,7 +393,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-mint": {
-    ref: {} as components["schemas"]["TransactionTransfer"],
+    ref: {} as _components["schemas"]["TransactionTransfer"],
     tag: "transaction",
     type: "mint",
     examples: [
@@ -42,7 +404,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-burn": {
-    ref: {} as components["schemas"]["TransactionTransfer"],
+    ref: {} as _components["schemas"]["TransactionTransfer"],
     tag: "transaction",
     type: "burn",
     examples: [
@@ -53,7 +415,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-multisig": {
-    ref: {} as components["schemas"]["TransactionMultisig"],
+    ref: {} as _components["schemas"]["TransactionMultisig"],
     tag: "transaction",
     type: "multisig",
     actions: [
@@ -93,7 +455,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-bridge": {
-    ref: {} as components["schemas"]["TransactionBridge"],
+    ref: {} as _components["schemas"]["TransactionBridge"],
     tag: "transaction",
     type: "bridge",
     actions: ["deposit", "withdraw"],
@@ -111,7 +473,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-deploy": {
-    ref: {} as components["schemas"]["TransactionDeploy"],
+    ref: {} as _components["schemas"]["TransactionDeploy"],
     tag: "transaction",
     type: "deploy",
     examples: [
@@ -122,7 +484,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-transfer": {
-    ref: {} as components["schemas"]["CollectibleTransfer"],
+    ref: {} as _components["schemas"]["CollectibleTransfer"],
     tag: "collectible",
     type: "transfer",
     examples: [
@@ -133,7 +495,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-approval": {
-    ref: {} as components["schemas"]["CollectibleApproval"],
+    ref: {} as _components["schemas"]["CollectibleApproval"],
     tag: "collectible",
     type: "approval",
     actions: ["approve", "revoke"],
@@ -151,7 +513,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-mint": {
-    ref: {} as components["schemas"]["CollectibleTransfer"],
+    ref: {} as _components["schemas"]["CollectibleTransfer"],
     tag: "collectible",
     type: "mint",
     examples: [
@@ -162,7 +524,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-burn": {
-    ref: {} as components["schemas"]["CollectibleTransfer"],
+    ref: {} as _components["schemas"]["CollectibleTransfer"],
     tag: "collectible",
     type: "burn",
     examples: [
@@ -173,7 +535,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-trade": {
-    ref: {} as components["schemas"]["CollectibleTrade"],
+    ref: {} as _components["schemas"]["CollectibleTrade"],
     tag: "collectible",
     type: "trade",
     actions: ["buy", "sell", "offer", "set", "update", "cancel", "invalidate"],
@@ -217,7 +579,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-auction": {
-    ref: {} as components["schemas"]["CollectibleAuction"],
+    ref: {} as _components["schemas"]["CollectibleAuction"],
     tag: "collectible",
     type: "auction",
     actions: ["create", "bid", "cancel", "update", "finalize", "invalidate"],
@@ -256,7 +618,7 @@ export const metadataDoc = {
     ],
   },
   "exchange-swap": {
-    ref: {} as components["schemas"]["ExchangeSwap"],
+    ref: {} as _components["schemas"]["ExchangeSwap"],
     tag: "exchange",
     type: "swap",
     platforms: ["1inch", "Cow", "Rainbow", "Uniswap", "Zerion"],
@@ -268,7 +630,7 @@ export const metadataDoc = {
     ],
   },
   "exchange-liquidity": {
-    ref: {} as components["schemas"]["ExchangeLiquidity"],
+    ref: {} as _components["schemas"]["ExchangeLiquidity"],
     tag: "exchange",
     type: "liquidity",
     actions: [
@@ -320,7 +682,7 @@ export const metadataDoc = {
     ],
   },
   "exchange-loan": {
-    ref: {} as components["schemas"]["ExchangeLoan"],
+    ref: {} as _components["schemas"]["ExchangeLoan"],
     tag: "exchange",
     type: "loan",
     actions: ["create", "repay", "refinance", "liquidate", "seize"],
@@ -354,7 +716,7 @@ export const metadataDoc = {
     ],
   },
   "donation-donate": {
-    ref: {} as components["schemas"]["Donation"],
+    ref: {} as _components["schemas"]["Donation"],
     tag: "donation",
     type: "donate",
     platforms: ["Gitcoin"],
@@ -366,17 +728,17 @@ export const metadataDoc = {
     ],
   },
   "governance-propose": {
-    ref: {} as components["schemas"]["GovernanceProposal"],
+    ref: {} as _components["schemas"]["GovernanceProposal"],
     tag: "governance",
     type: "propose",
   },
   "governance-vote": {
-    ref: {} as components["schemas"]["GovernanceVote"],
+    ref: {} as _components["schemas"]["GovernanceVote"],
     tag: "governance",
     type: "vote",
   },
   "social-post": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as _components["schemas"]["SocialPost"],
     tag: "social",
     type: "post",
     examples: [
@@ -387,7 +749,7 @@ export const metadataDoc = {
     ],
   },
   "social-comment": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as _components["schemas"]["SocialPost"],
     tag: "social",
     type: "comment",
     examples: [
@@ -398,7 +760,7 @@ export const metadataDoc = {
     ],
   },
   "social-share": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as _components["schemas"]["SocialPost"],
     tag: "social",
     type: "share",
     examples: [
@@ -409,7 +771,7 @@ export const metadataDoc = {
     ],
   },
   "social-mint": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as _components["schemas"]["SocialPost"],
     tag: "social",
     type: "mint",
     examples: [
@@ -420,7 +782,7 @@ export const metadataDoc = {
     ],
   },
   "social-profile": {
-    ref: {} as components["schemas"]["SocialProfile"],
+    ref: {} as _components["schemas"]["SocialProfile"],
     tag: "social",
     type: "profile",
     actions: ["create", "update", "renew", "wrap", "unwrap"],
@@ -454,7 +816,7 @@ export const metadataDoc = {
     ],
   },
   "social-proxy": {
-    ref: {} as components["schemas"]["SocialProxy"],
+    ref: {} as _components["schemas"]["SocialProxy"],
     tag: "social",
     type: "proxy",
     actions: ["appoint", "remove"],
@@ -473,7 +835,7 @@ export const metadataDoc = {
     ],
   },
   "social-revise": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as _components["schemas"]["SocialPost"],
     tag: "social",
     type: "revise",
     platforms: ["Crossbell", "Mirror"],
@@ -485,7 +847,7 @@ export const metadataDoc = {
     ],
   },
   "social-delete": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as _components["schemas"]["SocialPost"],
     tag: "social",
     type: "delete",
     platforms: ["Crossbell"],
@@ -497,7 +859,7 @@ export const metadataDoc = {
     ],
   },
   "metaverse-transfer": {
-    ref: {} as components["schemas"]["MetaverseTransfer"],
+    ref: {} as _components["schemas"]["MetaverseTransfer"],
     tag: "metaverse",
     type: "transfer",
     examples: [
@@ -508,7 +870,7 @@ export const metadataDoc = {
     ],
   },
   "metaverse-mint": {
-    ref: {} as components["schemas"]["MetaverseTransfer"],
+    ref: {} as _components["schemas"]["MetaverseTransfer"],
     tag: "metaverse",
     type: "mint",
     examples: [
@@ -519,12 +881,12 @@ export const metadataDoc = {
     ],
   },
   "metaverse-burn": {
-    ref: {} as components["schemas"]["MetaverseTransfer"],
+    ref: {} as _components["schemas"]["MetaverseTransfer"],
     tag: "metaverse",
     type: "burn",
   },
   "metaverse-trade": {
-    ref: {} as components["schemas"]["MetaverseTrade"],
+    ref: {} as _components["schemas"]["MetaverseTrade"],
     tag: "metaverse",
     type: "trade",
     actions: ["buy", "sell", "list"],

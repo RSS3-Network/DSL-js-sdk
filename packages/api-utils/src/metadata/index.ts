@@ -1,30 +1,16 @@
-import type { components } from "../types/data.js";
-import { getTagType } from "../utils.js";
-import type { metadataDoc } from "./doc.js";
+import type { Action } from "@rss3/api-core";
 
-type NotUndefined<T> = T extends undefined ? never : T;
-
-type MakeKeysOptional<T> = {
-  [K in keyof T]?: T[K];
-};
-
-type Doc = typeof metadataDoc;
-
-export type TagTypeMap = MakeKeysOptional<Doc>;
+import type { MetadataDoc } from "./doc.js";
 
 type Handlers = {
-  [key in keyof TagTypeMap]: (
-    metadata: NotUndefined<NotUndefined<TagTypeMap[key]>["ref"]>,
-  ) => void;
+  [K in keyof MetadataDoc]: (metadata: MetadataDoc[K]["ref"]) => void;
 };
 
-export function handleMetadata(
-  action: components["schemas"]["Action"],
-  hs: Handlers,
-) {
-  const h = hs[getTagType(action)];
-  if (!h) return;
+function getTagType(action: Action) {
+  return `${action.tag}-${action.type}` as keyof Handlers;
+}
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  h(action.metadata as any);
+export function handleMetadata(action: Action, handlers: Partial<Handlers>) {
+  // biome-ignore lint/suspicious/noExplicitAny: Use of any is necessary here
+  handlers[getTagType(action)]?.(action.metadata as any);
 }

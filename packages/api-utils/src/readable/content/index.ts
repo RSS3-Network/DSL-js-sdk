@@ -1,7 +1,7 @@
-import type { Activity } from "../../data/client.js";
+import type { Action, Activity } from "@rss3/api-core";
+
+import type { _components } from "../../metadata/doc.js";
 import { handleMetadata } from "../../metadata/index.js";
-import type { components } from "../../types/data.js";
-import { getActions } from "../../utils.js";
 
 export type Content = {
   author_url?: string;
@@ -10,7 +10,7 @@ export type Content = {
   profile_id?: string | number | null;
   title?: string;
   body?: string;
-  media?: components["schemas"]["Media"][];
+  media?: _components["schemas"]["Media"][];
 };
 
 export type PostContent = Content & {
@@ -18,16 +18,13 @@ export type PostContent = Content & {
 };
 
 export function formatContent(activity: Activity) {
-  const action = getActions(activity);
-  if (action.length > 0) {
-    return extractContent(activity, action[0]);
-  }
-  return undefined;
+  const [action] = activity.actions ?? [];
+  return action ? extractContent(activity, action) : undefined;
 }
 
 export function extractContent(
   activity: Activity,
-  action: components["schemas"]["Action"],
+  action: Action,
 ): PostContent | undefined {
   let content: PostContent | undefined;
   handleMetadata(action, {
@@ -64,9 +61,10 @@ export function extractContent(
  */
 export function formatTitle(title?: string, body?: string) {
   if (!title) return title;
-  title = title.replaceAll("…", "");
-  if (body?.startsWith(title)) return undefined;
-  return title;
+
+  const _title = title.replaceAll("…", "");
+
+  return body?.startsWith(_title) ? undefined : _title;
 }
 
 export function checkTargetExist(target?: Content) {
@@ -77,8 +75,8 @@ export function checkTargetExist(target?: Content) {
 
 function extractSocialPost(
   activity: Activity,
-  action: components["schemas"]["Action"],
-  metadata: components["schemas"]["SocialPost"],
+  action: Action,
+  metadata: _components["schemas"]["SocialPost"],
 ): PostContent {
   const raw = metadata.target;
   const target = raw
@@ -94,11 +92,7 @@ function extractSocialPost(
     : undefined;
   // remove the first media, which is the avatar of the author
   // this case only happens in mastodon
-  if (
-    target &&
-    target.media &&
-    activity.network?.toLowerCase() === "mastodon"
-  ) {
+  if (target?.media && activity.network?.toLowerCase() === "mastodon") {
     target.media = target.media.slice(1);
   }
   const res = {
@@ -119,7 +113,7 @@ function extractSocialPost(
 }
 
 function extractGovernanceProposal(
-  metadata: components["schemas"]["GovernanceProposal"],
+  metadata: _components["schemas"]["GovernanceProposal"],
 ) {
   return {
     title: metadata.title,
@@ -128,7 +122,7 @@ function extractGovernanceProposal(
 }
 
 function extractGovernanceVote(
-  metadata: components["schemas"]["GovernanceVote"],
+  metadata: _components["schemas"]["GovernanceVote"],
 ) {
   return {
     title: metadata.proposal?.title,

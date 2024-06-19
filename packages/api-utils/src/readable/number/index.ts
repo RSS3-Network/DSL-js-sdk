@@ -1,6 +1,8 @@
-export function formatTokenValue(amount?: string | null, decimals?: number) {
+export function formatTokenValue(amount_?: string | null, decimals?: number) {
   let result = "0.00";
-  let money;
+  let money: string;
+  let amount = amount_;
+
   if (amount) {
     if (Number.isNaN(Number(amount)) || Number(amount) === 0) {
       return "0.00";
@@ -13,8 +15,9 @@ export function formatTokenValue(amount?: string | null, decimals?: number) {
     const matched = amount.match(/^(0.0+)(.*)/);
     if (Number(amount) > 0 && Number(amount) < 1) {
       money = matched
-        ? matched?.[1] + matched?.[2].slice(0, 3)
-        : "0." + amount.split("0.")[1].slice(0, 3);
+        ? // biome-ignore lint/style/noNonNullAssertion: Already checked the matched value is not null
+          matched[1] + matched[2]!.slice(0, 3)
+        : `0.${amount.split("0.")[1]?.slice(0, 3) ?? "0"}`;
     } else {
       money = Number(Number(amount).toFixed(3)).toString();
     }
@@ -30,19 +33,24 @@ export function formatTokenValue(amount?: string | null, decimals?: number) {
 }
 
 export function formatUnits(bigNum: string, unit: number) {
-  bigNum =
+  return (
     bigNum.length > unit
-      ? bigNum.slice(0, bigNum.length - unit) + "." + bigNum.slice(-unit)
-      : "0." + "0".repeat(unit - bigNum.length) + bigNum;
-  return bigNum.replace(/0+$/, "");
+      ? `${bigNum.slice(0, bigNum.length - unit)}.${bigNum.slice(-unit)}`
+      : `0.${"0".repeat(unit - bigNum.length)}${bigNum}`
+  ).replace(/0+$/, "");
 }
 
 export function formatThousands(num: number) {
   if (Number.isNaN(num)) return num.toString();
-  num = Number(num > 1 ? num.toFixed(2) : num.toFixed(4));
 
-  const withDecimal = num.toString().split(".");
-  withDecimal[0] = withDecimal[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  const withDecimal = Number(num > 1 ? num.toFixed(2) : num.toFixed(4))
+    .toString()
+    .split(".");
+
+  if (withDecimal.length > 0) {
+    // biome-ignore lint/style/noNonNullAssertion: Already checked the length of withDecimal is greater than 0
+    withDecimal[0] = withDecimal[0]!.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
 
   return withDecimal.join(".");
 }

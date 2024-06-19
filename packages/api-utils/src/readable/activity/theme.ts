@@ -1,4 +1,3 @@
-import { formatAddressAndNS } from "../address/index.js";
 import type { Token, TokenType } from "./token.js";
 
 export type Theme<T> = {
@@ -22,51 +21,16 @@ export const themePlain: Theme<string> = {
   unknown: (c) => c,
 };
 
-export const themeHTML: Theme<string> = {
-  html: (c) =>
-    `<span style="color: blueviolet;">${JSON.stringify(ellipsis(stripHTMLTags(c)))}</span>`,
-  name: (c) => `<span style="color: blue;">${c}</span>`,
-  platform: (c) => `<span style="color: red;">${c}</span>`,
-  address: (c) =>
-    `<img src="https://cdn.stamp.fyi/avatar/${c}?s=300" style="height: 32px;" /> <span style="color: green;">${formatAddressAndNS(
-      c,
-    )}</span>`,
-  network: (c) => `<span style="color: red;">${c}</span>`,
-  number: (c) => c,
-  image: (c) => (c ? `<img src="${c}" style="height: 64px;" />` : ""),
-  symbolImage: (c) => (c ? `<img src="${c}" style="height: 16px;" />` : ""),
-  assetImage: (c) => (c ? `<img src="${c}" style="height: 64px;" />` : ""),
-  symbol: (c) => `<span style="color: green;">${c}</span>`,
-  text: (c) => c,
-  time: (c) =>
-    `<span style="color: gray;">${new Date(c).toLocaleString()}</span>`,
-  separator: (c) => c,
-  unknown: (c) => c,
-};
+function ellipsis(content: string, max = 50): string {
+  let result = content;
 
-function ellipsis(s: string): string {
-  let trimmed = false;
-  const max = 50;
-
-  if (/\n/.test(s)) {
-    s = s.replace(/\n[\s\S]+/g, " ");
-    s = s.trim();
+  if (/\n/.test(content)) {
+    result = result.replace(/\n[\s\S]+/g, " ").trim();
   }
 
-  if (s.length > max) {
-    s = s.slice(0, max);
-    trimmed = true;
-  }
-
-  return s + (trimmed ? "..." : "");
+  return result.length > max ? `${result.slice(0, max)}...` : result;
 }
 
 function stripHTMLTags(s: string) {
   return s.replace(/<[^>]*>?/gm, "");
-}
-
-export function summaryOfHTML(s: string) {
-  const node = document.createElement("div");
-  node.innerHTML = s;
-  return ellipsis(node.innerText);
 }

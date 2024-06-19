@@ -1,6 +1,5 @@
-import { INFINITY_VALUE } from "../../constants.js";
-import type { Activity } from "../../data/client.js";
-import type { components } from "../../types/data.js";
+import type { Action, Activity } from "@rss3/api-core";
+
 import { formatTokenValue } from "../number/index.js";
 
 export type TokenType =
@@ -43,7 +42,12 @@ export const tokenSpace = tokenText(" ");
 export const tokenSeparator = token("separator", "; ");
 
 export function join(tokens: Token[], sep = tokenSpace): Token[] {
-  return tokens.reduce((acc, t) => [...acc, sep, t], [] as Token[]).slice(1);
+  return tokens
+    .reduce((acc, t) => {
+      acc.push(sep, t);
+      return acc;
+    }, [] as Token[])
+    .slice(1);
 }
 
 export function tokenText(t: string): Token {
@@ -79,9 +83,18 @@ export function tokenHandle(
   return token("address", t || "", { address: addr, network: network || "" });
 }
 
-export function tokenValue(
-  t: components["schemas"]["TokenMetadata"] | null | undefined,
-) {
+export type TokenMetadata = {
+  symbol?: string;
+  decimals?: number;
+  image?: string;
+  value?: string | null;
+};
+
+// maximum value of uint256
+const INFINITY_VALUE =
+  "115792089237316195423570985008687907853269984665640564039457584007913129639935";
+
+export function tokenValue(t: TokenMetadata | null | undefined) {
   if (!t) return [token("number", "0")];
   if (t.value === INFINITY_VALUE)
     return [token("number", "infinite"), token("symbol", t.symbol)];
@@ -92,52 +105,53 @@ export function tokenValue(
   ];
 }
 
-export function tokenPlatform(t: Activity | components["schemas"]["Action"]) {
+export function tokenPlatform(t: Activity | Action) {
   let platform = "";
   if (t.platform) {
     platform = t.platform;
     return [tokenText("on"), token("platform", platform)];
-  } else {
-    return [];
   }
+  return [];
 }
 
-export function tokenPost(t: components["schemas"]["Action"]) {
+export function tokenPost(t: Action) {
   if (t.tag !== "social") {
     return tokenText("");
   }
 
-  let out = "";
+  if (t.metadata) {
+    if (
+      "title" in t.metadata &&
+      t.metadata.title &&
+      !(t.platform === "Lens" && t.metadata.title)
+    ) {
+      return token("html", t.metadata.title);
+    }
 
-  const platform = t.platform || "";
+    if ("body" in t.metadata && t.metadata.body) {
+      return token("html", t.metadata.body);
+    }
 
-  if (
-    "title" in t.metadata &&
-    t.metadata.title &&
-    !(platform === "Lens" && t.metadata.title)
-  ) {
-    out = t.metadata.title;
-    return token("html", out);
+    if (
+      "target" in t.metadata &&
+      t.metadata.target &&
+      "body" in t.metadata.target &&
+      // FIXME: remove ts-ignore after GI fixing the type
+      // @ts-ignore target is not null
+      t.metadata.target.body
+    ) {
+      // @ts-ignore target is not null
+      return token("html", t.metadata.target.body);
+    }
   }
 
-  if ("body" in t.metadata && t.metadata.body) {
-    out = t.metadata.body;
-  } else if (
-    "target" in t.metadata &&
-    t.metadata.target &&
-    t.metadata.target.body
-  ) {
-    out = t.metadata.target.body;
-  }
-
-  return token("html", out);
+  return token("html", "");
 }
 
 export function tokenAsset(name: string, meta?: Token["meta"]) {
   const img = meta?.preview;
   if (img) {
     return [token("assetImage", img), token("name", name, meta)];
-  } else {
-    return [token("name", name, meta)];
   }
+  return [token("name", name, meta)];
 }
