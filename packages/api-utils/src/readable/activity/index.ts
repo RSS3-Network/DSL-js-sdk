@@ -21,6 +21,8 @@ import {
   tokenValue,
 } from "./token.js";
 
+export * from "./theme.js";
+
 export function getSummaryActions({ actions, tag, type }: Activity): Action[] {
   if (!actions) return [];
   if (actions.length === 1) return actions;
