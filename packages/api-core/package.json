@@ -4,71 +4,72 @@
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/esm/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js"
+      "default": "./dist/cjs/index.js"
     },
     "./client": {
       "types": "./dist/esm/client.d.ts",
       "import": "./dist/esm/client.js",
-      "require": "./dist/cjs/client.js"
+      "default": "./dist/cjs/client.js"
     },
     "./decentralized": {
       "types": "./dist/esm/decentralized.d.ts",
       "import": "./dist/esm/decentralized.js",
-      "require": "./dist/cjs/decentralized.js"
+      "default": "./dist/cjs/decentralized.js"
     },
     "./dsl": {
       "types": "./dist/esm/dsl.d.ts",
       "import": "./dist/esm/dsl.js",
-      "require": "./dist/cjs/dsl.js"
+      "default": "./dist/cjs/dsl.js"
     },
     "./rss": {
       "types": "./dist/esm/rss.d.ts",
       "import": "./dist/esm/rss.js",
-      "require": "./dist/cjs/rss.js"
+      "default": "./dist/cjs/rss.js"
     },
     "./bridge": {
       "types": "./dist/esm/bridge.d.ts",
       "import": "./dist/esm/bridge.js",
-      "require": "./dist/cjs/bridge.js"
+      "default": "./dist/cjs/bridge.js"
     },
     "./nta": {
       "types": "./dist/esm/nta.d.ts",
       "import": "./dist/esm/nta.js",
-      "require": "./dist/cjs/nta.js"
+      "default": "./dist/cjs/nta.js"
     },
     "./stake": {
       "types": "./dist/esm/stake.d.ts",
       "import": "./dist/esm/stake.js",
-      "require": "./dist/cjs/stake.js"
+      "default": "./dist/cjs/stake.js"
     },
     "./chips": {
       "types": "./dist/esm/chips.d.ts",
       "import": "./dist/esm/chips.js",
-      "require": "./dist/cjs/chips.js"
+      "default": "./dist/cjs/chips.js"
     },
     "./snapshots": {
       "types": "./dist/esm/snapshots.d.ts",
       "import": "./dist/esm/snapshots.js",
-      "require": "./dist/cjs/snapshots.js"
+      "default": "./dist/cjs/snapshots.js"
     },
     "./node": {
       "types": "./dist/esm/node.d.ts",
       "import": "./dist/esm/node.js",
-      "require": "./dist/cjs/node.js"
+      "default": "./dist/cjs/node.js"
     },
     "./epoch": {
       "types": "./dist/esm/epoch.d.ts",
       "import": "./dist/esm/epoch.js",
-      "require": "./dist/cjs/epoch.js"
+      "default": "./dist/cjs/epoch.js"
     },
     "./networks": {
       "types": "./dist/esm/networks.d.ts",
       "import": "./dist/esm/networks.js",
-      "require": "./dist/cjs/networks.js"
+      "default": "./dist/cjs/networks.js"
     }
   },
   "files": [
