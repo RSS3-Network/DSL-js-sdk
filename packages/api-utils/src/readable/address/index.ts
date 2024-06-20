@@ -1,4 +1,4 @@
-import { isSupportedNameService } from "../../name-service.js";
+import { isSupportedNS } from "../../name-service.js";
 
 export function isAddress(address: string): boolean {
   return /^(0x)?[\dA-Fa-f]{40}$/.test(address);
@@ -23,7 +23,7 @@ export function formatAddressAndNS(address: string): string {
     return formatAddress(address);
   }
 
-  if (isSupportedNameService(address)) {
+  if (isSupportedNS(address)) {
     return address
       .split(".")
       .map((value: string) => formatAddress(value))

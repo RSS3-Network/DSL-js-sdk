@@ -20,7 +20,11 @@ export const SUPPORTED_NAME_SERVICES = [
 
 export type SupportedNameService = (typeof SUPPORTED_NAME_SERVICES)[number];
 
-export function isSupportedNameService(
+/**
+ * Check if the handle's name service is supported.
+ * @param handle
+ */
+export function isSupportedNS(
   handle?: string | null,
 ): handle is `${string}${SupportedNameService}` {
   if (!handle) return false;
