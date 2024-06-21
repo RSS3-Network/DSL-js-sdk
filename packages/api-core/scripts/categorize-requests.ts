@@ -1,11 +1,11 @@
-import fs from "node:fs";
-import path from "node:path";
-
 import pkg from "../package.json";
+
 import type * as requests from "../src/requests/index.js";
 import type { paths } from "../src/types/openapi-schema.js";
 import type { HttpMethod } from "../src/types/utilities.js";
+
 import openAPI from "./openapi.json";
+import { writeFileSync } from "./utils/write-file-sync.js";
 
 type ValidMethods<T extends Record<string, unknown>> = Exclude<
   {
@@ -171,11 +171,13 @@ for (const [tag, fnNames] of Object.entries(groupedFnNames)) {
   const filename = tag.toLowerCase();
 
   writeFileSync(
+    import.meta,
     `../src/${filename}.ts`,
     `${comment}\nexport { ${fnNames.join(",")} } from "./requests/index.js";`,
   );
 
   writeFileSync(
+    import.meta,
     `../${filename}/package.json`,
     JSON.stringify(
       {
@@ -199,21 +201,11 @@ for (const [tag, fnNames] of Object.entries(groupedFnNames)) {
 files.sort();
 
 writeFileSync(
+  import.meta,
   "../package.json",
   JSON.stringify({ ...pkg, exports, files }, null, 2),
 );
 
 function capitalize(str: string) {
   return str.charAt(0).toUpperCase() + str.slice(1);
-}
-
-function writeFileSync(filePath: string, content: string) {
-  const url = new URL(filePath, import.meta.url);
-  const dir = path.dirname(url.pathname);
-
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-
-  fs.writeFileSync(url, content);
 }

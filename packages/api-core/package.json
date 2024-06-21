@@ -96,6 +96,7 @@
     "prebuild": "rm -rf dist",
     "download-openapi-json": "tsx scripts/download-openapi-json && biome check --write scripts",
     "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/types/openapi-schema.ts && biome check --write src",
+    "create-component-aliases": "tsx scripts/create-component-aliases.ts && biome check --write ./",
     "categorize-requests": "tsx scripts/categorize-requests.ts && biome check --write ./"
   },
   "devDependencies": {
