@@ -1428,7 +1428,34 @@ export interface components {
       /** @description The address from which the action originated. */
       from?: string;
       /** @description Additional metadata related to the action. */
-      metadata?: Record<string, never>;
+      metadata?:
+        | components["schemas"]["TransactionApproval"]
+        | components["schemas"]["TransactionBridge"]
+        | components["schemas"]["TransactionTransfer"]
+        | components["schemas"]["TransactionBurn"]
+        | components["schemas"]["TransactionMint"]
+        | components["schemas"]["CollectibleTrade"]
+        | components["schemas"]["CollectibleTransfer"]
+        | components["schemas"]["CollectibleBurn"]
+        | components["schemas"]["CollectibleMint"]
+        | components["schemas"]["CollectibleApproval"]
+        | components["schemas"]["ExchangeSwap"]
+        | components["schemas"]["ExchangeLiquidity"]
+        | components["schemas"]["ExchangeStaking"]
+        | components["schemas"]["SocialComment"]
+        | components["schemas"]["SocialReward"]
+        | components["schemas"]["SocialShare"]
+        | components["schemas"]["SocialMint"]
+        | components["schemas"]["SocialProfile"]
+        | components["schemas"]["SocialProxy"]
+        | components["schemas"]["SocialPost"]
+        | components["schemas"]["SocialDelete"]
+        | components["schemas"]["SocialRevise"]
+        | components["schemas"]["MetaverseTrade"]
+        | components["schemas"]["MetaverseBurn"]
+        | components["schemas"]["MetaverseMint"]
+        | components["schemas"]["MetaverseTransfer"]
+        | components["schemas"]["RssFeed"];
       platform?: components["schemas"]["Platform"];
       /** @description A list of URLs related to the action. */
       related_urls?: string[];
@@ -2199,6 +2226,980 @@ export interface components {
       /** @example 1 */
       count?: number;
     };
+    Approval: {
+      Token?: {
+        address?: string;
+        decimals?: number;
+        id?: string;
+        name?: string;
+        parsed_image_url?: string;
+        standard?: number;
+        symbol?: string;
+        uri?: string;
+        value?: string;
+      };
+      /** @enum {string} */
+      action?: "approve" | "revoke";
+    };
+    Bridge: {
+      action?: number;
+      /** @enum {string} */
+      source_network?:
+        | "unknown"
+        | "arbitrum"
+        | "arweave"
+        | "avax"
+        | "base"
+        | "binance-smart-chain"
+        | "bitcoin"
+        | "crossbell"
+        | "ethereum"
+        | "farcaster"
+        | "gnosis"
+        | "linea"
+        | "optimism"
+        | "polygon"
+        | "rss"
+        | "savm"
+        | "vsl";
+      /** @enum {string} */
+      target_network?:
+        | "unknown"
+        | "arbitrum"
+        | "arweave"
+        | "avax"
+        | "base"
+        | "binance-smart-chain"
+        | "bitcoin"
+        | "crossbell"
+        | "ethereum"
+        | "farcaster"
+        | "gnosis"
+        | "linea"
+        | "optimism"
+        | "polygon"
+        | "rss"
+        | "savm"
+        | "vsl";
+      token?: {
+        address?: string;
+        decimals?: number;
+        id?: string;
+        name?: string;
+        parsed_image_url?: string;
+        standard?: number;
+        symbol?: string;
+        uri?: string;
+        value?: string;
+      };
+    };
+    ExchangeLiquidity: {
+      /** @enum {string} */
+      action?:
+        | "add"
+        | "borrow"
+        | "collect"
+        | "remove"
+        | "repay"
+        | "supply"
+        | "withdraw";
+      tokens?: unknown[];
+    };
+    ExchangeStaking: {
+      /** @enum {string} */
+      action?: "stake" | "unstake" | "claim";
+      period?: {
+        end?: {
+          ext?: number;
+          loc?: {
+            cacheEnd?: number;
+            cacheStart?: number;
+            cacheZone?: {
+              isDST?: boolean;
+              name?: string;
+              offset?: number;
+            };
+            extend?: string;
+            name?: string;
+            tx?: unknown[];
+            zone?: unknown[];
+          };
+          wall?: number;
+        };
+        start?: {
+          ext?: number;
+          loc?: {
+            cacheEnd?: number;
+            cacheStart?: number;
+            cacheZone?: {
+              isDST?: boolean;
+              name?: string;
+              offset?: number;
+            };
+            extend?: string;
+            name?: string;
+            tx?: unknown[];
+            zone?: unknown[];
+          };
+          wall?: number;
+        };
+      };
+      token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+    };
+    ExchangeSwap: {
+      from?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      to?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+    };
+    SocialMint: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialProxy: {
+      action?: number;
+      profile?: {
+        /** @enum {string} */
+        action?: "create" | "renew" | "unwrap" | "update" | "wrap";
+        address?: unknown[];
+        bio?: string;
+        expiry?: {
+          ext?: number;
+          loc?: {
+            cacheEnd?: number;
+            cacheStart?: number;
+            cacheZone?: {
+              isDST?: boolean;
+              name?: string;
+              offset?: number;
+            };
+            extend?: string;
+            name?: string;
+            tx?: unknown[];
+            zone?: unknown[];
+          };
+          wall?: number;
+        };
+        handle?: string;
+        image_uri?: string;
+        key?: string;
+        name?: string;
+        profile_id?: string;
+        value?: string;
+      };
+      proxy_address?: unknown[];
+    };
+    SocialPost: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialRevise: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialShare: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialDelete: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialComment: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialReward: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialProfile: {
+      /** @enum {string} */
+      action?: "create" | "renew" | "unwrap" | "update" | "wrap";
+      address?: unknown[];
+      bio?: string;
+      expiry?: {
+        ext?: number;
+        loc?: {
+          cacheEnd?: number;
+          cacheStart?: number;
+          cacheZone?: {
+            isDST?: boolean;
+            name?: string;
+            offset?: number;
+          };
+          extend?: string;
+          name?: string;
+          tx?: unknown[];
+          zone?: unknown[];
+        };
+        wall?: number;
+      };
+      handle?: string;
+      image_uri?: string;
+      key?: string;
+      name?: string;
+      profile_id?: string;
+      value?: string;
+    };
+    MetaverseTrade: {
+      Token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      /** @enum {string} */
+      action?: "buy" | "list" | "sell";
+      cost?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+    };
+    MetaverseBurn: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    MetaverseMint: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    MetaverseTransfer: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    RssFeed: {
+      authors?: unknown[];
+      description?: string;
+      pub_date?: string;
+      title?: string;
+    };
+    TransactionApproval: {
+      Token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      /** @enum {string} */
+      action?: "approve" | "revoke";
+    };
+    TransactionBridge: {
+      /** @enum {string} */
+      action?: "deposit" | "withdraw";
+      /** @enum {string} */
+      source_network?:
+        | "unknown"
+        | "arbitrum"
+        | "arweave"
+        | "avax"
+        | "base"
+        | "binance-smart-chain"
+        | "bitcoin"
+        | "crossbell"
+        | "ethereum"
+        | "farcaster"
+        | "gnosis"
+        | "linea"
+        | "optimism"
+        | "polygon"
+        | "rss"
+        | "savm"
+        | "vsl";
+      /** @enum {string} */
+      target_network?:
+        | "unknown"
+        | "arbitrum"
+        | "arweave"
+        | "avax"
+        | "base"
+        | "binance-smart-chain"
+        | "bitcoin"
+        | "crossbell"
+        | "ethereum"
+        | "farcaster"
+        | "gnosis"
+        | "linea"
+        | "optimism"
+        | "polygon"
+        | "rss"
+        | "savm"
+        | "vsl";
+      token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+    };
+    TransactionTransfer: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    TransactionBurn: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    TransactionMint: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    CollectibleApproval: {
+      Token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      action?: number;
+    };
+    CollectibleTrade: {
+      Token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      action?: number;
+      cost?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+    };
+    CollectibleTransfer: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    CollectibleBurn: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    CollectibleMint: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
   };
   responses: {
     /** @description The request was invalid or malformed. */
@@ -2799,6 +3800,5 @@ export interface components {
   headers: never;
   pathItems: never;
 }
-
 export type $defs = Record<string, never>;
 export type operations = Record<string, never>;
