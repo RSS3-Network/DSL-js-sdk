@@ -1426,54 +1426,54 @@ export interface components {
      */
     Action: {
       /** @description The address from which the action originated. */
-      from?: string;
+      from: string;
       /** @description Additional metadata related to the action. */
-      metadata?:
-        | components["schemas"]["SocialRevise"]
-        | components["schemas"]["SocialShare"]
-        | components["schemas"]["SocialProfile"]
-        | components["schemas"]["SocialPost"]
-        | components["schemas"]["SocialComment"]
-        | components["schemas"]["SocialReward"]
-        | components["schemas"]["SocialDelete"]
-        | components["schemas"]["SocialMint"]
-        | components["schemas"]["SocialProxy"]
-        | components["schemas"]["MetaverseTransfer"]
-        | components["schemas"]["MetaverseTrade"]
-        | components["schemas"]["MetaverseBurn"]
-        | components["schemas"]["MetaverseMint"]
+      metadata:
         | components["schemas"]["RssFeed"]
+        | components["schemas"]["TransactionMint"]
         | components["schemas"]["TransactionApproval"]
         | components["schemas"]["TransactionBridge"]
         | components["schemas"]["TransactionTransfer"]
         | components["schemas"]["TransactionBurn"]
-        | components["schemas"]["TransactionMint"]
+        | components["schemas"]["CollectibleApproval"]
+        | components["schemas"]["CollectibleTrade"]
         | components["schemas"]["CollectibleTransfer"]
         | components["schemas"]["CollectibleBurn"]
         | components["schemas"]["CollectibleMint"]
-        | components["schemas"]["CollectibleApproval"]
-        | components["schemas"]["CollectibleTrade"]
         | components["schemas"]["ExchangeLiquidity"]
         | components["schemas"]["ExchangeStaking"]
-        | components["schemas"]["ExchangeSwap"];
+        | components["schemas"]["ExchangeSwap"]
+        | components["schemas"]["SocialComment"]
+        | components["schemas"]["SocialDelete"]
+        | components["schemas"]["SocialPost"]
+        | components["schemas"]["SocialRevise"]
+        | components["schemas"]["SocialReward"]
+        | components["schemas"]["SocialShare"]
+        | components["schemas"]["SocialMint"]
+        | components["schemas"]["SocialProfile"]
+        | components["schemas"]["SocialProxy"]
+        | components["schemas"]["MetaverseBurn"]
+        | components["schemas"]["MetaverseMint"]
+        | components["schemas"]["MetaverseTransfer"]
+        | components["schemas"]["MetaverseTrade"];
       platform?: components["schemas"]["Platform"];
       /** @description A list of URLs related to the action. */
-      related_urls?: string[];
+      related_urls: string[];
       tag?: components["schemas"]["Tag"];
       /** @description The address to which the action is directed. */
-      to?: string;
+      to: string;
       /** @description The type of action performed. */
-      type?: string;
+      type: string;
     };
     /** @description The response structure for a list of activities. */
     ActivitiesResponse: {
       /** @description The list of activities. */
-      data?: components["schemas"]["Activity"][];
+      data: components["schemas"]["Activity"][];
       meta?: components["schemas"]["MetaCursor"];
     };
     Activity: {
       /** @description The list of actions within the activity. */
-      actions?: components["schemas"]["Action"][];
+      actions: components["schemas"]["Action"][];
       calldata?: components["schemas"]["Calldata"];
       direction?: components["schemas"]["Direction"];
       fee?: components["schemas"]["Fee"];
@@ -1481,117 +1481,50 @@ export interface components {
        * @description The address from which the activity originated.
        * @example 0xBAB4d1f27bAA7762a4d822B80C647F715922492f
        */
-      from?: string;
+      from: string;
       /**
        * @description The unique identifier for the activity.
        * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
        */
-      id?: string;
+      id: string;
       /**
        * @description The index of the activity in the list.
        * @example 0
        */
-      index?: number;
+      index: number;
       network?: components["schemas"]["Network"];
       /**
        * @description The owner of the activity.
        * @example 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
        */
-      owner?: string;
+      owner: string;
       platform?: components["schemas"]["Platform"];
       /**
        * @description Indicates whether the activity was successful.
        * @example true
        */
-      success?: boolean;
+      success: boolean;
       tag?: components["schemas"]["Tag"];
       /**
        * @description The timestamp of when the activity occurred.
        * @example 1718689727
        */
-      timestamp?: number;
+      timestamp: number;
       /**
        * @description The address to which the activity is directed.
        * @example 0x7964B6A8aE5a71409e7E17a5b2669903A27997Ac
        */
-      to?: string;
+      to: string;
       /**
        * @description The total number of actions within the activity.
        * @example 1
        */
-      total_actions?: number;
+      total_actions: number;
       type?: components["schemas"]["Type"];
     };
     ActivityResponse: {
       data?: components["schemas"]["Activity"];
       meta?: components["schemas"]["MetaTotalPages"];
-    };
-    Approval: {
-      /** @enum {string} */
-      action?: "approve" | "revoke";
-      Token?: {
-        address?: string;
-        decimals?: number;
-        id?: string;
-        name?: string;
-        parsed_image_url?: string;
-        standard?: number;
-        symbol?: string;
-        uri?: string;
-        value?: string;
-      };
-    };
-    Bridge: {
-      action?: number;
-      /** @enum {string} */
-      source_network?:
-        | "unknown"
-        | "arbitrum"
-        | "arweave"
-        | "avax"
-        | "base"
-        | "binance-smart-chain"
-        | "bitcoin"
-        | "crossbell"
-        | "ethereum"
-        | "farcaster"
-        | "gnosis"
-        | "linea"
-        | "optimism"
-        | "polygon"
-        | "rss"
-        | "savm"
-        | "vsl";
-      /** @enum {string} */
-      target_network?:
-        | "unknown"
-        | "arbitrum"
-        | "arweave"
-        | "avax"
-        | "base"
-        | "binance-smart-chain"
-        | "bitcoin"
-        | "crossbell"
-        | "ethereum"
-        | "farcaster"
-        | "gnosis"
-        | "linea"
-        | "optimism"
-        | "polygon"
-        | "rss"
-        | "savm"
-        | "vsl";
-      token?: {
-        address?: string;
-        decimals?: number;
-        id?: string;
-        name?: string;
-        parsed_image_url?: string;
-        standard?: number;
-        symbol?: string;
-        uri?: string;
-        value?: string;
-      };
     };
     BridgeTransaction: {
       event?: {
@@ -1606,20 +1539,20 @@ export interface components {
         } | null;
       };
       /** @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa */
-      id?: string;
+      id: string;
       /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
-      receiver?: string;
+      receiver: string;
       /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
-      sender?: string;
+      sender: string;
       token?: {
-        address?: {
+        address: {
           /** @example 0xc98d64da73a6616c42117b582e832812e7b8d57f */
-          l1?: string;
+          l1: string;
           /** @example 0x4200000000000000000000000000000000000042 */
-          l2?: string;
+          l2: string;
         };
         /** @example 10000000000000000000000 */
-        value?: string;
+        value: string;
       };
     };
     /** @example {
@@ -1664,31 +1597,31 @@ export interface components {
      *       ]
      *     } */
     BriefEpoch: {
-      distributions?: components["schemas"]["BriefEpochDistribution"][];
-      end_timestamp?: number;
-      id?: number;
-      start_timestamp?: number;
-      total_operation_rewards?: string;
-      total_request_counts?: string;
-      total_reward_items?: number;
-      total_staking_rewards?: string;
+      distributions: components["schemas"]["BriefEpochDistribution"][];
+      end_timestamp: number;
+      id: number;
+      start_timestamp: number;
+      total_operation_rewards: string;
+      total_request_counts: string;
+      total_reward_items: number;
+      total_staking_rewards: string;
     };
     BriefEpochDistribution: {
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
+      block: {
+        hash: string;
+        number: number;
+        timestamp: number;
       };
-      end_timestamp?: number;
-      id?: number;
-      start_timestamp?: number;
-      total_operation_rewards?: string;
-      total_request_counts?: string;
-      total_reward_items?: number;
-      total_staking_rewards?: string;
-      transaction?: {
-        hash?: string;
-        index?: number;
+      end_timestamp: number;
+      id: number;
+      start_timestamp: number;
+      total_operation_rewards: string;
+      total_request_counts: string;
+      total_reward_items: number;
+      total_staking_rewards: string;
+      transaction: {
+        hash: string;
+        index: number;
       };
     };
     /**
@@ -1707,74 +1640,64 @@ export interface components {
     };
     Chip: {
       /** @example 1690 */
-      id?: number;
+      id: number;
       /**
        * @description The latest value of the chip
        * @example 613891695796128425340
        */
-      latest_value?: string;
-      metadata?: {
+      latest_value: string;
+      metadata: {
         /** @example Chip Monsters are unique creatures living in the RSS3 Network, each one special because of where it was born. They represent the idea of FREE and OPEN INFORMATION, thriving in a world that values sharing and being different. These Chip Monsters are more than just digital; they symbolize the excitement and importance of being unique in a connected digital world. */
-        description?: string;
+        description: string;
         /** @example https://gi.rss3.io/nta/chips/1690/image.svg */
-        image?: string;
+        image: string;
         /** @example Open Chips #1690 */
-        name?: string;
+        name: string;
       };
       /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node?: string;
+      node: string;
       /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
-      owner?: string;
+      owner: string;
       /**
        * @description the value at time of minting
        * @example 500000000000000000000
        */
-      value?: string;
+      value: string;
     };
     ChipPNL: {
       /** @example 2024-06-14T01:57:07Z */
-      date?: string;
+      date: string;
       /** @example 0.0066375630868202 */
-      profit_and_loss?: string;
+      profit_and_loss: string;
       /** @example 24 */
-      total_chip_amount?: string;
+      total_chip_amount: string;
       /** @example 14459771035071565497880 */
-      total_chip_value?: string;
+      total_chip_value: string;
     };
     CollectibleApproval: {
-      action?: number;
-      Token?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
+      /** @enum {string} */
+      action: "approve" | "revoke";
+      address?: string;
+      decimals?: number;
+      id?: string;
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: string;
     };
     CollectibleBurn: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -1787,18 +1710,12 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     CollectibleMint: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -1811,20 +1728,16 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     CollectibleTrade: {
-      action?: number;
+      /** @enum {string} */
+      action: "buy" | "sell";
+      address?: string;
       cost?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -1837,43 +1750,28 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
-      Token?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
+      decimals?: number;
+      id?: string;
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: string;
     };
     CollectibleTransfer: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -1886,16 +1784,13 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     CountSnapshot: {
       /** @example 1 */
-      count?: number;
+      count: number;
       /** @example 2024-03-10 */
-      date?: string;
+      date: string;
     };
     /**
      * @description The direction of an activity.
@@ -1904,29 +1799,29 @@ export interface components {
      */
     Direction: "in" | "out" | "self";
     Epoch: {
-      distributions?: components["schemas"]["EpochDistribution"][];
+      distributions: components["schemas"]["EpochDistribution"][];
       /** @example 1718654555 */
-      end_timestamp?: number;
+      end_timestamp: number;
       /** @example 130 */
-      id?: number;
+      id: number;
       /** @example 1718589689 */
-      start_timestamp?: number;
+      start_timestamp: number;
       /** @example 0 */
-      total_operation_rewards?: string;
+      total_operation_rewards: string;
       /** @example 40 */
-      total_request_counts?: string;
+      total_request_counts: string;
       /** @example 65 */
-      total_reward_items?: number;
+      total_reward_items: number;
       /** @example 61084916609459274004676 */
-      total_staking_rewards?: string;
+      total_staking_rewards: string;
     };
     EpochAPYSnapshot: {
       /** @example 0.1 */
-      apy?: string;
+      apy: string;
       /** @example 2024-06-17T20:02:35Z */
-      date?: string;
+      date: string;
       /** @example 1 */
-      epoch_id?: number;
+      epoch_id: number;
     };
     /** @example {
      *       "id": 130,
@@ -1959,36 +1854,36 @@ export interface components {
      *       ]
      *     } */
     EpochDistribution: {
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
+      block: {
+        hash: string;
+        number: number;
+        timestamp: number;
       };
-      end_timestamp?: number;
-      id?: number;
-      reward_items?: {
-        epoch_id?: number;
-        index?: number;
-        node_address?: string;
-        operation_rewards?: string;
+      end_timestamp: number;
+      id: number;
+      reward_items: {
+        epoch_id: number;
+        index: number;
+        node_address: string;
+        operation_rewards: string;
         request_counts?: string;
-        staking_rewards?: string;
-        tax_collected?: string;
-        transaction_hash?: string;
+        staking_rewards: string;
+        tax_collected: string;
+        transaction_hash: string;
       }[];
-      start_timestamp?: number;
-      total_operation_rewards?: string;
-      total_request_counts?: string;
-      total_reward_items?: number;
-      total_staking_rewards?: string;
-      transaction?: {
-        hash?: string;
-        index?: number;
+      start_timestamp: number;
+      total_operation_rewards: string;
+      total_request_counts: string;
+      total_reward_items: number;
+      total_staking_rewards: string;
+      transaction: {
+        hash: string;
+        index: number;
       };
     };
     ExchangeLiquidity: {
       /** @enum {string} */
-      action?:
+      action:
         | "add"
         | "borrow"
         | "collect"
@@ -1996,54 +1891,10 @@ export interface components {
         | "repay"
         | "supply"
         | "withdraw";
-      tokens?: unknown[];
-    };
-    ExchangeStaking: {
-      /** @enum {string} */
-      action?: "stake" | "unstake" | "claim";
-      period?: {
-        end?: {
-          ext?: number;
-          loc?: {
-            cacheEnd?: number;
-            cacheStart?: number;
-            cacheZone?: {
-              isDST?: boolean;
-              name?: string;
-              offset?: number;
-            };
-            extend?: string;
-            name?: string;
-            tx?: unknown[];
-            zone?: unknown[];
-          };
-          wall?: number;
-        };
-        start?: {
-          ext?: number;
-          loc?: {
-            cacheEnd?: number;
-            cacheStart?: number;
-            cacheZone?: {
-              isDST?: boolean;
-              name?: string;
-              offset?: number;
-            };
-            extend?: string;
-            name?: string;
-            tx?: unknown[];
-            zone?: unknown[];
-          };
-          wall?: number;
-        };
-      };
-      token?: {
+      tokens: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2056,20 +1907,90 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
+        value?: string;
+      }[];
+    };
+    ExchangeStaking: {
+      /** @enum {string} */
+      action: "stake" | "unstake" | "claim";
+      period?: {
+        end?: {
+          ext: number;
+          loc?: {
+            cacheEnd: number;
+            cacheStart: number;
+            cacheZone?: {
+              isDST: boolean;
+              name: string;
+              offset: number;
+            };
+            extend: string;
+            name: string;
+            tx: {
+              index: number;
+              isstd: boolean;
+              isutc: boolean;
+              when: number;
+            }[];
+            zone: {
+              isDST: boolean;
+              name: string;
+              offset: number;
+            }[];
+          };
+          wall: number;
         };
+        start?: {
+          ext: number;
+          loc?: {
+            cacheEnd: number;
+            cacheStart: number;
+            cacheZone?: {
+              isDST: boolean;
+              name: string;
+              offset: number;
+            };
+            extend: string;
+            name: string;
+            tx: {
+              index: number;
+              isstd: boolean;
+              isutc: boolean;
+              when: number;
+            }[];
+            zone: {
+              isDST: boolean;
+              name: string;
+              offset: number;
+            }[];
+          };
+          wall: number;
+        };
+      };
+      token?: {
+        address?: string;
+        decimals?: number;
+        id?: string;
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: string;
       };
     };
     ExchangeSwap: {
       from?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2082,18 +2003,12 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       to?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2106,10 +2021,7 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
     };
     /**
@@ -2123,7 +2035,7 @@ export interface components {
       /** @description The address to which the fee is paid. */
       address?: string;
       /** @description The amount of the fee. */
-      amount?: string;
+      amount: string;
       /** @description The decimal precision of the fee amount. */
       decimal?: number;
     };
@@ -2167,7 +2079,7 @@ export interface components {
     /** @description Metadata for paginated responses. */
     MetaCursor: {
       /** @description The cursor for the next set of results. */
-      cursor?: string;
+      cursor: string;
     };
     /** @description Metadata indicating the total number of pages. */
     MetaTotalPages: {
@@ -2175,15 +2087,12 @@ export interface components {
        * @description The total number of pages available.
        * @example 1
        */
-      totalPages?: number;
+      totalPages: number;
     };
     MetaverseBurn: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -2196,18 +2105,12 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     MetaverseMint: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -2220,21 +2123,16 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     MetaverseTrade: {
       /** @enum {string} */
       action?: "buy" | "list" | "sell";
+      address?: string;
       cost?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2247,43 +2145,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
-      Token?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
-    };
-    MetaverseTransfer: {
-      address?: string;
-      decimals?: number;
-      id?: {
-        exp?: number;
         value?: string;
       };
+      decimals?: number;
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -2296,10 +2161,25 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
+    };
+    MetaverseTransfer: {
+      address?: string;
+      decimals?: number;
+      id?: string;
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: string;
     };
     /**
      * @description The network on which activities occur.
@@ -2425,19 +2305,19 @@ export interface components {
      *       "created_at": 1710278898
      *     } */
     Node: {
-      address?: string;
-      avatar?: {
+      address: string;
+      avatar: {
         description?: string;
         image?: string;
         name?: string;
       };
       /** @description The timestamp of the Node creation */
-      created_at?: number;
-      description?: string;
-      id?: number;
-      is_public_good?: boolean;
+      created_at: number;
+      description: string;
+      id: number;
+      is_public_good: boolean;
       /** @description The timestamp of the last heartbeat */
-      last_heartbeat?: number;
+      last_heartbeat: number;
       local?: {
         city?: string;
         country?: string;
@@ -2445,15 +2325,15 @@ export interface components {
         longitude?: number;
         region?: string;
       }[];
-      min_tokens_to_stake?: string;
-      name?: string;
-      operation_pool_tokens?: string;
-      slashed_tokens?: string;
-      staking_pool_tokens?: string;
+      min_tokens_to_stake: string;
+      name: string;
+      operation_pool_tokens: string;
+      slashed_tokens: string;
+      staking_pool_tokens: string;
       /** @enum {string} */
-      status?: "registered" | "online" | "offline" | "exited";
+      status: "registered" | "online" | "offline" | "exited";
       tax_rate_basis_points?: number | null;
-      total_shares?: string;
+      total_shares: string;
     };
     /** @example {
      *       "transaction": {
@@ -2474,70 +2354,66 @@ export interface components {
      *       "metadata": {}
      *     } */
     NodeEvent: {
-      address_from?: string;
-      address_to?: string;
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
+      address_from: string;
+      address_to: string;
+      block: {
+        hash: string;
+        number: number;
+        timestamp: number;
       };
-      chain_id?: number;
-      log_index?: number;
-      metadata?: {
+      chain_id: number;
+      log_index: number;
+      metadata: {
         node_created?: {
-          address?: string;
-          description?: string;
-          is_public_good?: boolean;
-          name?: string;
-          node_id?: number;
-          tax_rate_basis_points?: number;
+          address: string;
+          description: string;
+          is_public_good: boolean;
+          name: string;
+          node_id: number;
+          tax_rate_basis_points: number;
         };
         node_updated?: {
-          address?: string;
-          description?: string;
-          name?: string;
-        };
-        node_updated_to_public_good?: {
-          address?: string;
-          is_public_good?: boolean;
+          address: string;
+          description: string;
+          name: string;
         };
       };
-      node_id?: number;
-      transaction?: {
-        hash?: string;
-        index?: number;
+      node_id: number;
+      transaction: {
+        hash: string;
+        index: number;
       };
       /** @enum {string} */
-      type?: "node_created" | "node_updated" | "node_updated_to_public_good";
+      type: "nodeCreated" | "nodeUpdated";
     };
     NodeMinTokensToStakeSnapshot: {
       /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node_address?: string;
-      snapshots?: {
+      node_address: string;
+      snapshots: {
         /** @example 2024-03-12T19:00:03Z */
-        date?: string;
+        date: string;
         /** @example 1 */
-        epoch_id?: number;
+        epoch_id: number;
         /** @example 517704408563610773574 */
-        min_tokens_to_stake?: string;
+        min_tokens_to_stake: string;
         /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-        node_address?: string;
+        node_address: string;
       }[];
     };
     OperationProfit: {
-      address?: string;
+      address: string;
       /** @example 2024-03-13T00:08:38+08:00 */
-      date?: string;
-      epoch_id?: number;
-      operation_pool?: string;
+      date: string;
+      epoch_id: number;
+      operation_pool: string;
     };
     OperationProfitPNL: {
       /** @example 2024-06-17T20:02:35Z */
-      date?: string;
+      date: string;
       /** @example 724429065703690345869831 */
-      operation_pool?: string;
+      operation_pool: string;
       /** @example 0 */
-      profit_and_loss?: string;
+      profit_and_loss: string;
     };
     /**
      * @description The platform on which activities occur.
@@ -2570,35 +2446,37 @@ export interface components {
       | "VSL";
     ResponseError: {
       details?: string;
-      error?: string;
+      error: string;
       /** @enum {string} */
-      error_code?:
+      error_code:
         | "bad_request"
         | "validate_failed"
         | "bad_params"
         | "internal_error";
     };
     RssFeed: {
-      authors?: unknown[];
-      description?: string;
+      authors?: {
+        name: string;
+      }[];
+      description: string;
       pub_date?: string;
-      title?: string;
+      title: string;
     };
     SocialComment: {
       author_url?: string;
       body?: string;
       content_uri?: string;
       handle?: string;
-      media?: unknown[];
+      media?: {
+        address: string;
+        mime_type: string;
+      }[];
       profile_id?: string;
       publication_id?: string;
       reward?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2611,13 +2489,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       summary?: string;
-      tags?: unknown[];
+      tags?: string[];
       target?: components["schemas"]["SocialPost"];
       target_url?: string;
       timestamp?: number;
@@ -2628,16 +2503,16 @@ export interface components {
       body?: string;
       content_uri?: string;
       handle?: string;
-      media?: unknown[];
+      media?: {
+        address: string;
+        mime_type: string;
+      }[];
       profile_id?: string;
       publication_id?: string;
       reward?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2650,13 +2525,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       summary?: string;
-      tags?: unknown[];
+      tags?: string[];
       target?: components["schemas"]["SocialPost"];
       target_url?: string;
       timestamp?: number;
@@ -2667,16 +2539,16 @@ export interface components {
       body?: string;
       content_uri?: string;
       handle?: string;
-      media?: unknown[];
+      media?: {
+        address: string;
+        mime_type: string;
+      }[];
       profile_id?: string;
       publication_id?: string;
       reward?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2689,13 +2561,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       summary?: string;
-      tags?: unknown[];
+      tags?: string[];
       target?: components["schemas"]["SocialPost"];
       target_url?: string;
       timestamp?: number;
@@ -2706,16 +2575,16 @@ export interface components {
       body?: string;
       content_uri?: string;
       handle?: string;
-      media?: unknown[];
+      media?: {
+        address: string;
+        mime_type: string;
+      }[];
       profile_id?: string;
       publication_id?: string;
       reward?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2728,13 +2597,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       summary?: string;
-      tags?: unknown[];
+      tags?: string[];
       target?: components["schemas"]["SocialPost"];
       target_url?: string;
       timestamp?: number;
@@ -2745,23 +2611,7 @@ export interface components {
       action?: "create" | "renew" | "unwrap" | "update" | "wrap";
       address?: unknown[];
       bio?: string;
-      expiry?: {
-        ext?: number;
-        loc?: {
-          cacheEnd?: number;
-          cacheStart?: number;
-          cacheZone?: {
-            isDST?: boolean;
-            name?: string;
-            offset?: number;
-          };
-          extend?: string;
-          name?: string;
-          tx?: unknown[];
-          zone?: unknown[];
-        };
-        wall?: number;
-      };
+      expiry?: string;
       handle?: string;
       image_uri?: string;
       key?: string;
@@ -2776,23 +2626,7 @@ export interface components {
         action?: "create" | "renew" | "unwrap" | "update" | "wrap";
         address?: unknown[];
         bio?: string;
-        expiry?: {
-          ext?: number;
-          loc?: {
-            cacheEnd?: number;
-            cacheStart?: number;
-            cacheZone?: {
-              isDST?: boolean;
-              name?: string;
-              offset?: number;
-            };
-            extend?: string;
-            name?: string;
-            tx?: unknown[];
-            zone?: unknown[];
-          };
-          wall?: number;
-        };
+        expiry?: string;
         handle?: string;
         image_uri?: string;
         key?: string;
@@ -2800,23 +2634,23 @@ export interface components {
         profile_id?: string;
         value?: string;
       };
-      proxy_address?: unknown[];
+      proxy_address: unknown[];
     };
     SocialRevise: {
       author_url?: string;
       body?: string;
       content_uri?: string;
       handle?: string;
-      media?: unknown[];
+      media?: {
+        address: string;
+        mime_type: string;
+      }[];
       profile_id?: string;
       publication_id?: string;
       reward?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2829,13 +2663,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       summary?: string;
-      tags?: unknown[];
+      tags?: string[];
       target?: components["schemas"]["SocialPost"];
       target_url?: string;
       timestamp?: number;
@@ -2846,16 +2677,16 @@ export interface components {
       body?: string;
       content_uri?: string;
       handle?: string;
-      media?: unknown[];
+      media?: {
+        address: string;
+        mime_type: string;
+      }[];
       profile_id?: string;
       publication_id?: string;
       reward?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2868,13 +2699,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       summary?: string;
-      tags?: unknown[];
+      tags?: string[];
       target?: components["schemas"]["SocialPost"];
       target_url?: string;
       timestamp?: number;
@@ -2885,16 +2713,16 @@ export interface components {
       body?: string;
       content_uri?: string;
       handle?: string;
-      media?: unknown[];
+      media?: {
+        address: string;
+        mime_type: string;
+      }[];
       profile_id?: string;
       publication_id?: string;
       reward?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -2907,13 +2735,10 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
       summary?: string;
-      tags?: unknown[];
+      tags?: string[];
       target?: components["schemas"]["SocialPost"];
       target_url?: string;
       timestamp?: number;
@@ -2921,25 +2746,25 @@ export interface components {
     };
     StakerProfitSnapshot: {
       /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
-      address?: string;
+      address: string;
       /** @example 2024-06-17T02:01:29Z */
-      date?: string;
+      date: string;
       /** @example 1 */
-      epoch_id?: number;
+      epoch_id: number;
       /** @example 24 */
-      total_chip_amount?: string;
+      total_chip_amount: string;
       /** @example 14459771035071565497880 */
       total_chip_value?: string;
     };
     StakeStaking: {
-      chips?: {
-        showcase?: components["schemas"]["Chip"][];
-        total?: number;
+      chips: {
+        showcase: components["schemas"]["Chip"][];
+        total: number;
       };
       /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node?: string;
+      node: string;
       /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
-      staker?: string;
+      staker: string;
     };
     StakeTransaction: {
       chips?: components["schemas"]["Chip"][] | null;
@@ -2960,13 +2785,13 @@ export interface components {
         } | null;
       };
       /** @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb */
-      id?: string;
+      id: string;
       /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node?: string;
+      node: string;
       /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
-      staker?: string;
+      staker: string;
       /** @example 5000000000000000000000 */
-      value?: string;
+      value: string;
     };
     /**
      * @description A tag used to categorize activities.
@@ -2983,37 +2808,29 @@ export interface components {
       | "unknown";
     TransactionApproval: {
       /** @enum {string} */
-      action?: "approve" | "revoke";
-      Token?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
+      action: "approve" | "revoke";
+      address?: string;
+      decimals?: number;
+      id?: string;
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: string;
     };
     TransactionBridge: {
       /** @enum {string} */
-      action?: "deposit" | "withdraw";
+      action: "deposit" | "withdraw";
       /** @enum {string} */
-      source_network?:
+      source_network:
         | "unknown"
         | "arbitrum"
         | "arweave"
@@ -3032,7 +2849,7 @@ export interface components {
         | "savm"
         | "vsl";
       /** @enum {string} */
-      target_network?:
+      target_network:
         | "unknown"
         | "arbitrum"
         | "arweave"
@@ -3053,10 +2870,7 @@ export interface components {
       token?: {
         address?: string;
         decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
+        id?: string;
         name?: string;
         parsed_image_url?: string;
         /** @enum {string} */
@@ -3069,19 +2883,13 @@ export interface components {
           | "ERC-1967";
         symbol?: string;
         uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
+        value?: string;
       };
     };
     TransactionBurn: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -3094,10 +2902,7 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     /** @example {
      *       "block": {
@@ -3111,23 +2916,20 @@ export interface components {
      *       }
      *     } */
     TransactionEvent: {
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
+      block: {
+        hash: string;
+        number: number;
+        timestamp: number;
       };
-      transaction?: {
-        hash?: string;
-        index?: number;
+      transaction: {
+        hash: string;
+        index: number;
       };
     } | null;
     TransactionMint: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -3140,18 +2942,12 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     TransactionTransfer: {
       address?: string;
       decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
+      id?: string;
       name?: string;
       parsed_image_url?: string;
       /** @enum {string} */
@@ -3164,10 +2960,7 @@ export interface components {
         | "ERC-1967";
       symbol?: string;
       uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+      value?: string;
     };
     /**
      * @description The type of activity.
@@ -3195,10 +2988,10 @@ export interface components {
       | "transfer"
       | "unknown";
     WorkerDetail: {
-      description?: string;
-      is_required?: boolean;
-      type?: string;
-      value?: string;
+      description: string;
+      is_required: boolean;
+      type: string;
+      value: string;
     };
   };
   responses: {
@@ -3289,9 +3082,9 @@ export interface components {
            * @description Cursor for pagination to fetch the next set of results.
            * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
            */
-          cursor?: string;
+          cursor: string;
           /** @description Array of chips matching the filter criteria. */
-          data?: components["schemas"]["Chip"][];
+          data: components["schemas"]["Chip"][];
         };
       };
     };
@@ -3303,7 +3096,7 @@ export interface components {
       content: {
         "application/json": {
           /** @description Array of epoch APY snapshots. */
-          data?: components["schemas"]["EpochAPYSnapshot"][];
+          data: components["schemas"]["EpochAPYSnapshot"][];
         };
       };
     };
@@ -3327,7 +3120,7 @@ export interface components {
            * @description The average APY of all epochs.
            * @example 1.4665029316918649354
            */
-          data?: string;
+          data: string;
         };
       };
     };
@@ -3341,7 +3134,7 @@ export interface components {
           /** @description Cursor for pagination to fetch the next set of results. */
           cursor?: string;
           /** @description Array of epochs. */
-          data?: components["schemas"]["BriefEpoch"][];
+          data: components["schemas"]["BriefEpoch"][];
         };
       };
     };
@@ -3353,7 +3146,7 @@ export interface components {
       content: {
         "application/json": {
           /** @description Array of epoch distribution details. */
-          data?: components["schemas"]["EpochDistribution"][];
+          data: components["schemas"]["EpochDistribution"][];
         };
       };
     };
@@ -3365,7 +3158,7 @@ export interface components {
       content: {
         "application/json": {
           /** @description Array of compatible network names. */
-          data?: components["schemas"]["Network"][];
+          data: components["schemas"]["Network"][];
         };
       };
     };
@@ -3388,7 +3181,7 @@ export interface components {
       content: {
         "application/json": {
           /** @description Array of worker names for the specified network. */
-          data?: string[];
+          data: string[];
         };
       };
     };
@@ -3409,7 +3202,7 @@ export interface components {
       content: {
         "application/json": {
           /** @description Array of node count snapshots. */
-          data?: components["schemas"]["CountSnapshot"][];
+          data: components["schemas"]["CountSnapshot"][];
         };
       };
     };
@@ -3421,9 +3214,9 @@ export interface components {
       content: {
         "application/json": {
           /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
+          cursor: string;
           /** @description Array of node transaction events. */
-          data?: components["schemas"]["NodeEvent"][];
+          data: components["schemas"]["NodeEvent"][];
         };
       };
     };
@@ -3435,7 +3228,7 @@ export interface components {
       content: {
         "application/json": {
           /** @description Array of minimum staking amount snapshots. */
-          data?: components["schemas"]["NodeMinTokensToStakeSnapshot"][];
+          data: components["schemas"]["NodeMinTokensToStakeSnapshot"][];
         };
       };
     };
@@ -3447,12 +3240,12 @@ export interface components {
       content: {
         "application/json": {
           /** @description Operation profit details for the node. */
-          data?: {
+          data: {
             /**
              * @description The address of the node.
              * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
              */
-            node_address?: string;
+            node_address: string;
             oneDay?: components["schemas"]["OperationProfitPNL"];
             oneMonth?: components["schemas"]["OperationProfitPNL"];
             oneWeek?: components["schemas"]["OperationProfitPNL"];
@@ -3460,7 +3253,7 @@ export interface components {
              * @description The operation pool of the node.
              * @example 724429065703690345869831
              */
-            operation_pool?: string;
+            operation_pool: string;
           };
         };
       };
@@ -3482,9 +3275,9 @@ export interface components {
       content: {
         "application/json": {
           /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
+          cursor: string;
           /** @description Array of epochs with node rewards. */
-          data?: components["schemas"]["Epoch"][];
+          data: components["schemas"]["Epoch"][];
         };
       };
     };
@@ -3505,9 +3298,9 @@ export interface components {
       content: {
         "application/json": {
           /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
+          cursor: string;
           /** @description Array of operation profit snapshots. */
-          data?: components["schemas"]["OperationProfit"][];
+          data: components["schemas"]["OperationProfit"][];
         };
       };
     };
@@ -3528,7 +3321,7 @@ export interface components {
       content: {
         "application/json": {
           /** @description Array of staker count snapshots. */
-          data?: components["schemas"]["CountSnapshot"][];
+          data: components["schemas"]["CountSnapshot"][];
         };
       };
     };
@@ -3540,9 +3333,9 @@ export interface components {
       content: {
         "application/json": {
           /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
+          cursor: string;
           /** @description Array of staker profit snapshots. */
-          data?: components["schemas"]["StakerProfitSnapshot"][];
+          data: components["schemas"]["StakerProfitSnapshot"][];
         };
       };
     };
@@ -3557,8 +3350,8 @@ export interface components {
            * @description Cursor for pagination to fetch the next set of results.
            * @example 0xc7d6378960bd3374c31ce6223df0e79355ff3dc4b6dccf28afe84487321ef9fb
            */
-          cursor?: string;
-          data?: components["schemas"]["StakeStaking"][];
+          cursor: string;
+          data: components["schemas"]["StakeStaking"][];
         };
       };
     };
@@ -3601,17 +3394,17 @@ export interface components {
              * @description The address of the staker.
              * @example 0x827431510a5d249ce4fdb7f00c83a3353f471848
              */
-            owner?: string;
+            owner: string;
             /**
              * @description The total amount of chips owned by the staker.
              * @example 1000
              */
-            total_chip_amount?: string;
+            total_chip_amount: string;
             /**
              * @description The total value of chips owned by the staker.
              * @example 100000
              */
-            total_chip_value?: string;
+            total_chip_value: string;
           };
         };
       };
