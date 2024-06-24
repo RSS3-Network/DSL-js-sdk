@@ -1,6 +1,10 @@
-import type { Action } from "@rss3/api-core";
+import type {
+  Action,
+  CollectibleApproval,
+  CollectibleTrade,
+  CollectibleTransfer,
+} from "@rss3/api-core";
 
-import type { _components } from "../../metadata/doc.js";
 import { handleMetadata } from "../../metadata/index.js";
 
 export type BriefAsset = {
@@ -30,37 +34,19 @@ export function extractAsset(action: Action) {
     "collectible-trade": (m) => {
       res = extractNFT(m);
     },
-    "collectible-auction": (m) => {
-      res = extractNFT(m);
-    },
-    "donation-donate": (m) => {
-      res = extractDonation(m);
-    },
   });
 
   return res;
 }
 
 export function extractNFT(
-  m:
-    | _components["schemas"]["CollectibleTransfer"]
-    | _components["schemas"]["CollectibleTrade"]
-    | _components["schemas"]["CollectibleApproval"]
-    | _components["schemas"]["CollectibleAuction"],
+  m: CollectibleTransfer | CollectibleTrade | CollectibleApproval,
 ) {
   return {
-    contract: m.contract_address,
+    address: m.address,
     id: m.id,
-    url: m.image_url,
-    title: m.title || m.name,
-    description: m.description,
-  };
-}
-
-export function extractDonation(m: _components["schemas"]["Donation"]) {
-  return {
-    url: m.logo,
-    title: m.title,
-    description: m.description,
+    url: m.parsed_image_url,
+    title: m.name,
+    standard: m.standard,
   };
 }

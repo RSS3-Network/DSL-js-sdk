@@ -187,57 +187,14 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         ...tokenValue(m),
       ]);
     },
-    // todo need to double check the multisig action
-    "transaction-multisig": (m) => {
-      if (m.action === "create") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("created a multisig transaction"),
-          tokenText("to"),
-          tokenAddr(action.to),
-          ...tokenPlatform(activity),
-        ]);
-      } else if (m.action === "add_owner") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("added"),
-          tokenAddr(m.owner),
-          tokenText("to"),
-          tokenAddr(m.vault.address),
-          ...tokenPlatform(activity),
-        ]);
-      } else if (m.action === "remove_owner") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("removed"),
-          tokenAddr(m.owner),
-          tokenText("from"),
-          tokenAddr(m.vault.address),
-          ...tokenPlatform(activity),
-        ]);
-      } else if (m.action === "change_threshold") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("changed the threshold of"),
-          tokenAddr(m.vault.address),
-          ...tokenPlatform(activity),
-        ]);
-      } else if (m.action === "execution") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("executed a multisig transaction"),
-          ...tokenPlatform(activity),
-        ]);
-      }
-    },
     "transaction-bridge": (m) => {
       let network: Token[] = [];
-      if (m.source_network?.name) {
+      if (m.source_network) {
         network = [
           tokenText("from"),
-          tokenNetwork(m.source_network.name),
+          tokenNetwork(m.source_network),
           tokenText("to"),
-          tokenNetwork(m.target_network.name),
+          tokenNetwork(m.target_network),
         ];
       }
       if (m.action === "deposit") {
@@ -258,42 +215,35 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         ]);
       }
     },
-    "transaction-deploy": (m) => {
-      res = join([
-        tokenAddr(action.from),
-        tokenText("deployed a contract"),
-        tokenAddr(m.address),
-      ]);
-    },
     // for collectible or nft related action, it will use image_url as the image link
     "collectible-transfer": (m) => {
       const meta = {
-        address: m.contract_address,
+        address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.image_url,
+        preview: m.parsed_image_url,
       };
       res = join([
         tokenAddr(action.from),
         tokenText("transferred"),
-        ...tokenAsset(m.title || m.name || "an asset", meta),
+        ...tokenAsset(m.name || "an asset", meta),
         tokenText("to"),
         tokenAddr(action.to),
       ]);
     },
     "collectible-approval": (m) => {
       const meta = {
-        address: m.contract_address,
+        address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.image_url,
+        preview: m.parsed_image_url,
       };
       if (m.action === "approve") {
         res = join([
           tokenAddr(action.from),
           tokenText("approved"),
-          tokenImage(m.image_url),
-          ...tokenAsset(m.title || m.name || "collection", meta),
+          tokenImage(m.parsed_image_url),
+          ...tokenAsset(m.name || "collection", meta),
           tokenText("to"),
           tokenAddr(action.to),
         ]);
@@ -301,7 +251,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("revoked the approval of"),
-          ...tokenAsset(m.title || m.name || "collection", meta),
+          ...tokenAsset(m.name || "collection", meta),
           tokenText("to"),
           tokenAddr(action.to),
         ]);
@@ -309,44 +259,44 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
     },
     "collectible-mint": (m) => {
       const meta = {
-        address: m.contract_address,
+        address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.image_url,
+        preview: m.parsed_image_url,
       };
       res = join([
         tokenAddr(action.from),
         tokenText("minted"),
-        ...tokenAsset(m.title || m.name || "an asset", meta),
+        ...tokenAsset(m.name || "an asset", meta),
         tokenText("to"),
         tokenAddr(action.to),
       ]);
     },
     "collectible-burn": (m) => {
       const meta = {
-        address: m.contract_address,
+        address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.image_url,
+        preview: m.parsed_image_url,
       };
       res = join([
         tokenAddr(action.from),
         tokenText("burned"),
-        ...tokenAsset(m.title || m.name || "an asset", meta),
+        ...tokenAsset(m.name || "an asset", meta),
       ]);
     },
     "collectible-trade": (m) => {
       const meta = {
-        address: m.contract_address,
+        address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.image_url,
+        preview: m.parsed_image_url,
       };
       if (m.action === "buy") {
         res = join([
           tokenAddr(action.to),
           tokenText("bought"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
+          ...tokenAsset(m.name || "an asset", meta),
           tokenText("from"),
           tokenAddr(action.from),
           ...tokenPlatform(action),
@@ -355,60 +305,9 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("sold"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
+          ...tokenAsset(m.name || "an asset", meta),
           tokenText("to"),
           tokenAddr(action.to),
-          ...tokenPlatform(action),
-        ]);
-      }
-    },
-    "collectible-auction": (m) => {
-      const meta = {
-        address: m.contract_address,
-        id: m.id,
-        network: activity.network,
-        preview: m.image_url,
-      };
-      if (m.action === "create") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("created an auction for"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "bid") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("made a bid for"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "cancel") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("canceled an auction for"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "update") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("updated an auction for"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "finalize") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("won an auction for"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
-          ...tokenPlatform(action),
-        ]);
-      } else {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("invalidated an auction for"),
-          ...tokenAsset(m.title || m.name || "an asset", meta),
           ...tokenPlatform(action),
         ]);
       }
@@ -485,72 +384,6 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
           ...tokenPlatform(action),
         ]);
       }
-    },
-    // todo add the action invoker
-    "exchange-loan": (m) => {
-      if (m.action === "create") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("created loan"),
-          ...tokenValue(m.amount),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "liquidate") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("liquidated loan"),
-          ...tokenValue(m.amount),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "refinance") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("refinanced loan"),
-          ...tokenValue(m.amount),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "repay") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("repaid loan"),
-          ...tokenValue(m.amount),
-          ...tokenPlatform(action),
-        ]);
-      } else if (m.action === "seize") {
-        res = join([
-          tokenAddr(action.from),
-          tokenText("seized loan"),
-          ...tokenValue(m.amount),
-          ...tokenPlatform(action),
-        ]);
-      }
-    },
-    "donation-donate": (m) => {
-      res = join([
-        tokenAddr(action.from),
-        tokenText("donated"),
-        ...tokenValue(m.token),
-        tokenText("to"),
-        tokenImage(m.logo),
-        tokenName(m.title || ""),
-        ...tokenPlatform(action),
-      ]);
-    },
-    "governance-propose": (m) => {
-      res = join([
-        tokenAddr(action.from),
-        tokenText("proposed for"),
-        tokenName(m.title || ""),
-        ...tokenPlatform(action),
-      ]);
-    },
-    "governance-vote": (m) => {
-      res = join([
-        tokenAddr(action.from),
-        tokenText("voted for"),
-        tokenName(m.proposal?.options?.join(",") || ""),
-        ...tokenPlatform(action),
-      ]);
     },
     "social-post": (m) => {
       res = join([
@@ -662,8 +495,8 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
       res = join([
         tokenAddr(action.from),
         tokenText("transferred"),
-        tokenImage(m.image_url),
-        tokenName(m.name || m.title || "an asset"),
+        tokenImage(m.parsed_image_url),
+        tokenName(m.name || "an asset"),
         tokenText("to"),
         tokenAddr(action.to),
       ]);
@@ -672,8 +505,8 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
       res = join([
         tokenAddr(action.from),
         tokenText("minted"),
-        tokenImage(m.image_url),
-        tokenName(m.name || m.title || "an asset"),
+        tokenImage(m.parsed_image_url),
+        tokenName(m.name || "an asset"),
         ...tokenPlatform(action),
       ]);
     },
@@ -681,8 +514,8 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
       res = join([
         tokenAddr(action.from),
         tokenText("burned"),
-        tokenImage(m.image_url),
-        tokenName(m.name || m.title || "an asset"),
+        tokenImage(m.parsed_image_url),
+        tokenName(m.name || "an asset"),
         ...tokenPlatform(action),
       ]);
     },
@@ -691,8 +524,8 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("bought"),
-          tokenImage(m.image_url),
-          tokenName(m.name || m.title || "an asset"),
+          tokenImage(m.parsed_image_url),
+          tokenName(m.name || "an asset"),
           tokenText("from"),
           tokenAddr(action.from),
           ...tokenPlatform(action),
@@ -701,8 +534,8 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("sold"),
-          tokenImage(m.image_url),
-          tokenName(m.name || m.title || "an asset"),
+          tokenImage(m.parsed_image_url),
+          tokenName(m.name || "an asset"),
           tokenText("from"),
           tokenAddr(action.from),
           ...tokenPlatform(action),
@@ -711,8 +544,8 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("listed"),
-          tokenImage(m.image_url),
-          tokenName(m.name || m.title || "an asset"),
+          tokenImage(m.parsed_image_url),
+          tokenName(m.name || "an asset"),
           tokenText("from"),
           tokenAddr(action.from),
           ...tokenPlatform(action),

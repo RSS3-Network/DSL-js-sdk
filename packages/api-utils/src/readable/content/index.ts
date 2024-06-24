@@ -1,6 +1,5 @@
-import type { Action, Activity } from "@rss3/api-core";
+import type { Action, Activity, SocialPost } from "@rss3/api-core";
 
-import type { _components } from "../../metadata/doc.js";
 import { handleMetadata } from "../../metadata/index.js";
 
 export type Content = {
@@ -10,7 +9,7 @@ export type Content = {
   profile_id?: string | number | null;
   title?: string;
   body?: string;
-  media?: _components["schemas"]["Media"][];
+  media?: SocialPost["media"];
 };
 
 export type PostContent = Content & {
@@ -46,12 +45,6 @@ export function extractContent(
     "social-delete": (metadata) => {
       content = extractSocialPost(activity, action, metadata);
     },
-    "governance-propose": (metadata) => {
-      content = extractGovernanceProposal(metadata);
-    },
-    "governance-vote": (metadata) => {
-      content = extractGovernanceVote(metadata);
-    },
   });
   return content;
 }
@@ -76,7 +69,7 @@ export function checkTargetExist(target?: Content) {
 function extractSocialPost(
   activity: Activity,
   action: Action,
-  metadata: _components["schemas"]["SocialPost"],
+  metadata: SocialPost,
 ): PostContent {
   const raw = metadata.target;
   const target = raw
@@ -110,22 +103,4 @@ function extractSocialPost(
     res.media = res.media.slice(1);
   }
   return res;
-}
-
-function extractGovernanceProposal(
-  metadata: _components["schemas"]["GovernanceProposal"],
-) {
-  return {
-    title: metadata.title,
-    body: metadata.body,
-  };
-}
-
-function extractGovernanceVote(
-  metadata: _components["schemas"]["GovernanceVote"],
-) {
-  return {
-    title: metadata.proposal?.title,
-    body: metadata.proposal?.body,
-  };
 }
