@@ -6,10 +6,19 @@ import { type Client, getDefaultClient } from "../client.js";
 import type { paths } from "../types/openapi-schema.js";
 import type { HttpMethod, PathParams } from "../types/utilities.js";
 
+type MarkRequired<T> = {
+  [P in keyof T]-?: Exclude<T[P], undefined>;
+};
+
+type DefaultFetchInit<
+  Path extends keyof paths,
+  Method extends HttpMethod,
+> = MaybeOptionalInit<MarkRequired<paths[Path]>, Method>;
+
 type CreateRequestResult<
   Path extends keyof paths,
   Method extends HttpMethod,
-  FetchInit extends MaybeOptionalInit<paths[Path], Method>,
+  FetchInit extends DefaultFetchInit<Path, Method>,
 > = CamelCasedPropertiesDeep<
   Required<
     FetchResponse<paths[Path][Method], FetchInit, `${string}/${string}`>
@@ -22,7 +31,7 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
 ) {
   const _request = async <
     Result,
-    FetchInit extends MaybeOptionalInit<paths[Path], Method>,
+    FetchInit extends DefaultFetchInit<Path, Method>,
   >(
     client: Client,
     init?: FetchInit | null,
@@ -55,7 +64,7 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
 
   return {
     withParams<
-      FetchInit extends MaybeOptionalInit<paths[Path], Method>,
+      FetchInit extends DefaultFetchInit<Path, Method>,
       Params = PathParams<Path, Method>,
       Result = CreateRequestResult<Path, Method, FetchInit>,
     >(
@@ -64,14 +73,14 @@ function buildRequest<Path extends keyof paths, Method extends HttpMethod>(
     ) {
       return async (
         params: Params,
-        init?: Omit<MaybeOptionalInit<paths[Path], Method>, "params"> | null,
+        init?: Omit<DefaultFetchInit<Path, Method>, "params"> | null,
         client: Client = getDefaultClient(),
       ): Promise<Result> =>
         _request(client, { ...getInit(params), ...init }, mapResult);
     },
 
     withoutParams<
-      FetchInit extends MaybeOptionalInit<paths[Path], Method>,
+      FetchInit extends DefaultFetchInit<Path, Method>,
       Result = CreateRequestResult<Path, Method, FetchInit>,
     >(
       mapResult?: (res: CreateRequestResult<Path, Method, FetchInit>) => Result,
