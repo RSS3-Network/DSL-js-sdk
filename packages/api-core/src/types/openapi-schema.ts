@@ -4,6 +4,74 @@
  */
 
 export interface paths {
+  "/decentralized/{account}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get Account Activities
+     * @description This endpoint retrieves the activities associated with a specified account in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
+     */
+    get: {
+      parameters: {
+        query?: {
+          /**
+           * @description Specify the number of actions within the activity to retrieve
+           * @example 10
+           */
+          action_limit?: components["parameters"]["action_limit_query"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+          direction?: components["parameters"]["direction_query"];
+          /**
+           * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_query"];
+          /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
+          network?: components["parameters"]["network_query"];
+          /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+          platform?: components["parameters"]["platform_query"];
+          /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+          since_timestamp?: components["parameters"]["since_timestamp_query"];
+          /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+          success?: components["parameters"]["success_query"];
+          /** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+          tag?: components["parameters"]["action_tag_query"];
+          /** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+          type?: components["parameters"]["action_type_query"];
+          /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+          until_timestamp?: components["parameters"]["until_timestamp_query"];
+        };
+        header?: never;
+        path: {
+          /**
+           * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
+           * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
+           */
+          account: components["parameters"]["account_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["ActivitiesResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/decentralized/tx/{id}": {
     parameters: {
       query?: never;
@@ -54,116 +122,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/decentralized/{account}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get Account Activities
-     * @description This endpoint retrieves the activities associated with a specified account in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
-     */
-    get: {
-      parameters: {
-        query?: {
-          /**
-           * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
-           * @example 20
-           */
-          limit?: components["parameters"]["limit_query"];
-          /**
-           * @description Specify the number of actions within the activity to retrieve
-           * @example 10
-           */
-          action_limit?: components["parameters"]["action_limit_query"];
-          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-          cursor?: components["parameters"]["cursor_query"];
-          /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
-          since_timestamp?: components["parameters"]["since_timestamp_query"];
-          /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
-          until_timestamp?: components["parameters"]["until_timestamp_query"];
-          /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
-          success?: components["parameters"]["success_query"];
-          /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
-          direction?: components["parameters"]["direction_query"];
-          /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
-          network?: components["parameters"]["network_query"];
-          /** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
-          tag?: components["parameters"]["action_tag_query"];
-          /** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
-          type?: components["parameters"]["action_type_query"];
-          /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
-          platform?: components["parameters"]["platform_query"];
-        };
-        header?: never;
-        path: {
-          /**
-           * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
-           * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
-           */
-          account: components["parameters"]["account_path"];
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["ActivitiesResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/rss/{path}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** Get RSS Activity by Path */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /**
-           * @description Retrieve details for the specified RSS path
-           * @example abc
-           */
-          path: components["parameters"]["rss_path"];
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["RSSActivitiesResponse"];
-        /** @description The specified RSS path was not found. */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/nta/bridgings/transactions": {
     parameters: {
       query?: never;
@@ -178,30 +136,30 @@ export interface paths {
     get: {
       parameters: {
         query?: {
+          /**
+           * @description Address involved in the transaction
+           * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+           */
+          address?: components["parameters"]["address_query"];
           /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
           cursor?: components["parameters"]["cursor_query"];
           /**
-           * @description Sender address
-           * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+           * @description Limit the number of results
+           * @example 20
            */
-          sender?: components["parameters"]["sender_query"];
+          limit?: components["parameters"]["limit_1_20"];
           /**
            * @description Receiver address
            * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
            */
           receiver?: components["parameters"]["receiver_query"];
           /**
-           * @description Address involved in the transaction
+           * @description Sender address
            * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
            */
-          address?: components["parameters"]["address_query"];
+          sender?: components["parameters"]["sender_query"];
           /** @description Type of bridging transaction */
           type?: components["parameters"]["bridging_type_query"];
-          /**
-           * @description Limit the number of results
-           * @example 20
-           */
-          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path?: never;
@@ -261,190 +219,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/stakings/transactions": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get staking transactions
-     * @description Retrieve a list of staking transactions based on various query parameters such as cursor, staker, node, transaction type, pending status, and limit. This endpoint allows users to filter transactions to get precise data related to staking activities including deposits, withdrawals, stakes, and unstakes. The response includes detailed transaction information such as staker address, node address, value staked, associated chips, and related events. Use this endpoint for monitoring, auditing, or analyzing staking transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
-     */
-    get: {
-      parameters: {
-        query?: {
-          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-          cursor?: components["parameters"]["cursor_query"];
-          /**
-           * @description Staker address
-           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-           */
-          staker?: components["parameters"]["staker_query"];
-          /**
-           * @description Node address
-           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
-           */
-          node?: components["parameters"]["node_query"];
-          /** @description Type of staking transaction */
-          type?: components["parameters"]["staking_type_query"];
-          /** @description Pending status of the transaction */
-          pending?: components["parameters"]["pending_query"];
-          /**
-           * @description Limit the number of results
-           * @example 20
-           */
-          limit?: components["parameters"]["limit_1_20"];
-        };
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["StakeTransactionsResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/stakings/transactions/{transaction_hash}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get staking transaction by hash
-     * @description Retrieve detailed information of a staking transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single staking transaction, including staker address, node address, value staked, associated chips, and related events.
-     */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /**
-           * @description The unique hash of the staking transaction
-           * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
-           */
-          transaction_hash: components["parameters"]["staking_transaction_hash_path"];
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["StakeTransactionByHashResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/stakings/stakings": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get a list of stakers and Nodes
-     * @description Retrieve a list of stakers and their associated Nodes. This endpoint allows users to filter the results by staker address, node address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each staker, node, and associated chips.
-     */
-    get: {
-      parameters: {
-        query?: {
-          /**
-           * @description Staker address
-           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-           */
-          staker?: components["parameters"]["staker_query"];
-          /**
-           * @description Node address
-           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
-           */
-          node?: components["parameters"]["node_query"];
-          /**
-           * @description Limit the number of results
-           * @example 20
-           */
-          limit?: components["parameters"]["limit_1_20"];
-          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-          cursor?: components["parameters"]["cursor_query"];
-        };
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["StakeStakingsResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/stakings/{staker_address}/profit": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get staking profit of a staker
-     * @description Retrieve the staking profit information for a specified staker. This endpoint returns detailed profit data, including the owner's address, total chip amount, total chip value, and profit and loss (PNL) data over different time periods (one day, one week, one month).
-     */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /**
-           * @description The address of the staker whose profit information is to be retrieved.
-           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-           */
-          staker_address: components["parameters"]["staker_address_path"];
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["StakingProfitResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/nta/chips": {
     parameters: {
       query?: never;
@@ -469,6 +243,11 @@ export interface paths {
            */
           id?: components["parameters"]["chip_ids_query"];
           /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+          /**
            * @description Node address
            * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
            */
@@ -478,11 +257,6 @@ export interface paths {
            * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
            */
           owner?: components["parameters"]["owner_query"];
-          /**
-           * @description Limit the number of results
-           * @example 20
-           */
-          limit?: components["parameters"]["limit_1_20"];
         };
         header?: never;
         path?: never;
@@ -595,7 +369,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/snapshots/nodes/count": {
+  "/nta/epochs": {
     parameters: {
       query?: never;
       header?: never;
@@ -603,116 +377,12 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get snapshots of Node count
-     * @description Retrieve snapshots of the node count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of nodes on that date.
-     */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["NodeCountSnapshotsResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/snapshots/nodes/min_tokens_to_stake": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * Get snapshots of the minimum staking amount
-     * @description Retrieve snapshots of the minimum staking amount for specified nodes. This endpoint allows users to specify a list of node addresses and optionally return only the start and end values of the minimum tokens to stake.
-     */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody: components["requestBodies"]["NodeMinTokensToStakeRequestBody"];
-      responses: {
-        200: components["responses"]["NodeMinTokensToStakeResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/snapshots/stakers/count": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get snapshots of staker count
-     * @description Retrieve snapshots of the total staker count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of stakers on that date.
-     */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["StakerCountSnapshotsResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/snapshots/stakers/profit": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get snapshots of the staker profit
-     * @description Retrieve snapshots of the staker profit over time. This endpoint allows filtering by staker address, date range, and pagination parameters.
+     * Get all epochs
+     * @description Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.
      */
     get: {
       parameters: {
         query?: {
-          /**
-           * @description Staker address
-           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-           */
-          staker_address?: components["parameters"]["staker_address_query"];
           /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
           cursor?: components["parameters"]["cursor_query"];
           /**
@@ -720,10 +390,6 @@ export interface paths {
            * @example 20
            */
           limit?: components["parameters"]["limit_1_20"];
-          /** @description The date before which the snapshots are returned. */
-          beforeDate?: components["parameters"]["before_date_query"];
-          /** @description The date after which the snapshots are returned. */
-          afterDate?: components["parameters"]["after_date_query"];
         };
         header?: never;
         path?: never;
@@ -731,7 +397,7 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["StakerProfitSnapshotsResponse"];
+        200: components["responses"]["EpochsResponse"];
         400: components["responses"]["400"];
         500: components["responses"]["500"];
       };
@@ -744,7 +410,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/snapshots/nodes/operation/profit": {
+  "/nta/epochs/{address}/rewards": {
     parameters: {
       query?: never;
       header?: never;
@@ -752,36 +418,157 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get snapshots of operation profit
-     * @description Retrieve snapshots of the operation profit over time for a specific node. This endpoint allows filtering by node address, date range, and pagination parameters.
+     * Get Node rewards by epoch
+     * @description Retrieve the rewards of a specific node by epoch. This endpoint allows filtering by cursor and limit for pagination.
      */
     get: {
       parameters: {
         query?: {
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
           /**
-           * @description Node address
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+        };
+        header?: never;
+        path: {
+          /**
+           * @description The address of the node to retrieve.
            * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
            */
-          node_address?: components["parameters"]["node_address_query"];
-          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-          cursor?: components["parameters"]["cursor_query"];
-          /**
-           * @description Limit the number of results
-           * @example 20
-           */
-          limit?: components["parameters"]["limit_1_20"];
-          /** @description The date before which the snapshots are returned. */
-          beforeDate?: components["parameters"]["before_date_query"];
-          /** @description The date after which the snapshots are returned. */
-          afterDate?: components["parameters"]["after_date_query"];
+          address: components["parameters"]["node_address_path"];
         };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["NodeRewardsByEpochResponse"];
+        400: components["responses"]["400"];
+        /** @description Not found */
+        404: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content?: never;
+        };
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/epochs/{epoch_id}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get epoch by id
+     * @description Retrieve detailed information about a specific epoch by its ID.
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /**
+           * @description The ID of the epoch to retrieve.
+           * @example 130
+           */
+          epoch_id: components["parameters"]["epoch_id_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["EpochResponse"];
+        400: components["responses"]["400"];
+        /** @description Not found */
+        404: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content?: never;
+        };
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/epochs/apy": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get the average of epochs APY
+     * @description Retrieve the average Annual Percentage Yield (APY) for all epochs.
+     */
+    get: {
+      parameters: {
+        query?: never;
         header?: never;
         path?: never;
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["OperationProfitSnapshotsResponse"];
+        200: components["responses"]["EpochsAverageAPYResponse"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/epochs/distributions/{transaction_hash}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get epoch transaction by hash
+     * @description Retrieve details of an epoch transaction by its hash.
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /**
+           * @description The unique hash of the epoch transaction
+           * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
+           */
+          transaction_hash: components["parameters"]["epoch_transaction_hash_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["EpochTransactionResponse"];
         400: components["responses"]["400"];
         500: components["responses"]["500"];
       };
@@ -794,7 +581,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/snapshots/epochs/apy": {
+  "/nta/networks": {
     parameters: {
       query?: never;
       header?: never;
@@ -802,8 +589,8 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get the APY of epoch snapshots
-     * @description Retrieve the Annual Percentage Yield (APY) for epoch snapshots. This endpoint returns an array of objects, each containing the epoch details and the corresponding APY.
+     * Get all compatible networks
+     * @description Retrieve a list of all compatible networks.
      */
     get: {
       parameters: {
@@ -814,8 +601,98 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["EpochAPYSnapshotsResponse"];
+        200: components["responses"]["NetworksResponse"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/networks/{network_name}/list_workers": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get available workers by network
+     * @description Retrieve a list of available workers for a specific network.
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /** @description The name of the network to retrieve available workers for. */
+          network_name: components["parameters"]["network_name_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["NetworkWorkersResponse"];
         400: components["responses"]["400"];
+        /** @description Not found */
+        404: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content?: never;
+        };
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/networks/{network_name}/workers/{worker_name}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get config by network and worker
+     * @description Retrieve the configuration details for a specific worker in a specific network.
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /** @description The name of the network to retrieve available workers for. */
+          network_name: components["parameters"]["network_name_path"];
+          /**
+           * @description The name of the worker.
+           * @example core
+           */
+          worker_name: components["parameters"]["worker_name_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["NetworkWorkerConfigResponse"];
+        400: components["responses"]["400"];
+        /** @description Not found */
+        404: {
+          headers: {
+            [name: string]: unknown;
+          };
+          content?: never;
+        };
         500: components["responses"]["500"];
       };
     };
@@ -1065,7 +942,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/epochs": {
+  "/nta/snapshots/epochs/apy": {
     parameters: {
       query?: never;
       header?: never;
@@ -1073,27 +950,19 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get all epochs
-     * @description Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.
+     * Get the APY of epoch snapshots
+     * @description Retrieve the Annual Percentage Yield (APY) for epoch snapshots. This endpoint returns an array of objects, each containing the epoch details and the corresponding APY.
      */
     get: {
       parameters: {
-        query?: {
-          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-          cursor?: components["parameters"]["cursor_query"];
-          /**
-           * @description Limit the number of results
-           * @example 20
-           */
-          limit?: components["parameters"]["limit_1_20"];
-        };
+        query?: never;
         header?: never;
         path?: never;
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["EpochsResponse"];
+        200: components["responses"]["EpochAPYSnapshotsResponse"];
         400: components["responses"]["400"];
         500: components["responses"]["500"];
       };
@@ -1106,7 +975,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/epochs/{epoch_id}": {
+  "/nta/snapshots/nodes/count": {
     parameters: {
       query?: never;
       header?: never;
@@ -1114,33 +983,20 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get epoch by id
-     * @description Retrieve detailed information about a specific epoch by its ID.
+     * Get snapshots of Node count
+     * @description Retrieve snapshots of the node count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of nodes on that date.
      */
     get: {
       parameters: {
         query?: never;
         header?: never;
-        path: {
-          /**
-           * @description The ID of the epoch to retrieve.
-           * @example 130
-           */
-          epoch_id: components["parameters"]["epoch_id_path"];
-        };
+        path?: never;
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["EpochResponse"];
+        200: components["responses"]["NodeCountSnapshotsResponse"];
         400: components["responses"]["400"];
-        /** @description Not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
         500: components["responses"]["500"];
       };
     };
@@ -1152,46 +1008,40 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/epochs/distributions/{transaction_hash}": {
+  "/nta/snapshots/nodes/min_tokens_to_stake": {
     parameters: {
       query?: never;
       header?: never;
       path?: never;
       cookie?: never;
     };
+    get?: never;
+    put?: never;
     /**
-     * Get epoch transaction by hash
-     * @description Retrieve details of an epoch transaction by its hash.
+     * Get snapshots of the minimum staking amount
+     * @description Retrieve snapshots of the minimum staking amount for specified nodes. This endpoint allows users to specify a list of node addresses and optionally return only the start and end values of the minimum tokens to stake.
      */
-    get: {
+    post: {
       parameters: {
         query?: never;
         header?: never;
-        path: {
-          /**
-           * @description The unique hash of the epoch transaction
-           * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
-           */
-          transaction_hash: components["parameters"]["epoch_transaction_hash_path"];
-        };
+        path?: never;
         cookie?: never;
       };
-      requestBody?: never;
+      requestBody: components["requestBodies"]["NodeMinTokensToStakeRequestBody"];
       responses: {
-        200: components["responses"]["EpochTransactionResponse"];
+        200: components["responses"]["NodeMinTokensToStakeResponse"];
         400: components["responses"]["400"];
         500: components["responses"]["500"];
       };
     };
-    put?: never;
-    post?: never;
     delete?: never;
     options?: never;
     head?: never;
     patch?: never;
     trace?: never;
   };
-  "/nta/epochs/{address}/rewards": {
+  "/nta/snapshots/nodes/operation/profit": {
     parameters: {
       query?: never;
       header?: never;
@@ -1199,12 +1049,16 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get Node rewards by epoch
-     * @description Retrieve the rewards of a specific node by epoch. This endpoint allows filtering by cursor and limit for pagination.
+     * Get snapshots of operation profit
+     * @description Retrieve snapshots of the operation profit over time for a specific node. This endpoint allows filtering by node address, date range, and pagination parameters.
      */
     get: {
       parameters: {
         query?: {
+          /** @description The date after which the snapshots are returned. */
+          afterDate?: components["parameters"]["after_date_query"];
+          /** @description The date before which the snapshots are returned. */
+          beforeDate?: components["parameters"]["before_date_query"];
           /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
           cursor?: components["parameters"]["cursor_query"];
           /**
@@ -1212,28 +1066,20 @@ export interface paths {
            * @example 20
            */
           limit?: components["parameters"]["limit_1_20"];
-        };
-        header?: never;
-        path: {
           /**
-           * @description The address of the node to retrieve.
+           * @description Node address
            * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
            */
-          address: components["parameters"]["node_address_path"];
+          node_address?: components["parameters"]["node_address_query"];
         };
+        header?: never;
+        path?: never;
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["NodeRewardsByEpochResponse"];
+        200: components["responses"]["OperationProfitSnapshotsResponse"];
         400: components["responses"]["400"];
-        /** @description Not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
         500: components["responses"]["500"];
       };
     };
@@ -1245,7 +1091,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/epochs/apy": {
+  "/nta/snapshots/stakers/count": {
     parameters: {
       query?: never;
       header?: never;
@@ -1253,8 +1099,8 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get the average of epochs APY
-     * @description Retrieve the average Annual Percentage Yield (APY) for all epochs.
+     * Get snapshots of staker count
+     * @description Retrieve snapshots of the total staker count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of stakers on that date.
      */
     get: {
       parameters: {
@@ -1265,82 +1111,8 @@ export interface paths {
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["EpochsAverageAPYResponse"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/networks": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get all compatible networks
-     * @description Retrieve a list of all compatible networks.
-     */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["NetworksResponse"];
-        500: components["responses"]["500"];
-      };
-    };
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/nta/networks/{network_name}/list_workers": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /**
-     * Get available workers by network
-     * @description Retrieve a list of available workers for a specific network.
-     */
-    get: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description The name of the network to retrieve available workers for. */
-          network_name: components["parameters"]["network_name_path"];
-        };
-        cookie?: never;
-      };
-      requestBody?: never;
-      responses: {
-        200: components["responses"]["NetworkWorkersResponse"];
+        200: components["responses"]["StakerCountSnapshotsResponse"];
         400: components["responses"]["400"];
-        /** @description Not found */
-        404: {
-          headers: {
-            [name: string]: unknown;
-          };
-          content?: never;
-        };
         500: components["responses"]["500"];
       };
     };
@@ -1352,7 +1124,7 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/networks/{network_name}/workers/{worker_name}": {
+  "/nta/snapshots/stakers/profit": {
     parameters: {
       query?: never;
       header?: never;
@@ -1360,29 +1132,257 @@ export interface paths {
       cookie?: never;
     };
     /**
-     * Get config by network and worker
-     * @description Retrieve the configuration details for a specific worker in a specific network.
+     * Get snapshots of the staker profit
+     * @description Retrieve snapshots of the staker profit over time. This endpoint allows filtering by staker address, date range, and pagination parameters.
      */
     get: {
       parameters: {
-        query?: never;
-        header?: never;
-        path: {
-          /** @description The name of the network to retrieve available workers for. */
-          network_name: components["parameters"]["network_name_path"];
+        query?: {
+          /** @description The date after which the snapshots are returned. */
+          afterDate?: components["parameters"]["after_date_query"];
+          /** @description The date before which the snapshots are returned. */
+          beforeDate?: components["parameters"]["before_date_query"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
           /**
-           * @description The name of the worker.
-           * @example core
+           * @description Limit the number of results
+           * @example 20
            */
-          worker_name: components["parameters"]["worker_name_path"];
+          limit?: components["parameters"]["limit_1_20"];
+          /**
+           * @description Staker address
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker_address?: components["parameters"]["staker_address_query"];
+        };
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["StakerProfitSnapshotsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/stakings/{staker_address}/profit": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get staking profit of a staker
+     * @description Retrieve the staking profit information for a specified staker. This endpoint returns detailed profit data, including the owner's address, total chip amount, total chip value, and profit and loss (PNL) data over different time periods (one day, one week, one month).
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /**
+           * @description The address of the staker whose profit information is to be retrieved.
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker_address: components["parameters"]["staker_address_path"];
         };
         cookie?: never;
       };
       requestBody?: never;
       responses: {
-        200: components["responses"]["NetworkWorkerConfigResponse"];
+        200: components["responses"]["StakingProfitResponse"];
         400: components["responses"]["400"];
-        /** @description Not found */
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/stakings/stakings": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get a list of stakers and Nodes
+     * @description Retrieve a list of stakers and their associated Nodes. This endpoint allows users to filter the results by staker address, node address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each staker, node, and associated chips.
+     */
+    get: {
+      parameters: {
+        query?: {
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+          /**
+           * @description Node address
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          node?: components["parameters"]["node_query"];
+          /**
+           * @description Staker address
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker?: components["parameters"]["staker_query"];
+        };
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["StakeStakingsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/stakings/transactions": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get staking transactions
+     * @description Retrieve a list of staking transactions based on various query parameters such as cursor, staker, node, transaction type, pending status, and limit. This endpoint allows users to filter transactions to get precise data related to staking activities including deposits, withdrawals, stakes, and unstakes. The response includes detailed transaction information such as staker address, node address, value staked, associated chips, and related events. Use this endpoint for monitoring, auditing, or analyzing staking transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
+     */
+    get: {
+      parameters: {
+        query?: {
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /**
+           * @description Limit the number of results
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_1_20"];
+          /**
+           * @description Node address
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          node?: components["parameters"]["node_query"];
+          /** @description Pending status of the transaction */
+          pending?: components["parameters"]["pending_query"];
+          /**
+           * @description Staker address
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker?: components["parameters"]["staker_query"];
+          /** @description Type of staking transaction */
+          type?: components["parameters"]["staking_type_query"];
+        };
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["StakeTransactionsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/stakings/transactions/{transaction_hash}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get staking transaction by hash
+     * @description Retrieve detailed information of a staking transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single staking transaction, including staker address, node address, value staked, associated chips, and related events.
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /**
+           * @description The unique hash of the staking transaction
+           * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
+           */
+          transaction_hash: components["parameters"]["staking_transaction_hash_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["StakeTransactionByHashResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/rss/{path}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** Get RSS Activity by Path */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /**
+           * @description Retrieve details for the specified RSS path
+           * @example abc
+           */
+          path: components["parameters"]["rss_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["RSSActivitiesResponse"];
+        /** @description The specified RSS path was not found. */
         404: {
           headers: {
             [name: string]: unknown;
@@ -1472,32 +1472,32 @@ export interface components {
       meta?: components["schemas"]["MetaCursor"];
     };
     Activity: {
-      /**
-       * @description The unique identifier for the activity.
-       * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
-       */
-      id?: string;
-      /**
-       * @description The owner of the activity.
-       * @example 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
-       */
-      owner?: string;
-      network?: components["schemas"]["Network"];
+      /** @description The list of actions within the activity. */
+      actions?: components["schemas"]["Action"][];
+      calldata?: components["schemas"]["Calldata"];
+      direction?: components["schemas"]["Direction"];
+      fee?: components["schemas"]["Fee"];
       /**
        * @description The address from which the activity originated.
        * @example 0xBAB4d1f27bAA7762a4d822B80C647F715922492f
        */
       from?: string;
       /**
-       * @description The address to which the activity is directed.
-       * @example 0x7964B6A8aE5a71409e7E17a5b2669903A27997Ac
+       * @description The unique identifier for the activity.
+       * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
        */
-      to?: string;
+      id?: string;
       /**
        * @description The index of the activity in the list.
        * @example 0
        */
       index?: number;
+      network?: components["schemas"]["Network"];
+      /**
+       * @description The owner of the activity.
+       * @example 0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045
+       */
+      owner?: string;
       platform?: components["schemas"]["Platform"];
       /**
        * @description Indicates whether the activity was successful.
@@ -1505,728 +1505,30 @@ export interface components {
        */
       success?: boolean;
       tag?: components["schemas"]["Tag"];
-      type?: components["schemas"]["Type"];
-      calldata?: components["schemas"]["Calldata"];
-      direction?: components["schemas"]["Direction"];
-      fee?: components["schemas"]["Fee"];
       /**
        * @description The timestamp of when the activity occurred.
        * @example 1718689727
        */
       timestamp?: number;
       /**
+       * @description The address to which the activity is directed.
+       * @example 0x7964B6A8aE5a71409e7E17a5b2669903A27997Ac
+       */
+      to?: string;
+      /**
        * @description The total number of actions within the activity.
        * @example 1
        */
       total_actions?: number;
-      /** @description The list of actions within the activity. */
-      actions?: components["schemas"]["Action"][];
+      type?: components["schemas"]["Type"];
     };
     ActivityResponse: {
       data?: components["schemas"]["Activity"];
       meta?: components["schemas"]["MetaTotalPages"];
     };
-    /**
-     * @description Represents the call data associated with an activity.
-     * @example {
-     *       "function_hash": "0x4022b75e"
-     *     }
-     */
-    Calldata: {
-      /** @description The hash of the function called. */
-      function_hash?: string;
-      /** @description The parsed function name. */
-      parsed_function?: string;
-      /** @description The raw call data. */
-      raw?: string;
-    };
-    /**
-     * @description The direction of an activity.
-     * @example out
-     * @enum {string}
-     */
-    Direction: "in" | "out" | "self";
-    /**
-     * @description A tag used to categorize activities.
-     * @example transaction
-     * @enum {string}
-     */
-    Tag:
-      | "collectible"
-      | "exchange"
-      | "metaverse"
-      | "rss"
-      | "social"
-      | "transaction"
-      | "unknown";
-    /**
-     * @description The type of activity.
-     * @example transfer
-     * @enum {string}
-     */
-    Type:
-      | "approval"
-      | "bridge"
-      | "burn"
-      | "comment"
-      | "delete"
-      | "feed"
-      | "liquidity"
-      | "mint"
-      | "post"
-      | "profile"
-      | "proxy"
-      | "revise"
-      | "reward"
-      | "share"
-      | "staking"
-      | "swap"
-      | "trade"
-      | "transfer"
-      | "unknown";
-    /**
-     * @description The network on which activities occur.
-     * @example ethereum
-     * @enum {string}
-     */
-    Network:
-      | "arbitrum"
-      | "arweave"
-      | "avax"
-      | "base"
-      | "binance-smart-chain"
-      | "crossbell"
-      | "ethereum"
-      | "farcaster"
-      | "gnosis"
-      | "linea"
-      | "optimism"
-      | "polygon"
-      | "vsl";
-    /**
-     * @description The platform on which activities occur.
-     * @enum {string}
-     */
-    Platform:
-      | "1inch"
-      | "AAVE"
-      | "Aavegotchi"
-      | "Crossbell"
-      | "Curve"
-      | "ENS"
-      | "Farcaster"
-      | "Highlight"
-      | "IQWiki"
-      | "KiwiStand"
-      | "Lens"
-      | "Lido"
-      | "LooksRare"
-      | "Matters"
-      | "Mirror"
-      | "OpenSea"
-      | "Optimism"
-      | "Paragraph"
-      | "RSS3"
-      | "SAVM"
-      | "Stargate"
-      | "Uniswap"
-      | "Unknown"
-      | "VSL";
-    /**
-     * @description Represents fee information for an activity.
-     * @example {
-     *       "amount": "315699955320960",
-     *       "decimal": 18
-     *     }
-     */
-    Fee: {
-      /** @description The address to which the fee is paid. */
-      address?: string;
-      /** @description The amount of the fee. */
-      amount?: string;
-      /** @description The decimal precision of the fee amount. */
-      decimal?: number;
-    };
-    /** @description Metadata for paginated responses. */
-    MetaCursor: {
-      /** @description The cursor for the next set of results. */
-      cursor?: string;
-    };
-    /** @description Metadata indicating the total number of pages. */
-    MetaTotalPages: {
-      /**
-       * @description The total number of pages available.
-       * @example 1
-       */
-      totalPages?: number;
-    };
-    BridgeTransaction: {
-      /** @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa */
-      id?: string;
-      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
-      sender?: string;
-      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
-      receiver?: string;
-      token?: {
-        address?: {
-          /** @example 0xc98d64da73a6616c42117b582e832812e7b8d57f */
-          l1?: string;
-          /** @example 0x4200000000000000000000000000000000000042 */
-          l2?: string;
-        };
-        /** @example 10000000000000000000000 */
-        value?: string;
-      };
-      event?: {
-        deposit?: {
-          initialized?: components["schemas"]["TransactionEvent"];
-          finalized?: components["schemas"]["TransactionEvent"];
-        } | null;
-        withdraw?: {
-          initialized?: components["schemas"]["TransactionEvent"];
-          proved?: components["schemas"]["TransactionEvent"];
-          finalized?: components["schemas"]["TransactionEvent"];
-        } | null;
-      };
-    };
-    StakeTransaction: {
-      /** @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb */
-      id?: string;
-      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
-      staker?: string;
-      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node?: string;
-      /** @example 5000000000000000000000 */
-      value?: string;
-      chips?: components["schemas"]["Chip"][] | null;
-      event?: {
-        deposit?: {
-          requested?: components["schemas"]["TransactionEvent"];
-          claimed?: components["schemas"]["TransactionEvent"];
-        } | null;
-        withdraw?: {
-          deposited?: components["schemas"]["TransactionEvent"];
-        } | null;
-        stake?: {
-          staked?: components["schemas"]["TransactionEvent"];
-        } | null;
-        unstake?: {
-          requested?: components["schemas"]["TransactionEvent"];
-          claimed?: components["schemas"]["TransactionEvent"];
-        } | null;
-      };
-    };
-    /** @example {
-     *       "block": {
-     *         "hash": "0x200b26e118e51f23d052ef3aa92bc411dbd0a6ce811f511adb9f6049dc938614",
-     *         "number": 726419,
-     *         "timestamp": 1708337158
-     *       },
-     *       "transaction": {
-     *         "hash": "0x6595192f1193c2584c28e7d4b50b9208242bf9b4538933f0081d3f4625373d2f",
-     *         "index": 1
-     *       }
-     *     } */
-    TransactionEvent: {
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
-      };
-      transaction?: {
-        hash?: string;
-        index?: number;
-      };
-    } | null;
-    StakeStaking: {
-      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
-      staker?: string;
-      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node?: string;
-      chips?: {
-        total?: number;
-        showcase?: components["schemas"]["Chip"][];
-      };
-    };
-    Chip: {
-      /** @example 1690 */
-      id?: number;
-      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node?: string;
-      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
-      owner?: string;
-      metadata?: {
-        /** @example Open Chips #1690 */
-        name?: string;
-        /** @example Chip Monsters are unique creatures living in the RSS3 Network, each one special because of where it was born. They represent the idea of FREE and OPEN INFORMATION, thriving in a world that values sharing and being different. These Chip Monsters are more than just digital; they symbolize the excitement and importance of being unique in a connected digital world. */
-        description?: string;
-        /** @example https://gi.rss3.io/nta/chips/1690/image.svg */
-        image?: string;
-      };
-      /**
-       * @description the value at time of minting
-       * @example 500000000000000000000
-       */
-      value?: string;
-      /**
-       * @description The latest value of the chip
-       * @example 613891695796128425340
-       */
-      latest_value?: string;
-    };
-    /** @example {
-     *       "id": 18,
-     *       "address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
-     *       "name": "Natural Selection Labs",
-     *       "description": "A node operated by NSL.",
-     *       "tax_rate_basis_points": 800,
-     *       "is_public_good": false,
-     *       "operation_pool_tokens": "724429065703690345869831",
-     *       "staking_pool_tokens": "20798363499373370863570687",
-     *       "total_shares": "17339500000000000000000000",
-     *       "slashed_tokens": "0",
-     *       "alpha": true,
-     *       "status": "online",
-     *       "last_heartbeat": 1718694464,
-     *       "location": [
-     *         {
-     *           "country": "United States",
-     *           "region": "",
-     *           "city": "",
-     *           "latitude": 37.751,
-     *           "longitude": -97.822
-     *         }
-     *       ],
-     *       "avatar": {
-     *         "name": "Node Avatar",
-     *         "description": "",
-     *         "image": "https://gi.rss3.io/nta/nodes/0x69982E017Acc0FDE3d1542205089A8d3EAfcD1B7/avatar.svg"
-     *       },
-     *       "min_tokens_to_stake": "599739424417467944968",
-     *       "apy": "0.3928765550642588002426864199264",
-     *       "active_score": "0.2712648142772680586868915",
-     *       "reliability_score": "0",
-     *       "type": "alpha",
-     *       "created_at": 1710278898
-     *     } */
-    Node: {
-      id?: number;
-      address?: string;
-      name?: string;
-      description?: string;
-      tax_rate_basis_points?: number | null;
-      is_public_good?: boolean;
-      operation_pool_tokens?: string;
-      staking_pool_tokens?: string;
-      total_shares?: string;
-      slashed_tokens?: string;
-      /** @enum {string} */
-      status?: "registered" | "online" | "offline" | "exited";
-      /** @description The timestamp of the last heartbeat */
-      last_heartbeat?: number;
-      local?: {
-        country?: string;
-        region?: string;
-        city?: string;
-        latitude?: number;
-        longitude?: number;
-      }[];
-      avatar?: {
-        name?: string;
-        image?: string;
-        description?: string;
-      };
-      min_tokens_to_stake?: string;
-      /** @description The timestamp of the Node creation */
-      created_at?: number;
-    };
-    /** @example {
-     *       "transaction": {
-     *         "hash": "0x84c045a41d6fb83a94f4f2096863faced7c5799bcd382bec49333d017f744c41",
-     *         "index": 1
-     *       },
-     *       "block": {
-     *         "hash": "0x0e9f8868b1fd7aa28183292d198b4375263fbc38541d51efd90aec1de7e4b5bc",
-     *         "number": 210189,
-     *         "timestamp": 1710278897
-     *       },
-     *       "address_from": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
-     *       "address_to": "0x28f14d917fddba0c1f2923c406952478dfda5578",
-     *       "node_id": 18,
-     *       "type": "nodeCreated",
-     *       "log_index": 0,
-     *       "chain_id": 12553,
-     *       "metadata": {}
-     *     } */
-    NodeEvent: {
-      address_from?: string;
-      address_to?: string;
-      node_id?: number;
-      /** @enum {string} */
-      type?: "node_created" | "node_updated" | "node_updated_to_public_good";
-      log_index?: number;
-      chain_id?: number;
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
-      };
-      transaction?: {
-        hash?: string;
-        index?: number;
-      };
-      metadata?: {
-        node_created?: {
-          node_id?: number;
-          address?: string;
-          name?: string;
-          description?: string;
-          tax_rate_basis_points?: number;
-          is_public_good?: boolean;
-        };
-        node_updated?: {
-          address?: string;
-          name?: string;
-          description?: string;
-        };
-        node_updated_to_public_good?: {
-          address?: string;
-          is_public_good?: boolean;
-        };
-      };
-    };
-    NodeMinTokensToStakeSnapshot: {
-      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node_address?: string;
-      snapshots?: {
-        /** @example 2024-03-12T19:00:03Z */
-        date?: string;
-        /** @example 1 */
-        epoch_id?: number;
-        /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-        node_address?: string;
-        /** @example 517704408563610773574 */
-        min_tokens_to_stake?: string;
-      }[];
-    };
-    StakerProfitSnapshot: {
-      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
-      address?: string;
-      /** @example 2024-06-17T02:01:29Z */
-      date?: string;
-      /** @example 1 */
-      epoch_id?: number;
-      /** @example 24 */
-      total_chip_amount?: string;
-      /** @example 14459771035071565497880 */
-      total_chip_value?: string;
-    };
-    ChipPNL: {
-      /** @example 2024-06-14T01:57:07Z */
-      date?: string;
-      /** @example 24 */
-      total_chip_amount?: string;
-      /** @example 14459771035071565497880 */
-      total_chip_value?: string;
-      /** @example 0.0066375630868202 */
-      profit_and_loss?: string;
-    };
-    OperationProfit: {
-      address?: string;
-      /** @example 2024-03-13T00:08:38+08:00 */
-      date?: string;
-      epoch_id?: number;
-      operation_pool?: string;
-    };
-    OperationProfitPNL: {
-      /** @example 2024-06-17T20:02:35Z */
-      date?: string;
-      /** @example 724429065703690345869831 */
-      operation_pool?: string;
-      /** @example 0 */
-      profit_and_loss?: string;
-    };
-    /** @example {
-     *       "id": 130,
-     *       "start_timestamp": 1718589689,
-     *       "end_timestamp": 1718654555,
-     *       "total_operation_rewards": "0",
-     *       "total_staking_rewards": "61084916609459274004676",
-     *       "total_request_counts": "40",
-     *       "total_rewarded_nodes": 65,
-     *       "distributions": [
-     *         {
-     *           "id": 130,
-     *           "start_timestamp": 1718589689,
-     *           "end_timestamp": 1718654555,
-     *           "transaction": {
-     *             "hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
-     *             "index": 1
-     *           },
-     *           "block": {
-     *             "hash": "0xd9e2a4df54a385507a302ec3c62d3b3833ce8ed80242694d79cfa5b034840379",
-     *             "number": 4398018,
-     *             "timestamp": 1718654555
-     *           },
-     *           "total_operation_rewards": "0",
-     *           "total_staking_rewards": "61084916609459274004676",
-     *           "total_request_counts": "40",
-     *           "total_rewarded_nodes": 65,
-     *           "rewarded_nodes": [
-     *             {
-     *               "epoch_id": 130,
-     *               "index": 48,
-     *               "transaction_hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
-     *               "node_address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
-     *               "operation_rewards": "0",
-     *               "staking_rewards": "18250125229171339678441",
-     *               "tax_collected": "1270138765073564056898",
-     *               "request_count": "0"
-     *             }
-     *           ]
-     *         }
-     *       ]
-     *     } */
-    BriefEpoch: {
-      id?: number;
-      start_timestamp?: number;
-      end_timestamp?: number;
-      total_operation_rewards?: string;
-      total_staking_rewards?: string;
-      total_request_counts?: string;
-      total_reward_items?: number;
-      distributions?: components["schemas"]["BriefEpochDistribution"][];
-    };
-    Epoch: {
-      /** @example 130 */
-      id?: number;
-      /** @example 1718589689 */
-      start_timestamp?: number;
-      /** @example 1718654555 */
-      end_timestamp?: number;
-      /** @example 0 */
-      total_operation_rewards?: string;
-      /** @example 61084916609459274004676 */
-      total_staking_rewards?: string;
-      /** @example 40 */
-      total_request_counts?: string;
-      /** @example 65 */
-      total_reward_items?: number;
-      distributions?: components["schemas"]["EpochDistribution"][];
-    };
-    BriefEpochDistribution: {
-      id?: number;
-      start_timestamp?: number;
-      end_timestamp?: number;
-      transaction?: {
-        hash?: string;
-        index?: number;
-      };
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
-      };
-      total_operation_rewards?: string;
-      total_staking_rewards?: string;
-      total_request_counts?: string;
-      total_reward_items?: number;
-    };
-    /** @example {
-     *       "id": 130,
-     *       "start_timestamp": 1718589689,
-     *       "end_timestamp": 1718654555,
-     *       "transaction": {
-     *         "hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
-     *         "index": 1
-     *       },
-     *       "block": {
-     *         "hash": "0xd9e2a4df54a385507a302ec3c62d3b3833ce8ed80242694d79cfa5b034840379",
-     *         "number": 4398018,
-     *         "timestamp": 1718654555
-     *       },
-     *       "total_operation_rewards": "0",
-     *       "total_staking_rewards": "61084916609459274004676",
-     *       "total_request_counts": "40",
-     *       "total_rewarded_nodes": 65,
-     *       "rewarded_nodes": [
-     *         {
-     *           "epoch_id": 130,
-     *           "index": 48,
-     *           "transaction_hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
-     *           "node_address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
-     *           "operation_rewards": "0",
-     *           "staking_rewards": "18250125229171339678441",
-     *           "tax_collected": "1270138765073564056898",
-     *           "request_count": "0"
-     *         }
-     *       ]
-     *     } */
-    EpochDistribution: {
-      id?: number;
-      start_timestamp?: number;
-      end_timestamp?: number;
-      transaction?: {
-        hash?: string;
-        index?: number;
-      };
-      block?: {
-        hash?: string;
-        number?: number;
-        timestamp?: number;
-      };
-      total_operation_rewards?: string;
-      total_staking_rewards?: string;
-      total_request_counts?: string;
-      total_reward_items?: number;
-      reward_items?: {
-        epoch_id?: number;
-        index?: number;
-        transaction_hash?: string;
-        node_address?: string;
-        operation_rewards?: string;
-        staking_rewards?: string;
-        tax_collected?: string;
-        request_counts?: string;
-      }[];
-    };
-    WorkerDetail: {
-      is_required?: boolean;
-      type?: string;
-      value?: string;
-      description?: string;
-    };
-    /** @example {
-     *       "id": {
-     *         "is_required": true,
-     *         "type": "string",
-     *         "value": null,
-     *         "description": "Worker's id, must be unique, for example '[network]-[worker]'"
-     *       },
-     *       "network": {
-     *         "is_required": true,
-     *         "type": "string",
-     *         "value": "ethereum",
-     *         "description": "The network where the worker operates on"
-     *       },
-     *       "worker": {
-     *         "is_required": true,
-     *         "type": "string",
-     *         "value": "core",
-     *         "description": "Name of the worker"
-     *       },
-     *       "endpoint": {
-     *         "is_required": true,
-     *         "type": "url",
-     *         "value": null,
-     *         "description": "An external endpoint to fetch data from, for example, a blockchain RPC endpoint or a Farcaster api"
-     *       },
-     *       "parameters": {
-     *         "concurrent_block_requests": {
-     *           "is_required": false,
-     *           "type": "uint",
-     *           "value": 8,
-     *           "description": "The number of concurrent RPC requests to the blockchain rpc. Default: 8"
-     *         },
-     *         "block_batch_size": {
-     *           "is_required": false,
-     *           "type": "uint",
-     *           "value": 8,
-     *           "description": "The number of blocks to fetch in a single RPC request. Default: 8"
-     *         },
-     *         "receipts_batch_size": {
-     *           "is_required": false,
-     *           "type": "uint",
-     *           "value": 200,
-     *           "description": "The number of receipts to fetch in a single RPC request. Default: 200"
-     *         },
-     *         "block_receipts_batch_size": {
-     *           "is_required": false,
-     *           "type": "uint",
-     *           "value": 8,
-     *           "description": "The number of blocks to fetch receipts in a single RPC request. Default: 8"
-     *         }
-     *       },
-     *       "minimum_resource": {
-     *         "cpu_core": 2,
-     *         "memory_in_gb": 2,
-     *         "disk_space_in_gb": 153
-     *       }
-     *     } */
-    NetworkWorker: {
-      id?: components["schemas"]["WorkerDetail"];
-      network?: components["schemas"]["WorkerDetail"];
-      worker?: components["schemas"]["WorkerDetail"];
-      endpoint?: components["schemas"]["WorkerDetail"];
-      parameters?: {
-        concurrent_block_requests?: components["schemas"]["WorkerDetail"];
-        block_batch_size?: components["schemas"]["WorkerDetail"];
-        receipts_batch_size?: components["schemas"]["WorkerDetail"];
-        block_receipts_batch_size?: components["schemas"]["WorkerDetail"];
-      };
-    };
-    EpochAPYSnapshot: {
-      /** @example 2024-06-17T20:02:35Z */
-      date?: string;
-      /** @example 1 */
-      epoch_id?: number;
-      /** @example 0.1 */
-      apy?: string;
-    };
-    /**
-     * @description SVG image data of the chip.
-     * @example <?xml version="1.0" encoding="utf-8"?>
-     *       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;background-color:black;" xml:space="preserve">
-     *         <style type="text/css">.f{fill:#FB1467;}.c{fill:#1477FB;}.b{fill:#DEE5D9;}.h{fill:#DEE5D9;}.alpha{fill:#1477FB;}.pg{fill:#FB1467;}.e{fill-rule:evenodd;clip-rule:evenodd;}</style>
-     *         <path class="f" d="M16 88h68v2H16zm0 4h4v2h-4zm6 0h2v2h-2zm4 0h6v2h-6zm12 0h6v2h-6zm8 0h3v2h-3zm5 0h3v2h-3zm-17 0h2v2h-2zm22 0h6v2h-6zm8 0h2v2h-2zm4 0h6v2h-6zm12 0h4v2h-4zm-4 0h2v2h-2zM16 10h68v2H16zm0-4h4v2h-4zm6 0h2v2h-2zm4 0h6v2h-6zm12 0h6v2h-6zm8 0h3v2h-3zm5 0h3v2h-3zM34 6h2v2h-2zm22 0h6v2h-6zm8 0h2v2h-2zm4 0h6v2h-6zm12 0h4v2h-4zm-4 0h2v2h-2zM12 16v68h-2V16zM6 84v-4h2v4zm0-6v-2h2v2zm0-4v-6h2v6zm0-12v-6h2v6zm0-8v-3h2v3zm0-5v-3h2v3zm0 17v-2h2v2zm0-22v-6h2v6zm0-8v-2h2v2zm0-4v-6h2v6zm0-12v-4h2v4zm0 4v-2h2v2zm84-8v68h-2V16zm2 68v-4h2v4zm0-6v-2h2v2zm0-4v-6h2v6zm0-12v-6h2v6zm0-8v-3h2v3zm0-5v-3h2v3zm0 17v-2h2v2zm0-22v-6h2v6zm0-8v-2h2v2zm0-4v-6h2v6zm0-12v-4h2v4zm0 4v-2h2v2z"/>
-     *         <svg class="c">
-     *           <path d="M52 80h2v6h-2zm4 0h2v6h-2z"/>
-     *           <path d="M58 84v2h-6v-2zm0-4v2h-6v-2zm10 0h2v6h-2zm4 0h2v6h-2z"/>
-     *           <path d="M74 84v2h-6v-2zm0-4v2h-6v-2zm6-12h2v6h-2zm4 0h2v6h-2z"/>
-     *           <path d="M86 72v2h-6v-2zm0-4v2h-6v-2zm-6 12h2v6h-2zm4 0h2v6h-2z"/>
-     *           <path d="M86 84v2h-6v-2zm0-4v2h-6v-2zm-6-28h6v6h-6zM54 86h2v2h-2zm4-2v-2h10v2zm16-6h2v2h-2zm-24 4h2v2h-2zm26-6h2v2h-2zm2-2h2v2h-2zm-4 8h6v2h-6zm6-40h6v6h-6zm4 32v6h-2v-6zm0-16v10h-2V58zm0-26v10h-2V32zm-2 16h2v4h-2zM52 20h2v-6h-2zm4 0h2v-6h-2z"/>
-     *           <path d="M58 16v-2h-6v2zm0 4v-2h-6v2zm10 0h2v-6h-2zm4 0h2v-6h-2z"/>
-     *           <path d="M74 16v-2h-6v2zm0 4v-2h-6v2zm6 12h2v-6h-2zm4 0h2v-6h-2z"/>
-     *           <path d="M86 28v-2h-6v2zm0 4v-2h-6v2zm-6-12h2v-6h-2zm4 0h2v-6h-2z"/>
-     *           <path d="M86 16v-2h-6v2zm0 4v-2h-6v2zm-32-6h2v-2h-2zm4 2v2h10v-2zm16 6h2v-2h-2zm-24-4h2v-2h-2zm26 6h2v-2h-2zm2 2h2v-2h-2zm-4-8h6v-2h-6zm10 8v-6h-2v6zm-36-6h-2v-6h2zm-4 0h-2v-6h2z"/>
-     *           <path d="M42 16v-2h6v2zm0 4v-2h6v2zm-10 0h-2v-6h2zm-4 0h-2v-6h2z"/>
-     *           <path d="M26 16v-2h6v2zm0 4v-2h6v2zm-6 12h-2v-6h2zm-4 0h-2v-6h2z"/>
-     *           <path d="M14 28v-2h6v2zm0 4v-2h6v2zm6-12h-2v-6h2zm-4 0h-2v-6h2z"/>
-     *           <path d="M14 16v-2h6v2zm0 4v-2h6v2zm6 28h-6v-6h6zm26-34h-2v-2h2zm-4 2v2H32v-2zm-16 6h-2v-2h2zm24-4h-2v-2h2zm-26 6h-2v-2h2zm-2 2h-2v-2h2zm4-8h-6v-2h6zm-6 40h-6v-6h6zm-4-32v-6h2v6zm0 16V32h2v10zm0 26V58h2v10zm2-16h-2v-4h2zm30 28h-2v6h2zm-4 0h-2v6h2z"/>
-     *           <path d="M42 84v2h6v-2zm0-4v2h6v-2zm-10 0h-2v6h2zm-4 0h-2v6h2z"/>
-     *           <path d="M26 84v2h6v-2zm0-4v2h6v-2zm-6-12h-2v6h2zm-4 0h-2v6h2z"/>
-     *           <path d="M14 72v2h6v-2zm0-4v2h6v-2zm6 12h-2v6h2zm-4 0h-2v6h2z"/>
-     *           <path d="M14 84v2h6v-2zm0-4v2h6v-2zm32 6h-2v2h2zm-4-2v-2H32v2zm-16-6h-2v2h2zm24 4h-2v2h2zm-26-6h-2v2h2zm-2-2h-2v2h2zm4 8h-6v2h6zm-10-8v6h2v-6z"/>
-     *         </svg>
-     *         <path class="alpha" d="M6 6V4h4v2zm4 0v2H6V6H4v6h2v-2h4v2h2V6zm84-2v2h-4V4zm0 2v2h-4V6h-2v6h2v-2h4v2h2V6zM10 88v2H6v-2zm0 2v2H6v-2H4v6h2v-2h4v2h2v-6zm84-2v2h-4v-2zm0 2v2h-4v-2h-2v6h2v-2h4v2h2v-6z"/>
-     *         <polygon class="b" points="72,46 72,64 70,64 70,66 68,66 68,68 66,68 66,70 64,70 64,72 36,72 36,70 34,70 34,68 32,68 32,66   30,66 30,64 28,64 28,46 30,46 30,44 70,44 70,46 "/>
-     *         <path d="M36 50h2v2h-2zm2 2h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm4-4h2v2h-2zm18 0h2v2h-2zm2 2h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm4-4h2v2h-2zm-14 6h4v2h-4zm-2-2h2v2h-2zm6 0h2v2h-2z" fill="#000"/>
-     *         <path d="M40 62h2v2h-2zM42 64h2v2h-2zM42 62h2v2h-2zM44 64h2v2h-2z" fill="#000"/>
-     *         <path d="M44 64h16v4H44z" fill="#000"/>
-     *         <path class="h" d="M28 40h44v2H28z"/>
-     *         <path class="h e" d="M40 33v-3h-2v-2h-2v2h-2v2h-2v2h-2v2h-2v2h5v-2h2v2h5v-3h-4v-2z"/>
-     *         <path class="h e" d="M42 24v2h-4v2h4v2h5v2h-5v6h7V24zm5 4h-2v-2h2zm23 8v-2h-2v-2h-2v-2h-2v-2h-2v2h-2v3h4v2h-6v-3h-3v6h10v-2h2v2h5v-2z"/>
-     *         <path class="h e" d="M58 26v-2h-7v14h2v-8h5v-2h4v-2zm-3 2h-2v-2h2z"/>
-     *       </svg>
-     */
-    Image: string;
-    ResponseError: {
-      /** @enum {string} */
-      error_code?:
-        | "bad_request"
-        | "validate_failed"
-        | "bad_params"
-        | "internal_error";
-      error?: string;
-      details?: string;
-    };
-    CountSnapshot: {
-      /** @example 2024-03-10 */
-      date?: string;
-      /** @example 1 */
-      count?: number;
-    };
     Approval: {
+      /** @enum {string} */
+      action?: "approve" | "revoke";
       Token?: {
         address?: string;
         decimals?: number;
@@ -2238,8 +1540,6 @@ export interface components {
         uri?: string;
         value?: string;
       };
-      /** @enum {string} */
-      action?: "approve" | "revoke";
     };
     Bridge: {
       action?: number;
@@ -2291,6 +1591,399 @@ export interface components {
         symbol?: string;
         uri?: string;
         value?: string;
+      };
+    };
+    BridgeTransaction: {
+      event?: {
+        deposit?: {
+          finalized?: components["schemas"]["TransactionEvent"];
+          initialized?: components["schemas"]["TransactionEvent"];
+        } | null;
+        withdraw?: {
+          finalized?: components["schemas"]["TransactionEvent"];
+          initialized?: components["schemas"]["TransactionEvent"];
+          proved?: components["schemas"]["TransactionEvent"];
+        } | null;
+      };
+      /** @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa */
+      id?: string;
+      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
+      receiver?: string;
+      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
+      sender?: string;
+      token?: {
+        address?: {
+          /** @example 0xc98d64da73a6616c42117b582e832812e7b8d57f */
+          l1?: string;
+          /** @example 0x4200000000000000000000000000000000000042 */
+          l2?: string;
+        };
+        /** @example 10000000000000000000000 */
+        value?: string;
+      };
+    };
+    /** @example {
+     *       "id": 130,
+     *       "start_timestamp": 1718589689,
+     *       "end_timestamp": 1718654555,
+     *       "total_operation_rewards": "0",
+     *       "total_staking_rewards": "61084916609459274004676",
+     *       "total_request_counts": "40",
+     *       "total_rewarded_nodes": 65,
+     *       "distributions": [
+     *         {
+     *           "id": 130,
+     *           "start_timestamp": 1718589689,
+     *           "end_timestamp": 1718654555,
+     *           "transaction": {
+     *             "hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *             "index": 1
+     *           },
+     *           "block": {
+     *             "hash": "0xd9e2a4df54a385507a302ec3c62d3b3833ce8ed80242694d79cfa5b034840379",
+     *             "number": 4398018,
+     *             "timestamp": 1718654555
+     *           },
+     *           "total_operation_rewards": "0",
+     *           "total_staking_rewards": "61084916609459274004676",
+     *           "total_request_counts": "40",
+     *           "total_rewarded_nodes": 65,
+     *           "rewarded_nodes": [
+     *             {
+     *               "epoch_id": 130,
+     *               "index": 48,
+     *               "transaction_hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *               "node_address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *               "operation_rewards": "0",
+     *               "staking_rewards": "18250125229171339678441",
+     *               "tax_collected": "1270138765073564056898",
+     *               "request_count": "0"
+     *             }
+     *           ]
+     *         }
+     *       ]
+     *     } */
+    BriefEpoch: {
+      distributions?: components["schemas"]["BriefEpochDistribution"][];
+      end_timestamp?: number;
+      id?: number;
+      start_timestamp?: number;
+      total_operation_rewards?: string;
+      total_request_counts?: string;
+      total_reward_items?: number;
+      total_staking_rewards?: string;
+    };
+    BriefEpochDistribution: {
+      block?: {
+        hash?: string;
+        number?: number;
+        timestamp?: number;
+      };
+      end_timestamp?: number;
+      id?: number;
+      start_timestamp?: number;
+      total_operation_rewards?: string;
+      total_request_counts?: string;
+      total_reward_items?: number;
+      total_staking_rewards?: string;
+      transaction?: {
+        hash?: string;
+        index?: number;
+      };
+    };
+    /**
+     * @description Represents the call data associated with an activity.
+     * @example {
+     *       "function_hash": "0x4022b75e"
+     *     }
+     */
+    Calldata: {
+      /** @description The hash of the function called. */
+      function_hash?: string;
+      /** @description The parsed function name. */
+      parsed_function?: string;
+      /** @description The raw call data. */
+      raw?: string;
+    };
+    Chip: {
+      /** @example 1690 */
+      id?: number;
+      /**
+       * @description The latest value of the chip
+       * @example 613891695796128425340
+       */
+      latest_value?: string;
+      metadata?: {
+        /** @example Chip Monsters are unique creatures living in the RSS3 Network, each one special because of where it was born. They represent the idea of FREE and OPEN INFORMATION, thriving in a world that values sharing and being different. These Chip Monsters are more than just digital; they symbolize the excitement and importance of being unique in a connected digital world. */
+        description?: string;
+        /** @example https://gi.rss3.io/nta/chips/1690/image.svg */
+        image?: string;
+        /** @example Open Chips #1690 */
+        name?: string;
+      };
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
+      node?: string;
+      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
+      owner?: string;
+      /**
+       * @description the value at time of minting
+       * @example 500000000000000000000
+       */
+      value?: string;
+    };
+    ChipPNL: {
+      /** @example 2024-06-14T01:57:07Z */
+      date?: string;
+      /** @example 0.0066375630868202 */
+      profit_and_loss?: string;
+      /** @example 24 */
+      total_chip_amount?: string;
+      /** @example 14459771035071565497880 */
+      total_chip_value?: string;
+    };
+    CollectibleApproval: {
+      action?: number;
+      Token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+    };
+    CollectibleBurn: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    CollectibleMint: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    CollectibleTrade: {
+      action?: number;
+      cost?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      Token?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+    };
+    CollectibleTransfer: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    CountSnapshot: {
+      /** @example 1 */
+      count?: number;
+      /** @example 2024-03-10 */
+      date?: string;
+    };
+    /**
+     * @description The direction of an activity.
+     * @example out
+     * @enum {string}
+     */
+    Direction: "in" | "out" | "self";
+    Epoch: {
+      distributions?: components["schemas"]["EpochDistribution"][];
+      /** @example 1718654555 */
+      end_timestamp?: number;
+      /** @example 130 */
+      id?: number;
+      /** @example 1718589689 */
+      start_timestamp?: number;
+      /** @example 0 */
+      total_operation_rewards?: string;
+      /** @example 40 */
+      total_request_counts?: string;
+      /** @example 65 */
+      total_reward_items?: number;
+      /** @example 61084916609459274004676 */
+      total_staking_rewards?: string;
+    };
+    EpochAPYSnapshot: {
+      /** @example 0.1 */
+      apy?: string;
+      /** @example 2024-06-17T20:02:35Z */
+      date?: string;
+      /** @example 1 */
+      epoch_id?: number;
+    };
+    /** @example {
+     *       "id": 130,
+     *       "start_timestamp": 1718589689,
+     *       "end_timestamp": 1718654555,
+     *       "transaction": {
+     *         "hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *         "index": 1
+     *       },
+     *       "block": {
+     *         "hash": "0xd9e2a4df54a385507a302ec3c62d3b3833ce8ed80242694d79cfa5b034840379",
+     *         "number": 4398018,
+     *         "timestamp": 1718654555
+     *       },
+     *       "total_operation_rewards": "0",
+     *       "total_staking_rewards": "61084916609459274004676",
+     *       "total_request_counts": "40",
+     *       "total_rewarded_nodes": 65,
+     *       "rewarded_nodes": [
+     *         {
+     *           "epoch_id": 130,
+     *           "index": 48,
+     *           "transaction_hash": "0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2",
+     *           "node_address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *           "operation_rewards": "0",
+     *           "staking_rewards": "18250125229171339678441",
+     *           "tax_collected": "1270138765073564056898",
+     *           "request_count": "0"
+     *         }
+     *       ]
+     *     } */
+    EpochDistribution: {
+      block?: {
+        hash?: string;
+        number?: number;
+        timestamp?: number;
+      };
+      end_timestamp?: number;
+      id?: number;
+      reward_items?: {
+        epoch_id?: number;
+        index?: number;
+        node_address?: string;
+        operation_rewards?: string;
+        request_counts?: string;
+        staking_rewards?: string;
+        tax_collected?: string;
+        transaction_hash?: string;
+      }[];
+      start_timestamp?: number;
+      total_operation_rewards?: string;
+      total_request_counts?: string;
+      total_reward_items?: number;
+      total_staking_rewards?: string;
+      transaction?: {
+        hash?: string;
+        index?: number;
       };
     };
     ExchangeLiquidity: {
@@ -2419,87 +2112,123 @@ export interface components {
         };
       };
     };
-    SocialMint: {
-      author_url?: string;
-      body?: string;
-      content_uri?: string;
-      handle?: string;
-      media?: unknown[];
-      profile_id?: string;
-      publication_id?: string;
-      reward?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
-      summary?: string;
-      tags?: unknown[];
-      target?: components["schemas"]["SocialPost"];
-      target_url?: string;
-      timestamp?: number;
-      title?: string;
+    /**
+     * @description Represents fee information for an activity.
+     * @example {
+     *       "amount": "315699955320960",
+     *       "decimal": 18
+     *     }
+     */
+    Fee: {
+      /** @description The address to which the fee is paid. */
+      address?: string;
+      /** @description The amount of the fee. */
+      amount?: string;
+      /** @description The decimal precision of the fee amount. */
+      decimal?: number;
     };
-    SocialProxy: {
-      action?: number;
-      profile?: {
-        /** @enum {string} */
-        action?: "create" | "renew" | "unwrap" | "update" | "wrap";
-        address?: unknown[];
-        bio?: string;
-        expiry?: {
-          ext?: number;
-          loc?: {
-            cacheEnd?: number;
-            cacheStart?: number;
-            cacheZone?: {
-              isDST?: boolean;
-              name?: string;
-              offset?: number;
-            };
-            extend?: string;
-            name?: string;
-            tx?: unknown[];
-            zone?: unknown[];
-          };
-          wall?: number;
-        };
-        handle?: string;
-        image_uri?: string;
-        key?: string;
-        name?: string;
-        profile_id?: string;
+    /**
+     * @description SVG image data of the chip.
+     * @example <?xml version="1.0" encoding="utf-8"?>
+     *       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;background-color:black;" xml:space="preserve">
+     *         <style type="text/css">.f{fill:#FB1467;}.c{fill:#1477FB;}.b{fill:#DEE5D9;}.h{fill:#DEE5D9;}.alpha{fill:#1477FB;}.pg{fill:#FB1467;}.e{fill-rule:evenodd;clip-rule:evenodd;}</style>
+     *         <path class="f" d="M16 88h68v2H16zm0 4h4v2h-4zm6 0h2v2h-2zm4 0h6v2h-6zm12 0h6v2h-6zm8 0h3v2h-3zm5 0h3v2h-3zm-17 0h2v2h-2zm22 0h6v2h-6zm8 0h2v2h-2zm4 0h6v2h-6zm12 0h4v2h-4zm-4 0h2v2h-2zM16 10h68v2H16zm0-4h4v2h-4zm6 0h2v2h-2zm4 0h6v2h-6zm12 0h6v2h-6zm8 0h3v2h-3zm5 0h3v2h-3zM34 6h2v2h-2zm22 0h6v2h-6zm8 0h2v2h-2zm4 0h6v2h-6zm12 0h4v2h-4zm-4 0h2v2h-2zM12 16v68h-2V16zM6 84v-4h2v4zm0-6v-2h2v2zm0-4v-6h2v6zm0-12v-6h2v6zm0-8v-3h2v3zm0-5v-3h2v3zm0 17v-2h2v2zm0-22v-6h2v6zm0-8v-2h2v2zm0-4v-6h2v6zm0-12v-4h2v4zm0 4v-2h2v2zm84-8v68h-2V16zm2 68v-4h2v4zm0-6v-2h2v2zm0-4v-6h2v6zm0-12v-6h2v6zm0-8v-3h2v3zm0-5v-3h2v3zm0 17v-2h2v2zm0-22v-6h2v6zm0-8v-2h2v2zm0-4v-6h2v6zm0-12v-4h2v4zm0 4v-2h2v2z"/>
+     *         <svg class="c">
+     *           <path d="M52 80h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M58 84v2h-6v-2zm0-4v2h-6v-2zm10 0h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M74 84v2h-6v-2zm0-4v2h-6v-2zm6-12h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M86 72v2h-6v-2zm0-4v2h-6v-2zm-6 12h2v6h-2zm4 0h2v6h-2z"/>
+     *           <path d="M86 84v2h-6v-2zm0-4v2h-6v-2zm-6-28h6v6h-6zM54 86h2v2h-2zm4-2v-2h10v2zm16-6h2v2h-2zm-24 4h2v2h-2zm26-6h2v2h-2zm2-2h2v2h-2zm-4 8h6v2h-6zm6-40h6v6h-6zm4 32v6h-2v-6zm0-16v10h-2V58zm0-26v10h-2V32zm-2 16h2v4h-2zM52 20h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M58 16v-2h-6v2zm0 4v-2h-6v2zm10 0h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M74 16v-2h-6v2zm0 4v-2h-6v2zm6 12h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M86 28v-2h-6v2zm0 4v-2h-6v2zm-6-12h2v-6h-2zm4 0h2v-6h-2z"/>
+     *           <path d="M86 16v-2h-6v2zm0 4v-2h-6v2zm-32-6h2v-2h-2zm4 2v2h10v-2zm16 6h2v-2h-2zm-24-4h2v-2h-2zm26 6h2v-2h-2zm2 2h2v-2h-2zm-4-8h6v-2h-6zm10 8v-6h-2v6zm-36-6h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M42 16v-2h6v2zm0 4v-2h6v2zm-10 0h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M26 16v-2h6v2zm0 4v-2h6v2zm-6 12h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M14 28v-2h6v2zm0 4v-2h6v2zm6-12h-2v-6h2zm-4 0h-2v-6h2z"/>
+     *           <path d="M14 16v-2h6v2zm0 4v-2h6v2zm6 28h-6v-6h6zm26-34h-2v-2h2zm-4 2v2H32v-2zm-16 6h-2v-2h2zm24-4h-2v-2h2zm-26 6h-2v-2h2zm-2 2h-2v-2h2zm4-8h-6v-2h6zm-6 40h-6v-6h6zm-4-32v-6h2v6zm0 16V32h2v10zm0 26V58h2v10zm2-16h-2v-4h2zm30 28h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M42 84v2h6v-2zm0-4v2h6v-2zm-10 0h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M26 84v2h6v-2zm0-4v2h6v-2zm-6-12h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M14 72v2h6v-2zm0-4v2h6v-2zm6 12h-2v6h2zm-4 0h-2v6h2z"/>
+     *           <path d="M14 84v2h6v-2zm0-4v2h6v-2zm32 6h-2v2h2zm-4-2v-2H32v2zm-16-6h-2v2h2zm24 4h-2v2h2zm-26-6h-2v2h2zm-2-2h-2v2h2zm4 8h-6v2h6zm-10-8v6h2v-6z"/>
+     *         </svg>
+     *         <path class="alpha" d="M6 6V4h4v2zm4 0v2H6V6H4v6h2v-2h4v2h2V6zm84-2v2h-4V4zm0 2v2h-4V6h-2v6h2v-2h4v2h2V6zM10 88v2H6v-2zm0 2v2H6v-2H4v6h2v-2h4v2h2v-6zm84-2v2h-4v-2zm0 2v2h-4v-2h-2v6h2v-2h4v2h2v-6z"/>
+     *         <polygon class="b" points="72,46 72,64 70,64 70,66 68,66 68,68 66,68 66,70 64,70 64,72 36,72 36,70 34,70 34,68 32,68 32,66   30,66 30,64 28,64 28,46 30,46 30,44 70,44 70,46 "/>
+     *         <path d="M36 50h2v2h-2zm2 2h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm4-4h2v2h-2zm18 0h2v2h-2zm2 2h2v2h-2zm2 2h2v2h-2zm-4 0h2v2h-2zm4-4h2v2h-2zm-14 6h4v2h-4zm-2-2h2v2h-2zm6 0h2v2h-2z" fill="#000"/>
+     *         <path d="M40 62h2v2h-2zM42 64h2v2h-2zM42 62h2v2h-2zM44 64h2v2h-2z" fill="#000"/>
+     *         <path d="M44 64h16v4H44z" fill="#000"/>
+     *         <path class="h" d="M28 40h44v2H28z"/>
+     *         <path class="h e" d="M40 33v-3h-2v-2h-2v2h-2v2h-2v2h-2v2h-2v2h5v-2h2v2h5v-3h-4v-2z"/>
+     *         <path class="h e" d="M42 24v2h-4v2h4v2h5v2h-5v6h7V24zm5 4h-2v-2h2zm23 8v-2h-2v-2h-2v-2h-2v-2h-2v2h-2v3h4v2h-6v-3h-3v6h10v-2h2v2h5v-2z"/>
+     *         <path class="h e" d="M58 26v-2h-7v14h2v-8h5v-2h4v-2zm-3 2h-2v-2h2z"/>
+     *       </svg>
+     */
+    Image: string;
+    /** @description Metadata for paginated responses. */
+    MetaCursor: {
+      /** @description The cursor for the next set of results. */
+      cursor?: string;
+    };
+    /** @description Metadata indicating the total number of pages. */
+    MetaTotalPages: {
+      /**
+       * @description The total number of pages available.
+       * @example 1
+       */
+      totalPages?: number;
+    };
+    MetaverseBurn: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
         value?: string;
       };
-      proxy_address?: unknown[];
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
     };
-    SocialPost: {
-      author_url?: string;
-      body?: string;
-      content_uri?: string;
-      handle?: string;
-      media?: unknown[];
-      profile_id?: string;
-      publication_id?: string;
-      reward?: {
+    MetaverseMint: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    MetaverseTrade: {
+      /** @enum {string} */
+      action?: "buy" | "list" | "sell";
+      cost?: {
         address?: string;
         decimals?: number;
         id?: {
@@ -2523,22 +2252,7 @@ export interface components {
           value?: string;
         };
       };
-      summary?: string;
-      tags?: unknown[];
-      target?: components["schemas"]["SocialPost"];
-      target_url?: string;
-      timestamp?: number;
-      title?: string;
-    };
-    SocialRevise: {
-      author_url?: string;
-      body?: string;
-      content_uri?: string;
-      handle?: string;
-      media?: unknown[];
-      profile_id?: string;
-      publication_id?: string;
-      reward?: {
+      Token?: {
         address?: string;
         decimals?: number;
         id?: {
@@ -2562,14 +2276,315 @@ export interface components {
           value?: string;
         };
       };
-      summary?: string;
-      tags?: unknown[];
-      target?: components["schemas"]["SocialPost"];
-      target_url?: string;
-      timestamp?: number;
+    };
+    MetaverseTransfer: {
+      address?: string;
+      decimals?: number;
+      id?: {
+        exp?: number;
+        value?: string;
+      };
+      name?: string;
+      parsed_image_url?: string;
+      /** @enum {string} */
+      standard?:
+        | "Unknown"
+        | "ERC-20"
+        | "ERC-165"
+        | "ERC-721"
+        | "ERC-1155"
+        | "ERC-1967";
+      symbol?: string;
+      uri?: string;
+      value?: {
+        exp?: number;
+        value?: string;
+      };
+    };
+    /**
+     * @description The network on which activities occur.
+     * @example ethereum
+     * @enum {string}
+     */
+    Network:
+      | "arbitrum"
+      | "arweave"
+      | "avax"
+      | "base"
+      | "binance-smart-chain"
+      | "crossbell"
+      | "ethereum"
+      | "farcaster"
+      | "gnosis"
+      | "linea"
+      | "optimism"
+      | "polygon"
+      | "vsl";
+    /** @example {
+     *       "id": {
+     *         "is_required": true,
+     *         "type": "string",
+     *         "value": null,
+     *         "description": "Worker's id, must be unique, for example '[network]-[worker]'"
+     *       },
+     *       "network": {
+     *         "is_required": true,
+     *         "type": "string",
+     *         "value": "ethereum",
+     *         "description": "The network where the worker operates on"
+     *       },
+     *       "worker": {
+     *         "is_required": true,
+     *         "type": "string",
+     *         "value": "core",
+     *         "description": "Name of the worker"
+     *       },
+     *       "endpoint": {
+     *         "is_required": true,
+     *         "type": "url",
+     *         "value": null,
+     *         "description": "An external endpoint to fetch data from, for example, a blockchain RPC endpoint or a Farcaster api"
+     *       },
+     *       "parameters": {
+     *         "concurrent_block_requests": {
+     *           "is_required": false,
+     *           "type": "uint",
+     *           "value": 8,
+     *           "description": "The number of concurrent RPC requests to the blockchain rpc. Default: 8"
+     *         },
+     *         "block_batch_size": {
+     *           "is_required": false,
+     *           "type": "uint",
+     *           "value": 8,
+     *           "description": "The number of blocks to fetch in a single RPC request. Default: 8"
+     *         },
+     *         "receipts_batch_size": {
+     *           "is_required": false,
+     *           "type": "uint",
+     *           "value": 200,
+     *           "description": "The number of receipts to fetch in a single RPC request. Default: 200"
+     *         },
+     *         "block_receipts_batch_size": {
+     *           "is_required": false,
+     *           "type": "uint",
+     *           "value": 8,
+     *           "description": "The number of blocks to fetch receipts in a single RPC request. Default: 8"
+     *         }
+     *       },
+     *       "minimum_resource": {
+     *         "cpu_core": 2,
+     *         "memory_in_gb": 2,
+     *         "disk_space_in_gb": 153
+     *       }
+     *     } */
+    NetworkWorker: {
+      endpoint?: components["schemas"]["WorkerDetail"];
+      id?: components["schemas"]["WorkerDetail"];
+      network?: components["schemas"]["WorkerDetail"];
+      parameters?: {
+        block_batch_size?: components["schemas"]["WorkerDetail"];
+        block_receipts_batch_size?: components["schemas"]["WorkerDetail"];
+        concurrent_block_requests?: components["schemas"]["WorkerDetail"];
+        receipts_batch_size?: components["schemas"]["WorkerDetail"];
+      };
+      worker?: components["schemas"]["WorkerDetail"];
+    };
+    /** @example {
+     *       "id": 18,
+     *       "address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *       "name": "Natural Selection Labs",
+     *       "description": "A node operated by NSL.",
+     *       "tax_rate_basis_points": 800,
+     *       "is_public_good": false,
+     *       "operation_pool_tokens": "724429065703690345869831",
+     *       "staking_pool_tokens": "20798363499373370863570687",
+     *       "total_shares": "17339500000000000000000000",
+     *       "slashed_tokens": "0",
+     *       "alpha": true,
+     *       "status": "online",
+     *       "last_heartbeat": 1718694464,
+     *       "location": [
+     *         {
+     *           "country": "United States",
+     *           "region": "",
+     *           "city": "",
+     *           "latitude": 37.751,
+     *           "longitude": -97.822
+     *         }
+     *       ],
+     *       "avatar": {
+     *         "name": "Node Avatar",
+     *         "description": "",
+     *         "image": "https://gi.rss3.io/nta/nodes/0x69982E017Acc0FDE3d1542205089A8d3EAfcD1B7/avatar.svg"
+     *       },
+     *       "min_tokens_to_stake": "599739424417467944968",
+     *       "apy": "0.3928765550642588002426864199264",
+     *       "active_score": "0.2712648142772680586868915",
+     *       "reliability_score": "0",
+     *       "type": "alpha",
+     *       "created_at": 1710278898
+     *     } */
+    Node: {
+      address?: string;
+      avatar?: {
+        description?: string;
+        image?: string;
+        name?: string;
+      };
+      /** @description The timestamp of the Node creation */
+      created_at?: number;
+      description?: string;
+      id?: number;
+      is_public_good?: boolean;
+      /** @description The timestamp of the last heartbeat */
+      last_heartbeat?: number;
+      local?: {
+        city?: string;
+        country?: string;
+        latitude?: number;
+        longitude?: number;
+        region?: string;
+      }[];
+      min_tokens_to_stake?: string;
+      name?: string;
+      operation_pool_tokens?: string;
+      slashed_tokens?: string;
+      staking_pool_tokens?: string;
+      /** @enum {string} */
+      status?: "registered" | "online" | "offline" | "exited";
+      tax_rate_basis_points?: number | null;
+      total_shares?: string;
+    };
+    /** @example {
+     *       "transaction": {
+     *         "hash": "0x84c045a41d6fb83a94f4f2096863faced7c5799bcd382bec49333d017f744c41",
+     *         "index": 1
+     *       },
+     *       "block": {
+     *         "hash": "0x0e9f8868b1fd7aa28183292d198b4375263fbc38541d51efd90aec1de7e4b5bc",
+     *         "number": 210189,
+     *         "timestamp": 1710278897
+     *       },
+     *       "address_from": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
+     *       "address_to": "0x28f14d917fddba0c1f2923c406952478dfda5578",
+     *       "node_id": 18,
+     *       "type": "nodeCreated",
+     *       "log_index": 0,
+     *       "chain_id": 12553,
+     *       "metadata": {}
+     *     } */
+    NodeEvent: {
+      address_from?: string;
+      address_to?: string;
+      block?: {
+        hash?: string;
+        number?: number;
+        timestamp?: number;
+      };
+      chain_id?: number;
+      log_index?: number;
+      metadata?: {
+        node_created?: {
+          address?: string;
+          description?: string;
+          is_public_good?: boolean;
+          name?: string;
+          node_id?: number;
+          tax_rate_basis_points?: number;
+        };
+        node_updated?: {
+          address?: string;
+          description?: string;
+          name?: string;
+        };
+        node_updated_to_public_good?: {
+          address?: string;
+          is_public_good?: boolean;
+        };
+      };
+      node_id?: number;
+      transaction?: {
+        hash?: string;
+        index?: number;
+      };
+      /** @enum {string} */
+      type?: "node_created" | "node_updated" | "node_updated_to_public_good";
+    };
+    NodeMinTokensToStakeSnapshot: {
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
+      node_address?: string;
+      snapshots?: {
+        /** @example 2024-03-12T19:00:03Z */
+        date?: string;
+        /** @example 1 */
+        epoch_id?: number;
+        /** @example 517704408563610773574 */
+        min_tokens_to_stake?: string;
+        /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
+        node_address?: string;
+      }[];
+    };
+    OperationProfit: {
+      address?: string;
+      /** @example 2024-03-13T00:08:38+08:00 */
+      date?: string;
+      epoch_id?: number;
+      operation_pool?: string;
+    };
+    OperationProfitPNL: {
+      /** @example 2024-06-17T20:02:35Z */
+      date?: string;
+      /** @example 724429065703690345869831 */
+      operation_pool?: string;
+      /** @example 0 */
+      profit_and_loss?: string;
+    };
+    /**
+     * @description The platform on which activities occur.
+     * @enum {string}
+     */
+    Platform:
+      | "1inch"
+      | "AAVE"
+      | "Aavegotchi"
+      | "Crossbell"
+      | "Curve"
+      | "ENS"
+      | "Farcaster"
+      | "Highlight"
+      | "IQWiki"
+      | "KiwiStand"
+      | "Lens"
+      | "Lido"
+      | "LooksRare"
+      | "Matters"
+      | "Mirror"
+      | "OpenSea"
+      | "Optimism"
+      | "Paragraph"
+      | "RSS3"
+      | "SAVM"
+      | "Stargate"
+      | "Uniswap"
+      | "Unknown"
+      | "VSL";
+    ResponseError: {
+      details?: string;
+      error?: string;
+      /** @enum {string} */
+      error_code?:
+        | "bad_request"
+        | "validate_failed"
+        | "bad_params"
+        | "internal_error";
+    };
+    RssFeed: {
+      authors?: unknown[];
+      description?: string;
+      pub_date?: string;
       title?: string;
     };
-    SocialShare: {
+    SocialComment: {
       author_url?: string;
       body?: string;
       content_uri?: string;
@@ -2647,7 +2662,147 @@ export interface components {
       timestamp?: number;
       title?: string;
     };
-    SocialComment: {
+    SocialMint: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialPost: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
+      handle?: string;
+      media?: unknown[];
+      profile_id?: string;
+      publication_id?: string;
+      reward?: {
+        address?: string;
+        decimals?: number;
+        id?: {
+          exp?: number;
+          value?: string;
+        };
+        name?: string;
+        parsed_image_url?: string;
+        /** @enum {string} */
+        standard?:
+          | "Unknown"
+          | "ERC-20"
+          | "ERC-165"
+          | "ERC-721"
+          | "ERC-1155"
+          | "ERC-1967";
+        symbol?: string;
+        uri?: string;
+        value?: {
+          exp?: number;
+          value?: string;
+        };
+      };
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
+      title?: string;
+    };
+    SocialProfile: {
+      /** @enum {string} */
+      action?: "create" | "renew" | "unwrap" | "update" | "wrap";
+      address?: unknown[];
+      bio?: string;
+      expiry?: {
+        ext?: number;
+        loc?: {
+          cacheEnd?: number;
+          cacheStart?: number;
+          cacheZone?: {
+            isDST?: boolean;
+            name?: string;
+            offset?: number;
+          };
+          extend?: string;
+          name?: string;
+          tx?: unknown[];
+          zone?: unknown[];
+        };
+        wall?: number;
+      };
+      handle?: string;
+      image_uri?: string;
+      key?: string;
+      name?: string;
+      profile_id?: string;
+      value?: string;
+    };
+    SocialProxy: {
+      action?: number;
+      profile?: {
+        /** @enum {string} */
+        action?: "create" | "renew" | "unwrap" | "update" | "wrap";
+        address?: unknown[];
+        bio?: string;
+        expiry?: {
+          ext?: number;
+          loc?: {
+            cacheEnd?: number;
+            cacheStart?: number;
+            cacheZone?: {
+              isDST?: boolean;
+              name?: string;
+              offset?: number;
+            };
+            extend?: string;
+            name?: string;
+            tx?: unknown[];
+            zone?: unknown[];
+          };
+          wall?: number;
+        };
+        handle?: string;
+        image_uri?: string;
+        key?: string;
+        name?: string;
+        profile_id?: string;
+        value?: string;
+      };
+      proxy_address?: unknown[];
+    };
+    SocialRevise: {
       author_url?: string;
       body?: string;
       content_uri?: string;
@@ -2725,37 +2880,15 @@ export interface components {
       timestamp?: number;
       title?: string;
     };
-    SocialProfile: {
-      /** @enum {string} */
-      action?: "create" | "renew" | "unwrap" | "update" | "wrap";
-      address?: unknown[];
-      bio?: string;
-      expiry?: {
-        ext?: number;
-        loc?: {
-          cacheEnd?: number;
-          cacheStart?: number;
-          cacheZone?: {
-            isDST?: boolean;
-            name?: string;
-            offset?: number;
-          };
-          extend?: string;
-          name?: string;
-          tx?: unknown[];
-          zone?: unknown[];
-        };
-        wall?: number;
-      };
+    SocialShare: {
+      author_url?: string;
+      body?: string;
+      content_uri?: string;
       handle?: string;
-      image_uri?: string;
-      key?: string;
-      name?: string;
+      media?: unknown[];
       profile_id?: string;
-      value?: string;
-    };
-    MetaverseTrade: {
-      Token?: {
+      publication_id?: string;
+      reward?: {
         address?: string;
         decimals?: number;
         id?: {
@@ -2779,112 +2912,78 @@ export interface components {
           value?: string;
         };
       };
-      /** @enum {string} */
-      action?: "buy" | "list" | "sell";
-      cost?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
-    };
-    MetaverseBurn: {
-      address?: string;
-      decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
-      name?: string;
-      parsed_image_url?: string;
-      /** @enum {string} */
-      standard?:
-        | "Unknown"
-        | "ERC-20"
-        | "ERC-165"
-        | "ERC-721"
-        | "ERC-1155"
-        | "ERC-1967";
-      symbol?: string;
-      uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
-    };
-    MetaverseMint: {
-      address?: string;
-      decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
-      name?: string;
-      parsed_image_url?: string;
-      /** @enum {string} */
-      standard?:
-        | "Unknown"
-        | "ERC-20"
-        | "ERC-165"
-        | "ERC-721"
-        | "ERC-1155"
-        | "ERC-1967";
-      symbol?: string;
-      uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
-    };
-    MetaverseTransfer: {
-      address?: string;
-      decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
-      name?: string;
-      parsed_image_url?: string;
-      /** @enum {string} */
-      standard?:
-        | "Unknown"
-        | "ERC-20"
-        | "ERC-165"
-        | "ERC-721"
-        | "ERC-1155"
-        | "ERC-1967";
-      symbol?: string;
-      uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
-    };
-    RssFeed: {
-      authors?: unknown[];
-      description?: string;
-      pub_date?: string;
+      summary?: string;
+      tags?: unknown[];
+      target?: components["schemas"]["SocialPost"];
+      target_url?: string;
+      timestamp?: number;
       title?: string;
     };
+    StakerProfitSnapshot: {
+      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
+      address?: string;
+      /** @example 2024-06-17T02:01:29Z */
+      date?: string;
+      /** @example 1 */
+      epoch_id?: number;
+      /** @example 24 */
+      total_chip_amount?: string;
+      /** @example 14459771035071565497880 */
+      total_chip_value?: string;
+    };
+    StakeStaking: {
+      chips?: {
+        showcase?: components["schemas"]["Chip"][];
+        total?: number;
+      };
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
+      node?: string;
+      /** @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1 */
+      staker?: string;
+    };
+    StakeTransaction: {
+      chips?: components["schemas"]["Chip"][] | null;
+      event?: {
+        deposit?: {
+          claimed?: components["schemas"]["TransactionEvent"];
+          requested?: components["schemas"]["TransactionEvent"];
+        } | null;
+        stake?: {
+          staked?: components["schemas"]["TransactionEvent"];
+        } | null;
+        unstake?: {
+          claimed?: components["schemas"]["TransactionEvent"];
+          requested?: components["schemas"]["TransactionEvent"];
+        } | null;
+        withdraw?: {
+          deposited?: components["schemas"]["TransactionEvent"];
+        } | null;
+      };
+      /** @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb */
+      id?: string;
+      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
+      node?: string;
+      /** @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944 */
+      staker?: string;
+      /** @example 5000000000000000000000 */
+      value?: string;
+    };
+    /**
+     * @description A tag used to categorize activities.
+     * @example transaction
+     * @enum {string}
+     */
+    Tag:
+      | "collectible"
+      | "exchange"
+      | "metaverse"
+      | "rss"
+      | "social"
+      | "transaction"
+      | "unknown";
     TransactionApproval: {
+      /** @enum {string} */
+      action?: "approve" | "revoke";
       Token?: {
         address?: string;
         decimals?: number;
@@ -2909,8 +3008,6 @@ export interface components {
           value?: string;
         };
       };
-      /** @enum {string} */
-      action?: "approve" | "revoke";
     };
     TransactionBridge: {
       /** @enum {string} */
@@ -2978,30 +3075,6 @@ export interface components {
         };
       };
     };
-    TransactionTransfer: {
-      address?: string;
-      decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
-      name?: string;
-      parsed_image_url?: string;
-      /** @enum {string} */
-      standard?:
-        | "Unknown"
-        | "ERC-20"
-        | "ERC-165"
-        | "ERC-721"
-        | "ERC-1155"
-        | "ERC-1967";
-      symbol?: string;
-      uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
-    };
     TransactionBurn: {
       address?: string;
       decimals?: number;
@@ -3026,6 +3099,28 @@ export interface components {
         value?: string;
       };
     };
+    /** @example {
+     *       "block": {
+     *         "hash": "0x200b26e118e51f23d052ef3aa92bc411dbd0a6ce811f511adb9f6049dc938614",
+     *         "number": 726419,
+     *         "timestamp": 1708337158
+     *       },
+     *       "transaction": {
+     *         "hash": "0x6595192f1193c2584c28e7d4b50b9208242bf9b4538933f0081d3f4625373d2f",
+     *         "index": 1
+     *       }
+     *     } */
+    TransactionEvent: {
+      block?: {
+        hash?: string;
+        number?: number;
+        timestamp?: number;
+      };
+      transaction?: {
+        hash?: string;
+        index?: number;
+      };
+    } | null;
     TransactionMint: {
       address?: string;
       decimals?: number;
@@ -3050,85 +3145,7 @@ export interface components {
         value?: string;
       };
     };
-    CollectibleApproval: {
-      Token?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
-      action?: number;
-    };
-    CollectibleTrade: {
-      Token?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
-      action?: number;
-      cost?: {
-        address?: string;
-        decimals?: number;
-        id?: {
-          exp?: number;
-          value?: string;
-        };
-        name?: string;
-        parsed_image_url?: string;
-        /** @enum {string} */
-        standard?:
-          | "Unknown"
-          | "ERC-20"
-          | "ERC-165"
-          | "ERC-721"
-          | "ERC-1155"
-          | "ERC-1967";
-        symbol?: string;
-        uri?: string;
-        value?: {
-          exp?: number;
-          value?: string;
-        };
-      };
-    };
-    CollectibleTransfer: {
+    TransactionTransfer: {
       address?: string;
       decimals?: number;
       id?: {
@@ -3152,53 +3169,36 @@ export interface components {
         value?: string;
       };
     };
-    CollectibleBurn: {
-      address?: string;
-      decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
-      name?: string;
-      parsed_image_url?: string;
-      /** @enum {string} */
-      standard?:
-        | "Unknown"
-        | "ERC-20"
-        | "ERC-165"
-        | "ERC-721"
-        | "ERC-1155"
-        | "ERC-1967";
-      symbol?: string;
-      uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
-    };
-    CollectibleMint: {
-      address?: string;
-      decimals?: number;
-      id?: {
-        exp?: number;
-        value?: string;
-      };
-      name?: string;
-      parsed_image_url?: string;
-      /** @enum {string} */
-      standard?:
-        | "Unknown"
-        | "ERC-20"
-        | "ERC-165"
-        | "ERC-721"
-        | "ERC-1155"
-        | "ERC-1967";
-      symbol?: string;
-      uri?: string;
-      value?: {
-        exp?: number;
-        value?: string;
-      };
+    /**
+     * @description The type of activity.
+     * @example transfer
+     * @enum {string}
+     */
+    Type:
+      | "approval"
+      | "bridge"
+      | "burn"
+      | "comment"
+      | "delete"
+      | "feed"
+      | "liquidity"
+      | "mint"
+      | "post"
+      | "profile"
+      | "proxy"
+      | "revise"
+      | "reward"
+      | "share"
+      | "staking"
+      | "swap"
+      | "trade"
+      | "transfer"
+      | "unknown";
+    WorkerDetail: {
+      description?: string;
+      is_required?: boolean;
+      type?: string;
+      value?: string;
     };
   };
   responses: {
@@ -3220,15 +3220,6 @@ export interface components {
         "application/json": components["schemas"]["ResponseError"];
       };
     };
-    /** @description A successful response containing the details of the specified activity. The response includes the activity ID, timestamp, and a list of actions performed within the activity. */
-    ActivityResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": components["schemas"]["ActivityResponse"];
-      };
-    };
     /** @description A successful response with the activities from the specified account. The response includes details about each activity, such as its ID, timestamp, and associated actions. */
     ActivitiesResponse: {
       headers: {
@@ -3238,24 +3229,13 @@ export interface components {
         "application/json": components["schemas"]["ActivitiesResponse"];
       };
     };
-    /** @description A successful response with the activities from rss feed. */
-    RSSActivitiesResponse: {
+    /** @description A successful response containing the details of the specified activity. The response includes the activity ID, timestamp, and a list of actions performed within the activity. */
+    ActivityResponse: {
       headers: {
         [name: string]: unknown;
       };
       content: {
-        "application/json": components["schemas"]["ActivitiesResponse"];
-      };
-    };
-    /** @description List of bridging transactions retrieved successfully */
-    BridgeTransactionsResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          data?: components["schemas"]["BridgeTransaction"][];
-        };
+        "application/json": components["schemas"]["ActivityResponse"];
       };
     };
     /** @description Bridging transaction details fetched successfully */
@@ -3269,91 +3249,24 @@ export interface components {
         };
       };
     };
-    /** @description List of staking transactions retrieved successfully with pagination cursor */
-    StakeTransactionsResponse: {
+    /** @description List of bridging transactions retrieved successfully */
+    BridgeTransactionsResponse: {
       headers: {
         [name: string]: unknown;
       };
       content: {
         "application/json": {
-          data?: components["schemas"]["StakeTransaction"][];
-          cursor?: string;
+          data?: components["schemas"]["BridgeTransaction"][];
         };
       };
     };
-    /** @description Staking transaction details fetched successfully */
-    StakeTransactionByHashResponse: {
+    /** @description A successful response containing the SVG image of the specified chip. The image can be used to visually represent the chip. */
+    ChipImageResponse: {
       headers: {
         [name: string]: unknown;
       };
       content: {
-        "application/json": {
-          data?: components["schemas"]["StakeTransaction"];
-        };
-      };
-    };
-    /** @description A successful response containing a list of stakers and their associated nodes. Each entry in the data array represents a staker and includes detailed information about the staker, the node they are associated with, and any associated chips. The response also includes a cursor for pagination to fetch subsequent sets of results. This allows users to retrieve large datasets incrementally. */
-    StakeStakingsResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          data?: components["schemas"]["StakeStaking"][];
-          /**
-           * @description Cursor for pagination to fetch the next set of results.
-           * @example 0xc7d6378960bd3374c31ce6223df0e79355ff3dc4b6dccf28afe84487321ef9fb
-           */
-          cursor?: string;
-        };
-      };
-    };
-    /** @description A successful response containing the staking profit information for the specified staker. The data includes the owner's address, total chip amount, total chip value, and profit and loss (PNL) data for one day, one week, and one month. */
-    StakingProfitResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Staking profit information for the specified staker. */
-          data?: {
-            /**
-             * @description The address of the staker.
-             * @example 0x827431510a5d249ce4fdb7f00c83a3353f471848
-             */
-            owner?: string;
-            /**
-             * @description The total amount of chips owned by the staker.
-             * @example 1000
-             */
-            total_chip_amount?: string;
-            /**
-             * @description The total value of chips owned by the staker.
-             * @example 100000
-             */
-            total_chip_value?: string;
-            oneDay?: components["schemas"]["ChipPNL"];
-            oneWeek?: components["schemas"]["ChipPNL"];
-            oneMonth?: components["schemas"]["ChipPNL"];
-          };
-        };
-      };
-    };
-    /** @description A successful response containing a list of chips based on the provided filters. Each chip includes detailed information such as its ID, node address, owner address, and metadata. The response also includes a cursor for pagination to fetch subsequent sets of results. */
-    ChipsResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of chips matching the filter criteria. */
-          data?: components["schemas"]["Chip"][];
-          /**
-           * @description Cursor for pagination to fetch the next set of results.
-           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
-           */
-          cursor?: string;
-        };
+        "image/svg+xml": components["schemas"]["Image"];
       };
     };
     /** @description A successful response containing detailed information about the specified chip. The data includes the chip's ID, node address, owner address, and metadata such as name, description, and image. */
@@ -3365,8 +3278,122 @@ export interface components {
         "application/json": components["schemas"]["Chip"];
       };
     };
-    /** @description A successful response containing the SVG image of the specified chip. The image can be used to visually represent the chip. */
-    ChipImageResponse: {
+    /** @description A successful response containing a list of chips based on the provided filters. Each chip includes detailed information such as its ID, node address, owner address, and metadata. The response also includes a cursor for pagination to fetch subsequent sets of results. */
+    ChipsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /**
+           * @description Cursor for pagination to fetch the next set of results.
+           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           */
+          cursor?: string;
+          /** @description Array of chips matching the filter criteria. */
+          data?: components["schemas"]["Chip"][];
+        };
+      };
+    };
+    /** @description A successful response containing the APY for epoch snapshots. Each entry in the data array includes the epoch details and the corresponding APY. */
+    EpochAPYSnapshotsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of epoch APY snapshots. */
+          data?: components["schemas"]["EpochAPYSnapshot"][];
+        };
+      };
+    };
+    /** @description A successful response containing detailed information about the specified epoch. */
+    EpochResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["Epoch"];
+      };
+    };
+    /** @description A successful response containing the average APY for all epochs. */
+    EpochsAverageAPYResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /**
+           * @description The average APY of all epochs.
+           * @example 1.4665029316918649354
+           */
+          data?: string;
+        };
+      };
+    };
+    /** @description A successful response containing a list of epochs. Each entry in the data array includes brief information about the epoch. */
+    EpochsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+          /** @description Array of epochs. */
+          data?: components["schemas"]["BriefEpoch"][];
+        };
+      };
+    };
+    /** @description A successful response containing details of the specified epoch transaction. */
+    EpochTransactionResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of epoch distribution details. */
+          data?: components["schemas"]["EpochDistribution"][];
+        };
+      };
+    };
+    /** @description A successful response containing a list of compatible networks. */
+    NetworksResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of compatible network names. */
+          data?: components["schemas"]["Network"][];
+        };
+      };
+    };
+    /** @description A successful response containing the configuration details for the specified worker in the specified network. */
+    NetworkWorkerConfigResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          data?: components["schemas"]["NetworkWorker"];
+        };
+      };
+    };
+    /** @description A successful response containing a list of available workers for the specified network. */
+    NetworkWorkersResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Array of worker names for the specified network. */
+          data?: string[];
+        };
+      };
+    };
+    /** @description A successful response containing the SVG image of the specified node. The image can be used to visually represent the node. */
+    NodeAvatarResponse: {
       headers: {
         [name: string]: unknown;
       };
@@ -3386,6 +3413,20 @@ export interface components {
         };
       };
     };
+    /** @description A successful response containing transaction events for the specified node. Each entry in the data array includes detailed information about the event. */
+    NodeEventsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+          /** @description Array of node transaction events. */
+          data?: components["schemas"]["NodeEvent"][];
+        };
+      };
+    };
     /** @description A successful response containing snapshots of the minimum staking amount for the specified nodes. Each entry in the data array includes the node address, date, and the minimum tokens to stake on that date. */
     NodeMinTokensToStakeResponse: {
       headers: {
@@ -3396,6 +3437,87 @@ export interface components {
           /** @description Array of minimum staking amount snapshots. */
           data?: components["schemas"]["NodeMinTokensToStakeSnapshot"][];
         };
+      };
+    };
+    /** @description A successful response containing detailed information about the operation profit of the specified node. Each entry includes address, operation pool, and PNL details for different time periods. */
+    NodeOperationProfitResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Operation profit details for the node. */
+          data?: {
+            /**
+             * @description The address of the node.
+             * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+             */
+            node_address?: string;
+            oneDay?: components["schemas"]["OperationProfitPNL"];
+            oneMonth?: components["schemas"]["OperationProfitPNL"];
+            oneWeek?: components["schemas"]["OperationProfitPNL"];
+            /**
+             * @description The operation pool of the node.
+             * @example 724429065703690345869831
+             */
+            operation_pool?: string;
+          };
+        };
+      };
+    };
+    /** @description A successful response containing detailed information about the specified node. */
+    NodeResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["Node"];
+      };
+    };
+    /** @description A successful response containing the rewards of the specified node by epoch. Each entry in the data array includes detailed information about the epoch. */
+    NodeRewardsByEpochResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+          /** @description Array of epochs with node rewards. */
+          data?: components["schemas"]["Epoch"][];
+        };
+      };
+    };
+    /** @description A successful response containing a list of nodes. Each entry includes detailed information about the node. */
+    NodesResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["Node"][];
+      };
+    };
+    /** @description A successful response containing snapshots of the operation profit over time for the specified node. Each entry in the data array includes the date and profit details. The response also includes a cursor for pagination to fetch subsequent sets of results. */
+    OperationProfitSnapshotsResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
+          /** @description Array of operation profit snapshots. */
+          data?: components["schemas"]["OperationProfit"][];
+        };
+      };
+    };
+    /** @description A successful response with the activities from rss feed. */
+    RSSActivitiesResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": components["schemas"]["ActivitiesResponse"];
       };
     };
     /** @description A successful response containing snapshots of the total staker count over time. Each entry in the data array includes the date and the count of stakers on that date. */
@@ -3417,207 +3539,104 @@ export interface components {
       };
       content: {
         "application/json": {
+          /** @description Cursor for pagination to fetch the next set of results. */
+          cursor?: string;
           /** @description Array of staker profit snapshots. */
           data?: components["schemas"]["StakerProfitSnapshot"][];
-          /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
         };
       };
     };
-    /** @description A successful response containing snapshots of the operation profit over time for the specified node. Each entry in the data array includes the date and profit details. The response also includes a cursor for pagination to fetch subsequent sets of results. */
-    OperationProfitSnapshotsResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of operation profit snapshots. */
-          data?: components["schemas"]["OperationProfit"][];
-          /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
-        };
-      };
-    };
-    /** @description A successful response containing the APY for epoch snapshots. Each entry in the data array includes the epoch details and the corresponding APY. */
-    EpochAPYSnapshotsResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of epoch APY snapshots. */
-          data?: components["schemas"]["EpochAPYSnapshot"][];
-        };
-      };
-    };
-    /** @description A successful response containing a list of nodes. Each entry includes detailed information about the node. */
-    NodesResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": components["schemas"]["Node"][];
-      };
-    };
-    /** @description A successful response containing detailed information about the specified node. */
-    NodeResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": components["schemas"]["Node"];
-      };
-    };
-    /** @description A successful response containing the SVG image of the specified node. The image can be used to visually represent the node. */
-    NodeAvatarResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "image/svg+xml": components["schemas"]["Image"];
-      };
-    };
-    /** @description A successful response containing transaction events for the specified node. Each entry in the data array includes detailed information about the event. */
-    NodeEventsResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of node transaction events. */
-          data?: components["schemas"]["NodeEvent"][];
-          /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
-        };
-      };
-    };
-    /** @description A successful response containing detailed information about the operation profit of the specified node. Each entry includes address, operation pool, and PNL details for different time periods. */
-    NodeOperationProfitResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Operation profit details for the node. */
-          data?: {
-            /**
-             * @description The address of the node.
-             * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-             */
-            node_address?: string;
-            /**
-             * @description The operation pool of the node.
-             * @example 724429065703690345869831
-             */
-            operation_pool?: string;
-            oneDay?: components["schemas"]["OperationProfitPNL"];
-            oneWeek?: components["schemas"]["OperationProfitPNL"];
-            oneMonth?: components["schemas"]["OperationProfitPNL"];
-          };
-        };
-      };
-    };
-    /** @description A successful response containing a list of epochs. Each entry in the data array includes brief information about the epoch. */
-    EpochsResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of epochs. */
-          data?: components["schemas"]["BriefEpoch"][];
-          /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
-        };
-      };
-    };
-    /** @description A successful response containing detailed information about the specified epoch. */
-    EpochResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": components["schemas"]["Epoch"];
-      };
-    };
-    /** @description A successful response containing details of the specified epoch transaction. */
-    EpochTransactionResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of epoch distribution details. */
-          data?: components["schemas"]["EpochDistribution"][];
-        };
-      };
-    };
-    /** @description A successful response containing the rewards of the specified node by epoch. Each entry in the data array includes detailed information about the epoch. */
-    NodeRewardsByEpochResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of epochs with node rewards. */
-          data?: components["schemas"]["Epoch"][];
-          /** @description Cursor for pagination to fetch the next set of results. */
-          cursor?: string;
-        };
-      };
-    };
-    /** @description A successful response containing the average APY for all epochs. */
-    EpochsAverageAPYResponse: {
+    /** @description A successful response containing a list of stakers and their associated nodes. Each entry in the data array represents a staker and includes detailed information about the staker, the node they are associated with, and any associated chips. The response also includes a cursor for pagination to fetch subsequent sets of results. This allows users to retrieve large datasets incrementally. */
+    StakeStakingsResponse: {
       headers: {
         [name: string]: unknown;
       };
       content: {
         "application/json": {
           /**
-           * @description The average APY of all epochs.
-           * @example 1.4665029316918649354
+           * @description Cursor for pagination to fetch the next set of results.
+           * @example 0xc7d6378960bd3374c31ce6223df0e79355ff3dc4b6dccf28afe84487321ef9fb
            */
-          data?: string;
+          cursor?: string;
+          data?: components["schemas"]["StakeStaking"][];
         };
       };
     };
-    /** @description A successful response containing a list of compatible networks. */
-    NetworksResponse: {
+    /** @description Staking transaction details fetched successfully */
+    StakeTransactionByHashResponse: {
       headers: {
         [name: string]: unknown;
       };
       content: {
         "application/json": {
-          /** @description Array of compatible network names. */
-          data?: components["schemas"]["Network"][];
+          data?: components["schemas"]["StakeTransaction"];
         };
       };
     };
-    /** @description A successful response containing a list of available workers for the specified network. */
-    NetworkWorkersResponse: {
+    /** @description List of staking transactions retrieved successfully with pagination cursor */
+    StakeTransactionsResponse: {
       headers: {
         [name: string]: unknown;
       };
       content: {
         "application/json": {
-          /** @description Array of worker names for the specified network. */
-          data?: string[];
+          cursor?: string;
+          data?: components["schemas"]["StakeTransaction"][];
         };
       };
     };
-    /** @description A successful response containing the configuration details for the specified worker in the specified network. */
-    NetworkWorkerConfigResponse: {
+    /** @description A successful response containing the staking profit information for the specified staker. The data includes the owner's address, total chip amount, total chip value, and profit and loss (PNL) data for one day, one week, and one month. */
+    StakingProfitResponse: {
       headers: {
         [name: string]: unknown;
       };
       content: {
         "application/json": {
-          data?: components["schemas"]["NetworkWorker"];
+          /** @description Staking profit information for the specified staker. */
+          data?: {
+            oneDay?: components["schemas"]["ChipPNL"];
+            oneMonth?: components["schemas"]["ChipPNL"];
+            oneWeek?: components["schemas"]["ChipPNL"];
+            /**
+             * @description The address of the staker.
+             * @example 0x827431510a5d249ce4fdb7f00c83a3353f471848
+             */
+            owner?: string;
+            /**
+             * @description The total amount of chips owned by the staker.
+             * @example 1000
+             */
+            total_chip_amount?: string;
+            /**
+             * @description The total value of chips owned by the staker.
+             * @example 100000
+             */
+            total_chip_value?: string;
+          };
         };
       };
     };
   };
   parameters: {
+    /**
+     * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
+     * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
+     */
+    account_path: string;
+    /**
+     * @description Specify the number of actions within the activity to retrieve
+     * @example 10
+     */
+    action_limit_query: number;
+    /**
+     * @description Specify the pagination for actions
+     * @example 1
+     */
+    action_page_query: number;
+    /** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+    action_tag_query: components["schemas"]["Tag"][];
+    /** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+    action_type_query: components["schemas"]["Type"][];
     /**
      * @description Retrieve details for the specified activity ID
      * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
@@ -3629,126 +3648,21 @@ export interface components {
      */
     activity_id_query: string;
     /**
-     * @description Specify the number of actions within the activity to retrieve
-     * @example 10
-     */
-    action_limit_query: number;
-    /**
-     * @description Specify the pagination for actions
-     * @example 1
-     */
-    action_page_query: number;
-    /**
-     * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
-     * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
-     */
-    account_path: string;
-    /**
-     * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
-     * @example 20
-     */
-    limit_query: number;
-    /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-    cursor_query: string;
-    /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
-    since_timestamp_query: number;
-    /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
-    until_timestamp_query: number;
-    /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
-    success_query: boolean;
-    /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
-    direction_query: components["schemas"]["Direction"];
-    /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
-    network_query: components["schemas"]["Network"][];
-    /** @description The name of the network to retrieve available workers for. */
-    network_name_path: components["schemas"]["Network"];
-    /**
-     * @description The name of the worker.
-     * @example core
-     */
-    worker_name_path: string;
-    /** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
-    action_tag_query: components["schemas"]["Tag"][];
-    /** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
-    action_type_query: components["schemas"]["Type"][];
-    /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
-    platform_query: components["schemas"]["Platform"][];
-    /**
-     * @description Retrieve details for the specified RSS path
-     * @example abc
-     */
-    rss_path: string;
-    /**
-     * @description Sender address
-     * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
-     */
-    sender_query: string;
-    /**
-     * @description Receiver address
-     * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
-     */
-    receiver_query: string;
-    /**
      * @description Address involved in the transaction
      * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
      */
     address_query: string;
-    /** @description Type of bridging transaction */
-    bridging_type_query: "deposit" | "withdraw";
-    /**
-     * @description Limit the number of results
-     * @example 20
-     */
-    limit_1_20: number;
+    /** @description The date after which the snapshots are returned. */
+    after_date_query: string;
+    /** @description The date before which the snapshots are returned. */
+    before_date_query: string;
     /**
      * @description The unique hash of the bridging transaction
      * @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa
      */
     bridging_transaction_hash_path: string;
-    /**
-     * @description The unique hash of the staking transaction
-     * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
-     */
-    staking_transaction_hash_path: string;
-    /**
-     * @description The unique hash of the epoch transaction
-     * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
-     */
-    epoch_transaction_hash_path: string;
-    /**
-     * @description Staker address
-     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-     */
-    staker_query: string;
-    /**
-     * @description Staker address
-     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-     */
-    staker_address_query: string;
-    /**
-     * @description Node address
-     * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
-     */
-    node_query: string;
-    /**
-     * @description The address of the node to retrieve.
-     * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-     */
-    node_address_path: string;
-    /**
-     * @description Node address
-     * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-     */
-    node_address_query: string;
-    /** @description Type of staking transaction */
-    staking_type_query: "deposit" | "withdraw" | "stake" | "unstake";
-    /** @description Pending status of the transaction */
-    pending_query: boolean;
-    /**
-     * @description The address of the staker whose profit information is to be retrieved.
-     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-     */
-    staker_address_path: string;
+    /** @description Type of bridging transaction */
+    bridging_type_query: "deposit" | "withdraw";
     /**
      * @description The unique identifier of the chip to retrieve.
      * @example 1690
@@ -3761,20 +3675,106 @@ export interface components {
      *     ]
      */
     chip_ids_query: number[];
-    /**
-     * @description The address of the chip owner to filter the results.
-     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-     */
-    owner_query: string;
-    /** @description The date before which the snapshots are returned. */
-    before_date_query: string;
-    /** @description The date after which the snapshots are returned. */
-    after_date_query: string;
+    /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+    cursor_query: string;
+    /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+    direction_query: components["schemas"]["Direction"];
     /**
      * @description The ID of the epoch to retrieve.
      * @example 130
      */
     epoch_id_path: string;
+    /**
+     * @description The unique hash of the epoch transaction
+     * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
+     */
+    epoch_transaction_hash_path: string;
+    /**
+     * @description Limit the number of results
+     * @example 20
+     */
+    limit_1_20: number;
+    /**
+     * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+     * @example 20
+     */
+    limit_query: number;
+    /** @description The name of the network to retrieve available workers for. */
+    network_name_path: components["schemas"]["Network"];
+    /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
+    network_query: components["schemas"]["Network"][];
+    /**
+     * @description The address of the node to retrieve.
+     * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+     */
+    node_address_path: string;
+    /**
+     * @description Node address
+     * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+     */
+    node_address_query: string;
+    /**
+     * @description Node address
+     * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+     */
+    node_query: string;
+    /**
+     * @description The address of the chip owner to filter the results.
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    owner_query: string;
+    /** @description Pending status of the transaction */
+    pending_query: boolean;
+    /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+    platform_query: components["schemas"]["Platform"][];
+    /**
+     * @description Receiver address
+     * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+     */
+    receiver_query: string;
+    /**
+     * @description Retrieve details for the specified RSS path
+     * @example abc
+     */
+    rss_path: string;
+    /**
+     * @description Sender address
+     * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+     */
+    sender_query: string;
+    /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+    since_timestamp_query: number;
+    /**
+     * @description The address of the staker whose profit information is to be retrieved.
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    staker_address_path: string;
+    /**
+     * @description Staker address
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    staker_address_query: string;
+    /**
+     * @description Staker address
+     * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+     */
+    staker_query: string;
+    /**
+     * @description The unique hash of the staking transaction
+     * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
+     */
+    staking_transaction_hash_path: string;
+    /** @description Type of staking transaction */
+    staking_type_query: "deposit" | "withdraw" | "stake" | "unstake";
+    /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+    success_query: boolean;
+    /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+    until_timestamp_query: number;
+    /**
+     * @description The name of the worker.
+     * @example core
+     */
+    worker_name_path: string;
   };
   requestBodies: {
     /** @description Request payload for retrieving snapshots of the minimum staking amount for specified nodes. */

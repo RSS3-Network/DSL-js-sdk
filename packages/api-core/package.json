@@ -95,7 +95,7 @@
     "dev": "concurrently 'tsc -p tsconfig.cjs.json --watch' 'tsc -p tsconfig.esm.json --watch'",
     "prebuild": "rm -rf dist",
     "download-openapi-json": "tsx scripts/download-openapi-json && biome check --write scripts",
-    "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/types/openapi-schema.ts && biome check --write src",
+    "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/types/openapi-schema.ts --alphabetize && biome check --write src",
     "create-component-aliases": "tsx scripts/create-component-aliases.ts && biome check --write ./",
     "categorize-requests": "tsx scripts/categorize-requests.ts && biome check --write ./"
   },
