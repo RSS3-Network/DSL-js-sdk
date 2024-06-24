@@ -928,6 +928,48 @@
             "type": "object",
             "anyOf": [
               {
+                "$ref": "#/components/schemas/SocialRevise"
+              },
+              {
+                "$ref": "#/components/schemas/SocialShare"
+              },
+              {
+                "$ref": "#/components/schemas/SocialProfile"
+              },
+              {
+                "$ref": "#/components/schemas/SocialPost"
+              },
+              {
+                "$ref": "#/components/schemas/SocialComment"
+              },
+              {
+                "$ref": "#/components/schemas/SocialReward"
+              },
+              {
+                "$ref": "#/components/schemas/SocialDelete"
+              },
+              {
+                "$ref": "#/components/schemas/SocialMint"
+              },
+              {
+                "$ref": "#/components/schemas/SocialProxy"
+              },
+              {
+                "$ref": "#/components/schemas/MetaverseTransfer"
+              },
+              {
+                "$ref": "#/components/schemas/MetaverseTrade"
+              },
+              {
+                "$ref": "#/components/schemas/MetaverseBurn"
+              },
+              {
+                "$ref": "#/components/schemas/MetaverseMint"
+              },
+              {
+                "$ref": "#/components/schemas/RssFeed"
+              },
+              {
                 "$ref": "#/components/schemas/TransactionApproval"
               },
               {
@@ -943,9 +985,6 @@
                 "$ref": "#/components/schemas/TransactionMint"
               },
               {
-                "$ref": "#/components/schemas/CollectibleTrade"
-              },
-              {
                 "$ref": "#/components/schemas/CollectibleTransfer"
               },
               {
@@ -958,7 +997,7 @@
                 "$ref": "#/components/schemas/CollectibleApproval"
               },
               {
-                "$ref": "#/components/schemas/ExchangeSwap"
+                "$ref": "#/components/schemas/CollectibleTrade"
               },
               {
                 "$ref": "#/components/schemas/ExchangeLiquidity"
@@ -967,46 +1006,7 @@
                 "$ref": "#/components/schemas/ExchangeStaking"
               },
               {
-                "$ref": "#/components/schemas/SocialComment"
-              },
-              {
-                "$ref": "#/components/schemas/SocialReward"
-              },
-              {
-                "$ref": "#/components/schemas/SocialShare"
-              },
-              {
-                "$ref": "#/components/schemas/SocialMint"
-              },
-              {
-                "$ref": "#/components/schemas/SocialProfile"
-              },
-              {
-                "$ref": "#/components/schemas/SocialProxy"
-              },
-              {
-                "$ref": "#/components/schemas/SocialPost"
-              },
-              {
-                "$ref": "#/components/schemas/SocialDelete"
-              },
-              {
-                "$ref": "#/components/schemas/SocialRevise"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseTrade"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseBurn"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseMint"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseTransfer"
-              },
-              {
-                "$ref": "#/components/schemas/RssFeed"
+                "$ref": "#/components/schemas/ExchangeSwap"
               }
             ]
           },
