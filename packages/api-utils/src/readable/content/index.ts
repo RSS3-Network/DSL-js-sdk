@@ -3,10 +3,10 @@ import type { Action, Activity, SocialPost } from "@rss3/api-core";
 import { handleMetadata } from "../../metadata/index.js";
 
 export type Content = {
-  author_url?: string;
+  authorUrl?: string;
   handle?: string;
   address?: string;
-  profile_id?: string | number | null;
+  profileId?: string | number | null;
   title?: string;
   body?: string;
   media?: SocialPost["media"];
@@ -74,10 +74,10 @@ function extractSocialPost(
   const raw = metadata.target;
   const target = raw
     ? {
-        author_url: raw.author_url,
+        authorUrl: raw.authorUrl,
         handle: raw.handle,
         address: action.to,
-        profile_id: raw.profile_id,
+        profileId: raw.profileId,
         title: formatTitle(raw.title, raw.body),
         body: raw.body,
         media: raw.media,
@@ -89,10 +89,10 @@ function extractSocialPost(
     target.media = target.media.slice(1);
   }
   const res = {
-    author_url: metadata.author_url,
+    authorUrl: metadata.authorUrl,
     handle: metadata.handle,
     address: action.from,
-    profile_id: metadata.profile_id,
+    profileId: metadata.profileId,
     title: formatTitle(metadata.title, metadata.body),
     body: metadata.body,
     media: metadata.media,

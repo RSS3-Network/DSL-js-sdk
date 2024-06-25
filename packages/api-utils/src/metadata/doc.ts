@@ -1,10 +1,24 @@
-import type { components } from "@rss3/api-core";
+import type {
+  CollectibleApproval,
+  CollectibleTrade,
+  CollectibleTransfer,
+  ExchangeLiquidity,
+  ExchangeSwap,
+  MetaverseTrade,
+  MetaverseTransfer,
+  SocialPost,
+  SocialProfile,
+  SocialProxy,
+  TransactionApproval,
+  TransactionBridge,
+  TransactionTransfer,
+} from "@rss3/api-core";
 
 export type MetadataDoc = typeof metadataDoc;
 
 export const metadataDoc = {
   "transaction-transfer": {
-    ref: {} as components["schemas"]["TransactionTransfer"],
+    ref: {} as TransactionTransfer,
     tag: "transaction",
     type: "transfer",
     examples: [
@@ -14,7 +28,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-approval": {
-    ref: {} as components["schemas"]["TransactionApproval"],
+    ref: {} as TransactionApproval,
     tag: "transaction",
     type: "approval",
     actions: ["approve", "revoke"],
@@ -33,7 +47,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-mint": {
-    ref: {} as components["schemas"]["TransactionTransfer"],
+    ref: {} as TransactionTransfer,
     tag: "transaction",
     type: "mint",
     examples: [
@@ -44,7 +58,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-burn": {
-    ref: {} as components["schemas"]["TransactionTransfer"],
+    ref: {} as TransactionTransfer,
     tag: "transaction",
     type: "burn",
     examples: [
@@ -55,7 +69,7 @@ export const metadataDoc = {
     ],
   },
   "transaction-bridge": {
-    ref: {} as components["schemas"]["TransactionBridge"],
+    ref: {} as TransactionBridge,
     tag: "transaction",
     type: "bridge",
     actions: ["deposit", "withdraw"],
@@ -73,7 +87,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-transfer": {
-    ref: {} as components["schemas"]["CollectibleTransfer"],
+    ref: {} as CollectibleTransfer,
     tag: "collectible",
     type: "transfer",
     examples: [
@@ -84,7 +98,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-approval": {
-    ref: {} as components["schemas"]["CollectibleApproval"],
+    ref: {} as CollectibleApproval,
     tag: "collectible",
     type: "approval",
     actions: ["approve", "revoke"],
@@ -102,7 +116,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-mint": {
-    ref: {} as components["schemas"]["CollectibleTransfer"],
+    ref: {} as CollectibleTransfer,
     tag: "collectible",
     type: "mint",
     examples: [
@@ -113,7 +127,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-burn": {
-    ref: {} as components["schemas"]["CollectibleTransfer"],
+    ref: {} as CollectibleTransfer,
     tag: "collectible",
     type: "burn",
     examples: [
@@ -124,7 +138,7 @@ export const metadataDoc = {
     ],
   },
   "collectible-trade": {
-    ref: {} as components["schemas"]["CollectibleTrade"],
+    ref: {} as CollectibleTrade,
     tag: "collectible",
     type: "trade",
     actions: ["buy", "sell", "offer", "set", "update", "cancel", "invalidate"],
@@ -168,7 +182,7 @@ export const metadataDoc = {
     ],
   },
   "exchange-swap": {
-    ref: {} as components["schemas"]["ExchangeSwap"],
+    ref: {} as ExchangeSwap,
     tag: "exchange",
     type: "swap",
     platforms: ["1inch", "Cow", "Rainbow", "Uniswap", "Zerion"],
@@ -180,7 +194,7 @@ export const metadataDoc = {
     ],
   },
   "exchange-liquidity": {
-    ref: {} as components["schemas"]["ExchangeLiquidity"],
+    ref: {} as ExchangeLiquidity,
     tag: "exchange",
     type: "liquidity",
     actions: [
@@ -232,7 +246,7 @@ export const metadataDoc = {
     ],
   },
   "social-post": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as SocialPost,
     tag: "social",
     type: "post",
     examples: [
@@ -243,7 +257,7 @@ export const metadataDoc = {
     ],
   },
   "social-comment": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as SocialPost,
     tag: "social",
     type: "comment",
     examples: [
@@ -254,7 +268,7 @@ export const metadataDoc = {
     ],
   },
   "social-share": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as SocialPost,
     tag: "social",
     type: "share",
     examples: [
@@ -265,7 +279,7 @@ export const metadataDoc = {
     ],
   },
   "social-mint": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as SocialPost,
     tag: "social",
     type: "mint",
     examples: [
@@ -276,7 +290,7 @@ export const metadataDoc = {
     ],
   },
   "social-profile": {
-    ref: {} as components["schemas"]["SocialProfile"],
+    ref: {} as SocialProfile,
     tag: "social",
     type: "profile",
     actions: ["create", "update", "renew", "wrap", "unwrap"],
@@ -310,7 +324,7 @@ export const metadataDoc = {
     ],
   },
   "social-proxy": {
-    ref: {} as components["schemas"]["SocialProxy"],
+    ref: {} as SocialProxy,
     tag: "social",
     type: "proxy",
     actions: ["appoint", "remove"],
@@ -329,7 +343,7 @@ export const metadataDoc = {
     ],
   },
   "social-revise": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as SocialPost,
     tag: "social",
     type: "revise",
     platforms: ["Crossbell", "Mirror"],
@@ -341,7 +355,7 @@ export const metadataDoc = {
     ],
   },
   "social-delete": {
-    ref: {} as components["schemas"]["SocialPost"],
+    ref: {} as SocialPost,
     tag: "social",
     type: "delete",
     platforms: ["Crossbell"],
@@ -353,7 +367,7 @@ export const metadataDoc = {
     ],
   },
   "metaverse-transfer": {
-    ref: {} as components["schemas"]["MetaverseTransfer"],
+    ref: {} as MetaverseTransfer,
     tag: "metaverse",
     type: "transfer",
     examples: [
@@ -364,7 +378,7 @@ export const metadataDoc = {
     ],
   },
   "metaverse-mint": {
-    ref: {} as components["schemas"]["MetaverseTransfer"],
+    ref: {} as MetaverseTransfer,
     tag: "metaverse",
     type: "mint",
     examples: [
@@ -375,12 +389,12 @@ export const metadataDoc = {
     ],
   },
   "metaverse-burn": {
-    ref: {} as components["schemas"]["MetaverseTransfer"],
+    ref: {} as MetaverseTransfer,
     tag: "metaverse",
     type: "burn",
   },
   "metaverse-trade": {
-    ref: {} as components["schemas"]["MetaverseTrade"],
+    ref: {} as MetaverseTrade,
     tag: "metaverse",
     type: "trade",
     actions: ["buy", "sell", "list"],

@@ -45,7 +45,7 @@ export function extractNFT(
   return {
     address: m.address,
     id: m.id,
-    url: m.parsed_image_url,
+    url: m.parsedImageUrl,
     title: m.name,
     standard: m.standard,
   };

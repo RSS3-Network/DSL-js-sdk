@@ -189,12 +189,12 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
     },
     "transaction-bridge": (m) => {
       let network: Token[] = [];
-      if (m.source_network) {
+      if (m.sourceNetwork) {
         network = [
           tokenText("from"),
-          tokenNetwork(m.source_network),
+          tokenNetwork(m.sourceNetwork),
           tokenText("to"),
-          tokenNetwork(m.target_network),
+          tokenNetwork(m.targetNetwork),
         ];
       }
       if (m.action === "deposit") {
@@ -221,7 +221,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.parsed_image_url,
+        preview: m.parsedImageUrl,
       };
       res = join([
         tokenAddr(action.from),
@@ -236,13 +236,13 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.parsed_image_url,
+        preview: m.parsedImageUrl,
       };
       if (m.action === "approve") {
         res = join([
           tokenAddr(action.from),
           tokenText("approved"),
-          tokenImage(m.parsed_image_url),
+          tokenImage(m.parsedImageUrl),
           ...tokenAsset(m.name || "collection", meta),
           tokenText("to"),
           tokenAddr(action.to),
@@ -262,7 +262,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.parsed_image_url,
+        preview: m.parsedImageUrl,
       };
       res = join([
         tokenAddr(action.from),
@@ -277,7 +277,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.parsed_image_url,
+        preview: m.parsedImageUrl,
       };
       res = join([
         tokenAddr(action.from),
@@ -290,7 +290,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         address: m.address,
         id: m.id,
         network: activity.network,
-        preview: m.parsed_image_url,
+        preview: m.parsedImageUrl,
       };
       if (m.action === "buy") {
         res = join([
@@ -430,7 +430,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(m.handle || action.from),
           tokenText("created a profile"),
-          tokenImage(m.image_uri),
+          tokenImage(m.imageUri),
           tokenName(m.name || m.handle || ""),
           ...tokenPlatform(action),
         ]);
@@ -438,7 +438,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(m.handle || action.from),
           tokenText("updated a profile"),
-          tokenImage(m.image_uri),
+          tokenImage(m.imageUri),
           tokenName(m.name || m.handle || ""),
           ...tokenPlatform(action),
         ]);
@@ -446,7 +446,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(m.handle || action.from),
           tokenText("renewed a profile"),
-          tokenImage(m.image_uri),
+          tokenImage(m.imageUri),
           tokenName(m.name || m.handle || ""),
           ...tokenPlatform(action),
         ]);
@@ -454,7 +454,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(m.handle || action.from),
           tokenText("wrapped a profile"),
-          tokenImage(m.image_uri),
+          tokenImage(m.imageUri),
           tokenName(m.name || m.handle || ""),
           ...tokenPlatform(action),
         ]);
@@ -462,7 +462,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(m.handle || action.from),
           tokenText("unwrapped a profile"),
-          tokenImage(m.image_uri),
+          tokenImage(m.imageUri),
           tokenName(m.name || m.handle || ""),
           ...tokenPlatform(action),
         ]);
@@ -495,7 +495,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
       res = join([
         tokenAddr(action.from),
         tokenText("transferred"),
-        tokenImage(m.parsed_image_url),
+        tokenImage(m.parsedImageUrl),
         tokenName(m.name || "an asset"),
         tokenText("to"),
         tokenAddr(action.to),
@@ -505,7 +505,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
       res = join([
         tokenAddr(action.from),
         tokenText("minted"),
-        tokenImage(m.parsed_image_url),
+        tokenImage(m.parsedImageUrl),
         tokenName(m.name || "an asset"),
         ...tokenPlatform(action),
       ]);
@@ -514,7 +514,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
       res = join([
         tokenAddr(action.from),
         tokenText("burned"),
-        tokenImage(m.parsed_image_url),
+        tokenImage(m.parsedImageUrl),
         tokenName(m.name || "an asset"),
         ...tokenPlatform(action),
       ]);
@@ -524,7 +524,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("bought"),
-          tokenImage(m.parsed_image_url),
+          tokenImage(m.parsedImageUrl),
           tokenName(m.name || "an asset"),
           tokenText("from"),
           tokenAddr(action.from),
@@ -534,7 +534,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("sold"),
-          tokenImage(m.parsed_image_url),
+          tokenImage(m.parsedImageUrl),
           tokenName(m.name || "an asset"),
           tokenText("from"),
           tokenAddr(action.from),
@@ -544,7 +544,7 @@ export function tokenizeAction(activity: Activity, action: Action): Token[] {
         res = join([
           tokenAddr(action.from),
           tokenText("listed"),
-          tokenImage(m.parsed_image_url),
+          tokenImage(m.parsedImageUrl),
           tokenName(m.name || "an asset"),
           tokenText("from"),
           tokenAddr(action.from),
