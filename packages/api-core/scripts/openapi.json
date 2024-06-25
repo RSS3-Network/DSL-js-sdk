@@ -399,11 +399,11 @@
           "200": {
             "$ref": "#/components/responses/ChipResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -425,11 +425,11 @@
           "200": {
             "$ref": "#/components/responses/ChipImageResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -602,11 +602,11 @@
           "200": {
             "$ref": "#/components/responses/NodesResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -628,11 +628,11 @@
           "200": {
             "$ref": "#/components/responses/NodeResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -654,11 +654,11 @@
           "200": {
             "$ref": "#/components/responses/NodeAvatarResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -709,11 +709,11 @@
           "200": {
             "$ref": "#/components/responses/NodeOperationProfitResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -761,11 +761,11 @@
           "200": {
             "$ref": "#/components/responses/EpochResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -816,11 +816,11 @@
           "200": {
             "$ref": "#/components/responses/NodeRewardsByEpochResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -872,11 +872,11 @@
           "200": {
             "$ref": "#/components/responses/NetworkWorkersResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -901,11 +901,11 @@
           "200": {
             "$ref": "#/components/responses/NetworkWorkerConfigResponse"
           },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
           "404": {
             "description": "Not found"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
           },
           "500": {
             "$ref": "#/components/responses/500"
@@ -927,87 +927,33 @@
             "description": "Additional metadata related to the action.",
             "type": "object",
             "anyOf": [
-              {
-                "$ref": "#/components/schemas/RssFeed"
-              },
-              {
-                "$ref": "#/components/schemas/TransactionApproval"
-              },
-              {
-                "$ref": "#/components/schemas/TransactionBridge"
-              },
-              {
-                "$ref": "#/components/schemas/TransactionTransfer"
-              },
-              {
-                "$ref": "#/components/schemas/TransactionBurn"
-              },
-              {
-                "$ref": "#/components/schemas/TransactionMint"
-              },
-              {
-                "$ref": "#/components/schemas/CollectibleApproval"
-              },
-              {
-                "$ref": "#/components/schemas/CollectibleTrade"
-              },
-              {
-                "$ref": "#/components/schemas/CollectibleTransfer"
-              },
-              {
-                "$ref": "#/components/schemas/CollectibleBurn"
-              },
-              {
-                "$ref": "#/components/schemas/CollectibleMint"
-              },
-              {
-                "$ref": "#/components/schemas/ExchangeStaking"
-              },
-              {
-                "$ref": "#/components/schemas/ExchangeSwap"
-              },
-              {
-                "$ref": "#/components/schemas/ExchangeLiquidity"
-              },
-              {
-                "$ref": "#/components/schemas/SocialProxy"
-              },
-              {
-                "$ref": "#/components/schemas/SocialComment"
-              },
-              {
-                "$ref": "#/components/schemas/SocialShare"
-              },
-              {
-                "$ref": "#/components/schemas/SocialDelete"
-              },
-              {
-                "$ref": "#/components/schemas/SocialMint"
-              },
-              {
-                "$ref": "#/components/schemas/SocialPost"
-              },
-              {
-                "$ref": "#/components/schemas/SocialRevise"
-              },
-              {
-                "$ref": "#/components/schemas/SocialReward"
-              },
-              {
-                "$ref": "#/components/schemas/SocialProfile"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseBurn"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseMint"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseTransfer"
-              },
-              {
-                "$ref": "#/components/schemas/MetaverseTrade"
-              }
+              { "$ref": "#/components/schemas/TransactionApproval" },
+              { "$ref": "#/components/schemas/TransactionBridge" },
+              { "$ref": "#/components/schemas/TransactionTransfer" },
+              { "$ref": "#/components/schemas/TransactionBurn" },
+              { "$ref": "#/components/schemas/TransactionMint" },
+              { "$ref": "#/components/schemas/CollectibleBurn" },
+              { "$ref": "#/components/schemas/CollectibleMint" },
+              { "$ref": "#/components/schemas/CollectibleApproval" },
+              { "$ref": "#/components/schemas/CollectibleTrade" },
+              { "$ref": "#/components/schemas/CollectibleTransfer" },
+              { "$ref": "#/components/schemas/ExchangeLiquidity" },
+              { "$ref": "#/components/schemas/ExchangeStaking" },
+              { "$ref": "#/components/schemas/ExchangeSwap" },
+              { "$ref": "#/components/schemas/SocialReward" },
+              { "$ref": "#/components/schemas/SocialShare" },
+              { "$ref": "#/components/schemas/SocialRevise" },
+              { "$ref": "#/components/schemas/SocialComment" },
+              { "$ref": "#/components/schemas/SocialDelete" },
+              { "$ref": "#/components/schemas/SocialMint" },
+              { "$ref": "#/components/schemas/SocialProfile" },
+              { "$ref": "#/components/schemas/SocialProxy" },
+              { "$ref": "#/components/schemas/SocialPost" },
+              { "$ref": "#/components/schemas/MetaverseBurn" },
+              { "$ref": "#/components/schemas/MetaverseMint" },
+              { "$ref": "#/components/schemas/MetaverseTransfer" },
+              { "$ref": "#/components/schemas/MetaverseTrade" },
+              { "$ref": "#/components/schemas/RssFeed" }
             ]
           },
           "platform": {
@@ -2524,21 +2470,11 @@
           "tokens": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "decimals": {
-                  "type": "integer"
-                },
-                "id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "parsed_image_url": {
-                  "type": "string"
-                },
+                "address": { "type": "string" },
+                "decimals": { "type": "integer" },
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "parsed_image_url": { "type": "string" },
                 "standard": {
                   "enum": [
                     "Unknown",
@@ -2550,15 +2486,9 @@
                   ],
                   "type": "string"
                 },
-                "symbol": {
-                  "type": "string"
-                },
-                "uri": {
-                  "type": "string"
-                },
-                "value": {
-                  "type": "string"
-                }
+                "symbol": { "type": "string" },
+                "uri": { "type": "string" },
+                "value": { "type": "string" }
               },
               "type": "object"
             },
@@ -2570,61 +2500,34 @@
       },
       "ExchangeStaking": {
         "properties": {
-          "action": {
-            "enum": ["stake", "unstake", "claim"],
-            "type": "string"
-          },
+          "action": { "enum": ["stake", "unstake", "claim"], "type": "string" },
           "period": {
             "properties": {
               "end": {
                 "properties": {
-                  "ext": {
-                    "type": "integer"
-                  },
+                  "ext": { "type": "integer" },
                   "loc": {
                     "properties": {
-                      "cacheEnd": {
-                        "type": "integer"
-                      },
-                      "cacheStart": {
-                        "type": "integer"
-                      },
+                      "cacheEnd": { "type": "integer" },
+                      "cacheStart": { "type": "integer" },
                       "cacheZone": {
                         "properties": {
-                          "isDST": {
-                            "type": "boolean"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "offset": {
-                            "type": "integer"
-                          }
+                          "isDST": { "type": "boolean" },
+                          "name": { "type": "string" },
+                          "offset": { "type": "integer" }
                         },
                         "required": ["name", "offset", "isDST"],
                         "type": "object"
                       },
-                      "extend": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
+                      "extend": { "type": "string" },
+                      "name": { "type": "string" },
                       "tx": {
                         "items": {
                           "properties": {
-                            "index": {
-                              "type": "integer"
-                            },
-                            "isstd": {
-                              "type": "boolean"
-                            },
-                            "isutc": {
-                              "type": "boolean"
-                            },
-                            "when": {
-                              "type": "integer"
-                            }
+                            "index": { "type": "integer" },
+                            "isstd": { "type": "boolean" },
+                            "isutc": { "type": "boolean" },
+                            "when": { "type": "integer" }
                           },
                           "required": ["when", "index", "isstd", "isutc"],
                           "type": "object"
@@ -2634,15 +2537,9 @@
                       "zone": {
                         "items": {
                           "properties": {
-                            "isDST": {
-                              "type": "boolean"
-                            },
-                            "name": {
-                              "type": "string"
-                            },
-                            "offset": {
-                              "type": "integer"
-                            }
+                            "isDST": { "type": "boolean" },
+                            "name": { "type": "string" },
+                            "offset": { "type": "integer" }
                           },
                           "required": ["name", "offset", "isDST"],
                           "type": "object"
@@ -2660,62 +2557,36 @@
                     ],
                     "type": "object"
                   },
-                  "wall": {
-                    "type": "integer"
-                  }
+                  "wall": { "type": "integer" }
                 },
                 "required": ["wall", "ext"],
                 "type": "object"
               },
               "start": {
                 "properties": {
-                  "ext": {
-                    "type": "integer"
-                  },
+                  "ext": { "type": "integer" },
                   "loc": {
                     "properties": {
-                      "cacheEnd": {
-                        "type": "integer"
-                      },
-                      "cacheStart": {
-                        "type": "integer"
-                      },
+                      "cacheEnd": { "type": "integer" },
+                      "cacheStart": { "type": "integer" },
                       "cacheZone": {
                         "properties": {
-                          "isDST": {
-                            "type": "boolean"
-                          },
-                          "name": {
-                            "type": "string"
-                          },
-                          "offset": {
-                            "type": "integer"
-                          }
+                          "isDST": { "type": "boolean" },
+                          "name": { "type": "string" },
+                          "offset": { "type": "integer" }
                         },
                         "required": ["name", "offset", "isDST"],
                         "type": "object"
                       },
-                      "extend": {
-                        "type": "string"
-                      },
-                      "name": {
-                        "type": "string"
-                      },
+                      "extend": { "type": "string" },
+                      "name": { "type": "string" },
                       "tx": {
                         "items": {
                           "properties": {
-                            "index": {
-                              "type": "integer"
-                            },
-                            "isstd": {
-                              "type": "boolean"
-                            },
-                            "isutc": {
-                              "type": "boolean"
-                            },
-                            "when": {
-                              "type": "integer"
-                            }
+                            "index": { "type": "integer" },
+                            "isstd": { "type": "boolean" },
+                            "isutc": { "type": "boolean" },
+                            "when": { "type": "integer" }
                           },
                           "required": ["when", "index", "isstd", "isutc"],
                           "type": "object"
@@ -2725,15 +2596,9 @@
                       "zone": {
                         "items": {
                           "properties": {
-                            "isDST": {
-                              "type": "boolean"
-                            },
-                            "name": {
-                              "type": "string"
-                            },
-                            "offset": {
-                              "type": "integer"
-                            }
+                            "isDST": { "type": "boolean" },
+                            "name": { "type": "string" },
+                            "offset": { "type": "integer" }
                           },
                           "required": ["name", "offset", "isDST"],
                           "type": "object"
@@ -2751,9 +2616,7 @@
                     ],
                     "type": "object"
                   },
-                  "wall": {
-                    "type": "integer"
-                  }
+                  "wall": { "type": "integer" }
                 },
                 "required": ["wall", "ext"],
                 "type": "object"
@@ -2763,21 +2626,11 @@
           },
           "token": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -2789,15 +2642,9 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           }
@@ -2809,21 +2656,11 @@
         "properties": {
           "from": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -2835,35 +2672,19 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
           "to": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -2875,15 +2696,9 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           }
@@ -2892,56 +2707,30 @@
       },
       "SocialMint": {
         "properties": {
-          "author_url": {
-            "type": "string"
-          },
-          "body": {
-            "type": "string"
-          },
-          "content_uri": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
+          "author_url": { "type": "string" },
+          "body": { "type": "string" },
+          "content_uri": { "type": "string" },
+          "handle": { "type": "string" },
           "media": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "mime_type": {
-                  "type": "string"
-                }
+                "address": { "type": "string" },
+                "mime_type": { "type": "string" }
               },
               "required": ["address", "mime_type"],
               "type": "object"
             },
             "type": "array"
           },
-          "profile_id": {
-            "type": "string"
-          },
-          "publication_id": {
-            "type": "string"
-          },
+          "profile_id": { "type": "string" },
+          "publication_id": { "type": "string" },
           "reward": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -2953,143 +2742,73 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "summary": {
-            "type": "string"
-          },
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "target": {
-            "$ref": "#/components/schemas/SocialPost"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          }
+          "summary": { "type": "string" },
+          "tags": { "items": { "type": "string" }, "type": "array" },
+          "target": { "$ref": "#/components/schemas/SocialPost" },
+          "target_url": { "type": "string" },
+          "timestamp": { "type": "integer" },
+          "title": { "type": "string" }
         },
         "type": "object"
       },
       "SocialProxy": {
         "properties": {
-          "action": {
-            "enum": ["appoint", "remove"],
-            "type": "string"
-          },
+          "action": { "enum": ["appoint", "remove"], "type": "string" },
           "profile": {
             "properties": {
               "action": {
                 "enum": ["create", "renew", "unwrap", "update", "wrap"],
                 "type": "string"
               },
-              "address": {
-                "type": "string"
-              },
-              "bio": {
-                "type": "string"
-              },
-              "expiry": {
-                "type": "string"
-              },
-              "handle": {
-                "type": "string"
-              },
-              "image_uri": {
-                "type": "string"
-              },
-              "key": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "profile_id": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "address": { "type": "string" },
+              "bio": { "type": "string" },
+              "expiry": { "type": "string" },
+              "handle": { "type": "string" },
+              "image_uri": { "type": "string" },
+              "key": { "type": "string" },
+              "name": { "type": "string" },
+              "profile_id": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "proxy_address": {
-            "type": "string"
-          }
+          "proxy_address": { "type": "string" }
         },
         "required": ["proxy_address"],
         "type": "object"
       },
       "SocialPost": {
         "properties": {
-          "author_url": {
-            "type": "string"
-          },
-          "body": {
-            "type": "string"
-          },
-          "content_uri": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
+          "author_url": { "type": "string" },
+          "body": { "type": "string" },
+          "content_uri": { "type": "string" },
+          "handle": { "type": "string" },
           "media": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "mime_type": {
-                  "type": "string"
-                }
+                "address": { "type": "string" },
+                "mime_type": { "type": "string" }
               },
               "required": ["address", "mime_type"],
               "type": "object"
             },
             "type": "array"
           },
-          "profile_id": {
-            "type": "string"
-          },
-          "publication_id": {
-            "type": "string"
-          },
+          "profile_id": { "type": "string" },
+          "publication_id": { "type": "string" },
           "reward": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -3101,94 +2820,47 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "summary": {
-            "type": "string"
-          },
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "target": {
-            "$ref": "#/components/schemas/SocialPost"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          }
+          "summary": { "type": "string" },
+          "tags": { "items": { "type": "string" }, "type": "array" },
+          "target": { "$ref": "#/components/schemas/SocialPost" },
+          "target_url": { "type": "string" },
+          "timestamp": { "type": "integer" },
+          "title": { "type": "string" }
         },
         "type": "object"
       },
       "SocialRevise": {
         "properties": {
-          "author_url": {
-            "type": "string"
-          },
-          "body": {
-            "type": "string"
-          },
-          "content_uri": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
+          "author_url": { "type": "string" },
+          "body": { "type": "string" },
+          "content_uri": { "type": "string" },
+          "handle": { "type": "string" },
           "media": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "mime_type": {
-                  "type": "string"
-                }
+                "address": { "type": "string" },
+                "mime_type": { "type": "string" }
               },
               "required": ["address", "mime_type"],
               "type": "object"
             },
             "type": "array"
           },
-          "profile_id": {
-            "type": "string"
-          },
-          "publication_id": {
-            "type": "string"
-          },
+          "profile_id": { "type": "string" },
+          "publication_id": { "type": "string" },
           "reward": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -3200,94 +2872,47 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "summary": {
-            "type": "string"
-          },
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "target": {
-            "$ref": "#/components/schemas/SocialPost"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          }
+          "summary": { "type": "string" },
+          "tags": { "items": { "type": "string" }, "type": "array" },
+          "target": { "$ref": "#/components/schemas/SocialPost" },
+          "target_url": { "type": "string" },
+          "timestamp": { "type": "integer" },
+          "title": { "type": "string" }
         },
         "type": "object"
       },
       "SocialShare": {
         "properties": {
-          "author_url": {
-            "type": "string"
-          },
-          "body": {
-            "type": "string"
-          },
-          "content_uri": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
+          "author_url": { "type": "string" },
+          "body": { "type": "string" },
+          "content_uri": { "type": "string" },
+          "handle": { "type": "string" },
           "media": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "mime_type": {
-                  "type": "string"
-                }
+                "address": { "type": "string" },
+                "mime_type": { "type": "string" }
               },
               "required": ["address", "mime_type"],
               "type": "object"
             },
             "type": "array"
           },
-          "profile_id": {
-            "type": "string"
-          },
-          "publication_id": {
-            "type": "string"
-          },
+          "profile_id": { "type": "string" },
+          "publication_id": { "type": "string" },
           "reward": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -3299,94 +2924,47 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "summary": {
-            "type": "string"
-          },
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "target": {
-            "$ref": "#/components/schemas/SocialPost"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          }
+          "summary": { "type": "string" },
+          "tags": { "items": { "type": "string" }, "type": "array" },
+          "target": { "$ref": "#/components/schemas/SocialPost" },
+          "target_url": { "type": "string" },
+          "timestamp": { "type": "integer" },
+          "title": { "type": "string" }
         },
         "type": "object"
       },
       "SocialDelete": {
         "properties": {
-          "author_url": {
-            "type": "string"
-          },
-          "body": {
-            "type": "string"
-          },
-          "content_uri": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
+          "author_url": { "type": "string" },
+          "body": { "type": "string" },
+          "content_uri": { "type": "string" },
+          "handle": { "type": "string" },
           "media": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "mime_type": {
-                  "type": "string"
-                }
+                "address": { "type": "string" },
+                "mime_type": { "type": "string" }
               },
               "required": ["address", "mime_type"],
               "type": "object"
             },
             "type": "array"
           },
-          "profile_id": {
-            "type": "string"
-          },
-          "publication_id": {
-            "type": "string"
-          },
+          "profile_id": { "type": "string" },
+          "publication_id": { "type": "string" },
           "reward": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -3398,94 +2976,47 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "summary": {
-            "type": "string"
-          },
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "target": {
-            "$ref": "#/components/schemas/SocialPost"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          }
+          "summary": { "type": "string" },
+          "tags": { "items": { "type": "string" }, "type": "array" },
+          "target": { "$ref": "#/components/schemas/SocialPost" },
+          "target_url": { "type": "string" },
+          "timestamp": { "type": "integer" },
+          "title": { "type": "string" }
         },
         "type": "object"
       },
       "SocialComment": {
         "properties": {
-          "author_url": {
-            "type": "string"
-          },
-          "body": {
-            "type": "string"
-          },
-          "content_uri": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
+          "author_url": { "type": "string" },
+          "body": { "type": "string" },
+          "content_uri": { "type": "string" },
+          "handle": { "type": "string" },
           "media": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "mime_type": {
-                  "type": "string"
-                }
+                "address": { "type": "string" },
+                "mime_type": { "type": "string" }
               },
               "required": ["address", "mime_type"],
               "type": "object"
             },
             "type": "array"
           },
-          "profile_id": {
-            "type": "string"
-          },
-          "publication_id": {
-            "type": "string"
-          },
+          "profile_id": { "type": "string" },
+          "publication_id": { "type": "string" },
           "reward": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -3497,94 +3028,47 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "summary": {
-            "type": "string"
-          },
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "target": {
-            "$ref": "#/components/schemas/SocialPost"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          }
+          "summary": { "type": "string" },
+          "tags": { "items": { "type": "string" }, "type": "array" },
+          "target": { "$ref": "#/components/schemas/SocialPost" },
+          "target_url": { "type": "string" },
+          "timestamp": { "type": "integer" },
+          "title": { "type": "string" }
         },
         "type": "object"
       },
       "SocialReward": {
         "properties": {
-          "author_url": {
-            "type": "string"
-          },
-          "body": {
-            "type": "string"
-          },
-          "content_uri": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
+          "author_url": { "type": "string" },
+          "body": { "type": "string" },
+          "content_uri": { "type": "string" },
+          "handle": { "type": "string" },
           "media": {
             "items": {
               "properties": {
-                "address": {
-                  "type": "string"
-                },
-                "mime_type": {
-                  "type": "string"
-                }
+                "address": { "type": "string" },
+                "mime_type": { "type": "string" }
               },
               "required": ["address", "mime_type"],
               "type": "object"
             },
             "type": "array"
           },
-          "profile_id": {
-            "type": "string"
-          },
-          "publication_id": {
-            "type": "string"
-          },
+          "profile_id": { "type": "string" },
+          "publication_id": { "type": "string" },
           "reward": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -3596,39 +3080,18 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "summary": {
-            "type": "string"
-          },
-          "tags": {
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          },
-          "target": {
-            "$ref": "#/components/schemas/SocialPost"
-          },
-          "target_url": {
-            "type": "string"
-          },
-          "timestamp": {
-            "type": "integer"
-          },
-          "title": {
-            "type": "string"
-          }
+          "summary": { "type": "string" },
+          "tags": { "items": { "type": "string" }, "type": "array" },
+          "target": { "$ref": "#/components/schemas/SocialPost" },
+          "target_url": { "type": "string" },
+          "timestamp": { "type": "integer" },
+          "title": { "type": "string" }
         },
         "type": "object"
       },
@@ -3638,62 +3101,29 @@
             "enum": ["create", "renew", "unwrap", "update", "wrap"],
             "type": "string"
           },
-          "address": {
-            "type": "string"
-          },
-          "bio": {
-            "type": "string"
-          },
-          "expiry": {
-            "type": "string"
-          },
-          "handle": {
-            "type": "string"
-          },
-          "image_uri": {
-            "type": "string"
-          },
-          "key": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "profile_id": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "address": { "type": "string" },
+          "bio": { "type": "string" },
+          "expiry": { "type": "string" },
+          "handle": { "type": "string" },
+          "image_uri": { "type": "string" },
+          "key": { "type": "string" },
+          "name": { "type": "string" },
+          "profile_id": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "MetaverseTrade": {
         "properties": {
-          "action": {
-            "enum": ["buy", "list", "sell"],
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
+          "action": { "enum": ["buy", "list", "sell"], "type": "string" },
+          "address": { "type": "string" },
           "cost": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -3705,30 +3135,16 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -3740,35 +3156,19 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "MetaverseBurn": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -3780,35 +3180,19 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "MetaverseMint": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -3820,35 +3204,19 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "MetaverseTransfer": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -3860,15 +3228,9 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
@@ -3876,50 +3238,27 @@
         "properties": {
           "authors": {
             "items": {
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              },
+              "properties": { "name": { "type": "string" } },
               "required": ["name"],
               "type": "object"
             },
             "type": "array"
           },
-          "description": {
-            "type": "string"
-          },
-          "pub_date": {
-            "type": "string"
-          },
-          "title": {
-            "type": "string"
-          }
+          "description": { "type": "string" },
+          "pub_date": { "type": "string" },
+          "title": { "type": "string" }
         },
         "required": ["title", "description"],
         "type": "object"
       },
       "TransactionApproval": {
         "properties": {
-          "action": {
-            "enum": ["approve", "revoke"],
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "action": { "enum": ["approve", "revoke"], "type": "string" },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -3931,25 +3270,16 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "required": ["action"],
         "type": "object"
       },
       "TransactionBridge": {
         "properties": {
-          "action": {
-            "enum": ["deposit", "withdraw"],
-            "type": "string"
-          },
+          "action": { "enum": ["deposit", "withdraw"], "type": "string" },
           "source_network": {
             "enum": [
               "unknown",
@@ -3996,21 +3326,11 @@
           },
           "token": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -4022,15 +3342,9 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           }
@@ -4040,21 +3354,11 @@
       },
       "TransactionTransfer": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4066,35 +3370,19 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "TransactionBurn": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4106,35 +3394,19 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "TransactionMint": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4146,39 +3418,20 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "CollectibleApproval": {
         "properties": {
-          "action": {
-            "enum": ["approve", "revoke"],
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "action": { "enum": ["approve", "revoke"], "type": "string" },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4190,45 +3443,24 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "required": ["action"],
         "type": "object"
       },
       "CollectibleTrade": {
         "properties": {
-          "action": {
-            "enum": ["buy", "sell"],
-            "type": "string"
-          },
-          "address": {
-            "type": "string"
-          },
+          "action": { "enum": ["buy", "sell"], "type": "string" },
+          "address": { "type": "string" },
           "cost": {
             "properties": {
-              "address": {
-                "type": "string"
-              },
-              "decimals": {
-                "type": "integer"
-              },
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "parsed_image_url": {
-                "type": "string"
-              },
+              "address": { "type": "string" },
+              "decimals": { "type": "integer" },
+              "id": { "type": "string" },
+              "name": { "type": "string" },
+              "parsed_image_url": { "type": "string" },
               "standard": {
                 "enum": [
                   "Unknown",
@@ -4240,30 +3472,16 @@
                 ],
                 "type": "string"
               },
-              "symbol": {
-                "type": "string"
-              },
-              "uri": {
-                "type": "string"
-              },
-              "value": {
-                "type": "string"
-              }
+              "symbol": { "type": "string" },
+              "uri": { "type": "string" },
+              "value": { "type": "string" }
             },
             "type": "object"
           },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4275,36 +3493,20 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "required": ["action"],
         "type": "object"
       },
       "CollectibleTransfer": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4316,35 +3518,19 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "CollectibleBurn": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4356,35 +3542,19 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       },
       "CollectibleMint": {
         "properties": {
-          "address": {
-            "type": "string"
-          },
-          "decimals": {
-            "type": "integer"
-          },
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "parsed_image_url": {
-            "type": "string"
-          },
+          "address": { "type": "string" },
+          "decimals": { "type": "integer" },
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "parsed_image_url": { "type": "string" },
           "standard": {
             "enum": [
               "Unknown",
@@ -4396,15 +3566,9 @@
             ],
             "type": "string"
           },
-          "symbol": {
-            "type": "string"
-          },
-          "uri": {
-            "type": "string"
-          },
-          "value": {
-            "type": "string"
-          }
+          "symbol": { "type": "string" },
+          "uri": { "type": "string" },
+          "value": { "type": "string" }
         },
         "type": "object"
       }
@@ -4850,50 +4014,6 @@
       }
     },
     "responses": {
-      "400": {
-        "description": "The request was invalid or malformed.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ResponseError"
-            },
-            "examples": {
-              "bad_request": {
-                "value": {
-                  "error_code": "bad_request",
-                  "error": "Invalid request. Please check your input and try again."
-                }
-              },
-              "validate_failed": {
-                "value": {
-                  "error_code": "validate_failed",
-                  "error": "Validation failed. Ensure all fields meet the required criteria and try again."
-                }
-              },
-              "bad_params": {
-                "value": {
-                  "error_code": "bad_params",
-                  "error": "Invalid parameter combination. Verify the combination and try again."
-                }
-              }
-            }
-          }
-        }
-      },
-      "500": {
-        "description": "An internal server error occurred while processing the request.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ResponseError"
-            },
-            "example": {
-              "error_code": "internal_error",
-              "error": "An internal error has occurred, please try again later."
-            }
-          }
-        }
-      },
       "ActivityResponse": {
         "description": "A successful response containing the details of the specified activity. The response includes the activity ID, timestamp, and a list of actions performed within the activity.",
         "content": {
@@ -5488,6 +4608,50 @@
                   "$ref": "#/components/schemas/NetworkWorker"
                 }
               }
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "The request was invalid or malformed.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResponseError"
+            },
+            "examples": {
+              "bad_request": {
+                "value": {
+                  "error_code": "bad_request",
+                  "error": "Invalid request. Please check your input and try again."
+                }
+              },
+              "validate_failed": {
+                "value": {
+                  "error_code": "validate_failed",
+                  "error": "Validation failed. Ensure all fields meet the required criteria and try again."
+                }
+              },
+              "bad_params": {
+                "value": {
+                  "error_code": "bad_params",
+                  "error": "Invalid parameter combination. Verify the combination and try again."
+                }
+              }
+            }
+          }
+        }
+      },
+      "500": {
+        "description": "An internal server error occurred while processing the request.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ResponseError"
+            },
+            "example": {
+              "error_code": "internal_error",
+              "error": "An internal error has occurred, please try again later."
             }
           }
         }

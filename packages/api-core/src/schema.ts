@@ -1429,33 +1429,33 @@ export interface components {
       from: string;
       /** @description Additional metadata related to the action. */
       metadata:
-        | components["schemas"]["RssFeed"]
         | components["schemas"]["TransactionApproval"]
         | components["schemas"]["TransactionBridge"]
         | components["schemas"]["TransactionTransfer"]
         | components["schemas"]["TransactionBurn"]
         | components["schemas"]["TransactionMint"]
+        | components["schemas"]["CollectibleBurn"]
+        | components["schemas"]["CollectibleMint"]
         | components["schemas"]["CollectibleApproval"]
         | components["schemas"]["CollectibleTrade"]
         | components["schemas"]["CollectibleTransfer"]
-        | components["schemas"]["CollectibleBurn"]
-        | components["schemas"]["CollectibleMint"]
+        | components["schemas"]["ExchangeLiquidity"]
         | components["schemas"]["ExchangeStaking"]
         | components["schemas"]["ExchangeSwap"]
-        | components["schemas"]["ExchangeLiquidity"]
-        | components["schemas"]["SocialProxy"]
-        | components["schemas"]["SocialComment"]
+        | components["schemas"]["SocialReward"]
         | components["schemas"]["SocialShare"]
+        | components["schemas"]["SocialRevise"]
+        | components["schemas"]["SocialComment"]
         | components["schemas"]["SocialDelete"]
         | components["schemas"]["SocialMint"]
-        | components["schemas"]["SocialPost"]
-        | components["schemas"]["SocialRevise"]
-        | components["schemas"]["SocialReward"]
         | components["schemas"]["SocialProfile"]
+        | components["schemas"]["SocialProxy"]
+        | components["schemas"]["SocialPost"]
         | components["schemas"]["MetaverseBurn"]
         | components["schemas"]["MetaverseMint"]
         | components["schemas"]["MetaverseTransfer"]
-        | components["schemas"]["MetaverseTrade"];
+        | components["schemas"]["MetaverseTrade"]
+        | components["schemas"]["RssFeed"];
       platform?: components["schemas"]["Platform"];
       /** @description A list of URLs related to the action. */
       related_urls: string[];
