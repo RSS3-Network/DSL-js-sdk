@@ -1430,28 +1430,28 @@ export interface components {
       /** @description Additional metadata related to the action. */
       metadata:
         | components["schemas"]["RssFeed"]
-        | components["schemas"]["TransactionMint"]
         | components["schemas"]["TransactionApproval"]
         | components["schemas"]["TransactionBridge"]
         | components["schemas"]["TransactionTransfer"]
         | components["schemas"]["TransactionBurn"]
+        | components["schemas"]["TransactionMint"]
         | components["schemas"]["CollectibleApproval"]
         | components["schemas"]["CollectibleTrade"]
         | components["schemas"]["CollectibleTransfer"]
         | components["schemas"]["CollectibleBurn"]
         | components["schemas"]["CollectibleMint"]
-        | components["schemas"]["ExchangeLiquidity"]
         | components["schemas"]["ExchangeStaking"]
         | components["schemas"]["ExchangeSwap"]
+        | components["schemas"]["ExchangeLiquidity"]
+        | components["schemas"]["SocialProxy"]
         | components["schemas"]["SocialComment"]
+        | components["schemas"]["SocialShare"]
         | components["schemas"]["SocialDelete"]
+        | components["schemas"]["SocialMint"]
         | components["schemas"]["SocialPost"]
         | components["schemas"]["SocialRevise"]
         | components["schemas"]["SocialReward"]
-        | components["schemas"]["SocialShare"]
-        | components["schemas"]["SocialMint"]
         | components["schemas"]["SocialProfile"]
-        | components["schemas"]["SocialProxy"]
         | components["schemas"]["MetaverseBurn"]
         | components["schemas"]["MetaverseMint"]
         | components["schemas"]["MetaverseTransfer"]
@@ -2609,7 +2609,7 @@ export interface components {
     SocialProfile: {
       /** @enum {string} */
       action?: "create" | "renew" | "unwrap" | "update" | "wrap";
-      address?: unknown[];
+      address?: string;
       bio?: string;
       expiry?: string;
       handle?: string;
@@ -2620,11 +2620,12 @@ export interface components {
       value?: string;
     };
     SocialProxy: {
-      action?: number;
+      /** @enum {string} */
+      action?: "appoint" | "remove";
       profile?: {
         /** @enum {string} */
         action?: "create" | "renew" | "unwrap" | "update" | "wrap";
-        address?: unknown[];
+        address?: string;
         bio?: string;
         expiry?: string;
         handle?: string;
@@ -2634,7 +2635,7 @@ export interface components {
         profile_id?: string;
         value?: string;
       };
-      proxy_address: unknown[];
+      proxy_address: string;
     };
     SocialRevise: {
       author_url?: string;

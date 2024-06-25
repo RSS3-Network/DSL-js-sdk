@@ -931,9 +931,6 @@
                 "$ref": "#/components/schemas/RssFeed"
               },
               {
-                "$ref": "#/components/schemas/TransactionMint"
-              },
-              {
                 "$ref": "#/components/schemas/TransactionApproval"
               },
               {
@@ -944,6 +941,9 @@
               },
               {
                 "$ref": "#/components/schemas/TransactionBurn"
+              },
+              {
+                "$ref": "#/components/schemas/TransactionMint"
               },
               {
                 "$ref": "#/components/schemas/CollectibleApproval"
@@ -961,19 +961,28 @@
                 "$ref": "#/components/schemas/CollectibleMint"
               },
               {
-                "$ref": "#/components/schemas/ExchangeLiquidity"
-              },
-              {
                 "$ref": "#/components/schemas/ExchangeStaking"
               },
               {
                 "$ref": "#/components/schemas/ExchangeSwap"
               },
               {
+                "$ref": "#/components/schemas/ExchangeLiquidity"
+              },
+              {
+                "$ref": "#/components/schemas/SocialProxy"
+              },
+              {
                 "$ref": "#/components/schemas/SocialComment"
               },
               {
+                "$ref": "#/components/schemas/SocialShare"
+              },
+              {
                 "$ref": "#/components/schemas/SocialDelete"
+              },
+              {
+                "$ref": "#/components/schemas/SocialMint"
               },
               {
                 "$ref": "#/components/schemas/SocialPost"
@@ -985,16 +994,7 @@
                 "$ref": "#/components/schemas/SocialReward"
               },
               {
-                "$ref": "#/components/schemas/SocialShare"
-              },
-              {
-                "$ref": "#/components/schemas/SocialMint"
-              },
-              {
                 "$ref": "#/components/schemas/SocialProfile"
-              },
-              {
-                "$ref": "#/components/schemas/SocialProxy"
               },
               {
                 "$ref": "#/components/schemas/MetaverseBurn"
@@ -2992,7 +2992,8 @@
       "SocialProxy": {
         "properties": {
           "action": {
-            "type": "integer"
+            "enum": ["appoint", "remove"],
+            "type": "string"
           },
           "profile": {
             "properties": {
@@ -3001,7 +3002,7 @@
                 "type": "string"
               },
               "address": {
-                "type": "array"
+                "type": "string"
               },
               "bio": {
                 "type": "string"
@@ -3031,7 +3032,7 @@
             "type": "object"
           },
           "proxy_address": {
-            "type": "array"
+            "type": "string"
           }
         },
         "required": ["proxy_address"],
@@ -3638,7 +3639,7 @@
             "type": "string"
           },
           "address": {
-            "type": "array"
+            "type": "string"
           },
           "bio": {
             "type": "string"
