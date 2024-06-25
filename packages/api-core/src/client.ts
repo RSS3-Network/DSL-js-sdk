@@ -1,6 +1,6 @@
 import _createClient, { type ClientOptions } from "openapi-fetch";
 
-import type { paths } from "./types/openapi-schema.js";
+import type { paths } from "./schema.js";
 
 export type Client = Readonly<
   { baseUrl: string } & ReturnType<typeof createClient>

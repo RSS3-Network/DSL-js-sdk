@@ -3,7 +3,7 @@ import { objectToCamel, objectToSnake } from "ts-case-convert";
 import type { CamelCasedPropertiesDeep } from "type-fest";
 
 import { type Client, getDefaultClient } from "../client.js";
-import type { paths } from "../types/openapi-schema.js";
+import type { paths } from "../schema.js";
 import type { HttpMethod, PathParams } from "../types/utilities.js";
 
 type MarkRequired<T> = {

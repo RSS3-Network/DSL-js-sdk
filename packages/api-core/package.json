@@ -16,6 +16,11 @@
       "import": "./dist/esm/client.js",
       "default": "./dist/cjs/client.js"
     },
+    "./schema": {
+      "types": "./dist/esm/schema.d.ts",
+      "import": "./dist/esm/schema.js",
+      "default": "./dist/cjs/schema.js"
+    },
     "./decentralized": {
       "types": "./dist/esm/decentralized.d.ts",
       "import": "./dist/esm/decentralized.js",
@@ -85,6 +90,7 @@
     "nta",
     "package.json",
     "rss",
+    "schema",
     "snapshots",
     "src",
     "stake"
@@ -95,7 +101,7 @@
     "dev": "concurrently 'tsc -p tsconfig.cjs.json --watch' 'tsc -p tsconfig.esm.json --watch'",
     "prebuild": "rm -rf dist",
     "download-openapi-json": "tsx scripts/download-openapi-json && biome check --write scripts",
-    "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/types/openapi-schema.ts --alphabetize && biome check --write src",
+    "generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/schema.ts --alphabetize && biome check --write src",
     "create-component-aliases": "tsx scripts/create-component-aliases.ts && biome check --write ./",
     "categorize-requests": "tsx scripts/categorize-requests.ts && biome check --write ./"
   },

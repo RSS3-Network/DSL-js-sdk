@@ -1,7 +1,7 @@
 import pkg from "../package.json";
 
 import type * as requests from "../src/requests/index.js";
-import type { paths } from "../src/types/openapi-schema.js";
+import type { paths } from "../src/schema.js";
 import type { HttpMethod } from "../src/types/utilities.js";
 
 import openAPI from "./openapi.json";
@@ -165,7 +165,7 @@ const exports: Record<
   string,
   { types: string; import: string; default: string }
 > = { ...pkg.exports };
-const files = ["package.json", "dist", "src", "README.md"];
+const files = ["package.json", "dist", "src", "README.md", "schema"];
 
 for (const [tag, fnNames] of Object.entries(groupedFnNames)) {
   const filename = tag.toLowerCase();

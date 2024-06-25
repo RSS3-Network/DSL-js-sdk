@@ -7,7 +7,7 @@ const headers = `
  * Do not make direct changes to the file.
  */
 
-import type { components } from "./openapi-schema.js";
+import type { components } from "../schema.js";
 
 `;
 

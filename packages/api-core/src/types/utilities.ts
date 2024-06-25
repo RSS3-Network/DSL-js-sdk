@@ -1,6 +1,6 @@
 import type { CamelCasedPropertiesDeep } from "type-fest";
 
-import type { paths } from "./openapi-schema.js";
+import type { paths } from "../schema.js";
 
 export type HttpMethod =
   | "get"
