@@ -3,70 +3,238 @@
  * Do not make direct changes to the file.
  */
 
+import type { CamelCasedPropertiesDeep } from "type-fest";
+
 import type { components } from "../schema.js";
 
-export type Action = components["schemas"]["Action"];
-export type ActivitiesResponse = components["schemas"]["ActivitiesResponse"];
-export type Activity = components["schemas"]["Activity"];
-export type ActivityResponse = components["schemas"]["ActivityResponse"];
-export type Calldata = components["schemas"]["Calldata"];
-export type Direction = components["schemas"]["Direction"];
-export type Tag = components["schemas"]["Tag"];
-export type Type = components["schemas"]["Type"];
-export type Network = components["schemas"]["Network"];
-export type Platform = components["schemas"]["Platform"];
-export type Fee = components["schemas"]["Fee"];
-export type MetaCursor = components["schemas"]["MetaCursor"];
-export type MetaTotalPages = components["schemas"]["MetaTotalPages"];
-export type BridgeTransaction = components["schemas"]["BridgeTransaction"];
-export type StakeTransaction = components["schemas"]["StakeTransaction"];
-export type TransactionEvent = components["schemas"]["TransactionEvent"];
-export type StakeStaking = components["schemas"]["StakeStaking"];
-export type Chip = components["schemas"]["Chip"];
-export type Node = components["schemas"]["Node"];
-export type NodeEvent = components["schemas"]["NodeEvent"];
-export type NodeMinTokensToStakeSnapshot =
-  components["schemas"]["NodeMinTokensToStakeSnapshot"];
-export type StakerProfitSnapshot =
-  components["schemas"]["StakerProfitSnapshot"];
-export type ChipPNL = components["schemas"]["ChipPNL"];
-export type OperationProfit = components["schemas"]["OperationProfit"];
-export type OperationProfitPNL = components["schemas"]["OperationProfitPNL"];
-export type BriefEpoch = components["schemas"]["BriefEpoch"];
-export type Epoch = components["schemas"]["Epoch"];
-export type BriefEpochDistribution =
-  components["schemas"]["BriefEpochDistribution"];
-export type EpochDistribution = components["schemas"]["EpochDistribution"];
-export type WorkerDetail = components["schemas"]["WorkerDetail"];
-export type NetworkWorker = components["schemas"]["NetworkWorker"];
-export type EpochAPYSnapshot = components["schemas"]["EpochAPYSnapshot"];
-export type Image = components["schemas"]["Image"];
-export type ResponseError = components["schemas"]["ResponseError"];
-export type CountSnapshot = components["schemas"]["CountSnapshot"];
-export type ExchangeLiquidity = components["schemas"]["ExchangeLiquidity"];
-export type ExchangeStaking = components["schemas"]["ExchangeStaking"];
-export type ExchangeSwap = components["schemas"]["ExchangeSwap"];
-export type SocialMint = components["schemas"]["SocialMint"];
-export type SocialProxy = components["schemas"]["SocialProxy"];
-export type SocialPost = components["schemas"]["SocialPost"];
-export type SocialRevise = components["schemas"]["SocialRevise"];
-export type SocialShare = components["schemas"]["SocialShare"];
-export type SocialDelete = components["schemas"]["SocialDelete"];
-export type SocialComment = components["schemas"]["SocialComment"];
-export type SocialReward = components["schemas"]["SocialReward"];
-export type SocialProfile = components["schemas"]["SocialProfile"];
-export type MetaverseTrade = components["schemas"]["MetaverseTrade"];
-export type MetaverseBurn = components["schemas"]["MetaverseBurn"];
-export type MetaverseMint = components["schemas"]["MetaverseMint"];
-export type MetaverseTransfer = components["schemas"]["MetaverseTransfer"];
-export type RssFeed = components["schemas"]["RssFeed"];
-export type TransactionApproval = components["schemas"]["TransactionApproval"];
-export type TransactionBridge = components["schemas"]["TransactionBridge"];
-export type TransactionTransfer = components["schemas"]["TransactionTransfer"];
-export type TransactionBurn = components["schemas"]["TransactionBurn"];
-export type TransactionMint = components["schemas"]["TransactionMint"];
-export type CollectibleApproval = components["schemas"]["CollectibleApproval"];
-export type CollectibleTrade = components["schemas"]["CollectibleTrade"];
-export type CollectibleTransfer = components["schemas"]["CollectibleTransfer"];
-export type CollectibleBurn = components["schemas"]["CollectibleBurn"];
-export type CollectibleMint = components["schemas"]["CollectibleMint"];
+export type Action = CamelCasedPropertiesDeep<components["schemas"]["Action"]>;
+
+export type ActivitiesResponse = CamelCasedPropertiesDeep<
+  components["schemas"]["ActivitiesResponse"]
+>;
+
+export type Activity = CamelCasedPropertiesDeep<
+  components["schemas"]["Activity"]
+>;
+
+export type ActivityResponse = CamelCasedPropertiesDeep<
+  components["schemas"]["ActivityResponse"]
+>;
+
+export type Calldata = CamelCasedPropertiesDeep<
+  components["schemas"]["Calldata"]
+>;
+
+export type Direction = CamelCasedPropertiesDeep<
+  components["schemas"]["Direction"]
+>;
+
+export type Tag = CamelCasedPropertiesDeep<components["schemas"]["Tag"]>;
+
+export type Type = CamelCasedPropertiesDeep<components["schemas"]["Type"]>;
+
+export type Network = CamelCasedPropertiesDeep<
+  components["schemas"]["Network"]
+>;
+
+export type Platform = CamelCasedPropertiesDeep<
+  components["schemas"]["Platform"]
+>;
+
+export type Fee = CamelCasedPropertiesDeep<components["schemas"]["Fee"]>;
+
+export type MetaCursor = CamelCasedPropertiesDeep<
+  components["schemas"]["MetaCursor"]
+>;
+
+export type MetaTotalPages = CamelCasedPropertiesDeep<
+  components["schemas"]["MetaTotalPages"]
+>;
+
+export type BridgeTransaction = CamelCasedPropertiesDeep<
+  components["schemas"]["BridgeTransaction"]
+>;
+
+export type StakeTransaction = CamelCasedPropertiesDeep<
+  components["schemas"]["StakeTransaction"]
+>;
+
+export type TransactionEvent = CamelCasedPropertiesDeep<
+  components["schemas"]["TransactionEvent"]
+>;
+
+export type StakeStaking = CamelCasedPropertiesDeep<
+  components["schemas"]["StakeStaking"]
+>;
+
+export type Chip = CamelCasedPropertiesDeep<components["schemas"]["Chip"]>;
+
+export type Node = CamelCasedPropertiesDeep<components["schemas"]["Node"]>;
+
+export type NodeEvent = CamelCasedPropertiesDeep<
+  components["schemas"]["NodeEvent"]
+>;
+
+export type NodeMinTokensToStakeSnapshot = CamelCasedPropertiesDeep<
+  components["schemas"]["NodeMinTokensToStakeSnapshot"]
+>;
+
+export type StakerProfitSnapshot = CamelCasedPropertiesDeep<
+  components["schemas"]["StakerProfitSnapshot"]
+>;
+
+export type ChipPNL = CamelCasedPropertiesDeep<
+  components["schemas"]["ChipPNL"]
+>;
+
+export type OperationProfit = CamelCasedPropertiesDeep<
+  components["schemas"]["OperationProfit"]
+>;
+
+export type OperationProfitPNL = CamelCasedPropertiesDeep<
+  components["schemas"]["OperationProfitPNL"]
+>;
+
+export type BriefEpoch = CamelCasedPropertiesDeep<
+  components["schemas"]["BriefEpoch"]
+>;
+
+export type Epoch = CamelCasedPropertiesDeep<components["schemas"]["Epoch"]>;
+
+export type BriefEpochDistribution = CamelCasedPropertiesDeep<
+  components["schemas"]["BriefEpochDistribution"]
+>;
+
+export type EpochDistribution = CamelCasedPropertiesDeep<
+  components["schemas"]["EpochDistribution"]
+>;
+
+export type WorkerDetail = CamelCasedPropertiesDeep<
+  components["schemas"]["WorkerDetail"]
+>;
+
+export type NetworkWorker = CamelCasedPropertiesDeep<
+  components["schemas"]["NetworkWorker"]
+>;
+
+export type EpochAPYSnapshot = CamelCasedPropertiesDeep<
+  components["schemas"]["EpochAPYSnapshot"]
+>;
+
+export type Image = CamelCasedPropertiesDeep<components["schemas"]["Image"]>;
+
+export type ResponseError = CamelCasedPropertiesDeep<
+  components["schemas"]["ResponseError"]
+>;
+
+export type CountSnapshot = CamelCasedPropertiesDeep<
+  components["schemas"]["CountSnapshot"]
+>;
+
+export type ExchangeLiquidity = CamelCasedPropertiesDeep<
+  components["schemas"]["ExchangeLiquidity"]
+>;
+
+export type ExchangeStaking = CamelCasedPropertiesDeep<
+  components["schemas"]["ExchangeStaking"]
+>;
+
+export type ExchangeSwap = CamelCasedPropertiesDeep<
+  components["schemas"]["ExchangeSwap"]
+>;
+
+export type SocialMint = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialMint"]
+>;
+
+export type SocialProxy = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialProxy"]
+>;
+
+export type SocialPost = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialPost"]
+>;
+
+export type SocialRevise = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialRevise"]
+>;
+
+export type SocialShare = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialShare"]
+>;
+
+export type SocialDelete = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialDelete"]
+>;
+
+export type SocialComment = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialComment"]
+>;
+
+export type SocialReward = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialReward"]
+>;
+
+export type SocialProfile = CamelCasedPropertiesDeep<
+  components["schemas"]["SocialProfile"]
+>;
+
+export type MetaverseTrade = CamelCasedPropertiesDeep<
+  components["schemas"]["MetaverseTrade"]
+>;
+
+export type MetaverseBurn = CamelCasedPropertiesDeep<
+  components["schemas"]["MetaverseBurn"]
+>;
+
+export type MetaverseMint = CamelCasedPropertiesDeep<
+  components["schemas"]["MetaverseMint"]
+>;
+
+export type MetaverseTransfer = CamelCasedPropertiesDeep<
+  components["schemas"]["MetaverseTransfer"]
+>;
+
+export type RssFeed = CamelCasedPropertiesDeep<
+  components["schemas"]["RssFeed"]
+>;
+
+export type TransactionApproval = CamelCasedPropertiesDeep<
+  components["schemas"]["TransactionApproval"]
+>;
+
+export type TransactionBridge = CamelCasedPropertiesDeep<
+  components["schemas"]["TransactionBridge"]
+>;
+
+export type TransactionTransfer = CamelCasedPropertiesDeep<
+  components["schemas"]["TransactionTransfer"]
+>;
+
+export type TransactionBurn = CamelCasedPropertiesDeep<
+  components["schemas"]["TransactionBurn"]
+>;
+
+export type TransactionMint = CamelCasedPropertiesDeep<
+  components["schemas"]["TransactionMint"]
+>;
+
+export type CollectibleApproval = CamelCasedPropertiesDeep<
+  components["schemas"]["CollectibleApproval"]
+>;
+
+export type CollectibleTrade = CamelCasedPropertiesDeep<
+  components["schemas"]["CollectibleTrade"]
+>;
+
+export type CollectibleTransfer = CamelCasedPropertiesDeep<
+  components["schemas"]["CollectibleTransfer"]
+>;
+
+export type CollectibleBurn = CamelCasedPropertiesDeep<
+  components["schemas"]["CollectibleBurn"]
+>;
+
+export type CollectibleMint = CamelCasedPropertiesDeep<
+  components["schemas"]["CollectibleMint"]
+>;

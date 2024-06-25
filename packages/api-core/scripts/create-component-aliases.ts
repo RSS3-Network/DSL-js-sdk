@@ -7,6 +7,8 @@ const headers = `
  * Do not make direct changes to the file.
  */
 
+import type { CamelCasedPropertiesDeep } from "type-fest";
+
 import type { components } from "../schema.js";
 
 `;
@@ -16,6 +18,9 @@ writeFileSync(
   "../src/types/component-aliases.ts",
   headers +
     Object.keys(openAPI.components.schemas)
-      .map((key) => `export type ${key} = components["schemas"]["${key}"];`)
-      .join("\n"),
+      .map(
+        (key) =>
+          `export type ${key} = CamelCasedPropertiesDeep<components["schemas"]["${key}"]>;`,
+      )
+      .join("\n\n"),
 );
