@@ -6,7 +6,7 @@ type Handlers = {
   [K in keyof MetadataDoc]: (metadata: MetadataDoc[K]["ref"]) => void;
 };
 
-function getTagType(action: Action) {
+export function getTagType(action: Action) {
   return `${action.tag}-${action.type}` as keyof Handlers;
 }
 
