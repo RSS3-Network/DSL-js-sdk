@@ -13,6 +13,10 @@ import type { components } from "../schema.js";
 
 `;
 
+const customAliases = [
+  `export type Media = CamelCasedPropertiesDeep<Required<components["schemas"]["SocialPost"]>['media'][number]>;`,
+];
+
 writeFileSync(
   import.meta,
   "../src/types/component-aliases.ts",
@@ -22,5 +26,7 @@ writeFileSync(
         (key) =>
           `export type ${key} = CamelCasedPropertiesDeep<components["schemas"]["${key}"]>;`,
       )
+      .concat(...customAliases)
+      .sort()
       .join("\n\n"),
 );
