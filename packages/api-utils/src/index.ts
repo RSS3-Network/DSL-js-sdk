@@ -6,3 +6,4 @@ export * from "./readable/content/index.js";
 export * from "./readable/number/index.js";
 export * from "./name-service.js";
 export * from "./is-spam-activity.js";
+export * from "./const.js";
