@@ -60,7 +60,9 @@ export function formatTitle(title?: string, body?: string) {
   return body?.startsWith(_title) ? undefined : _title;
 }
 
-export function checkTargetExist(target?: Content) {
+export function checkTargetExist(
+  target?: Pick<Content, "body" | "media" | "title">,
+) {
   if (!target) return false;
   if (!!target.body || !!target.media || !!target.title) return true;
   return false;
