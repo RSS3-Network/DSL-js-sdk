@@ -7,3 +7,4 @@ export * from "./readable/number/index.js";
 export * from "./name-service.js";
 export * from "./is-spam-activity.js";
 export * from "./const.js";
+export * from "./get-icon-url.js";
