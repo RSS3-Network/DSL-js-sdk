@@ -106,14 +106,14 @@
     "categorize-requests": "tsx scripts/categorize-requests.ts && biome check --write ./"
   },
   "devDependencies": {
-    "@types/node": "^20.14.8",
+    "@types/node": "^20.14.10",
     "map-obj": "^5.0.2",
-    "openapi-typescript": "^7.0.0",
-    "typescript": "^5.5.2"
+    "openapi-typescript": "^7.0.2",
+    "typescript": "^5.5.3"
   },
   "dependencies": {
     "openapi-fetch": "^0.10.2",
     "ts-case-convert": "^2.0.7",
-    "type-fest": "^4.20.1"
+    "type-fest": "^4.21.0"
   }
 }
