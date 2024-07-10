@@ -1,6 +1,6 @@
 import type { FetchResponse, MaybeOptionalInit } from "openapi-fetch";
 import { objectToCamel, objectToSnake } from "ts-case-convert";
-import type { CamelCasedPropertiesDeep } from "type-fest";
+import type { CamelCasedPropertiesDeep, SetRequired } from "type-fest";
 
 import { type Client, getDefaultClient } from "../client.js";
 import type { paths } from "../schema.js";
@@ -127,9 +127,67 @@ export const getActivities = buildRequest(
   }),
 );
 
+export type GetActivitiesByAccountsParams = SetRequired<
+  Partial<PathParams<"/decentralized/accounts", "post">>,
+  "accounts"
+>;
+export type GetActivitiesByAccountsResult = RequestResult<
+  typeof getActivitiesByAccounts
+>;
+export const getActivitiesByAccounts = buildRequest(
+  "/decentralized/accounts",
+  "post",
+).withParams(
+  (body: GetActivitiesByAccountsParams) => ({
+    body: objectToSnake({
+      limit: 20,
+      actionLimit: 10,
+      ...body,
+    }),
+  }),
+  ({ data, meta }) => ({
+    data,
+    cursor: meta?.cursor,
+  }),
+);
+
 export type GetRSSActivityParams = RequestParams<typeof getRSSActivity>;
 export type GetRSSActivityResult = RequestResult<typeof getRSSActivity>;
 export const getRSSActivity = buildRequest("/rss/{path}", "get").withParams(
+  (path) => ({
+    params: objectToSnake({ path }),
+  }),
+  ({ data, meta }) => ({
+    data,
+    cursor: meta?.cursor,
+  }),
+);
+
+export type GetNetworkActivityParams = RequestParams<typeof getNetworkActivity>;
+export type GetNetworkActivityResult = RequestResult<typeof getNetworkActivity>;
+export const getNetworkActivity = buildRequest(
+  "/decentralized/network/{network}",
+  "get",
+).withParams(
+  (path) => ({
+    params: objectToSnake({ path }),
+  }),
+  ({ data, meta }) => ({
+    data,
+    cursor: meta?.cursor,
+  }),
+);
+
+export type GetPlatformActivityParams = RequestParams<
+  typeof getPlatformActivity
+>;
+export type GetPlatformActivityResult = RequestResult<
+  typeof getPlatformActivity
+>;
+export const getPlatformActivity = buildRequest(
+  "/decentralized/platform/{platform}",
+  "get",
+).withParams(
   (path) => ({
     params: objectToSnake({ path }),
   }),

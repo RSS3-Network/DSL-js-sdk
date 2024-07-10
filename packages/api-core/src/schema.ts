@@ -72,6 +72,171 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  "/decentralized/accounts": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    get?: never;
+    put?: never;
+    /**
+     * Batch Get Accounts Activities
+     * @description Retrieve a batch of activities associated with multiple specified accounts in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
+     */
+    post: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path?: never;
+        cookie?: never;
+      };
+      requestBody: components["requestBodies"]["BatchGetAccountsActivities"];
+      responses: {
+        200: components["responses"]["ActivitiesResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/decentralized/network/{network}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get Network Activities
+     * @description Retrieve a list of activities from the specified decentralized network. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
+     */
+    get: {
+      parameters: {
+        query?: {
+          /**
+           * @description Specify the number of actions within the activity to retrieve
+           * @example 10
+           */
+          action_limit?: components["parameters"]["action_limit_query"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+          direction?: components["parameters"]["direction_query"];
+          /**
+           * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_query"];
+          /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+          platform?: components["parameters"]["platform_query"];
+          /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+          since_timestamp?: components["parameters"]["since_timestamp_query"];
+          /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+          success?: components["parameters"]["success_query"];
+          /** @description Retrieve activities for the specified tag(s). */
+          tag?: components["parameters"]["tag_query"];
+          /** @description Retrieve activities for the specified type(s). */
+          type?: components["parameters"]["type_query"];
+          /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+          until_timestamp?: components["parameters"]["until_timestamp_query"];
+        };
+        header?: never;
+        path: {
+          /**
+           * @description Retrieve activities from the specified network.
+           * @example ethereum
+           */
+          network: components["parameters"]["network_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["ActivitiesResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/decentralized/platform/{platform}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get Platform Activities
+     * @description Retrieve a list of activities from the specified decentralized platform. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
+     */
+    get: {
+      parameters: {
+        query?: {
+          /**
+           * @description Specify the number of actions within the activity to retrieve
+           * @example 10
+           */
+          action_limit?: components["parameters"]["action_limit_query"];
+          /** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+          cursor?: components["parameters"]["cursor_query"];
+          /** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+          direction?: components["parameters"]["direction_query"];
+          /**
+           * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+           * @example 20
+           */
+          limit?: components["parameters"]["limit_query"];
+          /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
+          network?: components["parameters"]["network_query"];
+          /** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+          since_timestamp?: components["parameters"]["since_timestamp_query"];
+          /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+          success?: components["parameters"]["success_query"];
+          /** @description Retrieve activities for the specified tag(s). */
+          tag?: components["parameters"]["tag_query"];
+          /** @description Retrieve activities for the specified type(s). */
+          type?: components["parameters"]["type_query"];
+          /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+          until_timestamp?: components["parameters"]["until_timestamp_query"];
+        };
+        header?: never;
+        path: {
+          /**
+           * @description Retrieve activities from the specified platform.
+           * @example Uniswap
+           */
+          platform: components["parameters"]["platform_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["ActivitiesResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   "/decentralized/tx/{id}": {
     parameters: {
       query?: never;
@@ -1236,14 +1401,14 @@ export interface paths {
           limit?: components["parameters"]["limit_1_20"];
           /**
            * @description Node address
-           * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
            */
-          node?: components["parameters"]["node_query"];
+          node_address?: components["parameters"]["node_address_query"];
           /**
            * @description Staker address
            * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
            */
-          staker?: components["parameters"]["staker_query"];
+          staker_address?: components["parameters"]["staker_address_query"];
         };
         header?: never;
         path?: never;
@@ -1429,33 +1594,33 @@ export interface components {
       from: string;
       /** @description Additional metadata related to the action. */
       metadata:
-        | components["schemas"]["TransactionApproval"]
-        | components["schemas"]["TransactionBridge"]
-        | components["schemas"]["TransactionTransfer"]
-        | components["schemas"]["TransactionBurn"]
-        | components["schemas"]["TransactionMint"]
-        | components["schemas"]["CollectibleBurn"]
-        | components["schemas"]["CollectibleMint"]
         | components["schemas"]["CollectibleApproval"]
         | components["schemas"]["CollectibleTrade"]
         | components["schemas"]["CollectibleTransfer"]
+        | components["schemas"]["CollectibleBurn"]
+        | components["schemas"]["CollectibleMint"]
         | components["schemas"]["ExchangeLiquidity"]
         | components["schemas"]["ExchangeStaking"]
         | components["schemas"]["ExchangeSwap"]
-        | components["schemas"]["SocialReward"]
-        | components["schemas"]["SocialShare"]
         | components["schemas"]["SocialRevise"]
-        | components["schemas"]["SocialComment"]
         | components["schemas"]["SocialDelete"]
-        | components["schemas"]["SocialMint"]
         | components["schemas"]["SocialProfile"]
         | components["schemas"]["SocialProxy"]
         | components["schemas"]["SocialPost"]
+        | components["schemas"]["SocialComment"]
+        | components["schemas"]["SocialReward"]
+        | components["schemas"]["SocialShare"]
+        | components["schemas"]["SocialMint"]
         | components["schemas"]["MetaverseBurn"]
         | components["schemas"]["MetaverseMint"]
         | components["schemas"]["MetaverseTransfer"]
         | components["schemas"]["MetaverseTrade"]
-        | components["schemas"]["RssFeed"];
+        | components["schemas"]["RssFeed"]
+        | components["schemas"]["TransactionBridge"]
+        | components["schemas"]["TransactionTransfer"]
+        | components["schemas"]["TransactionBurn"]
+        | components["schemas"]["TransactionMint"]
+        | components["schemas"]["TransactionApproval"];
       platform?: components["schemas"]["Platform"];
       /** @description A list of URLs related to the action. */
       related_urls: string[];
@@ -3495,6 +3660,11 @@ export interface components {
     limit_query: number;
     /** @description The name of the network to retrieve available workers for. */
     network_name_path: components["schemas"]["Network"];
+    /**
+     * @description Retrieve activities from the specified network.
+     * @example ethereum
+     */
+    network_path: string;
     /** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
     network_query: components["schemas"]["Network"][];
     /**
@@ -3519,6 +3689,11 @@ export interface components {
     owner_query: string;
     /** @description Pending status of the transaction */
     pending_query: boolean;
+    /**
+     * @description Retrieve activities from the specified platform.
+     * @example Uniswap
+     */
+    platform_path: string;
     /** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
     platform_query: components["schemas"]["Platform"][];
     /**
@@ -3562,6 +3737,10 @@ export interface components {
     staking_type_query: "deposit" | "withdraw" | "stake" | "unstake";
     /** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
     success_query: boolean;
+    /** @description Retrieve activities for the specified tag(s). */
+    tag_query: components["schemas"]["Tag"][];
+    /** @description Retrieve activities for the specified type(s). */
+    type_query: components["schemas"]["Type"][];
     /** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
     until_timestamp_query: number;
     /**
@@ -3571,6 +3750,49 @@ export interface components {
     worker_name_path: string;
   };
   requestBodies: {
+    /** @description Request body for batch retrieving activities for multiple accounts */
+    BatchGetAccountsActivities: {
+      content: {
+        "application/json": {
+          /**
+           * @description List of accounts to retrieve activities for
+           * @example [
+           *       "0xd8da6bf26964af9d7eed9e03e53415d37aa96045"
+           *     ]
+           */
+          accounts?: string[];
+          /**
+           * @description Specify the number of actions within the activity to retrieve
+           * @default 10
+           * @example 10
+           */
+          action_limit: number;
+          /** @description Specify the cursor used for pagination */
+          cursor?: string;
+          direction?: components["schemas"]["Direction"];
+          /**
+           * @description Specify the number of activities to retrieve
+           * @default 100
+           * @example 20
+           */
+          limit: number;
+          /** @description Retrieve activities from the specified network(s) */
+          network?: components["schemas"]["Network"][];
+          /** @description Retrieve activities from the specified platform(s) */
+          platform?: components["schemas"]["Platform"][];
+          /** @description Retrieve activities starting from this timestamp */
+          since_timestamp?: number;
+          /** @description Retrieve activities based on success status */
+          success?: boolean;
+          /** @description Retrieve activities for the specified tag(s) */
+          tag?: components["schemas"]["Tag"][];
+          /** @description Retrieve activities for the specified type(s) */
+          type?: components["schemas"]["Type"][];
+          /** @description Retrieve activities up to this timestamp */
+          until_timestamp?: number;
+        };
+      };
+    };
     /** @description Request payload for retrieving snapshots of the minimum staking amount for specified nodes. */
     NodeMinTokensToStakeRequestBody: {
       content: {

@@ -21,8 +21,17 @@ const pathToRequestMap = {
   "/decentralized/{account}": {
     get: "getActivities",
   },
+  "/decentralized/accounts": {
+    post: "getActivitiesByAccounts",
+  },
   "/rss/{path}": {
     get: "getRSSActivity",
+  },
+  "/decentralized/network/{network}": {
+    get: "getNetworkActivity",
+  },
+  "/decentralized/platform/{platform}": {
+    get: "getPlatformActivity",
   },
   "/nta/bridgings/transactions": {
     get: "getBridgingTransactions",

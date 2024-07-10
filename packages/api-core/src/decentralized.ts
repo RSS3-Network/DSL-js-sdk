@@ -6,4 +6,13 @@ export {
   getActivities,
   type GetActivitiesParams,
   type GetActivitiesResult,
+  getActivitiesByAccounts,
+  type GetActivitiesByAccountsParams,
+  type GetActivitiesByAccountsResult,
+  getNetworkActivity,
+  type GetNetworkActivityParams,
+  type GetNetworkActivityResult,
+  getPlatformActivity,
+  type GetPlatformActivityParams,
+  type GetPlatformActivityResult,
 } from "./requests/index.js";
