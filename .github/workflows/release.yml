@@ -41,3 +41,8 @@ jobs:
           pnpm run release:ci ${{ github.ref_name }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+
+      - name: Update changelog
+        run: npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
