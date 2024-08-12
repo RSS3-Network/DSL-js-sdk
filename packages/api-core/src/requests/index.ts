@@ -311,19 +311,6 @@ export const getNodeCountSnapshot = buildRequest(
   "get",
 ).withoutParams();
 
-export type GetMinimumStakingAmountSnapshotOfNodesParams = RequestParams<
-  typeof getMinimumStakingAmountSnapshotOfNodes
->;
-export type GetMinimumStakingAmountSnapshotOfNodesResult = RequestResult<
-  typeof getMinimumStakingAmountSnapshotOfNodes
->;
-export const getMinimumStakingAmountSnapshotOfNodes = buildRequest(
-  "/nta/snapshots/nodes/min_tokens_to_stake",
-  "post",
-).withParams((body) => ({
-  body: objectToSnake(body),
-}));
-
 export type GetStakerCountSnapshotParams = RequestParams<
   typeof getStakerCountSnapshot
 >;
@@ -346,6 +333,15 @@ export const getStakerProfitSnapshot = buildRequest(
   "get",
 ).withParams((query) => ({
   params: objectToSnake({ query }),
+}));
+
+export type GetStakerParams = RequestParams<typeof getStaker>;
+export type GetStakerResult = RequestResult<typeof getStaker>;
+export const getStaker = buildRequest(
+  "/nta/stakers/{staker_address}",
+  "get",
+).withParams((path) => ({
+  params: objectToSnake({ path }),
 }));
 
 export type GetOperationProfitSnapshotParams = RequestParams<

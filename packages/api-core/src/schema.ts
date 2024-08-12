@@ -1173,39 +1173,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  "/nta/snapshots/nodes/min_tokens_to_stake": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    get?: never;
-    put?: never;
-    /**
-     * Get snapshots of the minimum staking amount
-     * @description Retrieve snapshots of the minimum staking amount for specified nodes. This endpoint allows users to specify a list of node addresses and optionally return only the start and end values of the minimum tokens to stake.
-     */
-    post: {
-      parameters: {
-        query?: never;
-        header?: never;
-        path?: never;
-        cookie?: never;
-      };
-      requestBody: components["requestBodies"]["NodeMinTokensToStakeRequestBody"];
-      responses: {
-        200: components["responses"]["NodeMinTokensToStakeResponse"];
-        400: components["responses"]["400"];
-        500: components["responses"]["500"];
-      };
-    };
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   "/nta/snapshots/nodes/operation/profit": {
     parameters: {
       query?: never;
@@ -1327,6 +1294,45 @@ export interface paths {
       requestBody?: never;
       responses: {
         200: components["responses"]["StakerProfitSnapshotsResponse"];
+        400: components["responses"]["400"];
+        500: components["responses"]["500"];
+      };
+    };
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  "/nta/stakers/{staker_address}": {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /**
+     * Get the number of nodes, chips, and tokens staked of a staker
+     * @description Retrieve the number of nodes, chips, and tokens staked by a specific staker. This endpoint returns detailed information about the staker, including the number of nodes staked, number of chips owned, total tokens staked, and the total value of the staker's assets.
+     */
+    get: {
+      parameters: {
+        query?: never;
+        header?: never;
+        path: {
+          /**
+           * @description The address of the staker whose profit information is to be retrieved.
+           * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+           */
+          staker_address: components["parameters"]["staker_address_path"];
+        };
+        cookie?: never;
+      };
+      requestBody?: never;
+      responses: {
+        200: components["responses"]["StakerResponse"];
         400: components["responses"]["400"];
         500: components["responses"]["500"];
       };
@@ -1602,25 +1608,25 @@ export interface components {
         | components["schemas"]["ExchangeLiquidity"]
         | components["schemas"]["ExchangeStaking"]
         | components["schemas"]["ExchangeSwap"]
-        | components["schemas"]["SocialRevise"]
-        | components["schemas"]["SocialDelete"]
-        | components["schemas"]["SocialProfile"]
-        | components["schemas"]["SocialProxy"]
         | components["schemas"]["SocialPost"]
+        | components["schemas"]["SocialRevise"]
+        | components["schemas"]["SocialMint"]
+        | components["schemas"]["SocialProfile"]
         | components["schemas"]["SocialComment"]
         | components["schemas"]["SocialReward"]
         | components["schemas"]["SocialShare"]
-        | components["schemas"]["SocialMint"]
+        | components["schemas"]["SocialDelete"]
+        | components["schemas"]["SocialProxy"]
         | components["schemas"]["MetaverseBurn"]
         | components["schemas"]["MetaverseMint"]
         | components["schemas"]["MetaverseTransfer"]
         | components["schemas"]["MetaverseTrade"]
         | components["schemas"]["RssFeed"]
+        | components["schemas"]["TransactionApproval"]
         | components["schemas"]["TransactionBridge"]
         | components["schemas"]["TransactionTransfer"]
         | components["schemas"]["TransactionBurn"]
-        | components["schemas"]["TransactionMint"]
-        | components["schemas"]["TransactionApproval"];
+        | components["schemas"]["TransactionMint"];
       platform?: components["schemas"]["Platform"];
       /** @description A list of URLs related to the action. */
       related_urls: string[];
@@ -2551,20 +2557,6 @@ export interface components {
       /** @enum {string} */
       type: "nodeCreated" | "nodeUpdated";
     };
-    NodeMinTokensToStakeSnapshot: {
-      /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-      node_address: string;
-      snapshots: {
-        /** @example 2024-03-12T19:00:03Z */
-        date: string;
-        /** @example 1 */
-        epoch_id: number;
-        /** @example 517704408563610773574 */
-        min_tokens_to_stake: string;
-        /** @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2 */
-        node_address: string;
-      }[];
-    };
     OperationProfit: {
       address: string;
       /** @example 2024-03-13T00:08:38+08:00 */
@@ -2936,8 +2928,7 @@ export interface components {
       chips?: components["schemas"]["Chip"][] | null;
       event?: {
         deposit?: {
-          claimed?: components["schemas"]["TransactionEvent"];
-          requested?: components["schemas"]["TransactionEvent"];
+          deposited?: components["schemas"]["TransactionEvent"];
         } | null;
         stake?: {
           staked?: components["schemas"]["TransactionEvent"];
@@ -2947,7 +2938,8 @@ export interface components {
           requested?: components["schemas"]["TransactionEvent"];
         } | null;
         withdraw?: {
-          deposited?: components["schemas"]["TransactionEvent"];
+          claimed?: components["schemas"]["TransactionEvent"];
+          requested?: components["schemas"]["TransactionEvent"];
         } | null;
       };
       /** @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb */
@@ -3386,18 +3378,6 @@ export interface components {
         };
       };
     };
-    /** @description A successful response containing snapshots of the minimum staking amount for the specified nodes. Each entry in the data array includes the node address, date, and the minimum tokens to stake on that date. */
-    NodeMinTokensToStakeResponse: {
-      headers: {
-        [name: string]: unknown;
-      };
-      content: {
-        "application/json": {
-          /** @description Array of minimum staking amount snapshots. */
-          data: components["schemas"]["NodeMinTokensToStakeSnapshot"][];
-        };
-      };
-    };
     /** @description A successful response containing detailed information about the operation profit of the specified node. Each entry includes address, operation pool, and PNL details for different time periods. */
     NodeOperationProfitResponse: {
       headers: {
@@ -3502,6 +3482,41 @@ export interface components {
           cursor: string;
           /** @description Array of staker profit snapshots. */
           data: components["schemas"]["StakerProfitSnapshot"][];
+        };
+      };
+    };
+    /** @description A successful response containing detailed information about the specified staker. The data includes the staker's wallet address, total staked nodes, total chips, total staked tokens, and current staked tokens. */
+    StakerResponse: {
+      headers: {
+        [name: string]: unknown;
+      };
+      content: {
+        "application/json": {
+          /**
+           * @description The wallet address of the staker.
+           * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+           */
+          address?: string;
+          /**
+           * @description Total amount of tokens currently staked.
+           * @example 199547980194376366760196
+           */
+          current_staked_tokens?: string;
+          /**
+           * @description Total number of chips by the staker.
+           * @example 374
+           */
+          total_chips?: string;
+          /**
+           * @description Total number of nodes staked by the staker.
+           * @example 1
+           */
+          total_staked_nodes?: number;
+          /**
+           * @description Total number of tokens historically staked (including unstaked tokens).
+           * @example 199547980194376366760196
+           */
+          total_staked_tokens?: string;
         };
       };
     };
@@ -3790,25 +3805,6 @@ export interface components {
           type?: components["schemas"]["Type"][];
           /** @description Retrieve activities up to this timestamp */
           until_timestamp?: number;
-        };
-      };
-    };
-    /** @description Request payload for retrieving snapshots of the minimum staking amount for specified nodes. */
-    NodeMinTokensToStakeRequestBody: {
-      content: {
-        "application/json": {
-          /**
-           * @description List of node addresses to retrieve the minimum staking amount snapshots for.
-           * @example [
-           *       "0x08d66b34054a174841e2361bd4746ff9f4905cc2"
-           *     ]
-           */
-          node_addresses?: string[];
-          /**
-           * @description If true, only return the start and end min_tokens_to_stake.
-           * @example false
-           */
-          only_start_and_end?: boolean;
         };
       };
     };

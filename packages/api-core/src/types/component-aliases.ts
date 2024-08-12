@@ -139,10 +139,6 @@ export type NodeEvent = CamelCasedPropertiesDeep<
   components["schemas"]["NodeEvent"]
 >;
 
-export type NodeMinTokensToStakeSnapshot = CamelCasedPropertiesDeep<
-  components["schemas"]["NodeMinTokensToStakeSnapshot"]
->;
-
 export type OperationProfit = CamelCasedPropertiesDeep<
   components["schemas"]["OperationProfit"]
 >;

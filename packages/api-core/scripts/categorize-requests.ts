@@ -66,9 +66,6 @@ const pathToRequestMap = {
   "/nta/snapshots/nodes/count": {
     get: "getNodeCountSnapshot",
   },
-  "/nta/snapshots/nodes/min_tokens_to_stake": {
-    post: "getMinimumStakingAmountSnapshotOfNodes",
-  },
   "/nta/snapshots/stakers/count": {
     get: "getStakerCountSnapshot",
   },
@@ -80,6 +77,9 @@ const pathToRequestMap = {
   },
   "/nta/snapshots/epochs/apy": {
     get: "getEpochsApySnapshot",
+  },
+  "/nta/stakers/{staker_address}": {
+    get: "getStaker",
   },
   "/nta/nodes": {
     get: "getAllNodes",

@@ -477,6 +477,29 @@
         }
       }
     },
+    "/nta/stakers/{staker_address}": {
+      "get": {
+        "summary": "Get the number of nodes, chips, and tokens staked of a staker",
+        "description": "Retrieve the number of nodes, chips, and tokens staked by a specific staker. This endpoint returns detailed information about the staker, including the number of nodes staked, number of chips owned, total tokens staked, and the total value of the staker's assets.",
+        "tags": ["Stake", "NTA"],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/staker_address_path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/StakerResponse"
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
     "/nta/chips": {
       "get": {
         "summary": "Get all chips",
@@ -572,27 +595,6 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/NodeCountSnapshotsResponse"
-          },
-          "400": {
-            "$ref": "#/components/responses/400"
-          },
-          "500": {
-            "$ref": "#/components/responses/500"
-          }
-        }
-      }
-    },
-    "/nta/snapshots/nodes/min_tokens_to_stake": {
-      "post": {
-        "summary": "Get snapshots of the minimum staking amount",
-        "description": "Retrieve snapshots of the minimum staking amount for specified nodes. This endpoint allows users to specify a list of node addresses and optionally return only the start and end values of the minimum tokens to stake.",
-        "tags": ["Snapshots", "NTA"],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/NodeMinTokensToStakeRequestBody"
-        },
-        "responses": {
-          "200": {
-            "$ref": "#/components/responses/NodeMinTokensToStakeResponse"
           },
           "400": {
             "$ref": "#/components/responses/400"
@@ -1062,25 +1064,25 @@
               { "$ref": "#/components/schemas/ExchangeLiquidity" },
               { "$ref": "#/components/schemas/ExchangeStaking" },
               { "$ref": "#/components/schemas/ExchangeSwap" },
-              { "$ref": "#/components/schemas/SocialRevise" },
-              { "$ref": "#/components/schemas/SocialDelete" },
-              { "$ref": "#/components/schemas/SocialProfile" },
-              { "$ref": "#/components/schemas/SocialProxy" },
               { "$ref": "#/components/schemas/SocialPost" },
+              { "$ref": "#/components/schemas/SocialRevise" },
+              { "$ref": "#/components/schemas/SocialMint" },
+              { "$ref": "#/components/schemas/SocialProfile" },
               { "$ref": "#/components/schemas/SocialComment" },
               { "$ref": "#/components/schemas/SocialReward" },
               { "$ref": "#/components/schemas/SocialShare" },
-              { "$ref": "#/components/schemas/SocialMint" },
+              { "$ref": "#/components/schemas/SocialDelete" },
+              { "$ref": "#/components/schemas/SocialProxy" },
               { "$ref": "#/components/schemas/MetaverseBurn" },
               { "$ref": "#/components/schemas/MetaverseMint" },
               { "$ref": "#/components/schemas/MetaverseTransfer" },
               { "$ref": "#/components/schemas/MetaverseTrade" },
               { "$ref": "#/components/schemas/RssFeed" },
+              { "$ref": "#/components/schemas/TransactionApproval" },
               { "$ref": "#/components/schemas/TransactionBridge" },
               { "$ref": "#/components/schemas/TransactionTransfer" },
               { "$ref": "#/components/schemas/TransactionBurn" },
-              { "$ref": "#/components/schemas/TransactionMint" },
-              { "$ref": "#/components/schemas/TransactionApproval" }
+              { "$ref": "#/components/schemas/TransactionMint" }
             ]
           },
           "platform": {
@@ -1505,10 +1507,7 @@
                 "type": "object",
                 "nullable": true,
                 "properties": {
-                  "requested": {
-                    "$ref": "#/components/schemas/TransactionEvent"
-                  },
-                  "claimed": {
+                  "deposited": {
                     "$ref": "#/components/schemas/TransactionEvent"
                   }
                 }
@@ -1517,7 +1516,10 @@
                 "type": "object",
                 "nullable": true,
                 "properties": {
-                  "deposited": {
+                  "requested": {
+                    "$ref": "#/components/schemas/TransactionEvent"
+                  },
+                  "claimed": {
                     "$ref": "#/components/schemas/TransactionEvent"
                   }
                 }
@@ -1942,46 +1944,6 @@
           "log_index": 0,
           "chain_id": 12553,
           "metadata": {}
-        }
-      },
-      "NodeMinTokensToStakeSnapshot": {
-        "type": "object",
-        "required": ["node_address", "snapshots"],
-        "properties": {
-          "node_address": {
-            "type": "string",
-            "example": "0x08d66b34054a174841e2361bd4746ff9f4905cc2"
-          },
-          "snapshots": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "required": [
-                "date",
-                "epoch_id",
-                "node_address",
-                "min_tokens_to_stake"
-              ],
-              "properties": {
-                "date": {
-                  "type": "string",
-                  "example": "2024-03-12T19:00:03Z"
-                },
-                "epoch_id": {
-                  "type": "integer",
-                  "example": 1
-                },
-                "node_address": {
-                  "type": "string",
-                  "example": "0x08d66b34054a174841e2361bd4746ff9f4905cc2"
-                },
-                "min_tokens_to_stake": {
-                  "type": "string",
-                  "example": "517704408563610773574"
-                }
-              }
-            }
-          }
         }
       },
       "StakerProfitSnapshot": {
@@ -4157,32 +4119,6 @@
       }
     },
     "requestBodies": {
-      "NodeMinTokensToStakeRequestBody": {
-        "description": "Request payload for retrieving snapshots of the minimum staking amount for specified nodes.",
-        "required": true,
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "properties": {
-                "node_addresses": {
-                  "type": "array",
-                  "description": "List of node addresses to retrieve the minimum staking amount snapshots for.",
-                  "items": {
-                    "type": "string"
-                  },
-                  "example": ["0x08d66b34054a174841e2361bd4746ff9f4905cc2"]
-                },
-                "only_start_and_end": {
-                  "type": "boolean",
-                  "description": "If true, only return the start and end min_tokens_to_stake.",
-                  "example": false
-                }
-              }
-            }
-          }
-        }
-      },
       "BatchGetAccountsActivities": {
         "description": "Request body for batch retrieving activities for multiple accounts",
         "required": true,
@@ -4193,6 +4129,7 @@
               "properties": {
                 "accounts": {
                   "type": "array",
+                  "maxItems": 20,
                   "items": {
                     "type": "string"
                   },
@@ -4439,6 +4376,43 @@
           }
         }
       },
+      "StakerResponse": {
+        "description": "A successful response containing detailed information about the specified staker. The data includes the staker's wallet address, total staked nodes, total chips, total staked tokens, and current staked tokens.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "address": {
+                  "type": "string",
+                  "description": "The wallet address of the staker.",
+                  "example": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7"
+                },
+                "total_staked_nodes": {
+                  "type": "integer",
+                  "description": "Total number of nodes staked by the staker.",
+                  "example": 1
+                },
+                "total_chips": {
+                  "type": "string",
+                  "description": "Total number of chips by the staker.",
+                  "example": "374"
+                },
+                "total_staked_tokens": {
+                  "type": "string",
+                  "description": "Total number of tokens historically staked (including unstaked tokens).",
+                  "example": "199547980194376366760196"
+                },
+                "current_staked_tokens": {
+                  "type": "string",
+                  "description": "Total amount of tokens currently staked.",
+                  "example": "199547980194376366760196"
+                }
+              }
+            }
+          }
+        }
+      },
       "ChipsResponse": {
         "description": "A successful response containing a list of chips based on the provided filters. Each chip includes detailed information such as its ID, node address, owner address, and metadata. The response also includes a cursor for pagination to fetch subsequent sets of results.",
         "content": {
@@ -4497,26 +4471,6 @@
                   "description": "Array of node count snapshots.",
                   "items": {
                     "$ref": "#/components/schemas/CountSnapshot"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "NodeMinTokensToStakeResponse": {
-        "description": "A successful response containing snapshots of the minimum staking amount for the specified nodes. Each entry in the data array includes the node address, date, and the minimum tokens to stake on that date.",
-        "content": {
-          "application/json": {
-            "schema": {
-              "type": "object",
-              "required": ["data"],
-              "properties": {
-                "data": {
-                  "type": "array",
-                  "description": "Array of minimum staking amount snapshots.",
-                  "items": {
-                    "$ref": "#/components/schemas/NodeMinTokensToStakeSnapshot"
                   }
                 }
               }

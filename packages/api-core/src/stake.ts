@@ -12,4 +12,7 @@ export {
   getStakingProfit,
   type GetStakingProfitParams,
   type GetStakingProfitResult,
+  getStaker,
+  type GetStakerParams,
+  type GetStakerResult,
 } from "./requests/index.js";
