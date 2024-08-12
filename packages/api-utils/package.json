@@ -1,6 +1,6 @@
 {
   "name": "@rss3/api-utils",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "type": "module",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
