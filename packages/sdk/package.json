@@ -20,7 +20,7 @@
     "prebuild": "rm -rf dist"
   },
   "devDependencies": {
-    "typescript": "^5.5.3"
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "@rss3/api-core": "workspace:*",
