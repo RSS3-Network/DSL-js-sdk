@@ -1,5 +1,8 @@
 name: Release Packages
 
+permissions:
+  contents: write
+
 on:
   push:
     tags:
