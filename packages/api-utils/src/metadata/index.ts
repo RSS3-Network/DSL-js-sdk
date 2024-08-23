@@ -14,3 +14,5 @@ export function handleMetadata(action: Action, handlers: Partial<Handlers>) {
   // biome-ignore lint/suspicious/noExplicitAny: Use of any is necessary here
   handlers[getTagType(action)]?.(action.metadata as any);
 }
+
+export { renderItemActionToHTML } from "./parser.js";
