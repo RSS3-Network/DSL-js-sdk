@@ -1,5 +1,0 @@
-{
-  "types": "../dist/esm/stake.d.ts",
-  "module": "../dist/esm/stake.js",
-  "main": "../dist/cjs/stake.js"
-}

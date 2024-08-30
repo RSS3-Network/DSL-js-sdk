@@ -1,5 +1,5 @@
 import openAPI from "./openapi.json";
-import { writeFileSync } from "./utils/write-file-sync.js";
+import { writeFileSync } from "./utils/write-file-sync";
 
 const headers = `
 /**
@@ -14,19 +14,19 @@ import type { components } from "../schema.js";
 `;
 
 const customAliases = [
-  `export type Media = CamelCasedPropertiesDeep<Required<components["schemas"]["SocialPost"]>['media'][number]>;`,
+	`export type Media = CamelCasedPropertiesDeep<Required<components["schemas"]["SocialPost"]>['media'][number]>;`,
 ];
 
 writeFileSync(
-  import.meta,
-  "../src/types/component-aliases.ts",
-  headers +
-    Object.keys(openAPI.components.schemas)
-      .map(
-        (key) =>
-          `export type ${key} = CamelCasedPropertiesDeep<components["schemas"]["${key}"]>;`,
-      )
-      .concat(...customAliases)
-      .sort()
-      .join("\n\n"),
+	import.meta,
+	"../src/types/component-aliases.ts",
+	headers +
+		Object.keys(openAPI.components.schemas)
+			.map(
+				(key) =>
+					`export type ${key} = CamelCasedPropertiesDeep<components["schemas"]["${key}"]>;`,
+			)
+			.concat(...customAliases)
+			.sort()
+			.join("\n\n"),
 );

@@ -1,5 +1,0 @@
-{
-  "types": "../dist/esm/chips.d.ts",
-  "module": "../dist/esm/chips.js",
-  "main": "../dist/cjs/chips.js"
-}

@@ -1,5 +1,0 @@
-{
-  "types": "../dist/esm/rss.d.ts",
-  "module": "../dist/esm/rss.js",
-  "main": "../dist/cjs/rss.js"
-}

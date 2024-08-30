@@ -1,5 +1,0 @@
-{
-  "types": "../dist/esm/node.d.ts",
-  "module": "../dist/esm/node.js",
-  "main": "../dist/cjs/node.js"
-}

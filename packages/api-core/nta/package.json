@@ -1,5 +1,0 @@
-{
-  "types": "../dist/esm/nta.d.ts",
-  "module": "../dist/esm/nta.js",
-  "main": "../dist/cjs/nta.js"
-}

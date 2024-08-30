@@ -1,5 +1,0 @@
-{
-  "types": "../dist/esm/dsl.d.ts",
-  "module": "../dist/esm/dsl.js",
-  "main": "../dist/cjs/dsl.js"
-}

@@ -1,5 +1,0 @@
-{
-  "types": "../dist/esm/epoch.d.ts",
-  "module": "../dist/esm/epoch.js",
-  "main": "../dist/cjs/epoch.js"
-}

@@ -1,25 +1,25 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.7.2/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
-  "files": {
-    "ignore": [".turbo/**", ".next/**", "dist/**"]
-  },
-  "formatter": {
-    "indentStyle": "space"
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "recommended": true,
-      "a11y": {
-        "useKeyWithClickEvents": "off"
-      },
-      "suspicious": {
-        "noFallthroughSwitchClause": "off",
-        "useGetterReturn": "off"
-      }
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/1.7.2/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"files": {
+		"ignore": [".turbo/**", ".next/**", "dist/**"]
+	},
+	"formatter": {
+		"indentStyle": "tab"
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"a11y": {
+				"useKeyWithClickEvents": "off"
+			},
+			"suspicious": {
+				"noFallthroughSwitchClause": "off",
+				"useGetterReturn": "off"
+			}
+		}
+	}
 }
