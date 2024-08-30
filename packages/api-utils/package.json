@@ -1,28 +1,25 @@
 {
-  "name": "@rss3/api-utils",
-  "version": "0.0.13",
-  "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/esm/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/esm/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "default": "./dist/cjs/index.js"
-    }
-  },
-  "files": ["dist", "package.json", "src"],
-  "sideEffects": false,
-  "scripts": {
-    "build": "concurrently 'tsc -p tsconfig.cjs.json' 'tsc -p tsconfig.esm.json'",
-    "dev": "concurrently 'tsc -p tsconfig.cjs.json --watch' 'tsc -p tsconfig.esm.json --watch'",
-    "prebuild": "rm -rf dist"
-  },
-  "devDependencies": {
-    "typescript": "^5.5.4"
-  },
-  "dependencies": {
-    "@rss3/api-core": "workspace:*"
-  }
+	"name": "@rss3/api-utils",
+	"version": "0.0.14",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": ["dist", "src"],
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsup --dts",
+		"dev": "tsup --watch"
+	},
+	"dependencies": {
+		"@rss3/api-core": "workspace:*"
+	}
 }

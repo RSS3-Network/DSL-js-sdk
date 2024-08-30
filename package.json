@@ -1,27 +1,28 @@
 {
-  "name": "rss3-dsl-sdk",
-  "version": "0.0.13",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "biome check --no-errors-on-unmatched .",
-    "release": "tsx scripts/release.ts",
-    "release:ci": "tsx scripts/release-ci.ts"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.8.3",
-    "bumpp": "^9.5.1",
-    "concurrently": "^8.2.2",
-    "fast-glob": "^3.3.2",
-    "lefthook": "^1.7.12",
-    "tsx": "^4.17.0",
-    "turbo": "^2.0.12",
-    "zx": "^8.1.4"
-  },
-  "packageManager": "pnpm@9.7.0",
-  "engines": {
-    "node": ">=18"
-  }
+	"name": "rss3-dsl-sdk",
+	"version": "0.0.14",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "turbo build",
+		"dev": "turbo dev",
+		"lint": "biome check --no-errors-on-unmatched .",
+		"lint:fix": "biome check --write .",
+		"release": "tsx scripts/release.ts",
+		"release:ci": "tsx scripts/release-ci.ts"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.8.3",
+		"bumpp": "^9.5.2",
+		"lefthook": "^1.7.14",
+		"tsup": "^8.2.4",
+		"tsx": "^4.19.0",
+		"turbo": "^2.1.0",
+		"zx": "^8.1.5",
+		"typescript": "^5.5.4"
+	},
+	"packageManager": "pnpm@9.9.0",
+	"engines": {
+		"node": ">=18"
+	}
 }
