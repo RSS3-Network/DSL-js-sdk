@@ -59,7 +59,7 @@ export function renderItemActionToHTML(actions: Action[]): string | undefined {
 				break;
 		}
 
-		joint += "<hr />";
+		joint += "<br />";
 	}
 
 	return joint;
@@ -370,25 +370,10 @@ const renderCollectibleTagContent = (action: Action) => {
 
 const renderSocialTagContent = (action: Action) => {
 	let joint = "";
-	const { from, to, platform, type } = action;
+	const { type } = action;
 	const tag = "social";
 	switch (type) {
 		case "profile": {
-			const metadata = extractMetadata(tag, type, action);
-			if (!metadata) {
-				break;
-			}
-
-			joint += buildHTML([
-				`<p><strong>Name:</strong> ${metadata.name}</p>`,
-				`<p><strong>Handle:</strong> ${metadata.handle}</p>`,
-				`<p><strong>Bio:</strong> ${metadata.bio}</p>`,
-				`<p><strong>Platform:</strong> ${platform}</p>`,
-				metadata.imageUri &&
-					`<img src="https://ipfs.io/ipfs/${
-						metadata.imageUri.split("://")[1]
-					}" alt="${metadata.name}" style="max-width:100%; height:auto;"/>`,
-			]);
 			break;
 		}
 		case "mint": {
@@ -397,9 +382,8 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				"<h4>Social Mint</h4>",
-				`<p><strong>Title:</strong> ${metadata.title}</p>`,
-				`<p>${from} --> ${to}</p>`,
+				/* html */ `<small>${metadata.handle} mited a post</small>`,
+				/* html */ metadata.body,
 			]);
 			break;
 		}
@@ -409,48 +393,81 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				"<h4>Social Delete</h4>",
-				`<p><strong>Title:</strong> ${metadata.title}</p>`,
+				/* html */ `<small>${metadata.handle} deleted a post</small>`,
 			]);
 			break;
 		}
 		case "post": {
 			const metadata = extractMetadata(tag, type, action);
-			if (!metadata) {
+			if (!metadata || !metadata.body) {
 				break;
 			}
-			joint += buildHTML([
-				/* html*/ "<h4>Social Post</h4>",
-				/* html*/ `<p><strong>Title:</strong> ${metadata.title}</p>`,
-				/* html*/ `<p><strong>Author:</strong> ${metadata.handle}</p>`,
-				/* html*/ `<p><strong>Content:</strong> <pre>${metadata.body}</pre></p>`,
-				/* html*/ `<p><strong>Platform:</strong> ${platform}</p>`,
-			]);
+			joint += buildHTML([/* html */ `<div>${metadata.body}</div>`]);
 			break;
 		}
 		case "comment": {
+			const metadata = extractMetadata(tag, type, action);
+			if (!metadata || !metadata.target) {
+				break;
+			}
+			joint += buildHTML([
+				/* html */ `<small>${metadata.handle} commented on ${metadata.target.handle}'s post</small>`,
+				/* html */ `<blockquote>${metadata.target.body}</blockquote>`,
+				/* html */ `RT: ${metadata.body}`,
+				/* html */ metadata.media
+					?.map(
+						(media) =>
+							`<img src="${media.address}" style="max-width:100%; height:auto;"/>`,
+					)
+					.join(""),
+			]);
+
+			break;
+		}
+		case "reward": {
 			const metadata = extractMetadata(tag, type, action);
 			if (!metadata) {
 				break;
 			}
 			joint += buildHTML([
-				/* html*/ "<h4>Social Comment</h4>",
-				/* html*/ `<p><strong>Comment Anchor:</strong><a href="${metadata.authorUrl}" target="_blank">${metadata.handle}</a></p>`,
-				metadata.target &&
-					/* html*/ `<p><strong>Comment Target:</strong> <a href="${
-						metadata.targetUrl
-					}" target="_blank">${
-						metadata.target.title || metadata.targetUrl
-					}</a></p>`,
+				/* html */ `<small>${metadata.handle} rewarded a post</small>`,
+				/* html */ metadata.body,
+			]);
+			break;
+		}
+		case "revise": {
+			const metadata = extractMetadata(tag, type, action);
+			if (!metadata) {
+				break;
+			}
+			joint += buildHTML([
+				/* html */ `<small>${metadata.handle} revised a post</small>`,
+				/* html */ metadata.body,
 			]);
 
 			break;
 		}
-		case "reward":
-		case "revise":
-		case "proxy":
-		case "share":
+		case "proxy": {
 			break;
+		}
+		case "share": {
+			const metadata = extractMetadata(tag, type, action);
+			if (!metadata || !metadata.target) {
+				break;
+			}
+
+			joint += buildHTML([
+				/* html */ `<small>${metadata.handle} shared a <a href="${metadata.target.authorUrl}" target="_blank">${metadata.target.handle}</a>'s post</small>`,
+				/* html */ metadata.target?.body,
+				metadata.target.media
+					?.map(
+						(media) =>
+							`<img src="${media.address}" style="max-width:100%; height:auto;"/>`,
+					)
+					.join(""),
+			]);
+			break;
+		}
 	}
 
 	return joint;
