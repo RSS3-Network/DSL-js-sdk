@@ -382,7 +382,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} mint a post</small>`,
+				/* html */ `<small>${metadata.handle} mited a post</small>`,
 				/* html */ metadata.body,
 			]);
 			break;
@@ -393,7 +393,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} delete a post</small>`,
+				/* html */ `<small>${metadata.handle} deleted a post</small>`,
 			]);
 			break;
 		}
@@ -411,7 +411,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} comment on ${metadata.target.handle}'s post</small>`,
+				/* html */ `<small>${metadata.handle} commented on ${metadata.target.handle}'s post</small>`,
 				/* html */ `<blockquote>${metadata.target.body}</blockquote>`,
 				/* html */ `RT: ${metadata.body}`,
 				/* html */ metadata.media
@@ -430,7 +430,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} reward a post</small>`,
+				/* html */ `<small>${metadata.handle} rewarded a post</small>`,
 				/* html */ metadata.body,
 			]);
 			break;
@@ -441,7 +441,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} revise a post</small>`,
+				/* html */ `<small>${metadata.handle} revised a post</small>`,
 				/* html */ metadata.body,
 			]);
 
@@ -457,7 +457,7 @@ const renderSocialTagContent = (action: Action) => {
 			}
 
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} share a <a href="${metadata.target.authorUrl}" target="_blank">${metadata.target.handle}</a>'s post</small>`,
+				/* html */ `<small>${metadata.handle} shared a <a href="${metadata.target.authorUrl}" target="_blank">${metadata.target.handle}</a>'s post</small>`,
 				/* html */ metadata.target?.body,
 				metadata.target.media
 					?.map(
