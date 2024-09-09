@@ -181,7 +181,7 @@ const renderExchange = (action: Action) => {
 				/* html */ `<p><strong>Action:</strong> ${metadata.action}</p>`,
 				metadata.token &&
 					/* html */ `<p>
-             
+
            <strong>Token:</strong>
            <ul>
             <li><strong>Address:</strong> ${metadata.token.address}</li>
@@ -457,7 +457,7 @@ const renderSocialTagContent = (action: Action) => {
 			}
 
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} shared a <a href="${metadata.target.authorUrl}" target="_blank">${metadata.target.handle}</a>'s post</small>`,
+				/* html */ `<small>${metadata.handle} shared a post by <a href="${metadata.target.authorUrl}" target="_blank">${metadata.target.handle}</a></small>`,
 				/* html */ metadata.target?.body,
 				metadata.target.media
 					?.map(
