@@ -35,6 +35,7 @@ import type {
 export function renderItemActionToHTML(actions: Action[]): string | undefined {
 	let joint = "";
 
+	let i = 0;
 	for (const action of actions) {
 		const metadata = action.metadata;
 		if (!metadata) {
@@ -59,7 +60,8 @@ export function renderItemActionToHTML(actions: Action[]): string | undefined {
 				break;
 		}
 
-		joint += "<br />";
+		if (i < actions.length - 1) joint += "<br />";
+		i++;
 	}
 
 	return joint;
@@ -382,7 +384,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} mited a post</small>`,
+				/* html */ `<small>${metadata.handle} mited a post</small><br/>`,
 				/* html */ metadata.body,
 			]);
 			break;
@@ -393,7 +395,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} deleted a post</small>`,
+				/* html */ `<small>${metadata.handle} deleted a post</small><br/>`,
 			]);
 			break;
 		}
@@ -402,7 +404,7 @@ const renderSocialTagContent = (action: Action) => {
 			if (!metadata || !metadata.body) {
 				break;
 			}
-			joint += buildHTML([/* html */ `<div>${metadata.body}</div>`]);
+			joint += metadata.body;
 			break;
 		}
 		case "comment": {
@@ -411,7 +413,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} commented on ${metadata.target.handle}'s post</small>`,
+				/* html */ `<small>${metadata.handle} commented on ${metadata.target.handle}'s post</small><br/>`,
 				/* html */ `<blockquote>${metadata.target.body}</blockquote>`,
 				/* html */ `RT: ${metadata.body}`,
 				/* html */ metadata.media
@@ -430,7 +432,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} rewarded a post</small>`,
+				/* html */ `<small>${metadata.handle} rewarded a post</small><br/>`,
 				/* html */ metadata.body,
 			]);
 			break;
@@ -441,7 +443,7 @@ const renderSocialTagContent = (action: Action) => {
 				break;
 			}
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} revised a post</small>`,
+				/* html */ `<small>${metadata.handle} revised a post</small><br/>`,
 				/* html */ metadata.body,
 			]);
 
@@ -457,7 +459,7 @@ const renderSocialTagContent = (action: Action) => {
 			}
 
 			joint += buildHTML([
-				/* html */ `<small>${metadata.handle} shared a post by <a href="${metadata.target.authorUrl}" target="_blank">${metadata.target.handle}</a></small>`,
+				/* html */ `<small>${metadata.handle} shared a post by <a href="${metadata.target.authorUrl}" target="_blank">${metadata.target.handle}</a></small><br/>`,
 				/* html */ metadata.target?.body,
 				metadata.target.media
 					?.map(
