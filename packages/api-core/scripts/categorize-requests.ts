@@ -188,7 +188,7 @@ for (const [tag, fnNames] of Object.entries(groupedFnNames)) {
 		`${comment}\nexport { ${fnNames.join(",")} } from "./requests";`,
 	);
 
-	files.push(filename);
+	// files.push(filename);
 	exports[`./${filename}`] = {
 		types: `./dist/${filename}.d.ts`,
 		import: `./dist/${filename}.js`,

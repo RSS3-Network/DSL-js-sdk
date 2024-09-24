@@ -409,9 +409,9 @@ export interface paths {
 					id?: components["parameters"]["chip_ids_query"];
 					/**
 					 * @description Limit the number of results
-					 * @example 20
+					 * @example 30
 					 */
-					limit?: components["parameters"]["limit_1_20"];
+					limit?: components["parameters"]["limit_1_200"];
 					/**
 					 * @description Node address
 					 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
@@ -1632,33 +1632,33 @@ export interface components {
 			from: string;
 			/** @description Additional metadata related to the action. */
 			metadata:
-				| components["schemas"]["MetaverseTrade"]
+				| components["schemas"]["ExchangeStaking"]
+				| components["schemas"]["ExchangeSwap"]
+				| components["schemas"]["ExchangeLiquidity"]
+				| components["schemas"]["SocialProfile"]
+				| components["schemas"]["SocialComment"]
+				| components["schemas"]["SocialRevise"]
+				| components["schemas"]["SocialShare"]
+				| components["schemas"]["SocialDelete"]
+				| components["schemas"]["SocialMint"]
+				| components["schemas"]["SocialProxy"]
+				| components["schemas"]["SocialPost"]
+				| components["schemas"]["SocialReward"]
 				| components["schemas"]["MetaverseBurn"]
 				| components["schemas"]["MetaverseMint"]
 				| components["schemas"]["MetaverseTransfer"]
+				| components["schemas"]["MetaverseTrade"]
 				| components["schemas"]["RssFeed"]
+				| components["schemas"]["TransactionApproval"]
 				| components["schemas"]["TransactionBridge"]
 				| components["schemas"]["TransactionTransfer"]
 				| components["schemas"]["TransactionBurn"]
 				| components["schemas"]["TransactionMint"]
-				| components["schemas"]["TransactionApproval"]
+				| components["schemas"]["CollectibleBurn"]
 				| components["schemas"]["CollectibleMint"]
 				| components["schemas"]["CollectibleApproval"]
 				| components["schemas"]["CollectibleTrade"]
-				| components["schemas"]["CollectibleTransfer"]
-				| components["schemas"]["CollectibleBurn"]
-				| components["schemas"]["ExchangeLiquidity"]
-				| components["schemas"]["ExchangeStaking"]
-				| components["schemas"]["ExchangeSwap"]
-				| components["schemas"]["SocialDelete"]
-				| components["schemas"]["SocialPost"]
-				| components["schemas"]["SocialComment"]
-				| components["schemas"]["SocialShare"]
-				| components["schemas"]["SocialMint"]
-				| components["schemas"]["SocialProfile"]
-				| components["schemas"]["SocialProxy"]
-				| components["schemas"]["SocialRevise"]
-				| components["schemas"]["SocialReward"];
+				| components["schemas"]["CollectibleTransfer"];
 			platform?: components["schemas"]["Platform"];
 			/** @description A list of URLs related to the action. */
 			related_urls: string[];
@@ -2975,7 +2975,11 @@ export interface components {
 			staker: string;
 		};
 		StakeTransaction: {
-			chips?: components["schemas"]["Chip"][] | null;
+			/** @example [
+			 *       1690,
+			 *       1691
+			 *     ] */
+			chip_ids?: number[] | null;
 			event?: {
 				deposit?: {
 					deposited?: components["schemas"]["TransactionEvent"];
@@ -3758,6 +3762,11 @@ export interface components {
 		 * @example 20
 		 */
 		limit_1_20: number;
+		/**
+		 * @description Limit the number of results
+		 * @example 30
+		 */
+		limit_1_200: number;
 		/**
 		 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
 		 * @example 20
