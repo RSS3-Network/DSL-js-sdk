@@ -1,6 +1,6 @@
 {
 	"name": "@rss3/api-core",
-	"version": "0.0.17",
+	"version": "0.0.18",
 	"type": "module",
 	"main": "./dist/index.cjs",
 	"module": "./dist/index.js",
@@ -91,7 +91,7 @@
 			"default": "./dist/networks.js"
 		}
 	},
-	"files": ["dist", "src"],
+	"files": ["README.md", "dist", "package.json", "schema", "src"],
 	"sideEffects": false,
 	"scripts": {
 		"build": "tsup --dts",
