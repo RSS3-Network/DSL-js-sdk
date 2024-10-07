@@ -1,0 +1,32 @@
+{
+	"name": "@rss3/api-react-query",
+	"version": "0.0.20",
+	"type": "module",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.js",
+			"require": "./dist/index.cjs",
+			"default": "./dist/index.js"
+		}
+	},
+	"files": ["README.md", "dist", "package.json", "schema", "src"],
+	"sideEffects": false,
+	"scripts": {
+		"build": "tsup --dts",
+		"dev": "tsup --watch",
+		"generate": "tsx scripts/generate.ts"
+	},
+	"dependencies": {
+		"@rss3/api-core": "workspace:*"
+	},
+	"devDependencies": {
+		"@tanstack/react-query": "^5.59.0"
+	},
+	"peerDependencies": {
+		"@tanstack/react-query": ">= 5"
+	}
+}

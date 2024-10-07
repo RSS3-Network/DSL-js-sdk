@@ -89,6 +89,16 @@ importers:
         specifier: ^7.3.2
         version: 7.3.2(typescript@5.6.2)
 
+  packages/api-react-query:
+    dependencies:
+      '@rss3/api-core':
+        specifier: workspace:*
+        version: link:../api-core
+    devDependencies:
+      '@tanstack/react-query':
+        specifier: ^5.59.0
+        version: 5.59.0(react@19.0.0-rc-f994737d14-20240522)
+
   packages/api-utils:
     dependencies:
       '@rss3/api-core':
@@ -626,6 +636,14 @@ packages:
 
   '@swc/helpers@0.5.11':
     resolution: {integrity: sha512-YNlnKRWF2sVojTpIyzwou9XoTNbzbzONwRhOoniEioF1AtaitTvVZblaQRrAzChWQ1bLYyYSWzM18y4WwgzJ+A==}
+
+  '@tanstack/query-core@5.59.0':
+    resolution: {integrity: sha512-WGD8uIhX6/deH/tkZqPNcRyAhDUqs729bWKoByYHSogcshXfFbppOdTER5+qY7mFvu8KEFJwT0nxr8RfPTVh0Q==}
+
+  '@tanstack/react-query@5.59.0':
+    resolution: {integrity: sha512-YDXp3OORbYR+8HNQx+lf4F73NoiCmCcSvZvgxE29OifmQFk0sBlO26NWLHpcNERo92tVk3w+JQ53/vkcRUY1hA==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -2069,6 +2087,13 @@ snapshots:
   '@swc/helpers@0.5.11':
     dependencies:
       tslib: 2.6.3
+
+  '@tanstack/query-core@5.59.0': {}
+
+  '@tanstack/react-query@5.59.0(react@19.0.0-rc-f994737d14-20240522)':
+    dependencies:
+      '@tanstack/query-core': 5.59.0
+      react: 19.0.0-rc-f994737d14-20240522
 
   '@types/estree@1.0.5': {}
 
