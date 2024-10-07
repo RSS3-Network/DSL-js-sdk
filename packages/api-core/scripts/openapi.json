@@ -22,11 +22,13 @@
 	"tags": [
 		{
 			"name": "DSL",
-			"description": "The DSL API is an interface to interact with RSS3 Nodes and, therefore, the entire decentralized DSL."
+			"description": "The DSL API is an interface to interact with RSS3 Nodes and, therefore, the entire decentralized DSL.",
+			"x-displayName": "DSL"
 		},
 		{
 			"name": "NTA",
-			"description": "The Network Transparency API (NTA) is a set of APIs that provide transparency and visibility into the network. It allows users to query and retrieve information about the network. Learn more: https://forum.rss3.io/t/rss3-network-transparency-api/113"
+			"description": "The Network Transparency API (NTA) is a set of APIs that provide transparency and visibility into the network. It allows users to query and retrieve information about the network. Learn more: https://forum.rss3.io/t/rss3-network-transparency-api/113",
+			"x-displayName": "NTA"
 		},
 		{
 			"name": "Decentralized",
@@ -34,7 +36,8 @@
 		},
 		{
 			"name": "RSS",
-			"description": "A subset of DSL, these APIs facilitate querying information conforming to the RSS Specification."
+			"description": "A subset of DSL, these APIs facilitate querying information conforming to the RSS Specification.",
+			"x-displayName": "RSS"
 		},
 		{
 			"name": "Node",
@@ -70,6 +73,7 @@
 			"get": {
 				"summary": "Get Activity by ID",
 				"description": "This endpoint retrieves the details of a specified decentralized transaction activity by its ID. You can also specify additional query parameters to limit the number of actions retrieved and to paginate through actions.",
+				"operationId": "getActivityById",
 				"tags": ["Decentralized", "DSL"],
 				"parameters": [
 					{
@@ -99,6 +103,7 @@
 			"get": {
 				"summary": "Get Account Activities",
 				"description": "This endpoint retrieves the activities associated with a specified account in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.",
+				"operationId": "getAccountActivities",
 				"tags": ["Decentralized", "DSL"],
 				"parameters": [
 					{
@@ -155,6 +160,7 @@
 			"post": {
 				"summary": "Batch Get Accounts Activities",
 				"description": "Retrieve a batch of activities associated with multiple specified accounts in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.",
+				"operationId": "batchGetAccountsActivities",
 				"tags": ["Decentralized", "DSL"],
 				"requestBody": {
 					"$ref": "#/components/requestBodies/BatchGetAccountsActivities"
@@ -176,6 +182,7 @@
 			"get": {
 				"summary": "Get Network Activities",
 				"description": "Retrieve a list of activities from the specified decentralized network. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.",
+				"operationId": "getNetworkActivities",
 				"tags": ["Decentralized", "DSL"],
 				"parameters": [
 					{
@@ -229,6 +236,7 @@
 			"get": {
 				"summary": "Get Platform Activities",
 				"description": "Retrieve a list of activities from the specified decentralized platform. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.",
+				"operationId": "getPlatformActivities",
 				"tags": ["Decentralized", "DSL"],
 				"parameters": [
 					{
@@ -281,6 +289,7 @@
 		"/rss/{path}": {
 			"get": {
 				"summary": "Get RSS Activity by Path",
+				"operationId": "getRSSActivityByPath",
 				"tags": ["RSS", "DSL"],
 				"parameters": [
 					{
@@ -304,6 +313,7 @@
 			"get": {
 				"summary": "Get bridging transactions",
 				"description": "Retrieve a list of bridging transactions based on various query parameters such as cursor, sender, receiver, address, transaction type, and limit. This endpoint allows users to filter transactions to get precise data related to deposits and withdrawals. The response includes detailed transaction information, including sender and receiver addresses, token details, and associated events such as deposit initialization and finalization. Use this endpoint for monitoring, auditing, or analyzing bridging transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.",
+				"operationId": "getBridgingTransactions",
 				"tags": ["Bridge", "NTA"],
 				"parameters": [
 					{
@@ -342,6 +352,7 @@
 			"get": {
 				"summary": "Get bridging transaction by hash",
 				"description": "Retrieve detailed information of a bridging transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single transaction, including sender, receiver, token details, and related events.",
+				"operationId": "getBridgingTransactionByHash",
 				"tags": ["Bridge", "NTA"],
 				"parameters": [
 					{
@@ -365,6 +376,7 @@
 			"get": {
 				"summary": "Get staking transactions",
 				"description": "Retrieve a list of staking transactions based on various query parameters such as cursor, staker, node, transaction type, pending status, and limit. This endpoint allows users to filter transactions to get precise data related to staking activities including deposits, withdrawals, stakes, and unstakes. The response includes detailed transaction information such as staker address, node address, value staked, associated chips, and related events. Use this endpoint for monitoring, auditing, or analyzing staking transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.",
+				"operationId": "getStakingTransactions",
 				"tags": ["Stake", "NTA"],
 				"parameters": [
 					{
@@ -403,6 +415,7 @@
 			"get": {
 				"summary": "Get staking transaction by hash",
 				"description": "Retrieve detailed information of a staking transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single staking transaction, including staker address, node address, value staked, associated chips, and related events.",
+				"operationId": "getStakingTransactionByHash",
 				"tags": ["Stake", "NTA"],
 				"parameters": [
 					{
@@ -426,6 +439,7 @@
 			"get": {
 				"summary": "Get a list of stakers and Nodes",
 				"description": "Retrieve a list of stakers and their associated Nodes. This endpoint allows users to filter the results by staker address, node address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each staker, node, and associated chips.",
+				"operationId": "getStakersAndNodes",
 				"tags": ["Stake", "NTA"],
 				"parameters": [
 					{
@@ -458,6 +472,7 @@
 			"get": {
 				"summary": "Get staking profit of a staker",
 				"description": "Retrieve the staking profit information for a specified staker. This endpoint returns detailed profit data, including the owner's address, total chip amount, total chip value, and profit and loss (PNL) data over different time periods (one day, one week, one month).",
+				"operationId": "getStakerProfit",
 				"tags": ["Stake", "NTA"],
 				"parameters": [
 					{
@@ -481,6 +496,7 @@
 			"get": {
 				"summary": "Get the number of nodes, chips, and tokens staked of a staker",
 				"description": "Retrieve the number of nodes, chips, and tokens staked by a specific staker. This endpoint returns detailed information about the staker, including the number of nodes staked, number of chips owned, total tokens staked, and the total value of the staker's assets.",
+				"operationId": "getStakerStats",
 				"tags": ["Stake", "NTA"],
 				"parameters": [
 					{
@@ -504,6 +520,7 @@
 			"get": {
 				"summary": "Get all chips",
 				"description": "Retrieve a list of all chips. This endpoint allows users to filter the results by cursor, chip IDs, node address, owner address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each chip and a cursor for pagination to fetch subsequent sets of results.",
+				"operationId": "getAllChips",
 				"tags": ["Chips", "NTA"],
 				"parameters": [
 					{
@@ -539,6 +556,7 @@
 			"get": {
 				"summary": "Get Chips by chip id",
 				"description": "Retrieve detailed information about a specific chip by its unique chip ID. This endpoint returns comprehensive data about the chip, including its node address, owner address, and metadata such as name, description, and image.",
+				"operationId": "getChipById",
 				"tags": ["Chips", "NTA"],
 				"parameters": [
 					{
@@ -565,6 +583,7 @@
 			"get": {
 				"summary": "Get Chips image by id",
 				"description": "Retrieve the image of a specific chip by its unique chip ID. This endpoint returns the SVG image associated with the chip.",
+				"operationId": "getChipImageById",
 				"tags": ["Chips", "NTA"],
 				"parameters": [
 					{
@@ -591,6 +610,7 @@
 			"get": {
 				"summary": "Get snapshots of Node count",
 				"description": "Retrieve snapshots of the node count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of nodes on that date.",
+				"operationId": "getNodeCountSnapshots",
 				"tags": ["Snapshots", "NTA"],
 				"responses": {
 					"200": {
@@ -609,6 +629,7 @@
 			"get": {
 				"summary": "Get snapshots of staker count",
 				"description": "Retrieve snapshots of the total staker count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of stakers on that date.",
+				"operationId": "getStakerCountSnapshots",
 				"tags": ["Snapshots", "NTA"],
 				"responses": {
 					"200": {
@@ -627,6 +648,7 @@
 			"get": {
 				"summary": "Get snapshots of the staker profit",
 				"description": "Retrieve snapshots of the staker profit over time. This endpoint allows filtering by staker address, date range, and pagination parameters.",
+				"operationId": "getStakerProfitSnapshots",
 				"tags": ["Snapshots", "NTA"],
 				"parameters": [
 					{
@@ -662,6 +684,7 @@
 			"get": {
 				"summary": "Get snapshots of operation profit",
 				"description": "Retrieve snapshots of the operation profit over time for a specific node. This endpoint allows filtering by node address, date range, and pagination parameters.",
+				"operationId": "getNodeOperationProfitSnapshots",
 				"tags": ["Snapshots", "NTA"],
 				"parameters": [
 					{
@@ -697,6 +720,7 @@
 			"get": {
 				"summary": "Get the APY of epoch snapshots",
 				"description": "Retrieve the Annual Percentage Yield (APY) for epoch snapshots. This endpoint returns an array of objects, each containing the epoch details and the corresponding APY.",
+				"operationId": "getEpochAPYSnapshots",
 				"tags": ["Snapshots", "NTA"],
 				"responses": {
 					"200": {
@@ -715,6 +739,7 @@
 			"get": {
 				"summary": "Get all Nodes",
 				"description": "Retrieve a list of all nodes. This endpoint allows filtering by cursor, limit, and node address. The default limit is 10 and the maximum limit is 50.",
+				"operationId": "getAllNodes",
 				"tags": ["Node", "NTA"],
 				"parameters": [
 					{
@@ -747,6 +772,7 @@
 			"get": {
 				"summary": "Get Node by address",
 				"description": "Retrieve detailed information about a specific node by its address.",
+				"operationId": "getNodeByAddress",
 				"tags": ["Node", "NTA"],
 				"parameters": [
 					{
@@ -773,6 +799,7 @@
 			"get": {
 				"summary": "Get Node avatar by address",
 				"description": "Retrieve the avatar of a specific node by its address. This endpoint returns the SVG image associated with the node.",
+				"operationId": "getNodeAvatarByAddress",
 				"tags": ["Node", "NTA"],
 				"parameters": [
 					{
@@ -799,6 +826,7 @@
 			"get": {
 				"summary": "Get Node transaction events by address",
 				"description": "Retrieve the transaction events for a specific node by its address. This endpoint allows filtering by cursor and limit for pagination.",
+				"operationId": "getNodeEventsByAddress",
 				"tags": ["Node", "NTA"],
 				"parameters": [
 					{
@@ -828,6 +856,7 @@
 			"get": {
 				"summary": "Get Node operation profit by address",
 				"description": "Retrieve the operation profit details for a specific node by its address. This endpoint provides detailed profit and loss (PNL) information over different time periods.",
+				"operationId": "getNodeOperationProfitByAddress",
 				"tags": ["Node", "NTA"],
 				"parameters": [
 					{
@@ -854,6 +883,7 @@
 			"get": {
 				"summary": "Get all epochs",
 				"description": "Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.",
+				"operationId": "getAllEpochs",
 				"tags": ["Epoch", "NTA"],
 				"parameters": [
 					{
@@ -880,6 +910,7 @@
 			"get": {
 				"summary": "Get epoch by id",
 				"description": "Retrieve detailed information about a specific epoch by its ID.",
+				"operationId": "getEpochById",
 				"tags": ["Epoch", "NTA"],
 				"parameters": [
 					{
@@ -906,6 +937,7 @@
 			"get": {
 				"summary": "Get epoch transaction by hash",
 				"description": "Retrieve details of an epoch transaction by its hash.",
+				"operationId": "getEpochTransactionByHash",
 				"tags": ["Epoch", "NTA"],
 				"parameters": [
 					{
@@ -929,6 +961,7 @@
 			"get": {
 				"summary": "Get Node rewards by epoch",
 				"description": "Retrieve the rewards of a specific node by epoch. This endpoint allows filtering by cursor and limit for pagination.",
+				"operationId": "getNodeRewardsByEpoch",
 				"tags": ["Epoch", "NTA"],
 				"parameters": [
 					{
@@ -961,6 +994,7 @@
 			"get": {
 				"summary": "Get the average of epochs APY",
 				"description": "Retrieve the average Annual Percentage Yield (APY) for all epochs.",
+				"operationId": "getEpochsAverageAPY",
 				"tags": ["Epoch", "NTA"],
 				"responses": {
 					"200": {
@@ -976,6 +1010,7 @@
 			"get": {
 				"summary": "Get all compatible networks",
 				"description": "Retrieve a list of all compatible networks.",
+				"operationId": "getAllCompatibleNetworks",
 				"tags": ["Networks", "NTA"],
 				"responses": {
 					"200": {
@@ -991,6 +1026,7 @@
 			"get": {
 				"summary": "Get Node Assets",
 				"description": "Retrieve node assets details.",
+				"operationId": "getNodeAssets",
 				"tags": ["Networks", "NTA"],
 				"responses": {
 					"200": {
@@ -1006,6 +1042,7 @@
 			"get": {
 				"summary": "Get available workers by network",
 				"description": "Retrieve a list of available workers for a specific network.",
+				"operationId": "getAvailableWorkersByNetwork",
 				"tags": ["Networks", "NTA"],
 				"parameters": [
 					{
@@ -1032,6 +1069,7 @@
 			"get": {
 				"summary": "Get config by network and worker",
 				"description": "Retrieve the configuration details for a specific worker in a specific network.",
+				"operationId": "getWorkerConfigByNetworkAndWorker",
 				"tags": ["Networks", "NTA"],
 				"parameters": [
 					{
@@ -1056,6 +1094,22 @@
 					}
 				}
 			}
+		},
+		"/nta/dsl/total_requests": {
+			"get": {
+				"summary": "Get DSL total requests",
+				"description": "Retrieve the total number of requests made to the NTA API.",
+				"operationId": "getDSLTotalRequests",
+				"tags": ["NTA"],
+				"responses": {
+					"200": {
+						"$ref": "#/components/responses/TotalRequestsResponse"
+					},
+					"500": {
+						"$ref": "#/components/responses/500"
+					}
+				}
+			}
 		}
 	},
 	"components": {
@@ -1071,18 +1125,15 @@
 						"description": "Additional metadata related to the action.",
 						"type": "object",
 						"anyOf": [
-							{ "$ref": "#/components/schemas/ExchangeStaking" },
-							{ "$ref": "#/components/schemas/ExchangeSwap" },
-							{ "$ref": "#/components/schemas/ExchangeLiquidity" },
-							{ "$ref": "#/components/schemas/SocialProfile" },
-							{ "$ref": "#/components/schemas/SocialComment" },
-							{ "$ref": "#/components/schemas/SocialRevise" },
 							{ "$ref": "#/components/schemas/SocialShare" },
-							{ "$ref": "#/components/schemas/SocialDelete" },
-							{ "$ref": "#/components/schemas/SocialMint" },
+							{ "$ref": "#/components/schemas/SocialProfile" },
 							{ "$ref": "#/components/schemas/SocialProxy" },
 							{ "$ref": "#/components/schemas/SocialPost" },
+							{ "$ref": "#/components/schemas/SocialRevise" },
 							{ "$ref": "#/components/schemas/SocialReward" },
+							{ "$ref": "#/components/schemas/SocialDelete" },
+							{ "$ref": "#/components/schemas/SocialMint" },
+							{ "$ref": "#/components/schemas/SocialComment" },
 							{ "$ref": "#/components/schemas/MetaverseBurn" },
 							{ "$ref": "#/components/schemas/MetaverseMint" },
 							{ "$ref": "#/components/schemas/MetaverseTransfer" },
@@ -1093,11 +1144,14 @@
 							{ "$ref": "#/components/schemas/TransactionTransfer" },
 							{ "$ref": "#/components/schemas/TransactionBurn" },
 							{ "$ref": "#/components/schemas/TransactionMint" },
+							{ "$ref": "#/components/schemas/CollectibleTransfer" },
 							{ "$ref": "#/components/schemas/CollectibleBurn" },
 							{ "$ref": "#/components/schemas/CollectibleMint" },
 							{ "$ref": "#/components/schemas/CollectibleApproval" },
 							{ "$ref": "#/components/schemas/CollectibleTrade" },
-							{ "$ref": "#/components/schemas/CollectibleTransfer" }
+							{ "$ref": "#/components/schemas/ExchangeLiquidity" },
+							{ "$ref": "#/components/schemas/ExchangeStaking" },
+							{ "$ref": "#/components/schemas/ExchangeSwap" }
 						]
 					},
 					"platform": {
@@ -1770,7 +1824,18 @@
 					},
 					"status": {
 						"type": "string",
-						"enum": ["registered", "online", "offline", "exited"]
+						"enum": [
+							"none",
+							"registered",
+							"initializing",
+							"outdated",
+							"online",
+							"offline",
+							"slashing",
+							"slashed",
+							"exiting",
+							"exited"
+						]
 					},
 					"last_heartbeat": {
 						"type": "integer",
@@ -5179,6 +5244,22 @@
 							"properties": {
 								"data": {
 									"$ref": "#/components/schemas/NetworkWorker"
+								}
+							}
+						}
+					}
+				}
+			},
+			"TotalRequestsResponse": {
+				"description": "A successful response containing the total number of requests made to the API.",
+				"content": {
+					"application/json": {
+						"schema": {
+							"type": "object",
+							"properties": {
+								"data": {
+									"type": "integer",
+									"description": "The total number of requests made to the API."
 								}
 							}
 						}

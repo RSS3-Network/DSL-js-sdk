@@ -91,4 +91,7 @@ export {
 	getWorkerConfig,
 	type GetWorkerConfigParams,
 	type GetWorkerConfigResult,
+	getTotalRequests,
+	type GetTotalRequestsParams,
+	type GetTotalRequestsResult,
 } from "./requests";

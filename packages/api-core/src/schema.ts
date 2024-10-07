@@ -15,55 +15,7 @@ export interface paths {
 		 * Get Account Activities
 		 * @description This endpoint retrieves the activities associated with a specified account in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/**
-					 * @description Specify the number of actions within the activity to retrieve
-					 * @example 10
-					 */
-					action_limit?: components["parameters"]["action_limit_query"];
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
-					direction?: components["parameters"]["direction_query"];
-					/**
-					 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_query"];
-					/** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
-					network?: components["parameters"]["network_query"];
-					/** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
-					platform?: components["parameters"]["platform_query"];
-					/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
-					since_timestamp?: components["parameters"]["since_timestamp_query"];
-					/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
-					success?: components["parameters"]["success_query"];
-					/** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
-					tag?: components["parameters"]["action_tag_query"];
-					/** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
-					type?: components["parameters"]["action_type_query"];
-					/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
-					until_timestamp?: components["parameters"]["until_timestamp_query"];
-				};
-				header?: never;
-				path: {
-					/**
-					 * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
-					 * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
-					 */
-					account: components["parameters"]["account_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["ActivitiesResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getAccountActivities"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -85,20 +37,7 @@ export interface paths {
 		 * Batch Get Accounts Activities
 		 * @description Retrieve a batch of activities associated with multiple specified accounts in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
 		 */
-		post: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody: components["requestBodies"]["BatchGetAccountsActivities"];
-			responses: {
-				200: components["responses"]["ActivitiesResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		post: operations["batchGetAccountsActivities"];
 		delete?: never;
 		options?: never;
 		head?: never;
@@ -116,53 +55,7 @@ export interface paths {
 		 * Get Network Activities
 		 * @description Retrieve a list of activities from the specified decentralized network. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/**
-					 * @description Specify the number of actions within the activity to retrieve
-					 * @example 10
-					 */
-					action_limit?: components["parameters"]["action_limit_query"];
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
-					direction?: components["parameters"]["direction_query"];
-					/**
-					 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_query"];
-					/** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
-					platform?: components["parameters"]["platform_query"];
-					/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
-					since_timestamp?: components["parameters"]["since_timestamp_query"];
-					/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
-					success?: components["parameters"]["success_query"];
-					/** @description Retrieve activities for the specified tag(s). */
-					tag?: components["parameters"]["tag_query"];
-					/** @description Retrieve activities for the specified type(s). */
-					type?: components["parameters"]["type_query"];
-					/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
-					until_timestamp?: components["parameters"]["until_timestamp_query"];
-				};
-				header?: never;
-				path: {
-					/**
-					 * @description Retrieve activities from the specified network.
-					 * @example ethereum
-					 */
-					network: components["parameters"]["network_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["ActivitiesResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNetworkActivities"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -182,53 +75,7 @@ export interface paths {
 		 * Get Platform Activities
 		 * @description Retrieve a list of activities from the specified decentralized platform. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/**
-					 * @description Specify the number of actions within the activity to retrieve
-					 * @example 10
-					 */
-					action_limit?: components["parameters"]["action_limit_query"];
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
-					direction?: components["parameters"]["direction_query"];
-					/**
-					 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_query"];
-					/** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
-					network?: components["parameters"]["network_query"];
-					/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
-					since_timestamp?: components["parameters"]["since_timestamp_query"];
-					/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
-					success?: components["parameters"]["success_query"];
-					/** @description Retrieve activities for the specified tag(s). */
-					tag?: components["parameters"]["tag_query"];
-					/** @description Retrieve activities for the specified type(s). */
-					type?: components["parameters"]["type_query"];
-					/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
-					until_timestamp?: components["parameters"]["until_timestamp_query"];
-				};
-				header?: never;
-				path: {
-					/**
-					 * @description Retrieve activities from the specified platform.
-					 * @example Uniswap
-					 */
-					platform: components["parameters"]["platform_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["ActivitiesResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getPlatformActivities"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -248,37 +95,7 @@ export interface paths {
 		 * Get Activity by ID
 		 * @description This endpoint retrieves the details of a specified decentralized transaction activity by its ID. You can also specify additional query parameters to limit the number of actions retrieved and to paginate through actions.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/**
-					 * @description Specify the number of actions within the activity to retrieve
-					 * @example 10
-					 */
-					action_limit?: components["parameters"]["action_limit_query"];
-					/**
-					 * @description Specify the pagination for actions
-					 * @example 1
-					 */
-					action_page?: components["parameters"]["action_page_query"];
-				};
-				header?: never;
-				path: {
-					/**
-					 * @description Retrieve details for the specified activity ID
-					 * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
-					 */
-					id: components["parameters"]["activity_id_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["ActivityResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getActivityById"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -298,45 +115,7 @@ export interface paths {
 		 * Get bridging transactions
 		 * @description Retrieve a list of bridging transactions based on various query parameters such as cursor, sender, receiver, address, transaction type, and limit. This endpoint allows users to filter transactions to get precise data related to deposits and withdrawals. The response includes detailed transaction information, including sender and receiver addresses, token details, and associated events such as deposit initialization and finalization. Use this endpoint for monitoring, auditing, or analyzing bridging transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/**
-					 * @description Address involved in the transaction
-					 * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
-					 */
-					address?: components["parameters"]["address_query"];
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-					/**
-					 * @description Receiver address
-					 * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
-					 */
-					receiver?: components["parameters"]["receiver_query"];
-					/**
-					 * @description Sender address
-					 * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
-					 */
-					sender?: components["parameters"]["sender_query"];
-					/** @description Type of bridging transaction */
-					type?: components["parameters"]["bridging_type_query"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["BridgeTransactionsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getBridgingTransactions"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -356,26 +135,7 @@ export interface paths {
 		 * Get bridging transaction by hash
 		 * @description Retrieve detailed information of a bridging transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single transaction, including sender, receiver, token details, and related events.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The unique hash of the bridging transaction
-					 * @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa
-					 */
-					transaction_hash: components["parameters"]["bridging_transaction_hash_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["BridgeTransactionByHashResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getBridgingTransactionByHash"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -395,45 +155,7 @@ export interface paths {
 		 * Get all chips
 		 * @description Retrieve a list of all chips. This endpoint allows users to filter the results by cursor, chip IDs, node address, owner address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each chip and a cursor for pagination to fetch subsequent sets of results.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Array of chip IDs to filter the results.
-					 * @example [
-					 *       1690
-					 *     ]
-					 */
-					id?: components["parameters"]["chip_ids_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 30
-					 */
-					limit?: components["parameters"]["limit_1_200"];
-					/**
-					 * @description Node address
-					 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
-					 */
-					node?: components["parameters"]["node_query"];
-					/**
-					 * @description The address of the chip owner to filter the results.
-					 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-					 */
-					owner?: components["parameters"]["owner_query"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["ChipsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getAllChips"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -453,33 +175,7 @@ export interface paths {
 		 * Get Chips by chip id
 		 * @description Retrieve detailed information about a specific chip by its unique chip ID. This endpoint returns comprehensive data about the chip, including its node address, owner address, and metadata such as name, description, and image.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The unique identifier of the chip to retrieve.
-					 * @example 1690
-					 */
-					chip_id: components["parameters"]["chip_id_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["ChipResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getChipById"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -499,33 +195,27 @@ export interface paths {
 		 * Get Chips image by id
 		 * @description Retrieve the image of a specific chip by its unique chip ID. This endpoint returns the SVG image associated with the chip.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The unique identifier of the chip to retrieve.
-					 * @example 1690
-					 */
-					chip_id: components["parameters"]["chip_id_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["ChipImageResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
+		get: operations["getChipImageById"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/nta/dsl/total_requests": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
 		};
+		/**
+		 * Get DSL total requests
+		 * @description Retrieve the total number of requests made to the NTA API.
+		 */
+		get: operations["getDSLTotalRequests"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -545,28 +235,7 @@ export interface paths {
 		 * Get all epochs
 		 * @description Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["EpochsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getAllEpochs"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -586,41 +255,7 @@ export interface paths {
 		 * Get Node rewards by epoch
 		 * @description Retrieve the rewards of a specific node by epoch. This endpoint allows filtering by cursor and limit for pagination.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-				};
-				header?: never;
-				path: {
-					/**
-					 * @description The address of the node to retrieve.
-					 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-					 */
-					address: components["parameters"]["node_address_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NodeRewardsByEpochResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeRewardsByEpoch"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -640,33 +275,7 @@ export interface paths {
 		 * Get epoch by id
 		 * @description Retrieve detailed information about a specific epoch by its ID.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The ID of the epoch to retrieve.
-					 * @example 130
-					 */
-					epoch_id: components["parameters"]["epoch_id_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["EpochResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getEpochById"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -686,19 +295,7 @@ export interface paths {
 		 * Get the average of epochs APY
 		 * @description Retrieve the average Annual Percentage Yield (APY) for all epochs.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["EpochsAverageAPYResponse"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getEpochsAverageAPY"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -718,26 +315,7 @@ export interface paths {
 		 * Get epoch transaction by hash
 		 * @description Retrieve details of an epoch transaction by its hash.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The unique hash of the epoch transaction
-					 * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
-					 */
-					transaction_hash: components["parameters"]["epoch_transaction_hash_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["EpochTransactionResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getEpochTransactionByHash"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -757,19 +335,7 @@ export interface paths {
 		 * Get all compatible networks
 		 * @description Retrieve a list of all compatible networks.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NetworksResponse"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getAllCompatibleNetworks"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -789,30 +355,7 @@ export interface paths {
 		 * Get available workers by network
 		 * @description Retrieve a list of available workers for a specific network.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/** @description The name of the network to retrieve available workers for. */
-					network_name: components["parameters"]["network_name_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NetworkWorkersResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getAvailableWorkersByNetwork"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -832,35 +375,7 @@ export interface paths {
 		 * Get config by network and worker
 		 * @description Retrieve the configuration details for a specific worker in a specific network.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/** @description The name of the network to retrieve available workers for. */
-					network_name: components["parameters"]["network_name_path"];
-					/**
-					 * @description The name of the worker.
-					 * @example core
-					 */
-					worker_name: components["parameters"]["worker_name_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NetworkWorkerConfigResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getWorkerConfigByNetworkAndWorker"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -880,19 +395,7 @@ export interface paths {
 		 * Get Node Assets
 		 * @description Retrieve node assets details.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["AssetsResponse"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeAssets"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -912,40 +415,7 @@ export interface paths {
 		 * Get all Nodes
 		 * @description Retrieve a list of all nodes. This endpoint allows filtering by cursor, limit, and node address. The default limit is 10 and the maximum limit is 50.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-					/**
-					 * @description Node address
-					 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
-					 */
-					node?: components["parameters"]["node_query"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NodesResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getAllNodes"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -965,33 +435,7 @@ export interface paths {
 		 * Get Node by address
 		 * @description Retrieve detailed information about a specific node by its address.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The address of the node to retrieve.
-					 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-					 */
-					address: components["parameters"]["node_address_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NodeResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeByAddress"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1011,33 +455,7 @@ export interface paths {
 		 * Get Node avatar by address
 		 * @description Retrieve the avatar of a specific node by its address. This endpoint returns the SVG image associated with the node.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The address of the node to retrieve.
-					 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-					 */
-					address: components["parameters"]["node_address_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NodeAvatarResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeAvatarByAddress"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1057,34 +475,7 @@ export interface paths {
 		 * Get Node transaction events by address
 		 * @description Retrieve the transaction events for a specific node by its address. This endpoint allows filtering by cursor and limit for pagination.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-				};
-				header?: never;
-				path: {
-					/**
-					 * @description The address of the node to retrieve.
-					 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-					 */
-					address: components["parameters"]["node_address_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NodeEventsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeEventsByAddress"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1104,33 +495,7 @@ export interface paths {
 		 * Get Node operation profit by address
 		 * @description Retrieve the operation profit details for a specific node by its address. This endpoint provides detailed profit and loss (PNL) information over different time periods.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The address of the node to retrieve.
-					 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-					 */
-					address: components["parameters"]["node_address_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NodeOperationProfitResponse"];
-				400: components["responses"]["400"];
-				/** @description Not found */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeOperationProfitByAddress"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1150,20 +515,7 @@ export interface paths {
 		 * Get the APY of epoch snapshots
 		 * @description Retrieve the Annual Percentage Yield (APY) for epoch snapshots. This endpoint returns an array of objects, each containing the epoch details and the corresponding APY.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["EpochAPYSnapshotsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getEpochAPYSnapshots"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1183,20 +535,7 @@ export interface paths {
 		 * Get snapshots of Node count
 		 * @description Retrieve snapshots of the node count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of nodes on that date.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["NodeCountSnapshotsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeCountSnapshots"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1216,37 +555,7 @@ export interface paths {
 		 * Get snapshots of operation profit
 		 * @description Retrieve snapshots of the operation profit over time for a specific node. This endpoint allows filtering by node address, date range, and pagination parameters.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description The date after which the snapshots are returned. */
-					afterDate?: components["parameters"]["after_date_query"];
-					/** @description The date before which the snapshots are returned. */
-					beforeDate?: components["parameters"]["before_date_query"];
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-					/**
-					 * @description Node address
-					 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-					 */
-					node_address?: components["parameters"]["node_address_query"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["OperationProfitSnapshotsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getNodeOperationProfitSnapshots"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1266,20 +575,7 @@ export interface paths {
 		 * Get snapshots of staker count
 		 * @description Retrieve snapshots of the total staker count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of stakers on that date.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["StakerCountSnapshotsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getStakerCountSnapshots"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1299,37 +595,7 @@ export interface paths {
 		 * Get snapshots of the staker profit
 		 * @description Retrieve snapshots of the staker profit over time. This endpoint allows filtering by staker address, date range, and pagination parameters.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description The date after which the snapshots are returned. */
-					afterDate?: components["parameters"]["after_date_query"];
-					/** @description The date before which the snapshots are returned. */
-					beforeDate?: components["parameters"]["before_date_query"];
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-					/**
-					 * @description Staker address
-					 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-					 */
-					staker_address?: components["parameters"]["staker_address_query"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["StakerProfitSnapshotsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getStakerProfitSnapshots"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1349,26 +615,7 @@ export interface paths {
 		 * Get staking profit of a staker
 		 * @description Retrieve the staking profit information for a specified staker. This endpoint returns detailed profit data, including the owner's address, total chip amount, total chip value, and profit and loss (PNL) data over different time periods (one day, one week, one month).
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The address of the staker whose profit information is to be retrieved.
-					 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-					 */
-					staker_address: components["parameters"]["staker_address_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["StakingProfitResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getStakerProfit"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1388,26 +635,7 @@ export interface paths {
 		 * Get the number of nodes, chips, and tokens staked of a staker
 		 * @description Retrieve the number of nodes, chips, and tokens staked by a specific staker. This endpoint returns detailed information about the staker, including the number of nodes staked, number of chips owned, total tokens staked, and the total value of the staker's assets.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The address of the staker whose profit information is to be retrieved.
-					 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-					 */
-					staker_address: components["parameters"]["staker_address_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["StakerResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getStakerStats"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1427,38 +655,7 @@ export interface paths {
 		 * Get a list of stakers and Nodes
 		 * @description Retrieve a list of stakers and their associated Nodes. This endpoint allows users to filter the results by staker address, node address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each staker, node, and associated chips.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-					/**
-					 * @description Node address
-					 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
-					 */
-					node_address?: components["parameters"]["node_address_query"];
-					/**
-					 * @description Staker address
-					 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-					 */
-					staker_address?: components["parameters"]["staker_address_query"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["StakeStakingsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getStakersAndNodes"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1478,42 +675,7 @@ export interface paths {
 		 * Get staking transactions
 		 * @description Retrieve a list of staking transactions based on various query parameters such as cursor, staker, node, transaction type, pending status, and limit. This endpoint allows users to filter transactions to get precise data related to staking activities including deposits, withdrawals, stakes, and unstakes. The response includes detailed transaction information such as staker address, node address, value staked, associated chips, and related events. Use this endpoint for monitoring, auditing, or analyzing staking transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
 		 */
-		get: {
-			parameters: {
-				query?: {
-					/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
-					cursor?: components["parameters"]["cursor_query"];
-					/**
-					 * @description Limit the number of results
-					 * @example 20
-					 */
-					limit?: components["parameters"]["limit_1_20"];
-					/**
-					 * @description Node address
-					 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
-					 */
-					node?: components["parameters"]["node_query"];
-					/** @description Pending status of the transaction */
-					pending?: components["parameters"]["pending_query"];
-					/**
-					 * @description Staker address
-					 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
-					 */
-					staker?: components["parameters"]["staker_query"];
-					/** @description Type of staking transaction */
-					type?: components["parameters"]["staking_type_query"];
-				};
-				header?: never;
-				path?: never;
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["StakeTransactionsResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getStakingTransactions"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1533,26 +695,7 @@ export interface paths {
 		 * Get staking transaction by hash
 		 * @description Retrieve detailed information of a staking transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single staking transaction, including staker address, node address, value staked, associated chips, and related events.
 		 */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description The unique hash of the staking transaction
-					 * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
-					 */
-					transaction_hash: components["parameters"]["staking_transaction_hash_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["StakeTransactionByHashResponse"];
-				400: components["responses"]["400"];
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getStakingTransactionByHash"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1569,32 +712,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/** Get RSS Activity by Path */
-		get: {
-			parameters: {
-				query?: never;
-				header?: never;
-				path: {
-					/**
-					 * @description Retrieve details for the specified RSS path
-					 * @example abc
-					 */
-					path: components["parameters"]["rss_path"];
-				};
-				cookie?: never;
-			};
-			requestBody?: never;
-			responses: {
-				200: components["responses"]["RSSActivitiesResponse"];
-				/** @description The specified RSS path was not found. */
-				404: {
-					headers: {
-						[name: string]: unknown;
-					};
-					content?: never;
-				};
-				500: components["responses"]["500"];
-			};
-		};
+		get: operations["getRSSActivityByPath"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -1632,18 +750,15 @@ export interface components {
 			from: string;
 			/** @description Additional metadata related to the action. */
 			metadata:
-				| components["schemas"]["ExchangeStaking"]
-				| components["schemas"]["ExchangeSwap"]
-				| components["schemas"]["ExchangeLiquidity"]
-				| components["schemas"]["SocialProfile"]
-				| components["schemas"]["SocialComment"]
-				| components["schemas"]["SocialRevise"]
 				| components["schemas"]["SocialShare"]
-				| components["schemas"]["SocialDelete"]
-				| components["schemas"]["SocialMint"]
+				| components["schemas"]["SocialProfile"]
 				| components["schemas"]["SocialProxy"]
 				| components["schemas"]["SocialPost"]
+				| components["schemas"]["SocialRevise"]
 				| components["schemas"]["SocialReward"]
+				| components["schemas"]["SocialDelete"]
+				| components["schemas"]["SocialMint"]
+				| components["schemas"]["SocialComment"]
 				| components["schemas"]["MetaverseBurn"]
 				| components["schemas"]["MetaverseMint"]
 				| components["schemas"]["MetaverseTransfer"]
@@ -1654,11 +769,14 @@ export interface components {
 				| components["schemas"]["TransactionTransfer"]
 				| components["schemas"]["TransactionBurn"]
 				| components["schemas"]["TransactionMint"]
+				| components["schemas"]["CollectibleTransfer"]
 				| components["schemas"]["CollectibleBurn"]
 				| components["schemas"]["CollectibleMint"]
 				| components["schemas"]["CollectibleApproval"]
 				| components["schemas"]["CollectibleTrade"]
-				| components["schemas"]["CollectibleTransfer"];
+				| components["schemas"]["ExchangeLiquidity"]
+				| components["schemas"]["ExchangeStaking"]
+				| components["schemas"]["ExchangeSwap"];
 			platform?: components["schemas"]["Platform"];
 			/** @description A list of URLs related to the action. */
 			related_urls: string[];
@@ -2547,7 +1665,17 @@ export interface components {
 			slashed_tokens: string;
 			staking_pool_tokens: string;
 			/** @enum {string} */
-			status: "registered" | "online" | "offline" | "exited";
+			status:
+				| "none"
+				| "registered"
+				| "initializing"
+				| "outdated"
+				| "online"
+				| "offline"
+				| "slashing"
+				| "slashed"
+				| "exiting"
+				| "exited";
 			tax_rate_basis_points?: number | null;
 			total_shares: string;
 			/**
@@ -3684,6 +2812,18 @@ export interface components {
 				};
 			};
 		};
+		/** @description A successful response containing the total number of requests made to the API. */
+		TotalRequestsResponse: {
+			headers: {
+				[name: string]: unknown;
+			};
+			content: {
+				"application/json": {
+					/** @description The total number of requests made to the API. */
+					data?: number;
+				};
+			};
+		};
 	};
 	parameters: {
 		/**
@@ -3917,4 +3057,955 @@ export interface components {
 	pathItems: never;
 }
 export type $defs = Record<string, never>;
-export type operations = Record<string, never>;
+export interface operations {
+	getAccountActivities: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+				direction?: components["parameters"]["direction_query"];
+				/**
+				 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_query"];
+				/** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
+				network?: components["parameters"]["network_query"];
+				/** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+				platform?: components["parameters"]["platform_query"];
+				/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+				since_timestamp?: components["parameters"]["since_timestamp_query"];
+				/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+				success?: components["parameters"]["success_query"];
+				/** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+				tag?: components["parameters"]["action_tag_query"];
+				/** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+				type?: components["parameters"]["action_type_query"];
+				/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+				until_timestamp?: components["parameters"]["until_timestamp_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve activities from the specified account. This account is a unique identifier within the decentralized system.
+				 * @example 0xd8da6bf26964af9d7eed9e03e53415d37aa96045
+				 */
+				account: components["parameters"]["account_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["ActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	batchGetAccountsActivities: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: components["requestBodies"]["BatchGetAccountsActivities"];
+		responses: {
+			200: components["responses"]["ActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getNetworkActivities: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+				direction?: components["parameters"]["direction_query"];
+				/**
+				 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_query"];
+				/** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+				platform?: components["parameters"]["platform_query"];
+				/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+				since_timestamp?: components["parameters"]["since_timestamp_query"];
+				/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+				success?: components["parameters"]["success_query"];
+				/** @description Retrieve activities for the specified tag(s). */
+				tag?: components["parameters"]["tag_query"];
+				/** @description Retrieve activities for the specified type(s). */
+				type?: components["parameters"]["type_query"];
+				/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+				until_timestamp?: components["parameters"]["until_timestamp_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve activities from the specified network.
+				 * @example ethereum
+				 */
+				network: components["parameters"]["network_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["ActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getPlatformActivities: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+				direction?: components["parameters"]["direction_query"];
+				/**
+				 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_query"];
+				/** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
+				network?: components["parameters"]["network_query"];
+				/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+				since_timestamp?: components["parameters"]["since_timestamp_query"];
+				/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+				success?: components["parameters"]["success_query"];
+				/** @description Retrieve activities for the specified tag(s). */
+				tag?: components["parameters"]["tag_query"];
+				/** @description Retrieve activities for the specified type(s). */
+				type?: components["parameters"]["type_query"];
+				/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+				until_timestamp?: components["parameters"]["until_timestamp_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve activities from the specified platform.
+				 * @example Uniswap
+				 */
+				platform: components["parameters"]["platform_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["ActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getActivityById: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/**
+				 * @description Specify the pagination for actions
+				 * @example 1
+				 */
+				action_page?: components["parameters"]["action_page_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve details for the specified activity ID
+				 * @example 0x840e42d573ebe1ff27a9e4914573b4e0518fcd685c7f9331d319abe854f780e3
+				 */
+				id: components["parameters"]["activity_id_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["ActivityResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getBridgingTransactions: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Address involved in the transaction
+				 * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+				 */
+				address?: components["parameters"]["address_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+				/**
+				 * @description Receiver address
+				 * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+				 */
+				receiver?: components["parameters"]["receiver_query"];
+				/**
+				 * @description Sender address
+				 * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
+				 */
+				sender?: components["parameters"]["sender_query"];
+				/** @description Type of bridging transaction */
+				type?: components["parameters"]["bridging_type_query"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["BridgeTransactionsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getBridgingTransactionByHash: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The unique hash of the bridging transaction
+				 * @example 0x2af31b2a2708d5c9074074c578d3c521bd4385875e500f274fce52d3074460aa
+				 */
+				transaction_hash: components["parameters"]["bridging_transaction_hash_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["BridgeTransactionByHashResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getAllChips: {
+		parameters: {
+			query?: {
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Array of chip IDs to filter the results.
+				 * @example [
+				 *       1690
+				 *     ]
+				 */
+				id?: components["parameters"]["chip_ids_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 30
+				 */
+				limit?: components["parameters"]["limit_1_200"];
+				/**
+				 * @description Node address
+				 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+				 */
+				node?: components["parameters"]["node_query"];
+				/**
+				 * @description The address of the chip owner to filter the results.
+				 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+				 */
+				owner?: components["parameters"]["owner_query"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["ChipsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getChipById: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The unique identifier of the chip to retrieve.
+				 * @example 1690
+				 */
+				chip_id: components["parameters"]["chip_id_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["ChipResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getChipImageById: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The unique identifier of the chip to retrieve.
+				 * @example 1690
+				 */
+				chip_id: components["parameters"]["chip_id_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["ChipImageResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getDSLTotalRequests: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["TotalRequestsResponse"];
+			500: components["responses"]["500"];
+		};
+	};
+	getAllEpochs: {
+		parameters: {
+			query?: {
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["EpochsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeRewardsByEpoch: {
+		parameters: {
+			query?: {
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description The address of the node to retrieve.
+				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+				 */
+				address: components["parameters"]["node_address_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NodeRewardsByEpochResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getEpochById: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The ID of the epoch to retrieve.
+				 * @example 130
+				 */
+				epoch_id: components["parameters"]["epoch_id_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["EpochResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getEpochsAverageAPY: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["EpochsAverageAPYResponse"];
+			500: components["responses"]["500"];
+		};
+	};
+	getEpochTransactionByHash: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The unique hash of the epoch transaction
+				 * @example 0xe804d536d996d49b0ec8627361bc642f92d440e6b519e6faab0944f70bf05fd2
+				 */
+				transaction_hash: components["parameters"]["epoch_transaction_hash_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["EpochTransactionResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getAllCompatibleNetworks: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NetworksResponse"];
+			500: components["responses"]["500"];
+		};
+	};
+	getAvailableWorkersByNetwork: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/** @description The name of the network to retrieve available workers for. */
+				network_name: components["parameters"]["network_name_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NetworkWorkersResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getWorkerConfigByNetworkAndWorker: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/** @description The name of the network to retrieve available workers for. */
+				network_name: components["parameters"]["network_name_path"];
+				/**
+				 * @description The name of the worker.
+				 * @example core
+				 */
+				worker_name: components["parameters"]["worker_name_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NetworkWorkerConfigResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeAssets: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["AssetsResponse"];
+			500: components["responses"]["500"];
+		};
+	};
+	getAllNodes: {
+		parameters: {
+			query?: {
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+				/**
+				 * @description Node address
+				 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+				 */
+				node?: components["parameters"]["node_query"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NodesResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeByAddress: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The address of the node to retrieve.
+				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+				 */
+				address: components["parameters"]["node_address_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NodeResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeAvatarByAddress: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The address of the node to retrieve.
+				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+				 */
+				address: components["parameters"]["node_address_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NodeAvatarResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeEventsByAddress: {
+		parameters: {
+			query?: {
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description The address of the node to retrieve.
+				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+				 */
+				address: components["parameters"]["node_address_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NodeEventsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeOperationProfitByAddress: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The address of the node to retrieve.
+				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+				 */
+				address: components["parameters"]["node_address_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NodeOperationProfitResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+	getEpochAPYSnapshots: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["EpochAPYSnapshotsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeCountSnapshots: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NodeCountSnapshotsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getNodeOperationProfitSnapshots: {
+		parameters: {
+			query?: {
+				/** @description The date after which the snapshots are returned. */
+				afterDate?: components["parameters"]["after_date_query"];
+				/** @description The date before which the snapshots are returned. */
+				beforeDate?: components["parameters"]["before_date_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+				/**
+				 * @description Node address
+				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+				 */
+				node_address?: components["parameters"]["node_address_query"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["OperationProfitSnapshotsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getStakerCountSnapshots: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["StakerCountSnapshotsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getStakerProfitSnapshots: {
+		parameters: {
+			query?: {
+				/** @description The date after which the snapshots are returned. */
+				afterDate?: components["parameters"]["after_date_query"];
+				/** @description The date before which the snapshots are returned. */
+				beforeDate?: components["parameters"]["before_date_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+				/**
+				 * @description Staker address
+				 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+				 */
+				staker_address?: components["parameters"]["staker_address_query"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["StakerProfitSnapshotsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getStakerProfit: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The address of the staker whose profit information is to be retrieved.
+				 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+				 */
+				staker_address: components["parameters"]["staker_address_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["StakingProfitResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getStakerStats: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The address of the staker whose profit information is to be retrieved.
+				 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+				 */
+				staker_address: components["parameters"]["staker_address_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["StakerResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getStakersAndNodes: {
+		parameters: {
+			query?: {
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+				/**
+				 * @description Node address
+				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
+				 */
+				node_address?: components["parameters"]["node_address_query"];
+				/**
+				 * @description Staker address
+				 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+				 */
+				staker_address?: components["parameters"]["staker_address_query"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["StakeStakingsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getStakingTransactions: {
+		parameters: {
+			query?: {
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/**
+				 * @description Limit the number of results
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_1_20"];
+				/**
+				 * @description Node address
+				 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
+				 */
+				node?: components["parameters"]["node_query"];
+				/** @description Pending status of the transaction */
+				pending?: components["parameters"]["pending_query"];
+				/**
+				 * @description Staker address
+				 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
+				 */
+				staker?: components["parameters"]["staker_query"];
+				/** @description Type of staking transaction */
+				type?: components["parameters"]["staking_type_query"];
+			};
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["StakeTransactionsResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getStakingTransactionByHash: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description The unique hash of the staking transaction
+				 * @example 0xcb4038576ed46c3913915435c7ccb7316cf83c626dfcf580d0b84b86702e76eb
+				 */
+				transaction_hash: components["parameters"]["staking_transaction_hash_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["StakeTransactionByHashResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getRSSActivityByPath: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve details for the specified RSS path
+				 * @example abc
+				 */
+				path: components["parameters"]["rss_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["RSSActivitiesResponse"];
+			/** @description The specified RSS path was not found. */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
+			500: components["responses"]["500"];
+		};
+	};
+}

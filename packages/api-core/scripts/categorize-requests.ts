@@ -126,6 +126,9 @@ const pathToRequestMap = {
 	"/nta/networks/assets": {
 		get: "getNetworkAssets",
 	},
+	"/nta/dsl/total_requests": {
+		get: "getTotalRequests",
+	},
 } satisfies {
 	[K in keyof paths]: {
 		[M in ValidMethods<paths[K]>]:

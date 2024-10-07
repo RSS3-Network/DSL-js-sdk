@@ -512,3 +512,10 @@ export const getNetworkAssets = buildRequest(
 	"/nta/networks/assets",
 	"get",
 ).withoutParams();
+
+export type GetTotalRequestsParams = RequestParams<typeof getTotalRequests>;
+export type GetTotalRequestsResult = RequestResult<typeof getTotalRequests>;
+export const getTotalRequests = buildRequest(
+	"/nta/dsl/total_requests",
+	"get",
+).withoutParams();

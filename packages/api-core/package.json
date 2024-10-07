@@ -99,10 +99,10 @@
 		"download-openapi-json": "tsx scripts/download-openapi-json && biome check --write scripts",
 		"generate-openapi-schema": "openapi-typescript scripts/openapi.json -o src/schema.ts --alphabetize && biome check --write src",
 		"create-component-aliases": "tsx scripts/create-component-aliases.ts && biome check --write ./",
-		"categorize-requests": "tsx scripts/categorize-requests.ts && biome check --write ./"
+		"categorize-requests": "tsx scripts/categorize-requests.ts && biome check --write ./",
+		"run-all": "pnpm run download-openapi-json && pnpm run generate-openapi-schema && pnpm run create-component-aliases && pnpm run categorize-requests"
 	},
 	"devDependencies": {
-		"@types/node": "^22.5.1",
 		"map-obj": "^5.0.2",
 		"openapi-typescript": "^7.3.2"
 	},
