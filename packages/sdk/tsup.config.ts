@@ -13,6 +13,7 @@ export default defineConfig((options) => [
 		...commonConfig,
 		format: ["cjs", "esm"],
 		platform: "node",
+		bundle: false,
 		dts: options.dts,
 		target: "node16.14",
 	},
