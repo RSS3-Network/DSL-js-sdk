@@ -15,6 +15,9 @@ type ValidMethods<T extends Record<string, unknown>> = Exclude<
 >;
 
 const pathToRequestMap = {
+	"/rss/{path}": {
+		get: "getRSSActivity",
+	},
 	"/decentralized/tx/{id}": {
 		get: "getActivity",
 	},
@@ -24,14 +27,26 @@ const pathToRequestMap = {
 	"/decentralized/accounts": {
 		post: "getActivitiesByAccounts",
 	},
-	"/rss/{path}": {
-		get: "getRSSActivity",
-	},
 	"/decentralized/network/{network}": {
-		get: "getNetworkActivity",
+		get: "getNetworkActivities",
 	},
 	"/decentralized/platform/{platform}": {
-		get: "getPlatformActivity",
+		get: "getPlatformActivities",
+	},
+	"/federated/tx/{id}": {
+		get: "getFederatedActivity",
+	},
+	"/federated/{account}": {
+		get: "getFederatedActivitiesByAccount",
+	},
+	"/federated/accounts": {
+		post: "getFederatedActivitiesByAccounts",
+	},
+	"/federated/network/{network}": {
+		get: "getFederatedNetworkActivities",
+	},
+	"/federated/platform/{platform}": {
+		get: "getFederatedPlatformActivities",
 	},
 	"/nta/bridgings/transactions": {
 		get: "getBridgingTransactions",
@@ -114,20 +129,20 @@ const pathToRequestMap = {
 	"/nta/epochs/apy": {
 		get: "getAverageEpochsApy",
 	},
-	"/nta/networks": {
-		get: "getCompatibleNetworks",
-	},
-	"/nta/networks/{network_name}/list_workers": {
-		get: "getAvailableWorkers",
-	},
-	"/nta/networks/{network_name}/workers/{worker_name}": {
-		get: "getWorkerConfig",
-	},
 	"/nta/networks/assets": {
 		get: "getNetworkAssets",
 	},
+	"/nta/networks/config": {
+		get: "getNetworkConfig",
+	},
 	"/nta/dsl/total_requests": {
 		get: "getTotalRequests",
+	},
+	"/nta/token/supply": {
+		get: "getTokenSupply",
+	},
+	"/nta/token/tvl": {
+		get: "getTokenTvl",
 	},
 } satisfies {
 	[K in keyof paths]: {

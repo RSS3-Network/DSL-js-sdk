@@ -89,6 +89,12 @@
 			"import": "./dist/networks.js",
 			"require": "./dist/networks.cjs",
 			"default": "./dist/networks.js"
+		},
+		"./federated": {
+			"types": "./dist/federated.d.ts",
+			"import": "./dist/federated.js",
+			"require": "./dist/federated.cjs",
+			"default": "./dist/federated.js"
 		}
 	},
 	"files": ["README.md", "dist", "package.json", "schema", "src"],

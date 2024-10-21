@@ -63,8 +63,16 @@ export type CollectibleTransfer = CamelCasedPropertiesDeep<
 	components["schemas"]["CollectibleTransfer"]
 >;
 
+export type ConfigItem = CamelCasedPropertiesDeep<
+	components["schemas"]["ConfigItem"]
+>;
+
 export type CountSnapshot = CamelCasedPropertiesDeep<
 	components["schemas"]["CountSnapshot"]
+>;
+
+export type DecentralizedConfig = CamelCasedPropertiesDeep<
+	components["schemas"]["DecentralizedConfig"]
 >;
 
 export type Direction = CamelCasedPropertiesDeep<
@@ -91,6 +99,26 @@ export type ExchangeStaking = CamelCasedPropertiesDeep<
 
 export type ExchangeSwap = CamelCasedPropertiesDeep<
 	components["schemas"]["ExchangeSwap"]
+>;
+
+export type FederatedAction = CamelCasedPropertiesDeep<
+	components["schemas"]["FederatedAction"]
+>;
+
+export type FederatedActivitiesResponse = CamelCasedPropertiesDeep<
+	components["schemas"]["FederatedActivitiesResponse"]
+>;
+
+export type FederatedActivity = CamelCasedPropertiesDeep<
+	components["schemas"]["FederatedActivity"]
+>;
+
+export type FederatedActivityResponse = CamelCasedPropertiesDeep<
+	components["schemas"]["FederatedActivityResponse"]
+>;
+
+export type FederatedConfig = CamelCasedPropertiesDeep<
+	components["schemas"]["FederatedConfig"]
 >;
 
 export type Fee = CamelCasedPropertiesDeep<components["schemas"]["Fee"]>;
@@ -125,16 +153,16 @@ export type MetaverseTransfer = CamelCasedPropertiesDeep<
 	components["schemas"]["MetaverseTransfer"]
 >;
 
+export type MinimumResource = CamelCasedPropertiesDeep<
+	components["schemas"]["MinimumResource"]
+>;
+
 export type Network = CamelCasedPropertiesDeep<
 	components["schemas"]["Network"]
 >;
 
 export type NetworkAssetDetail = CamelCasedPropertiesDeep<
 	components["schemas"]["NetworkAssetDetail"]
->;
-
-export type NetworkWorker = CamelCasedPropertiesDeep<
-	components["schemas"]["NetworkWorker"]
 >;
 
 export type Node = CamelCasedPropertiesDeep<components["schemas"]["Node"]>;
@@ -153,6 +181,10 @@ export type OperationProfitPNL = CamelCasedPropertiesDeep<
 
 export type Platform = CamelCasedPropertiesDeep<
 	components["schemas"]["Platform"]
+>;
+
+export type RSSConfig = CamelCasedPropertiesDeep<
+	components["schemas"]["RSSConfig"]
 >;
 
 export type ResponseError = CamelCasedPropertiesDeep<
@@ -241,8 +273,4 @@ export type Type = CamelCasedPropertiesDeep<components["schemas"]["Type"]>;
 
 export type WorkerAssetDetail = CamelCasedPropertiesDeep<
 	components["schemas"]["WorkerAssetDetail"]
->;
-
-export type WorkerDetail = CamelCasedPropertiesDeep<
-	components["schemas"]["WorkerDetail"]
 >;

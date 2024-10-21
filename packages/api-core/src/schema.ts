@@ -12,8 +12,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Account Activities
-		 * @description This endpoint retrieves the activities associated with a specified account in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
+		 * Retrieve Account Activities
+		 * @description This endpoint retrieves the activities associated with a specified account in the decentralized system. Use query parameters to filter results by action limits, timestamps, status, direction, and more.
 		 */
 		get: operations["getAccountActivities"];
 		put?: never;
@@ -35,7 +35,7 @@ export interface paths {
 		put?: never;
 		/**
 		 * Batch Get Accounts Activities
-		 * @description Retrieve a batch of activities associated with multiple specified accounts in the decentralized system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
+		 * @description Retrieve activities associated with multiple accounts on all compatible networks. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
 		 */
 		post: operations["batchGetAccountsActivities"];
 		delete?: never;
@@ -52,7 +52,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Network Activities
+		 * Retrieve Network Activities
 		 * @description Retrieve a list of activities from the specified decentralized network. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
 		 */
 		get: operations["getNetworkActivities"];
@@ -72,7 +72,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Platform Activities
+		 * Retrieve Platform Activities
 		 * @description Retrieve a list of activities from the specified decentralized platform. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
 		 */
 		get: operations["getPlatformActivities"];
@@ -92,10 +92,110 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Activity by ID
-		 * @description This endpoint retrieves the details of a specified decentralized transaction activity by its ID. You can also specify additional query parameters to limit the number of actions retrieved and to paginate through actions.
+		 * Retrieve Activity by ID
+		 * @description This endpoint retrieves the details of a specified decentralized transaction activity by its ID. You can specify additional query parameters to limit the number of actions retrieved and paginate through them.
 		 */
 		get: operations["getActivityById"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/federated/{account}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Retrieve Federated Account Activities (Beta)
+		 * @description This endpoint retrieves the activities associated with a specified account in the federated system. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
+		 */
+		get: operations["getFederatedAccountActivities"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/federated/accounts": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		get?: never;
+		put?: never;
+		/**
+		 * Batch Get Federated Accounts Activities (Beta)
+		 * @description Retrieve activities associated with multiple accounts on all compatible networks. You can use various query parameters to filter and paginate the results, including limits on the number of activities and actions, timestamps, success status, direction, and more.
+		 */
+		post: operations["batchGetFederatedAccountsActivities"];
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/federated/network/{network}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Retrieve Federated Network Activities (Beta)
+		 * @description Retrieve a list of activities from the specified federated network. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
+		 */
+		get: operations["getFederatedNetworkActivities"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/federated/platform/{platform}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Retrieve Federated Platform Activities (Beta)
+		 * @description Retrieve a list of activities from the specified federated platform. This endpoint allows you to filter activities by various parameters such as limit, timestamp, success status, and more.
+		 */
+		get: operations["getFederatedPlatformActivities"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/federated/tx/{id}": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Retrieve Federated Activity by ID (Beta)
+		 * @description This endpoint retrieves the details of a specified federated activity by its ID. You can also specify additional query parameters to limit the number of actions retrieved and to paginate through actions.
+		 */
+		get: operations["getFederatedActivityById"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -112,8 +212,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get bridging transactions
-		 * @description Retrieve a list of bridging transactions based on various query parameters such as cursor, sender, receiver, address, transaction type, and limit. This endpoint allows users to filter transactions to get precise data related to deposits and withdrawals. The response includes detailed transaction information, including sender and receiver addresses, token details, and associated events such as deposit initialization and finalization. Use this endpoint for monitoring, auditing, or analyzing bridging transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
+		 * Retrieve bridging transactions
+		 * @description Retrieve a list of bridging transactions based on various query parameters such as cursor, sender, receiver, address, transaction type, and limit. This endpoint allows users to filter transactions to get precise data related to deposits and withdrawals. The response includes transaction details, such as sender and receiver addresses, token information, and related events like deposit initialization and finalization. Use this endpoint for monitoring, auditing, or analyzing bridging transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
 		 */
 		get: operations["getBridgingTransactions"];
 		put?: never;
@@ -132,8 +232,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get bridging transaction by hash
-		 * @description Retrieve detailed information of a bridging transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single transaction, including sender, receiver, token details, and related events.
+		 * Retrieve bridging transaction by hash
+		 * @description Retrieve bridging transaction details by its transaction hash. This endpoint provides comprehensive data about a single transaction, including sender, receiver, token details, and related events.
 		 */
 		get: operations["getBridgingTransactionByHash"];
 		put?: never;
@@ -152,8 +252,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get all chips
-		 * @description Retrieve a list of all chips. This endpoint allows users to filter the results by cursor, chip IDs, node address, owner address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each chip and a cursor for pagination to fetch subsequent sets of results.
+		 * Retrieve all chips
+		 * @description Retrieve a list of all chips. This endpoint allows users to filter the results by cursor, chip IDs, Node address, owner address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each chip and a cursor for pagination to fetch subsequent sets of results.
 		 */
 		get: operations["getAllChips"];
 		put?: never;
@@ -172,8 +272,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Chips by chip id
-		 * @description Retrieve detailed information about a specific chip by its unique chip ID. This endpoint returns comprehensive data about the chip, including its node address, owner address, and metadata such as name, description, and image.
+		 * Retrieve Chips by chip id
+		 * @description Retrieve chip details using its unique ID. This endpoint returns comprehensive data about the chip, including its Node address, owner address, and metadata such as name, description, and image.
 		 */
 		get: operations["getChipById"];
 		put?: never;
@@ -192,7 +292,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Chips image by id
+		 * Retrieve Chips image by id
 		 * @description Retrieve the image of a specific chip by its unique chip ID. This endpoint returns the SVG image associated with the chip.
 		 */
 		get: operations["getChipImageById"];
@@ -212,8 +312,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get DSL total requests
-		 * @description Retrieve the total number of requests made to the NTA API.
+		 * Retrieve DSL total requests
+		 * @description Retrieve the total number of requests served by Global Indexers.
 		 */
 		get: operations["getDSLTotalRequests"];
 		put?: never;
@@ -232,7 +332,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get all epochs
+		 * Retrieve all epochs
 		 * @description Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.
 		 */
 		get: operations["getAllEpochs"];
@@ -252,8 +352,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Node rewards by epoch
-		 * @description Retrieve the rewards of a specific node by epoch. This endpoint allows filtering by cursor and limit for pagination.
+		 * Retrieve Node rewards by epoch
+		 * @description Retrieve the rewards of a specific Node by epoch. This endpoint allows filtering by cursor and limit for pagination.
 		 */
 		get: operations["getNodeRewardsByEpoch"];
 		put?: never;
@@ -272,8 +372,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get epoch by id
-		 * @description Retrieve detailed information about a specific epoch by its ID.
+		 * Retrieve epoch by id
+		 * @description Retrieve epoch details by its ID.
 		 */
 		get: operations["getEpochById"];
 		put?: never;
@@ -292,7 +392,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get the average of epochs APY
+		 * Retrieve the average of epochs APY
 		 * @description Retrieve the average Annual Percentage Yield (APY) for all epochs.
 		 */
 		get: operations["getEpochsAverageAPY"];
@@ -312,70 +412,10 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get epoch transaction by hash
+		 * Retrieve epoch transaction by hash
 		 * @description Retrieve details of an epoch transaction by its hash.
 		 */
 		get: operations["getEpochTransactionByHash"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/nta/networks": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get all compatible networks
-		 * @description Retrieve a list of all compatible networks.
-		 */
-		get: operations["getAllCompatibleNetworks"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/nta/networks/{network_name}/list_workers": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get available workers by network
-		 * @description Retrieve a list of available workers for a specific network.
-		 */
-		get: operations["getAvailableWorkersByNetwork"];
-		put?: never;
-		post?: never;
-		delete?: never;
-		options?: never;
-		head?: never;
-		patch?: never;
-		trace?: never;
-	};
-	"/nta/networks/{network_name}/workers/{worker_name}": {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		/**
-		 * Get config by network and worker
-		 * @description Retrieve the configuration details for a specific worker in a specific network.
-		 */
-		get: operations["getWorkerConfigByNetworkAndWorker"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -392,10 +432,30 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Node Assets
-		 * @description Retrieve node assets details.
+		 * Retrieve Node Assets
+		 * @description Retrieve Node assets details.
 		 */
 		get: operations["getNodeAssets"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/nta/networks/config": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Retrieve network config
+		 * @description Retrieve the configuration details of RSS, Decentralized, and Federated networks.
+		 */
+		get: operations["getNetworkConfig"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -412,8 +472,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get all Nodes
-		 * @description Retrieve a list of all nodes. This endpoint allows filtering by cursor, limit, and node address. The default limit is 10 and the maximum limit is 50.
+		 * Retrieve all RSS3 Nodes
+		 * @description Retrieve the list of all RSS3 Nodes. This endpoint allows filtering by cursor, limit, and Node address. The default limit is 10 and the maximum limit is 50.
 		 */
 		get: operations["getAllNodes"];
 		put?: never;
@@ -432,8 +492,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Node by address
-		 * @description Retrieve detailed information about a specific node by its address.
+		 * Retrieve Node by address
+		 * @description Retrieve Node details by its address.
 		 */
 		get: operations["getNodeByAddress"];
 		put?: never;
@@ -452,8 +512,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Node avatar by address
-		 * @description Retrieve the avatar of a specific node by its address. This endpoint returns the SVG image associated with the node.
+		 * Retrieve Node avatar by address
+		 * @description Retrieve the avatar of a specific Node by its address. This endpoint returns the SVG image associated with the node.
 		 */
 		get: operations["getNodeAvatarByAddress"];
 		put?: never;
@@ -472,8 +532,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Node transaction events by address
-		 * @description Retrieve the transaction events for a specific node by its address. This endpoint allows filtering by cursor and limit for pagination.
+		 * Retrieve Node transaction events by address
+		 * @description Retrieve the transaction events for a specific Node by its address. This endpoint allows filtering by cursor and limit for pagination.
 		 */
 		get: operations["getNodeEventsByAddress"];
 		put?: never;
@@ -492,8 +552,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get Node operation profit by address
-		 * @description Retrieve the operation profit details for a specific node by its address. This endpoint provides detailed profit and loss (PNL) information over different time periods.
+		 * Retrieve Node operation profit by address
+		 * @description Retrieve the operation profit details for a specific Node by its address. This endpoint provides detailed profit and loss (PNL) information over different time periods.
 		 */
 		get: operations["getNodeOperationProfitByAddress"];
 		put?: never;
@@ -512,8 +572,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get the APY of epoch snapshots
-		 * @description Retrieve the Annual Percentage Yield (APY) for epoch snapshots. This endpoint returns an array of objects, each containing the epoch details and the corresponding APY.
+		 * Retrieve snapshots of epoch APY.
+		 * @description Retrieve the Annual Percentage Yield (APY) for epoch snapshots. This endpoint returns an array of objects, each containing an epoch ID and the corresponding APY.
 		 */
 		get: operations["getEpochAPYSnapshots"];
 		put?: never;
@@ -532,8 +592,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get snapshots of Node count
-		 * @description Retrieve snapshots of the node count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of nodes on that date.
+		 * Retrieve snapshots of Node count
+		 * @description Retrieve snapshots of the Node count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of nodes on that date.
 		 */
 		get: operations["getNodeCountSnapshots"];
 		put?: never;
@@ -552,8 +612,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get snapshots of operation profit
-		 * @description Retrieve snapshots of the operation profit over time for a specific node. This endpoint allows filtering by node address, date range, and pagination parameters.
+		 * Retrieve snapshots of operation profit
+		 * @description Retrieve snapshots of the operation profit over time for a specific node. This endpoint allows filtering by Node address, date range, and pagination parameters.
 		 */
 		get: operations["getNodeOperationProfitSnapshots"];
 		put?: never;
@@ -572,7 +632,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get snapshots of staker count
+		 * Retrieve snapshots of staker count
 		 * @description Retrieve snapshots of the total staker count over time. This endpoint returns an array of objects, each containing the date and the corresponding count of stakers on that date.
 		 */
 		get: operations["getStakerCountSnapshots"];
@@ -592,7 +652,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get snapshots of the staker profit
+		 * Retrieve snapshots of the staker profit
 		 * @description Retrieve snapshots of the staker profit over time. This endpoint allows filtering by staker address, date range, and pagination parameters.
 		 */
 		get: operations["getStakerProfitSnapshots"];
@@ -612,7 +672,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get staking profit of a staker
+		 * Retrieve staking profit of a staker
 		 * @description Retrieve the staking profit information for a specified staker. This endpoint returns detailed profit data, including the owner's address, total chip amount, total chip value, and profit and loss (PNL) data over different time periods (one day, one week, one month).
 		 */
 		get: operations["getStakerProfit"];
@@ -632,7 +692,7 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get the number of nodes, chips, and tokens staked of a staker
+		 * Retrieve the number of nodes, chips, and tokens staked of a staker
 		 * @description Retrieve the number of nodes, chips, and tokens staked by a specific staker. This endpoint returns detailed information about the staker, including the number of nodes staked, number of chips owned, total tokens staked, and the total value of the staker's assets.
 		 */
 		get: operations["getStakerStats"];
@@ -652,8 +712,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get a list of stakers and Nodes
-		 * @description Retrieve a list of stakers and their associated Nodes. This endpoint allows users to filter the results by staker address, node address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each staker, node, and associated chips.
+		 * Retrieve a list of stakers and Nodes
+		 * @description Retrieve a list of stakers and their associated Nodes. This endpoint allows users to filter the results by staker address, Node address, and to paginate through the results using cursor and limit parameters. The response includes detailed information about each staker, node, and associated chips.
 		 */
 		get: operations["getStakersAndNodes"];
 		put?: never;
@@ -672,8 +732,8 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get staking transactions
-		 * @description Retrieve a list of staking transactions based on various query parameters such as cursor, staker, node, transaction type, pending status, and limit. This endpoint allows users to filter transactions to get precise data related to staking activities including deposits, withdrawals, stakes, and unstakes. The response includes detailed transaction information such as staker address, node address, value staked, associated chips, and related events. Use this endpoint for monitoring, auditing, or analyzing staking transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
+		 * Retrieve staking transactions
+		 * @description Retrieve a list of staking transactions based on various query parameters such as cursor, staker, node, transaction type, pending status, and limit. This endpoint allows users to filter transactions to get precise data related to staking activities including deposits, withdrawals, stakes, and unstakes. The response includes detailed transaction information such as staker address, Node address, value staked, associated chips, and related events. Use this endpoint for monitoring, auditing, or analyzing staking transactions. The 'cursor' parameter can be used for pagination to fetch subsequent sets of results.
 		 */
 		get: operations["getStakingTransactions"];
 		put?: never;
@@ -692,10 +752,50 @@ export interface paths {
 			cookie?: never;
 		};
 		/**
-		 * Get staking transaction by hash
-		 * @description Retrieve detailed information of a staking transaction by specifying the transaction hash. This endpoint provides comprehensive data about a single staking transaction, including staker address, node address, value staked, associated chips, and related events.
+		 * Retrieve staking transaction by hash
+		 * @description Retrieve staking transaction details by its transaction hash. This endpoint provides comprehensive data about a single staking transaction, including staker address, Node address, value staked, associated chips, and related events.
 		 */
 		get: operations["getStakingTransactionByHash"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/nta/token/supply": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Retrieve RSS3 token total supply on VSL
+		 * @description Retrieve the total supply of RSS3 token on VSL.
+		 */
+		get: operations["getRSS3TokenTotalSupply"];
+		put?: never;
+		post?: never;
+		delete?: never;
+		options?: never;
+		head?: never;
+		patch?: never;
+		trace?: never;
+	};
+	"/nta/token/tvl": {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		/**
+		 * Retrieve TVL in $
+		 * @description Retrieve the total value locked (TVL) in $, including RSS3, WETH, USDT, USDC, and POWER.
+		 */
+		get: operations["getTokenTVL"];
 		put?: never;
 		post?: never;
 		delete?: never;
@@ -711,7 +811,7 @@ export interface paths {
 			path?: never;
 			cookie?: never;
 		};
-		/** Get RSS Activity by Path */
+		/** Retrieve RSS Activity by Path */
 		get: operations["getRSSActivityByPath"];
 		put?: never;
 		post?: never;
@@ -750,25 +850,11 @@ export interface components {
 			from: string;
 			/** @description Additional metadata related to the action. */
 			metadata:
-				| components["schemas"]["SocialShare"]
-				| components["schemas"]["SocialProfile"]
-				| components["schemas"]["SocialProxy"]
-				| components["schemas"]["SocialPost"]
-				| components["schemas"]["SocialRevise"]
-				| components["schemas"]["SocialReward"]
-				| components["schemas"]["SocialDelete"]
-				| components["schemas"]["SocialMint"]
-				| components["schemas"]["SocialComment"]
-				| components["schemas"]["MetaverseBurn"]
-				| components["schemas"]["MetaverseMint"]
-				| components["schemas"]["MetaverseTransfer"]
-				| components["schemas"]["MetaverseTrade"]
-				| components["schemas"]["RssFeed"]
+				| components["schemas"]["TransactionMint"]
 				| components["schemas"]["TransactionApproval"]
 				| components["schemas"]["TransactionBridge"]
 				| components["schemas"]["TransactionTransfer"]
 				| components["schemas"]["TransactionBurn"]
-				| components["schemas"]["TransactionMint"]
 				| components["schemas"]["CollectibleTransfer"]
 				| components["schemas"]["CollectibleBurn"]
 				| components["schemas"]["CollectibleMint"]
@@ -776,7 +862,21 @@ export interface components {
 				| components["schemas"]["CollectibleTrade"]
 				| components["schemas"]["ExchangeLiquidity"]
 				| components["schemas"]["ExchangeStaking"]
-				| components["schemas"]["ExchangeSwap"];
+				| components["schemas"]["ExchangeSwap"]
+				| components["schemas"]["SocialPost"]
+				| components["schemas"]["SocialRevise"]
+				| components["schemas"]["SocialReward"]
+				| components["schemas"]["SocialDelete"]
+				| components["schemas"]["SocialProxy"]
+				| components["schemas"]["SocialComment"]
+				| components["schemas"]["SocialShare"]
+				| components["schemas"]["SocialMint"]
+				| components["schemas"]["SocialProfile"]
+				| components["schemas"]["MetaverseMint"]
+				| components["schemas"]["MetaverseTransfer"]
+				| components["schemas"]["MetaverseTrade"]
+				| components["schemas"]["MetaverseBurn"]
+				| components["schemas"]["RssFeed"];
 			platform?: components["schemas"]["Platform"];
 			/** @description A list of URLs related to the action. */
 			related_urls: string[];
@@ -1007,6 +1107,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1025,6 +1126,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1043,6 +1145,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1053,7 +1156,7 @@ export interface components {
 		};
 		CollectibleTrade: {
 			/** @enum {string} */
-			action: "buy" | "sell";
+			action: "buy" | "sell" | "offer" | "set" | "create" | "finalize";
 			address?: string;
 			cost?: {
 				address?: string;
@@ -1065,6 +1168,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1081,6 +1185,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1099,6 +1204,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1107,11 +1213,40 @@ export interface components {
 			uri?: string;
 			value?: string;
 		};
+		ConfigItem: {
+			description?: string;
+			is_required?: boolean;
+			key?: string;
+			title?: string;
+			type?: string;
+			value?: string;
+		};
 		CountSnapshot: {
 			/** @example 1 */
 			count: number;
 			/** @example 2024-03-10 */
 			date: string;
+		};
+		DecentralizedConfig: {
+			endpoint_configs?: {
+				http_headers?: components["schemas"]["ConfigItem"];
+				http2_disabled?: components["schemas"]["ConfigItem"];
+				url?: components["schemas"]["ConfigItem"];
+			};
+			id?: string;
+			worker_configs?: {
+				endpoint?: components["schemas"]["ConfigItem"];
+				id?: components["schemas"]["ConfigItem"];
+				minimum_resource?: components["schemas"]["MinimumResource"];
+				network?: components["schemas"]["ConfigItem"];
+				parameters?: {
+					block_batch_size?: components["schemas"]["ConfigItem"];
+					block_receipts_batch_size?: components["schemas"]["ConfigItem"];
+					concurrent_block_requests?: components["schemas"]["ConfigItem"];
+					receipts_batch_size?: components["schemas"]["ConfigItem"];
+				};
+				worker?: components["schemas"]["ConfigItem"];
+			}[];
 		};
 		/**
 		 * @description The direction of an activity.
@@ -1222,6 +1357,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1298,6 +1434,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1318,6 +1455,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1336,6 +1474,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1344,6 +1483,157 @@ export interface components {
 				uri?: string;
 				value?: string;
 			};
+		};
+		/**
+		 * @description Represents an individual action within an federated activity.
+		 * @example {
+		 *       "tag": "social",
+		 *       "type": "comment",
+		 *       "platform": "Mastodon",
+		 *       "from": "@woofers@universeodon.com",
+		 *       "to": "@georgetakei@universeodon.com",
+		 *       "metadata": {
+		 *         "handle": "@woofers@universeodon.com",
+		 *         "body": "@ georgetakei ( https://universeodon.com/@georgetakei ) now hold on just a minute...\n\n# woof ( https://universeodon.com/tags/woof )",
+		 *         "publication_id": "113324128515491294",
+		 *         "tags": [
+		 *           "@georgetakei",
+		 *           "#woof"
+		 *         ],
+		 *         "author_url": "https://universeodon.com/users/woofers",
+		 *         "timestamp": 1729188972,
+		 *         "target": {
+		 *           "handle": "@georgetakei@universeodon.com",
+		 *           "body": "Just a little treat.",
+		 *           "media": [
+		 *             {
+		 *               "address": "https://media.universeodon.com/media_attachments/files/113/319/346/314/075/495/original/26e989bcf15840a6.png",
+		 *               "mime_type": "image/png"
+		 *             }
+		 *           ],
+		 *           "publication_id": "113319346448373294",
+		 *           "author_url": "https://universeodon.com/users/georgetakei",
+		 *           "timestamp": 1729116004
+		 *         },
+		 *         "target_url": "https://universeodon.com/users/georgetakei/statuses/113319346448373294"
+		 *       },
+		 *       "related_urls": [
+		 *         "https://universeodon.com/users/woofers/statuses/113324128515491294"
+		 *       ]
+		 *     }
+		 */
+		FederatedAction: {
+			/** @description The account from which the federated action originated. */
+			from: string;
+			/** @description Additional metadata related to the federated action. */
+			metadata:
+				| components["schemas"]["SocialPost"]
+				| components["schemas"]["SocialComment"]
+				| components["schemas"]["SocialShare"];
+			/** @description The platform of the federated activity. */
+			platform?: string;
+			/** @description A list of URLs related to the action. */
+			related_urls: string[];
+			/** @description The tag of the federated activity. */
+			tag: string;
+			/** @description The account to which the federated action is directed. */
+			to: string;
+			/** @description The type of federated action performed. */
+			type: string;
+		};
+		/** @description The response structure for a list of federated activities. */
+		FederatedActivitiesResponse: {
+			/** @description The list of federated activities. */
+			data: components["schemas"]["FederatedActivity"][];
+			meta?: components["schemas"]["MetaCursor"];
+		};
+		FederatedActivity: {
+			/** @description The list of actions within the federated activity. */
+			actions: components["schemas"]["FederatedAction"][];
+			direction?: components["schemas"]["Direction"];
+			/**
+			 * @description The account from which the federated activity originated.
+			 * @example @woofers@universeodon.com
+			 */
+			from: string;
+			/**
+			 * @description The unique identifier for the federated activity.
+			 * @example https://universeodon.com/users/woofers/statuses/113324128515491294/activity
+			 */
+			id: string;
+			/**
+			 * @description The index of the activity in the list.
+			 * @example 0
+			 */
+			index: number;
+			/**
+			 * @description The network of the federated activity.
+			 * @example mastodon
+			 */
+			network?: string;
+			/**
+			 * @description The owner of the federated activity.
+			 * @example @georgetakei@universeodon.com
+			 */
+			owner: string;
+			/**
+			 * @description The platform of the federated activity.
+			 * @example Mastodon
+			 */
+			platform?: string;
+			/**
+			 * @description Indicates whether the federated activity was successful.
+			 * @example true
+			 */
+			success: boolean;
+			/**
+			 * @description The tag of the federated activity.
+			 * @example social
+			 */
+			tag?: string;
+			/**
+			 * @description The timestamp of when the activity occurred.
+			 * @example 1729188972
+			 */
+			timestamp: number;
+			/**
+			 * @description The account to which the activity is directed.
+			 * @example @georgetakei@universeodon.com
+			 */
+			to: string;
+			/**
+			 * @description The total number of actions within the activity.
+			 * @example 1
+			 */
+			total_actions: number;
+			/**
+			 * @description The type of federated activity.
+			 * @example comment
+			 * @enum {string}
+			 */
+			type?: "comment" | "post" | "share";
+		};
+		FederatedActivityResponse: {
+			data?: components["schemas"]["FederatedActivity"];
+			meta?: components["schemas"]["MetaTotalPages"];
+		};
+		FederatedConfig: {
+			endpoint_configs?: {
+				http_headers?: components["schemas"]["ConfigItem"];
+				http2_disabled?: components["schemas"]["ConfigItem"];
+				url?: components["schemas"]["ConfigItem"];
+			};
+			id?: string;
+			worker_configs?: {
+				endpoint?: components["schemas"]["ConfigItem"];
+				id?: components["schemas"]["ConfigItem"];
+				minimum_resource?: components["schemas"]["MinimumResource"];
+				network?: components["schemas"]["ConfigItem"];
+				parameters?: {
+					kafka_topic?: components["schemas"]["ConfigItem"];
+				};
+				worker?: components["schemas"]["ConfigItem"];
+			}[];
 		};
 		/**
 		 * @description Represents fee information for an activity.
@@ -1420,6 +1710,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1438,6 +1729,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1460,6 +1752,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1476,6 +1769,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1494,6 +1788,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -1501,6 +1796,13 @@ export interface components {
 			symbol?: string;
 			uri?: string;
 			value?: string;
+		};
+		MinimumResource: {
+			cpu_core?: number;
+			disk_space_in_gb?: number;
+			key?: string;
+			memory_in_gb?: number;
+			title?: string;
 		};
 		/**
 		 * @description The network on which activities occur.
@@ -1519,6 +1821,7 @@ export interface components {
 			| "gnosis"
 			| "linea"
 			| "mastodon"
+			| "near"
 			| "optimism"
 			| "polygon"
 			| "vsl"
@@ -1533,79 +1836,10 @@ export interface components {
 			type?: string;
 		};
 		/** @example {
-		 *       "id": {
-		 *         "is_required": true,
-		 *         "type": "string",
-		 *         "value": null,
-		 *         "description": "Worker's id, must be unique, for example '[network]-[worker]'"
-		 *       },
-		 *       "network": {
-		 *         "is_required": true,
-		 *         "type": "string",
-		 *         "value": "ethereum",
-		 *         "description": "The network where the worker operates on"
-		 *       },
-		 *       "worker": {
-		 *         "is_required": true,
-		 *         "type": "string",
-		 *         "value": "core",
-		 *         "description": "Name of the worker"
-		 *       },
-		 *       "endpoint": {
-		 *         "is_required": true,
-		 *         "type": "url",
-		 *         "value": null,
-		 *         "description": "An external endpoint to fetch data from, for example, a blockchain RPC endpoint or a Farcaster api"
-		 *       },
-		 *       "parameters": {
-		 *         "concurrent_block_requests": {
-		 *           "is_required": false,
-		 *           "type": "uint",
-		 *           "value": 8,
-		 *           "description": "The number of concurrent RPC requests to the blockchain rpc. Default: 8"
-		 *         },
-		 *         "block_batch_size": {
-		 *           "is_required": false,
-		 *           "type": "uint",
-		 *           "value": 8,
-		 *           "description": "The number of blocks to fetch in a single RPC request. Default: 8"
-		 *         },
-		 *         "receipts_batch_size": {
-		 *           "is_required": false,
-		 *           "type": "uint",
-		 *           "value": 200,
-		 *           "description": "The number of receipts to fetch in a single RPC request. Default: 200"
-		 *         },
-		 *         "block_receipts_batch_size": {
-		 *           "is_required": false,
-		 *           "type": "uint",
-		 *           "value": 8,
-		 *           "description": "The number of blocks to fetch receipts in a single RPC request. Default: 8"
-		 *         }
-		 *       },
-		 *       "minimum_resource": {
-		 *         "cpu_core": 2,
-		 *         "memory_in_gb": 2,
-		 *         "disk_space_in_gb": 153
-		 *       }
-		 *     } */
-		NetworkWorker: {
-			endpoint?: components["schemas"]["WorkerDetail"];
-			id?: components["schemas"]["WorkerDetail"];
-			network?: components["schemas"]["WorkerDetail"];
-			parameters?: {
-				block_batch_size?: components["schemas"]["WorkerDetail"];
-				block_receipts_batch_size?: components["schemas"]["WorkerDetail"];
-				concurrent_block_requests?: components["schemas"]["WorkerDetail"];
-				receipts_batch_size?: components["schemas"]["WorkerDetail"];
-			};
-			worker?: components["schemas"]["WorkerDetail"];
-		};
-		/** @example {
 		 *       "id": 18,
 		 *       "address": "0x69982e017acc0fde3d1542205089a8d3eafcd1b7",
 		 *       "name": "Natural Selection Labs",
-		 *       "description": "A node operated by NSL.",
+		 *       "description": "A Node operated by NSL.",
 		 *       "tax_rate_basis_points": 800,
 		 *       "is_public_good": false,
 		 *       "operation_pool_tokens": "724429065703690345869831",
@@ -1638,7 +1872,7 @@ export interface components {
 		 *     } */
 		Node: {
 			address: string;
-			/** @description Whether the node is an alpha node */
+			/** @description Whether the Node is an alpha node */
 			alpha?: boolean;
 			avatar: {
 				description?: string;
@@ -1758,6 +1992,10 @@ export interface components {
 			| "1inch"
 			| "AAVE"
 			| "Aavegotchi"
+			| "Arbitrum"
+			| "Base"
+			| "BendDAO"
+			| "Cow"
 			| "Crossbell"
 			| "Curve"
 			| "ENS"
@@ -1766,19 +2004,27 @@ export interface components {
 			| "IQWiki"
 			| "KiwiStand"
 			| "Lens"
+			| "LiNEAR"
 			| "Lido"
+			| "Linea"
 			| "LooksRare"
 			| "Matters"
 			| "Mirror"
+			| "NearSocial"
+			| "Nouns"
 			| "OpenSea"
 			| "Optimism"
 			| "Paragraph"
+			| "Paraswap"
+			| "Polymarket"
 			| "RSS3"
+			| "Rainbow"
 			| "SAVM"
 			| "Stargate"
 			| "Uniswap"
 			| "Unknown"
-			| "VSL";
+			| "VSL"
+			| "Zerion";
 		ResponseError: {
 			details?: string;
 			error: string;
@@ -1788,6 +2034,21 @@ export interface components {
 				| "validate_failed"
 				| "bad_params"
 				| "internal_error";
+		};
+		RSSConfig: {
+			id?: string;
+			worker_configs?: {
+				endpoint?: components["schemas"]["ConfigItem"];
+				id?: components["schemas"]["ConfigItem"];
+				minimum_resource?: components["schemas"]["MinimumResource"];
+				network?: components["schemas"]["ConfigItem"];
+				parameters?: {
+					authentication?: {
+						access_key?: components["schemas"]["ConfigItem"];
+					};
+				};
+				worker?: components["schemas"]["ConfigItem"];
+			};
 		};
 		RssFeed: {
 			authors?: {
@@ -1818,6 +2079,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1854,6 +2116,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1890,6 +2153,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1926,6 +2190,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -1993,6 +2258,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -2029,6 +2295,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -2065,6 +2332,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -2144,6 +2412,7 @@ export interface components {
 		Tag:
 			| "collectible"
 			| "exchange"
+			| "governance"
 			| "metaverse"
 			| "rss"
 			| "social"
@@ -2161,6 +2430,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -2187,9 +2457,10 @@ export interface components {
 				| "gnosis"
 				| "linea"
 				| "mastodon"
+				| "near"
 				| "optimism"
 				| "polygon"
-				| "rss"
+				| "rsshub"
 				| "savm"
 				| "vsl"
 				| "x-layer";
@@ -2208,9 +2479,10 @@ export interface components {
 				| "gnosis"
 				| "linea"
 				| "mastodon"
+				| "near"
 				| "optimism"
 				| "polygon"
-				| "rss"
+				| "rsshub"
 				| "savm"
 				| "vsl"
 				| "x-layer";
@@ -2224,6 +2496,7 @@ export interface components {
 				standard?:
 					| "Unknown"
 					| "ERC-20"
+					| "NEP-141"
 					| "ERC-165"
 					| "ERC-721"
 					| "ERC-1155"
@@ -2243,6 +2516,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -2287,6 +2561,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -2305,6 +2580,7 @@ export interface components {
 			standard?:
 				| "Unknown"
 				| "ERC-20"
+				| "NEP-141"
 				| "ERC-165"
 				| "ERC-721"
 				| "ERC-1155"
@@ -2320,15 +2596,18 @@ export interface components {
 		 */
 		Type:
 			| "approval"
+			| "auction"
 			| "bridge"
 			| "burn"
 			| "comment"
 			| "delete"
 			| "feed"
 			| "liquidity"
+			| "loan"
 			| "mint"
 			| "post"
 			| "profile"
+			| "proposal"
 			| "proxy"
 			| "revise"
 			| "reward"
@@ -2337,7 +2616,8 @@ export interface components {
 			| "swap"
 			| "trade"
 			| "transfer"
-			| "unknown";
+			| "unknown"
+			| "vote";
 		/** @description The details of an asset for worker. */
 		WorkerAssetDetail: {
 			/** @description The URL of the asset's icon. */
@@ -2348,12 +2628,6 @@ export interface components {
 			platform?: string;
 			/** @description The type of the asset. */
 			type?: string;
-		};
-		WorkerDetail: {
-			description: string;
-			is_required: boolean;
-			type: string;
-			value: string;
 		};
 	};
 	responses: {
@@ -2440,7 +2714,7 @@ export interface components {
 				"image/svg+xml": components["schemas"]["Image"];
 			};
 		};
-		/** @description A successful response containing detailed information about the specified chip. The data includes the chip's ID, node address, owner address, and metadata such as name, description, and image. */
+		/** @description A successful response containing detailed information about the specified chip. The data includes the chip's ID, Node address, owner address, and metadata such as name, description, and image. */
 		ChipResponse: {
 			headers: {
 				[name: string]: unknown;
@@ -2449,7 +2723,7 @@ export interface components {
 				"application/json": components["schemas"]["Chip"];
 			};
 		};
-		/** @description A successful response containing a list of chips based on the provided filters. Each chip includes detailed information such as its ID, node address, owner address, and metadata. The response also includes a cursor for pagination to fetch subsequent sets of results. */
+		/** @description A successful response containing a list of chips based on the provided filters. Each chip includes detailed information such as its ID, Node address, owner address, and metadata. The response also includes a cursor for pagination to fetch subsequent sets of results. */
 		ChipsResponse: {
 			headers: {
 				[name: string]: unknown;
@@ -2528,38 +2802,38 @@ export interface components {
 				};
 			};
 		};
-		/** @description A successful response containing a list of compatible networks. */
-		NetworksResponse: {
+		/** @description A successful response with the activities from the specified account. The response includes details about each activity, such as its ID, timestamp, and associated actions. */
+		FederatedActivitiesResponse: {
 			headers: {
 				[name: string]: unknown;
 			};
 			content: {
-				"application/json": {
-					/** @description Array of compatible network names. */
-					data: components["schemas"]["Network"][];
-				};
+				"application/json": components["schemas"]["FederatedActivitiesResponse"];
 			};
 		};
-		/** @description A successful response containing the configuration details for the specified worker in the specified network. */
-		NetworkWorkerConfigResponse: {
+		/** @description A successful response containing the details of the specified federated activity. The response includes the activity ID, timestamp, and a list of actions performed within the activity. */
+		FederatedActivityResponse: {
 			headers: {
 				[name: string]: unknown;
 			};
 			content: {
-				"application/json": {
-					data?: components["schemas"]["NetworkWorker"];
-				};
+				"application/json": components["schemas"]["FederatedActivityResponse"];
 			};
 		};
-		/** @description A successful response containing a list of available workers for the specified network. */
-		NetworkWorkersResponse: {
+		/** @description A successful response containing the configuration details of RSS, Decentralized, and Federated networks. */
+		NetworkConfigResponse: {
 			headers: {
 				[name: string]: unknown;
 			};
 			content: {
 				"application/json": {
-					/** @description Array of worker names for the specified network. */
-					data: string[];
+					data?: {
+						data?: {
+							decentralized?: components["schemas"]["DecentralizedConfig"][];
+							federated?: components["schemas"]["FederatedConfig"][];
+							rss?: components["schemas"]["RSSConfig"];
+						};
+					};
 				};
 			};
 		};
@@ -2572,14 +2846,14 @@ export interface components {
 				"image/svg+xml": components["schemas"]["Image"];
 			};
 		};
-		/** @description A successful response containing snapshots of node counts over time. Each entry in the data array includes the date and the count of nodes on that date. */
+		/** @description A successful response containing snapshots of Node counts over time. Each entry in the data array includes the date and the count of nodes on that date. */
 		NodeCountSnapshotsResponse: {
 			headers: {
 				[name: string]: unknown;
 			};
 			content: {
 				"application/json": {
-					/** @description Array of node count snapshots. */
+					/** @description Array of Node count snapshots. */
 					data: components["schemas"]["CountSnapshot"][];
 				};
 			};
@@ -2593,7 +2867,7 @@ export interface components {
 				"application/json": {
 					/** @description Cursor for pagination to fetch the next set of results. */
 					cursor: string;
-					/** @description Array of node transaction events. */
+					/** @description Array of Node transaction events. */
 					data: components["schemas"]["NodeEvent"][];
 				};
 			};
@@ -2633,7 +2907,7 @@ export interface components {
 				"application/json": components["schemas"]["Node"];
 			};
 		};
-		/** @description A successful response containing the rewards of the specified node by epoch. Each entry in the data array includes detailed information about the epoch. */
+		/** @description A successful response containing the rewards of the specified Node by epoch. Each entry in the data array includes detailed information about the epoch. */
 		NodeRewardsByEpochResponse: {
 			headers: {
 				[name: string]: unknown;
@@ -2642,7 +2916,7 @@ export interface components {
 				"application/json": {
 					/** @description Cursor for pagination to fetch the next set of results. */
 					cursor: string;
-					/** @description Array of epochs with node rewards. */
+					/** @description Array of epochs with Node rewards. */
 					data: components["schemas"]["Epoch"][];
 				};
 			};
@@ -2742,7 +3016,7 @@ export interface components {
 				};
 			};
 		};
-		/** @description A successful response containing a list of stakers and their associated nodes. Each entry in the data array represents a staker and includes detailed information about the staker, the node they are associated with, and any associated chips. The response also includes a cursor for pagination to fetch subsequent sets of results. This allows users to retrieve large datasets incrementally. */
+		/** @description A successful response containing a list of stakers and their associated nodes. Each entry in the data array represents a staker and includes detailed information about the staker, the Node they are associated with, and any associated chips. The response also includes a cursor for pagination to fetch subsequent sets of results. This allows users to retrieve large datasets incrementally. */
 		StakeStakingsResponse: {
 			headers: {
 				[name: string]: unknown;
@@ -2812,6 +3086,34 @@ export interface components {
 				};
 			};
 		};
+		/** @description A successful response containing the total supply of VSL token in RSS3. */
+		TokenSupplyResponse: {
+			headers: {
+				[name: string]: unknown;
+			};
+			content: {
+				"application/json": {
+					data?: {
+						/** @description The total supply of VSL token in RSS3. */
+						total_supply?: string;
+					};
+				};
+			};
+		};
+		/** @description A successful response containing the TVL of VSL token in USD, including RSS3, WETH, USDT, USDC and POWER. */
+		TokenTvlResponse: {
+			headers: {
+				[name: string]: unknown;
+			};
+			content: {
+				"application/json": {
+					data?: {
+						/** @description The TVL of VSL token in USD, including RSS3, WETH, USDT, USDC and POWER. */
+						tvl?: string;
+					};
+				};
+			};
+		};
 		/** @description A successful response containing the total number of requests made to the API. */
 		TotalRequestsResponse: {
 			headers: {
@@ -2819,8 +3121,10 @@ export interface components {
 			};
 			content: {
 				"application/json": {
-					/** @description The total number of requests made to the API. */
-					data?: number;
+					data?: {
+						/** @description The total number of requests made to the API. */
+						total_requests?: number;
+					};
 				};
 			};
 		};
@@ -2898,6 +3202,34 @@ export interface components {
 		 */
 		epoch_transaction_hash_path: string;
 		/**
+		 * @description Retrieve activities from the specified account. This account is a unique identifier within the federated system.
+		 * @example @jedi@bolha.us
+		 */
+		federated_account_path: string;
+		/** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+		federated_action_tag_query: "social"[];
+		/** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+		federated_action_type_query: ("post" | "comment" | "share")[];
+		/**
+		 * @description Retrieve details for the specified federated activity ID
+		 * @example https://universeodon.com/users/woofers/statuses/113324128515491294/activity
+		 */
+		federated_activity_id_path: string;
+		/**
+		 * @description Retrieve activities from the specified federated network.
+		 * @example mastodon
+		 */
+		federated_network_path: string;
+		/** @description Retrieve activities from the specified federated network(s). You can specify one or more federated networks. */
+		federated_network_query: "mastodon"[];
+		/**
+		 * @description Retrieve activities from the specified federated platform.
+		 * @example Mastodon
+		 */
+		federated_platform_path: string;
+		/** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+		federated_platform_query: "Mastodon"[];
+		/**
 		 * @description Limit the number of results
 		 * @example 20
 		 */
@@ -2922,7 +3254,7 @@ export interface components {
 		/** @description Retrieve activities from the specified network(s). You can specify one or more networks. */
 		network_query: components["schemas"]["Network"][];
 		/**
-		 * @description The address of the node to retrieve.
+		 * @description The address of the Node to retrieve.
 		 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
 		 */
 		node_address_path: string;
@@ -3046,6 +3378,63 @@ export interface components {
 					/** @description Retrieve activities for the specified tag(s) */
 					tag?: components["schemas"]["Tag"][];
 					/** @description Retrieve activities for the specified type(s) */
+					type?: components["schemas"]["Type"][];
+					/** @description Retrieve activities up to this timestamp */
+					until_timestamp?: number;
+				};
+			};
+		};
+		/** @description Request body for batch retrieving activities for multiple federated accounts */
+		BatchGetFederatedAccountsActivities: {
+			content: {
+				"application/json": {
+					/**
+					 * @description List of federated accounts to retrieve activities
+					 * @example [
+					 *       "@hauptstadtzoos@mastodon.berlin",
+					 *       "@nummycreations@mstdn.business"
+					 *     ]
+					 */
+					accounts?: string[];
+					/**
+					 * @description Specify the number of actions within the activity to retrieve
+					 * @default 10
+					 * @example 10
+					 */
+					action_limit?: number;
+					/** @description Specify the cursor used for pagination */
+					cursor?: string;
+					direction?: components["schemas"]["Direction"];
+					/**
+					 * @description Specify the number of activities to retrieve
+					 * @default 100
+					 * @example 20
+					 */
+					limit?: number;
+					/** @description Retrieve activities from the specified network(s) */
+					network?: string;
+					/**
+					 * @description Retrieve activities from the specified platform(s)
+					 * @example Mastodon
+					 */
+					platform?: string;
+					/** @description Retrieve activities starting from this timestamp */
+					since_timestamp?: number;
+					/** @description Retrieve activities based on success status */
+					success?: boolean;
+					/**
+					 * @description Retrieve activities for the specified tag(s)
+					 * @example social
+					 */
+					tag?: string;
+					/**
+					 * @description Retrieve activities for the specified type(s)
+					 * @example [
+					 *       "post",
+					 *       "comment",
+					 *       "share"
+					 *     ]
+					 */
 					type?: components["schemas"]["Type"][];
 					/** @description Retrieve activities up to this timestamp */
 					until_timestamp?: number;
@@ -3242,6 +3631,194 @@ export interface operations {
 		requestBody?: never;
 		responses: {
 			200: components["responses"]["ActivityResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getFederatedAccountActivities: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+				direction?: components["parameters"]["direction_query"];
+				/**
+				 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_query"];
+				/** @description Retrieve activities from the specified federated network(s). You can specify one or more federated networks. */
+				network?: components["parameters"]["federated_network_query"];
+				/** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+				platform?: components["parameters"]["federated_platform_query"];
+				/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+				since_timestamp?: components["parameters"]["since_timestamp_query"];
+				/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+				success?: components["parameters"]["success_query"];
+				/** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+				tag?: components["parameters"]["federated_action_tag_query"];
+				/** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+				type?: components["parameters"]["federated_action_type_query"];
+				/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+				until_timestamp?: components["parameters"]["until_timestamp_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve activities from the specified account. This account is a unique identifier within the federated system.
+				 * @example @jedi@bolha.us
+				 */
+				account: components["parameters"]["federated_account_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["FederatedActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	batchGetFederatedAccountsActivities: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody: components["requestBodies"]["BatchGetFederatedAccountsActivities"];
+		responses: {
+			200: components["responses"]["FederatedActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getFederatedNetworkActivities: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+				direction?: components["parameters"]["direction_query"];
+				/**
+				 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_query"];
+				/** @description Retrieve activities from the specified platform(s). Platforms refer to the systems or environments where the activities occurred. */
+				platform?: components["parameters"]["federated_platform_query"];
+				/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+				since_timestamp?: components["parameters"]["since_timestamp_query"];
+				/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+				success?: components["parameters"]["success_query"];
+				/** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+				tag?: components["parameters"]["federated_action_tag_query"];
+				/** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+				type?: components["parameters"]["federated_action_type_query"];
+				/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+				until_timestamp?: components["parameters"]["until_timestamp_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve activities from the specified federated network.
+				 * @example mastodon
+				 */
+				network: components["parameters"]["federated_network_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["FederatedActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getFederatedPlatformActivities: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/** @description Specify the cursor used for pagination. This helps in retrieving the next set of results in a paginated response. */
+				cursor?: components["parameters"]["cursor_query"];
+				/** @description Retrieve activities based on direction. The direction specifies whether the activity is incoming or outgoing. */
+				direction?: components["parameters"]["direction_query"];
+				/**
+				 * @description Specify the number of activities to retrieve. By default, this is set to 100, and the maximum allowed value is 100.
+				 * @example 20
+				 */
+				limit?: components["parameters"]["limit_query"];
+				/** @description Retrieve activities from the specified federated network(s). You can specify one or more federated networks. */
+				network?: components["parameters"]["federated_network_query"];
+				/** @description Retrieve activities starting from this timestamp. The timestamp is specified in Unix epoch time. */
+				since_timestamp?: components["parameters"]["since_timestamp_query"];
+				/** @description Retrieve activities based on success status. Specify true for successful activities or false for unsuccessful ones. */
+				success?: components["parameters"]["success_query"];
+				/** @description Retrieve activities from the specified tag(s). Tags can be used to categorize activities. */
+				tag?: components["parameters"]["federated_action_tag_query"];
+				/** @description Retrieve activities from the specified type(s). Types can help filter activities based on their nature or category. */
+				type?: components["parameters"]["federated_action_type_query"];
+				/** @description Retrieve activities up to this timestamp. The timestamp is specified in Unix epoch time. */
+				until_timestamp?: components["parameters"]["until_timestamp_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve activities from the specified federated platform.
+				 * @example Mastodon
+				 */
+				platform: components["parameters"]["federated_platform_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["FederatedActivitiesResponse"];
+			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getFederatedActivityById: {
+		parameters: {
+			query?: {
+				/**
+				 * @description Specify the number of actions within the activity to retrieve
+				 * @example 10
+				 */
+				action_limit?: components["parameters"]["action_limit_query"];
+				/**
+				 * @description Specify the pagination for actions
+				 * @example 1
+				 */
+				action_page?: components["parameters"]["action_page_query"];
+			};
+			header?: never;
+			path: {
+				/**
+				 * @description Retrieve details for the specified federated activity ID
+				 * @example https://universeodon.com/users/woofers/statuses/113324128515491294/activity
+				 */
+				id: components["parameters"]["federated_activity_id_path"];
+			};
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["FederatedActivityResponse"];
 			400: components["responses"]["400"];
 			500: components["responses"]["500"];
 		};
@@ -3447,7 +4024,7 @@ export interface operations {
 			header?: never;
 			path: {
 				/**
-				 * @description The address of the node to retrieve.
+				 * @description The address of the Node to retrieve.
 				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
 				 */
 				address: components["parameters"]["node_address_path"];
@@ -3528,72 +4105,6 @@ export interface operations {
 			500: components["responses"]["500"];
 		};
 	};
-	getAllCompatibleNetworks: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path?: never;
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			200: components["responses"]["NetworksResponse"];
-			500: components["responses"]["500"];
-		};
-	};
-	getAvailableWorkersByNetwork: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The name of the network to retrieve available workers for. */
-				network_name: components["parameters"]["network_name_path"];
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			200: components["responses"]["NetworkWorkersResponse"];
-			400: components["responses"]["400"];
-			/** @description Not found */
-			404: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			500: components["responses"]["500"];
-		};
-	};
-	getWorkerConfigByNetworkAndWorker: {
-		parameters: {
-			query?: never;
-			header?: never;
-			path: {
-				/** @description The name of the network to retrieve available workers for. */
-				network_name: components["parameters"]["network_name_path"];
-				/**
-				 * @description The name of the worker.
-				 * @example core
-				 */
-				worker_name: components["parameters"]["worker_name_path"];
-			};
-			cookie?: never;
-		};
-		requestBody?: never;
-		responses: {
-			200: components["responses"]["NetworkWorkerConfigResponse"];
-			400: components["responses"]["400"];
-			/** @description Not found */
-			404: {
-				headers: {
-					[name: string]: unknown;
-				};
-				content?: never;
-			};
-			500: components["responses"]["500"];
-		};
-	};
 	getNodeAssets: {
 		parameters: {
 			query?: never;
@@ -3604,6 +4115,27 @@ export interface operations {
 		requestBody?: never;
 		responses: {
 			200: components["responses"]["AssetsResponse"];
+			500: components["responses"]["500"];
+		};
+	};
+	getNetworkConfig: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["NetworkConfigResponse"];
+			400: components["responses"]["400"];
+			/** @description Not found */
+			404: {
+				headers: {
+					[name: string]: unknown;
+				};
+				content?: never;
+			};
 			500: components["responses"]["500"];
 		};
 	};
@@ -3647,7 +4179,7 @@ export interface operations {
 			header?: never;
 			path: {
 				/**
-				 * @description The address of the node to retrieve.
+				 * @description The address of the Node to retrieve.
 				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
 				 */
 				address: components["parameters"]["node_address_path"];
@@ -3674,7 +4206,7 @@ export interface operations {
 			header?: never;
 			path: {
 				/**
-				 * @description The address of the node to retrieve.
+				 * @description The address of the Node to retrieve.
 				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
 				 */
 				address: components["parameters"]["node_address_path"];
@@ -3709,7 +4241,7 @@ export interface operations {
 			header?: never;
 			path: {
 				/**
-				 * @description The address of the node to retrieve.
+				 * @description The address of the Node to retrieve.
 				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
 				 */
 				address: components["parameters"]["node_address_path"];
@@ -3729,7 +4261,7 @@ export interface operations {
 			header?: never;
 			path: {
 				/**
-				 * @description The address of the node to retrieve.
+				 * @description The address of the Node to retrieve.
 				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
 				 */
 				address: components["parameters"]["node_address_path"];
@@ -3979,6 +4511,32 @@ export interface operations {
 		responses: {
 			200: components["responses"]["StakeTransactionByHashResponse"];
 			400: components["responses"]["400"];
+			500: components["responses"]["500"];
+		};
+	};
+	getRSS3TokenTotalSupply: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["TokenSupplyResponse"];
+			500: components["responses"]["500"];
+		};
+	};
+	getTokenTVL: {
+		parameters: {
+			query?: never;
+			header?: never;
+			path?: never;
+			cookie?: never;
+		};
+		requestBody?: never;
+		responses: {
+			200: components["responses"]["TokenTvlResponse"];
 			500: components["responses"]["500"];
 		};
 	};

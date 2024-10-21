@@ -163,9 +163,13 @@ export const getRSSActivity = buildRequest("/rss/{path}", "get").withParams(
 	}),
 );
 
-export type GetNetworkActivityParams = RequestParams<typeof getNetworkActivity>;
-export type GetNetworkActivityResult = RequestResult<typeof getNetworkActivity>;
-export const getNetworkActivity = buildRequest(
+export type GetNetworkActivitiesParams = RequestParams<
+	typeof getNetworkActivities
+>;
+export type GetNetworkActivitiesResult = RequestResult<
+	typeof getNetworkActivities
+>;
+export const getNetworkActivities = buildRequest(
 	"/decentralized/network/{network}",
 	"get",
 ).withParams(
@@ -178,13 +182,13 @@ export const getNetworkActivity = buildRequest(
 	}),
 );
 
-export type GetPlatformActivityParams = RequestParams<
-	typeof getPlatformActivity
+export type GetPlatformActivitiesParams = RequestParams<
+	typeof getPlatformActivities
 >;
-export type GetPlatformActivityResult = RequestResult<
-	typeof getPlatformActivity
+export type GetPlatformActivitiesResult = RequestResult<
+	typeof getPlatformActivities
 >;
-export const getPlatformActivity = buildRequest(
+export const getPlatformActivities = buildRequest(
 	"/decentralized/platform/{platform}",
 	"get",
 ).withParams(
@@ -196,6 +200,71 @@ export const getPlatformActivity = buildRequest(
 		cursor: meta?.cursor,
 	}),
 );
+
+export type GetFederatedActivitiesByAccountParams = RequestParams<
+	typeof getFederatedActivitiesByAccount
+>;
+export type GetFederatedActivitiesByAccountResult = RequestResult<
+	typeof getFederatedActivitiesByAccount
+>;
+export const getFederatedActivitiesByAccount = buildRequest(
+	"/federated/{account}",
+	"get",
+).withParams(({ account, ...query }) => ({
+	params: objectToSnake({ path: { account }, query }),
+}));
+
+export type GetFederatedActivityParams = RequestParams<
+	typeof getFederatedActivity
+>;
+export type GetFederatedActivityResult = RequestResult<
+	typeof getFederatedActivity
+>;
+export const getFederatedActivity = buildRequest(
+	"/federated/tx/{id}",
+	"get",
+).withParams((path) => ({
+	params: objectToSnake({ path }),
+}));
+
+export type GetFederatedActivitiesByAccountsParams = RequestParams<
+	typeof getFederatedActivitiesByAccounts
+>;
+export type GetFederatedActivitiesByAccountsResult = RequestResult<
+	typeof getFederatedActivitiesByAccounts
+>;
+export const getFederatedActivitiesByAccounts = buildRequest(
+	"/federated/accounts",
+	"post",
+).withParams((body) => ({
+	body: objectToSnake(body),
+}));
+
+export type GetFederatedNetworkActivitiesParams = RequestParams<
+	typeof getFederatedNetworkActivities
+>;
+export type GetFederatedNetworkActivitiesResult = RequestResult<
+	typeof getFederatedNetworkActivities
+>;
+export const getFederatedNetworkActivities = buildRequest(
+	"/federated/network/{network}",
+	"get",
+).withParams((path) => ({
+	params: objectToSnake({ path }),
+}));
+
+export type GetFederatedPlatformActivitiesParams = RequestParams<
+	typeof getFederatedPlatformActivities
+>;
+export type GetFederatedPlatformActivitiesResult = RequestResult<
+	typeof getFederatedPlatformActivities
+>;
+export const getFederatedPlatformActivities = buildRequest(
+	"/federated/platform/{platform}",
+	"get",
+).withParams((path) => ({
+	params: objectToSnake({ path }),
+}));
 
 export type GetBridgingTransactionsParams = RequestParams<
 	typeof getBridgingTransactions
@@ -473,39 +542,6 @@ export const getAverageEpochsApy = buildRequest(
 	"get",
 ).withoutParams();
 
-export type GetCompatibleNetworksParams = RequestParams<
-	typeof getCompatibleNetworks
->;
-export type GetCompatibleNetworksResult = RequestResult<
-	typeof getCompatibleNetworks
->;
-export const getCompatibleNetworks = buildRequest(
-	"/nta/networks",
-	"get",
-).withoutParams();
-
-export type GetAvailableWorkersParams = RequestParams<
-	typeof getAvailableWorkers
->;
-export type GetAvailableWorkersResult = RequestResult<
-	typeof getAvailableWorkers
->;
-export const getAvailableWorkers = buildRequest(
-	"/nta/networks/{network_name}/list_workers",
-	"get",
-).withParams((path) => ({
-	params: objectToSnake({ path }),
-}));
-
-export type GetWorkerConfigParams = RequestParams<typeof getWorkerConfig>;
-export type GetWorkerConfigResult = RequestResult<typeof getWorkerConfig>;
-export const getWorkerConfig = buildRequest(
-	"/nta/networks/{network_name}/workers/{worker_name}",
-	"get",
-).withParams((path) => ({
-	params: objectToSnake({ path }),
-}));
-
 export type GetNetworkAssetsParams = RequestParams<typeof getNetworkAssets>;
 export type GetNetworkAssetsResult = RequestResult<typeof getNetworkAssets>;
 export const getNetworkAssets = buildRequest(
@@ -513,9 +549,30 @@ export const getNetworkAssets = buildRequest(
 	"get",
 ).withoutParams();
 
+export type GetNetworkConfigParams = RequestParams<typeof getNetworkConfig>;
+export type GetNetworkConfigResult = RequestResult<typeof getNetworkConfig>;
+export const getNetworkConfig = buildRequest(
+	"/nta/networks/config",
+	"get",
+).withoutParams();
+
 export type GetTotalRequestsParams = RequestParams<typeof getTotalRequests>;
 export type GetTotalRequestsResult = RequestResult<typeof getTotalRequests>;
 export const getTotalRequests = buildRequest(
 	"/nta/dsl/total_requests",
+	"get",
+).withoutParams();
+
+export type GetTokenSupplyParams = RequestParams<typeof getTokenSupply>;
+export type GetTokenSupplyResult = RequestResult<typeof getTokenSupply>;
+export const getTokenSupply = buildRequest(
+	"/nta/token/supply",
+	"get",
+).withoutParams();
+
+export type GetTokenTvlParams = RequestParams<typeof getTokenTvl>;
+export type GetTokenTvlResult = RequestResult<typeof getTokenTvl>;
+export const getTokenTvl = buildRequest(
+	"/nta/token/tvl",
 	"get",
 ).withoutParams();
