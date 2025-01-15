@@ -1,6 +1,6 @@
 {
 	"name": "@rss3/api-utils",
-	"version": "0.0.24",
+	"version": "0.0.25",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/RSS3-Network/DSL-js-sdk/tree/main/packages/api-utils"
