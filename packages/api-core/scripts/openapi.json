@@ -553,7 +553,7 @@
 						"$ref": "#/components/parameters/bridging_type_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					}
 				],
 				"responses": {
@@ -616,7 +616,7 @@
 						"$ref": "#/components/parameters/pending_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					}
 				],
 				"responses": {
@@ -670,7 +670,7 @@
 						"$ref": "#/components/parameters/node_address_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					},
 					{
 						"$ref": "#/components/parameters/cursor_query"
@@ -879,7 +879,7 @@
 						"$ref": "#/components/parameters/cursor_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					},
 					{
 						"$ref": "#/components/parameters/before_date_query"
@@ -915,7 +915,7 @@
 						"$ref": "#/components/parameters/cursor_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					},
 					{
 						"$ref": "#/components/parameters/before_date_query"
@@ -959,7 +959,7 @@
 		"/nta/nodes": {
 			"get": {
 				"summary": "Retrieve all RSS3 Nodes",
-				"description": "Retrieve the list of all RSS3 Nodes. This endpoint allows filtering by cursor, limit, and Node address. The default limit is 10 and the maximum limit is 50.",
+				"description": "Retrieve the list of all RSS3 Nodes. This endpoint allows filtering by cursor, limit, and Node address.",
 				"operationId": "getAllNodes",
 				"tags": ["Node", "NTA"],
 				"parameters": [
@@ -967,7 +967,7 @@
 						"$ref": "#/components/parameters/cursor_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					},
 					{
 						"$ref": "#/components/parameters/node_query"
@@ -1057,7 +1057,7 @@
 						"$ref": "#/components/parameters/cursor_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					}
 				],
 				"responses": {
@@ -1103,7 +1103,7 @@
 		"/nta/epochs": {
 			"get": {
 				"summary": "Retrieve all epochs",
-				"description": "Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.",
+				"description": "Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination.",
 				"operationId": "getAllEpochs",
 				"tags": ["Epoch", "NTA"],
 				"parameters": [
@@ -1111,7 +1111,7 @@
 						"$ref": "#/components/parameters/cursor_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					}
 				],
 				"responses": {
@@ -1192,7 +1192,7 @@
 						"$ref": "#/components/parameters/cursor_query"
 					},
 					{
-						"$ref": "#/components/parameters/limit_1_20"
+						"$ref": "#/components/parameters/limit_1_50"
 					}
 				],
 				"responses": {
@@ -1327,33 +1327,33 @@
 						"description": "Additional metadata related to the action.",
 						"type": "object",
 						"anyOf": [
-							{ "$ref": "#/components/schemas/TransactionMint" },
+							{ "$ref": "#/components/schemas/RssFeed" },
 							{ "$ref": "#/components/schemas/TransactionApproval" },
 							{ "$ref": "#/components/schemas/TransactionBridge" },
 							{ "$ref": "#/components/schemas/TransactionTransfer" },
 							{ "$ref": "#/components/schemas/TransactionBurn" },
+							{ "$ref": "#/components/schemas/TransactionMint" },
+							{ "$ref": "#/components/schemas/CollectibleApproval" },
+							{ "$ref": "#/components/schemas/CollectibleTrade" },
 							{ "$ref": "#/components/schemas/CollectibleTransfer" },
 							{ "$ref": "#/components/schemas/CollectibleBurn" },
 							{ "$ref": "#/components/schemas/CollectibleMint" },
-							{ "$ref": "#/components/schemas/CollectibleApproval" },
-							{ "$ref": "#/components/schemas/CollectibleTrade" },
 							{ "$ref": "#/components/schemas/ExchangeLiquidity" },
 							{ "$ref": "#/components/schemas/ExchangeStaking" },
 							{ "$ref": "#/components/schemas/ExchangeSwap" },
-							{ "$ref": "#/components/schemas/SocialPost" },
 							{ "$ref": "#/components/schemas/SocialRevise" },
-							{ "$ref": "#/components/schemas/SocialReward" },
-							{ "$ref": "#/components/schemas/SocialDelete" },
-							{ "$ref": "#/components/schemas/SocialProxy" },
-							{ "$ref": "#/components/schemas/SocialComment" },
-							{ "$ref": "#/components/schemas/SocialShare" },
 							{ "$ref": "#/components/schemas/SocialMint" },
 							{ "$ref": "#/components/schemas/SocialProfile" },
-							{ "$ref": "#/components/schemas/MetaverseMint" },
-							{ "$ref": "#/components/schemas/MetaverseTransfer" },
+							{ "$ref": "#/components/schemas/SocialPost" },
+							{ "$ref": "#/components/schemas/SocialComment" },
+							{ "$ref": "#/components/schemas/SocialDelete" },
+							{ "$ref": "#/components/schemas/SocialProxy" },
+							{ "$ref": "#/components/schemas/SocialReward" },
+							{ "$ref": "#/components/schemas/SocialShare" },
 							{ "$ref": "#/components/schemas/MetaverseTrade" },
 							{ "$ref": "#/components/schemas/MetaverseBurn" },
-							{ "$ref": "#/components/schemas/RssFeed" }
+							{ "$ref": "#/components/schemas/MetaverseMint" },
+							{ "$ref": "#/components/schemas/MetaverseTransfer" }
 						]
 					},
 					"platform": {
@@ -2303,8 +2303,12 @@
 					},
 					"version": {
 						"type": "string",
-						"enum": ["alpha", "beta", "production"],
 						"description": "The version of the node"
+					},
+					"type": {
+						"type": "string",
+						"enum": ["alpha", "beta", "production"],
+						"description": "The type of the node"
 					},
 					"created_at": {
 						"type": "integer",
@@ -2341,9 +2345,9 @@
 					},
 					"min_tokens_to_stake": "599739424417467944968",
 					"apy": "0.3928765550642588002426864199264",
-					"active_score": "0.2712648142772680586868915",
 					"reliability_score": "0",
-					"version": "production",
+					"version": "v1.0.0",
+					"type": "production",
 					"created_at": 1710278898
 				}
 			},
@@ -3177,9 +3181,10 @@
 						"type": "string",
 						"enum": [
 							"bad_request",
-							"validate_failed",
+							"validation_failed",
 							"bad_params",
-							"internal_error"
+							"internal_error",
+							"service_unavailable"
 						]
 					},
 					"error": {
@@ -4398,8 +4403,8 @@
 				"name": "action_limit",
 				"required": false,
 				"schema": {
-					"default": 10,
-					"maximum": 20,
+					"default": 50,
+					"maximum": 100,
 					"minimum": 1,
 					"type": "integer"
 				}
@@ -4735,14 +4740,14 @@
 					"enum": ["deposit", "withdraw"]
 				}
 			},
-			"limit_1_20": {
+			"limit_1_50": {
 				"name": "limit",
 				"in": "query",
 				"description": "Limit the number of results",
-				"example": 20,
+				"example": 50,
 				"schema": {
 					"type": "integer",
-					"default": 20
+					"default": 50
 				}
 			},
 			"limit_1_200": {

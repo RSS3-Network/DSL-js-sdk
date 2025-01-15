@@ -333,7 +333,7 @@ export interface paths {
 		};
 		/**
 		 * Retrieve all epochs
-		 * @description Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination. The default limit is 10 and the maximum limit is 50.
+		 * @description Retrieve a list of all epochs. This endpoint allows filtering by cursor and limit for pagination.
 		 */
 		get: operations["getAllEpochs"];
 		put?: never;
@@ -473,7 +473,7 @@ export interface paths {
 		};
 		/**
 		 * Retrieve all RSS3 Nodes
-		 * @description Retrieve the list of all RSS3 Nodes. This endpoint allows filtering by cursor, limit, and Node address. The default limit is 10 and the maximum limit is 50.
+		 * @description Retrieve the list of all RSS3 Nodes. This endpoint allows filtering by cursor, limit, and Node address.
 		 */
 		get: operations["getAllNodes"];
 		put?: never;
@@ -850,33 +850,33 @@ export interface components {
 			from: string;
 			/** @description Additional metadata related to the action. */
 			metadata:
-				| components["schemas"]["TransactionMint"]
+				| components["schemas"]["RssFeed"]
 				| components["schemas"]["TransactionApproval"]
 				| components["schemas"]["TransactionBridge"]
 				| components["schemas"]["TransactionTransfer"]
 				| components["schemas"]["TransactionBurn"]
+				| components["schemas"]["TransactionMint"]
+				| components["schemas"]["CollectibleApproval"]
+				| components["schemas"]["CollectibleTrade"]
 				| components["schemas"]["CollectibleTransfer"]
 				| components["schemas"]["CollectibleBurn"]
 				| components["schemas"]["CollectibleMint"]
-				| components["schemas"]["CollectibleApproval"]
-				| components["schemas"]["CollectibleTrade"]
 				| components["schemas"]["ExchangeLiquidity"]
 				| components["schemas"]["ExchangeStaking"]
 				| components["schemas"]["ExchangeSwap"]
-				| components["schemas"]["SocialPost"]
 				| components["schemas"]["SocialRevise"]
-				| components["schemas"]["SocialReward"]
-				| components["schemas"]["SocialDelete"]
-				| components["schemas"]["SocialProxy"]
-				| components["schemas"]["SocialComment"]
-				| components["schemas"]["SocialShare"]
 				| components["schemas"]["SocialMint"]
 				| components["schemas"]["SocialProfile"]
-				| components["schemas"]["MetaverseMint"]
-				| components["schemas"]["MetaverseTransfer"]
+				| components["schemas"]["SocialPost"]
+				| components["schemas"]["SocialComment"]
+				| components["schemas"]["SocialDelete"]
+				| components["schemas"]["SocialProxy"]
+				| components["schemas"]["SocialReward"]
+				| components["schemas"]["SocialShare"]
 				| components["schemas"]["MetaverseTrade"]
 				| components["schemas"]["MetaverseBurn"]
-				| components["schemas"]["RssFeed"];
+				| components["schemas"]["MetaverseMint"]
+				| components["schemas"]["MetaverseTransfer"];
 			platform?: components["schemas"]["Platform"];
 			/** @description A list of URLs related to the action. */
 			related_urls: string[];
@@ -1865,9 +1865,9 @@ export interface components {
 		 *       },
 		 *       "min_tokens_to_stake": "599739424417467944968",
 		 *       "apy": "0.3928765550642588002426864199264",
-		 *       "active_score": "0.2712648142772680586868915",
 		 *       "reliability_score": "0",
-		 *       "version": "production",
+		 *       "version": "v1.0.0",
+		 *       "type": "production",
 		 *       "created_at": 1710278898
 		 *     } */
 		Node: {
@@ -1913,10 +1913,12 @@ export interface components {
 			tax_rate_basis_points?: number | null;
 			total_shares: string;
 			/**
-			 * @description The version of the node
+			 * @description The type of the node
 			 * @enum {string}
 			 */
-			version?: "alpha" | "beta" | "production";
+			type?: "alpha" | "beta" | "production";
+			/** @description The version of the node */
+			version?: string;
 		};
 		/** @example {
 		 *       "transaction": {
@@ -2031,9 +2033,10 @@ export interface components {
 			/** @enum {string} */
 			error_code:
 				| "bad_request"
-				| "validate_failed"
+				| "validation_failed"
 				| "bad_params"
-				| "internal_error";
+				| "internal_error"
+				| "service_unavailable";
 		};
 		RSSConfig: {
 			id?: string;
@@ -3231,9 +3234,9 @@ export interface components {
 		federated_platform_query: "Mastodon"[];
 		/**
 		 * @description Limit the number of results
-		 * @example 20
+		 * @example 50
 		 */
-		limit_1_20: number;
+		limit_1_50: number;
 		/**
 		 * @description Limit the number of results
 		 * @example 30
@@ -3835,9 +3838,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 				/**
 				 * @description Receiver address
 				 * @example 0x3b6d02a24df681ffdf621d35d70aba7adaac07c1
@@ -3995,9 +3998,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 			};
 			header?: never;
 			path?: never;
@@ -4017,9 +4020,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 			};
 			header?: never;
 			path: {
@@ -4146,9 +4149,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 				/**
 				 * @description Node address
 				 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
@@ -4234,9 +4237,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 			};
 			header?: never;
 			path: {
@@ -4321,9 +4324,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 				/**
 				 * @description Node address
 				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
@@ -4366,9 +4369,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 				/**
 				 * @description Staker address
 				 * @example 0xc8b960d09c0078c18dcbe7eb9ab9d816bcca8944
@@ -4433,9 +4436,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 				/**
 				 * @description Node address
 				 * @example 0x69982e017acc0fde3d1542205089a8d3eafcd1b7
@@ -4465,9 +4468,9 @@ export interface operations {
 				cursor?: components["parameters"]["cursor_query"];
 				/**
 				 * @description Limit the number of results
-				 * @example 20
+				 * @example 50
 				 */
-				limit?: components["parameters"]["limit_1_20"];
+				limit?: components["parameters"]["limit_1_50"];
 				/**
 				 * @description Node address
 				 * @example 0x08d66b34054a174841e2361bd4746ff9f4905cc2
